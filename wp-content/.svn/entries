@@ -1,63 +1,0 @@
-8
-
-dir
-1858
-http://svn.automattic.com/wordpress-mu/tags/2.8.1/wp-content
-http://svn.automattic.com/wordpress-mu
-
-
-
-2009-07-09T14:11:39.836426Z
-1844
-donncha
-
-
-svn:special svn:externals svn:needs-lock
-
-
-
-
-
-
-
-
-
-
-
-7be80a69-a1ef-0310-a953-fb0f7c49ff36
-
-mu-plugins
-dir
-
-plugins
-dir
-
-themes
-dir
-
-blogs.php
-file
-
-
-
-
-2009-07-12T09:42:52.000000Z
-24537ba8994ed116483f11c57faa83f3
-2009-07-09T14:11:39.836426Z
-1844
-donncha
-has-props
-
-index.php
-file
-
-
-
-
-2009-07-12T09:42:52.000000Z
-96137494913a1f730a592e8932af394e
-2007-05-21T18:37:58.564890Z
-972
-donncha
-has-props
-
