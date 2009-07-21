@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 35
+/!svn/ver/1614/tags/1.0.3/bp-groups
+END
+bp-groups-classes.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/1614/tags/1.0.3/bp-groups/bp-groups-classes.php
+END
+bp-groups-ajax.php
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/1614/tags/1.0.3/bp-groups/bp-groups-ajax.php
+END
+bp-groups-cssjs.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/1614/tags/1.0.3/bp-groups/bp-groups-cssjs.php
+END
+bp-groups-widgets.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/1614/tags/1.0.3/bp-groups/bp-groups-widgets.php
+END
+bp-groups-admin.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/1614/tags/1.0.3/bp-groups/bp-groups-admin.php
+END
+bp-groups-filters.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/1614/tags/1.0.3/bp-groups/bp-groups-filters.php
+END
+bp-groups-notifications.php
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/1614/tags/1.0.3/bp-groups/bp-groups-notifications.php
+END
+bp-groups-templatetags.php
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/1614/tags/1.0.3/bp-groups/bp-groups-templatetags.php
+END

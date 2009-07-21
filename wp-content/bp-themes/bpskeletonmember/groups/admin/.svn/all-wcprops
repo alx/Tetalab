@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/1585/tags/1.0.2/bp-themes/bpskeletonmember/groups/admin
+END
+group-settings.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/!svn/ver/1585/tags/1.0.2/bp-themes/bpskeletonmember/groups/admin/group-settings.php
+END
+delete-group.php
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/!svn/ver/1585/tags/1.0.2/bp-themes/bpskeletonmember/groups/admin/delete-group.php
+END
+manage-members.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/!svn/ver/1585/tags/1.0.2/bp-themes/bpskeletonmember/groups/admin/manage-members.php
+END
+membership-requests.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/!svn/ver/1585/tags/1.0.2/bp-themes/bpskeletonmember/groups/admin/membership-requests.php
+END
+edit-details.php
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/!svn/ver/1585/tags/1.0.2/bp-themes/bpskeletonmember/groups/admin/edit-details.php
+END
+group-avatar.php
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/!svn/ver/1585/tags/1.0.2/bp-themes/bpskeletonmember/groups/admin/group-avatar.php
+END

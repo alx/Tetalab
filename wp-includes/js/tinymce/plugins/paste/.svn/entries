@@ -1,0 +1,79 @@
+8
+
+dir
+1858
+http://svn.automattic.com/wordpress-mu/tags/2.8.1/wp-includes/js/tinymce/plugins/paste
+http://svn.automattic.com/wordpress-mu
+
+
+
+2009-06-30T15:57:41.237598Z
+1805
+donncha
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+7be80a69-a1ef-0310-a953-fb0f7c49ff36
+
+editor_plugin.js
+file
+
+
+
+
+2009-07-12T09:42:40.000000Z
+e203448d1abcf685301d3f6a24251ced
+2009-06-30T15:57:41.237598Z
+1805
+donncha
+
+pasteword.htm
+file
+
+
+
+
+2009-07-12T09:42:40.000000Z
+d958f3b1931464c30d68b499231f9d63
+2009-06-30T15:57:41.237598Z
+1805
+donncha
+
+pastetext.htm
+file
+
+
+
+
+2009-07-12T09:42:40.000000Z
+b82c2ee67a44ac0915ba6693ab622a36
+2009-06-30T15:57:41.237598Z
+1805
+donncha
+
+js
+dir
+
+blank.htm
+file
+
+
+
+
+2009-07-12T09:42:40.000000Z
+5dbbcbc1f4bcbe5fe9f22905a7838b57
+2009-05-19T12:14:54.528857Z
+1774
+donncha
+

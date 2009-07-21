@@ -1,0 +1,109 @@
+8
+
+dir
+1618
+http://svn.buddypress.org/tags/1.0.3/bp-messages
+http://svn.buddypress.org
+
+
+
+2009-07-15T17:06:10.023560Z
+1605
+apeatling
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+cdf35c40-ae34-48e0-9cc9-0c9da1808c22
+
+bp-messages-cssjs.php
+file
+
+
+
+
+2009-07-17T16:25:55.000000Z
+04fc6fea45f2f046e3400121689a2ec9
+2009-06-01T23:46:43.212535Z
+1498
+apeatling
+
+bp-messages-filters.php
+file
+
+
+
+
+2009-07-17T16:25:55.000000Z
+b95a4172e0f1e0678a326585cd7aa2f6
+2009-07-15T17:06:10.023560Z
+1605
+apeatling
+
+bp-messages-notifications.php
+file
+
+
+
+
+2009-07-17T16:25:55.000000Z
+ae96aef4cd24a2a5b77b282823b2b482
+2009-06-05T21:29:24.129325Z
+1518
+apeatling
+
+bp-messages-templatetags.php
+file
+
+
+
+
+2009-07-17T16:25:55.000000Z
+8f0166091d145bfa4a947d2496250d95
+2009-06-24T19:58:56.876869Z
+1582
+apeatling
+
+images
+dir
+
+bp-messages-classes.php
+file
+
+
+
+
+2009-07-17T16:25:55.000000Z
+88cb09c0565a46516eae5683f97b7ef1
+2009-06-04T23:12:38.743014Z
+1513
+apeatling
+
+css
+dir
+
+js
+dir
+
+bp-messages-ajax.php
+file
+
+
+
+
+2009-07-17T16:25:55.000000Z
+db4a5697ff283ad5e2eb1834ef188261
+2009-06-22T20:07:01.940154Z
+1562
+apeatling
+

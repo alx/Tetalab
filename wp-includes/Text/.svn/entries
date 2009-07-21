@@ -1,0 +1,43 @@
+8
+
+dir
+1858
+http://svn.automattic.com/wordpress-mu/tags/2.8.1/wp-includes/Text
+http://svn.automattic.com/wordpress-mu
+
+
+
+2008-10-08T13:26:53.026051Z
+1504
+donncha
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+7be80a69-a1ef-0310-a953-fb0f7c49ff36
+
+Diff
+dir
+
+Diff.php
+file
+
+
+
+
+2009-07-12T09:42:49.000000Z
+9e7164b2b3f56bbedc4e3383306261d0
+2008-10-08T13:26:53.026051Z
+1504
+donncha
+

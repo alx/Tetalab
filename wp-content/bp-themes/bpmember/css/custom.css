@@ -1,0 +1,10 @@
+ul#nav li.selected a {
+	background: #ccc;
+	color: #62d5fe;
+	font-weight: bold;
+}
+
+ul#nav {
+	float: right;
+	margin: 7px 0 0;
+}

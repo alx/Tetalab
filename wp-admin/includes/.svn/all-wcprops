@@ -1,0 +1,221 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/wordpress-mu/!svn/ver/1858/tags/2.8.1/wp-admin/includes
+END
+class-ftp.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/wordpress-mu/!svn/ver/1858/tags/2.8.1/wp-admin/includes/class-ftp.php
+END
+plugin.php
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/wordpress-mu/!svn/ver/1858/tags/2.8.1/wp-admin/includes/plugin.php
+END
+plugin-install.php
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/wordpress-mu/!svn/ver/1858/tags/2.8.1/wp-admin/includes/plugin-install.php
+END
+class-pclzip.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/wordpress-mu/!svn/ver/1858/tags/2.8.1/wp-admin/includes/class-pclzip.php
+END
+bookmark.php
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/wordpress-mu/!svn/ver/1858/tags/2.8.1/wp-admin/includes/bookmark.php
+END
+class-ftp-pure.php
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/wordpress-mu/!svn/ver/1858/tags/2.8.1/wp-admin/includes/class-ftp-pure.php
+END
+class-ftp-sockets.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/wordpress-mu/!svn/ver/1858/tags/2.8.1/wp-admin/includes/class-ftp-sockets.php
+END
+manifest.php
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/wordpress-mu/!svn/ver/1858/tags/2.8.1/wp-admin/includes/manifest.php
+END
+taxonomy.php
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/wordpress-mu/!svn/ver/1858/tags/2.8.1/wp-admin/includes/taxonomy.php
+END
+file.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/wordpress-mu/!svn/ver/1858/tags/2.8.1/wp-admin/includes/file.php
+END
+update.php
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/wordpress-mu/!svn/ver/1858/tags/2.8.1/wp-admin/includes/update.php
+END
+class-wp-filesystem-base.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/wordpress-mu/!svn/ver/1858/tags/2.8.1/wp-admin/includes/class-wp-filesystem-base.php
+END
+post.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/wordpress-mu/!svn/ver/1858/tags/2.8.1/wp-admin/includes/post.php
+END
+dashboard.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/wordpress-mu/!svn/ver/1858/tags/2.8.1/wp-admin/includes/dashboard.php
+END
+upgrade.php
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/wordpress-mu/!svn/ver/1858/tags/2.8.1/wp-admin/includes/upgrade.php
+END
+admin.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/wordpress-mu/!svn/ver/1858/tags/2.8.1/wp-admin/includes/admin.php
+END
+misc.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/wordpress-mu/!svn/ver/1858/tags/2.8.1/wp-admin/includes/misc.php
+END
+class-wp-filesystem-ftpsockets.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/wordpress-mu/!svn/ver/1858/tags/2.8.1/wp-admin/includes/class-wp-filesystem-ftpsockets.php
+END
+class-wp-upgrader.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/wordpress-mu/!svn/ver/1858/tags/2.8.1/wp-admin/includes/class-wp-upgrader.php
+END
+schema.php
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/wordpress-mu/!svn/ver/1858/tags/2.8.1/wp-admin/includes/schema.php
+END
+continents-cities.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/wordpress-mu/!svn/ver/1858/tags/2.8.1/wp-admin/includes/continents-cities.php
+END
+comment.php
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/wordpress-mu/!svn/ver/1858/tags/2.8.1/wp-admin/includes/comment.php
+END
+theme.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/wordpress-mu/!svn/ver/1858/tags/2.8.1/wp-admin/includes/theme.php
+END
+widgets.php
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/wordpress-mu/!svn/ver/1858/tags/2.8.1/wp-admin/includes/widgets.php
+END
+theme-install.php
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/wordpress-mu/!svn/ver/1858/tags/2.8.1/wp-admin/includes/theme-install.php
+END
+update-core.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/wordpress-mu/!svn/ver/1858/tags/2.8.1/wp-admin/includes/update-core.php
+END
+import.php
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/wordpress-mu/!svn/ver/1858/tags/2.8.1/wp-admin/includes/import.php
+END
+template.php
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/wordpress-mu/!svn/ver/1858/tags/2.8.1/wp-admin/includes/template.php
+END
+user.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/wordpress-mu/!svn/ver/1858/tags/2.8.1/wp-admin/includes/user.php
+END
+media.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/wordpress-mu/!svn/ver/1858/tags/2.8.1/wp-admin/includes/media.php
+END
+export.php
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/wordpress-mu/!svn/ver/1858/tags/2.8.1/wp-admin/includes/export.php
+END
+mu.php
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/wordpress-mu/!svn/ver/1858/tags/2.8.1/wp-admin/includes/mu.php
+END
+image.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/wordpress-mu/!svn/ver/1858/tags/2.8.1/wp-admin/includes/image.php
+END
+class-wp-filesystem-direct.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/wordpress-mu/!svn/ver/1858/tags/2.8.1/wp-admin/includes/class-wp-filesystem-direct.php
+END
+class-wp-filesystem-ftpext.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/wordpress-mu/!svn/ver/1858/tags/2.8.1/wp-admin/includes/class-wp-filesystem-ftpext.php
+END
+class-wp-filesystem-ssh2.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/wordpress-mu/!svn/ver/1858/tags/2.8.1/wp-admin/includes/class-wp-filesystem-ssh2.php
+END
