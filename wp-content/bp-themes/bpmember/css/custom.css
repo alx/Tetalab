@@ -1,3 +1,25 @@
+#search-login-bar a { color: #62d5fe; text-decoration: underline; }
+#search-login-bar a:hover { color: #ccc; text-decoration: none; }
+#search-login-bar a.selected { color: #ccc; text-decoration: none; }
+
+#search-login-bar {
+	border-top: 10px solid #62d5fe;
+	background: #3e3e3c;
+	padding: 12px 20px 0px 20px;
+}
+
+#search-login-bar h1 a {
+	text-indent: -999em;
+	background: url(../images/logo-tetalab.gif) top left no-repeat;
+	overflow: hidden;
+	width: 190px;
+	height: 42px;
+	display: block;
+	float: left;
+	top:-12px;
+	padding-right:20px;
+}
+
 ul#nav li.selected a {
 	background: #ccc;
 	color: #62d5fe;
