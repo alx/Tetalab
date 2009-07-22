@@ -1,5 +1,5 @@
 RewriteEngine On
-RewriteBase /~alx/tetalab/
+RewriteBase /
 
 #uploaded files
 RewriteRule ^(.*/)?files/$ index.php [L]
