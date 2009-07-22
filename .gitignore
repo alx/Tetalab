@@ -1,2 +1,4 @@
 wp-config.php
 /wp-content/cache/
+.htaccess
+
