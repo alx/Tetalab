@@ -1,4 +1,4 @@
 wp-config.php
 /wp-content/cache/
 .htaccess
-
+/forums/bb-config.php
