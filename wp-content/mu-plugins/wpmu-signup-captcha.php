@@ -45,7 +45,7 @@ function signup_user_captcha_field($errors)
 ?>
   			<img src="wp-captcha.php?rand=<?php echo rand(0,999999)?>" alt="Captcha code" border="0" />
                 	<p>
-	                	<input maxlength="12" name="captcha" type="text" value="" />
+	                	<input maxlength="12" name="ravin" type="text" value="" />
 			</p>
 		</td>
 	</tr>
@@ -53,9 +53,9 @@ function signup_user_captcha_field($errors)
 }
 function signup_user_captcha_filter($content)
 {
-	if(! empty($_POST['captcha']))
-		$_SESSION['entered_captcha'] = $_POST['captcha'];
-	if(empty($_SESSION['entered_captcha']) || $_SESSION['captcha'] != $_SESSION['entered_captcha'])
+	if(! empty($_POST['ravin']))
+		$_SESSION['goutiere'] = $_POST['ravin'];
+	if(empty($_SESSION['goutiere']) || $_SESSION['pustule'] != $_SESSION['goutiere'])
 		$content['errors']->add('captcha', __('Please enter correct verification number.'));
 	return $content;
 }

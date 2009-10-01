@@ -59,7 +59,7 @@ class CaptchaSecurityImage
 $captchaObj = new CaptchaSecurityImage(4);
 
 session_start();
-$_SESSION['captcha'] = $captchaObj->code;
+$_SESSION['pustule'] = $captchaObj->code;
 
 $captchaObj->showImage(120, 40);
 ?>
