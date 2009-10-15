@@ -304,8 +304,14 @@ function switch_to_blog( $new_blog ) {
 
 	$switched_stack[] = $blog_id;
 
-	if ( $blog_id == $new_blog )
-		return false;
+	/* If we're switching to the same blog id that we're on, 
+	* set the right vars, do the associated actions, but skip 
+	* the extra unnecessary work */
+	if ( $blog_id == $new_blog ) {
+		do_action( 'switch_blog', $blog_id, $blog_id );
+		$switched = true;
+		return true;
+	}
 
 	$wpdb->set_blog_id($new_blog);
 	$table_prefix = $wpdb->prefix;
@@ -314,7 +320,11 @@ function switch_to_blog( $new_blog ) {
 
 	if( is_object( $wp_roles ) ) {
 		$wpdb->suppress_errors();
-		$wp_roles->_init();
+		if ( method_exists( $wp_roles ,'_init' ) ) {
+			$wp_roles->_init();
+		} elseif( method_exists( $wp_roles, '__construct' ) ) {
+			$wp_roles->__construct();
+		}
 		$wpdb->suppress_errors( false );
 	}
 
@@ -338,9 +348,16 @@ function restore_current_blog() {
 	if ( !$switched )
 		return false;
 
-	$blog = array_pop($switched_stack);
-	if ( $blog_id == $blog )
+	if ( !is_array( $switched_stack ) )
 		return false;
+
+	$blog = array_pop( $switched_stack );
+	if ( $blog_id == $blog ) {
+		do_action( 'switch_blog', $blog, $blog );
+		/* If we still have items in the switched stack, consider ourselves still 'switched' */ 
+		$switched = ( is_array( $switched_stack ) && count( $switched_stack ) > 0 );
+		return true;
+	}
 
 	$wpdb->set_blog_id($blog);
 	$prev_blog_id = $blog_id;
@@ -349,7 +366,11 @@ function restore_current_blog() {
 
 	if( is_object( $wp_roles ) ) {
 		$wpdb->suppress_errors();
-		$wp_roles->_init();
+		if ( method_exists( $wp_roles ,'_init' ) ) {
+			$wp_roles->_init();
+		} elseif( method_exists( $wp_roles, '__construct' ) ) {
+			$wp_roles->__construct();
+		}
 		$wpdb->suppress_errors( false );
 	}
 
@@ -364,12 +385,18 @@ function restore_current_blog() {
 
 	do_action('switch_blog', $blog_id, $prev_blog_id);
 
-	$switched = false;
+	/* If we still have items in the switched stack, consider ourselves still 'switched' */ 
+	$switched = ( is_array( $switched_stack ) && count( $switched_stack ) > 0 );
 	return true;
 }
 
 function get_blogs_of_user( $id, $all = false ) {
-	global $wpdb;
+	global $wpdb, $blogs_of_user;
+
+	$cache_suffix = $all ? '_all' : '_short';
+	if ( isset( $blogs_of_user[ $id . $cache_suffix ] ) ) {
+		return apply_filters( 'get_blogs_of_user', $blogs_of_user[ $id . $cache_suffix ], $id, $all );
+	}
 
 	$user = get_userdata( (int) $id );
 	if ( !$user )
@@ -390,44 +417,67 @@ function get_blogs_of_user( $id, $all = false ) {
 		}
 	}
 
-	return $blogs;
+	$blogs_of_user[ $id . $cache_suffix ] = $blogs;
+	return apply_filters( 'get_blogs_of_user', $blogs, $id, $all );
 }
 
 function get_active_blog_for_user( $user_id ) { // get an active blog for user - either primary blog or from blogs list
 	global $wpdb;
-	$primary_blog = get_usermeta( $user_id, "primary_blog" );
-	if( $primary_blog == false ) {
-		$details = false;
-	} else {
-		$details = get_blog_details( $primary_blog );
+	$blogs = get_blogs_of_user( $user_id );
+	if ( empty( $blogs ) ) {
+		$details = get_dashboard_blog();
+		add_user_to_blog( $details->blog_id, $user_id, 'subscriber' );
+		update_usermeta( $user_id, 'primary_blog', $details->blog_id );
+		wp_cache_delete( $user_id, 'users' );
+		return $details;
 	}
 
-	if( ( is_object( $details ) == false ) || ( is_object( $details ) && $details->archived == 1 || $details->spam == 1 || $details->deleted == 1 ) ) {
+	$primary_blog = get_usermeta( $user_id, "primary_blog" );
+	$details = get_dashboard_blog();
+	if ( $primary_blog ) {
+		$blogs = get_blogs_of_user( $user_id );
+		if ( isset( $blogs[ $primary_blog ] ) == false ) {
+			add_user_to_blog( $details->blog_id, $user_id, 'subscriber' );
+			update_usermeta( $user_id, 'primary_blog', $details->blog_id );
+			wp_cache_delete( $user_id, 'users' );
+		} else {
+			$details = get_blog_details( $primary_blog );
+		}
+	} else {
+		add_user_to_blog( $details->blog_id, $user_id, 'subscriber' ); // Add subscriber permission for dashboard blog
+		update_usermeta( $user_id, 'primary_blog', $details->blog_id );
+	}
+
+	if ( ( is_object( $details ) == false ) || ( is_object( $details ) && $details->archived == 1 || $details->spam == 1 || $details->deleted == 1 ) ) {
 		$blogs = get_blogs_of_user( $user_id, true ); // if a user's primary blog is shut down, check their other blogs.
 		$ret = false;
-		if( is_array( $blogs ) && count( $blogs ) > 0 ) {
+		if ( is_array( $blogs ) && count( $blogs ) > 0 ) {
 			foreach( (array) $blogs as $blog_id => $blog ) {
 				if ( $blog->site_id != $wpdb->siteid )
 					continue;
 				$details = get_blog_details( $blog_id );
-				if( is_object( $details ) && $details->archived == 0 && $details->spam == 0 && $details->deleted == 0 ) {
+				if ( is_object( $details ) && $details->archived == 0 && $details->spam == 0 && $details->deleted == 0 ) {
 					$ret = $blog;
 					$changed = false;
-					if( !get_usermeta($user_id , 'primary_blog') ) {
-						update_usermeta($user_id, 'primary_blog', $blog->userblog_id);
+					if ( get_usermeta( $user_id , 'primary_blog' ) != $blog_id ) {
+						update_usermeta( $user_id, 'primary_blog', $blog_id );
 						$changed = true;
 					}
-					if( !get_usermeta($user_id , 'source_domain') ) {
-						update_usermeta($user_id, 'source_domain', $blog->domain);
+					if ( !get_usermeta($user_id , 'source_domain') ) {
+						update_usermeta( $user_id, 'source_domain', $blog->domain );
 						$changed = true;
 					}
-					if( $changed )
+					if ( $changed )
 						wp_cache_delete( $user_id, 'users' );
 					break;
 				}
 			}
 		} else {
-			$ret = "username only"; // user has no blogs.
+			// Should never get here
+			$dashboard_blog = get_dashboard_blog();
+			add_user_to_blog( $dashboard_blog->blog_id, $user_id, 'subscriber' ); // Add subscriber permission for dashboard blog
+			update_usermeta( $user_id, 'primary_blog', $dashboard_blog->blog_id );
+			return $dashboard_blog;
 		}
 		return $ret;
 	} else {
@@ -1355,7 +1405,7 @@ function install_blog($blog_id, $blog_title = '') {
 	update_option('home', $url);
 	update_option('fileupload_url', $url . "files" );
 	update_option('upload_path', "wp-content/blogs.dir/" . $blog_id . "/files");
-	update_option('blogname', $blog_title);
+	update_option('blogname', stripslashes( $blog_title ) );
 	update_option('admin_email', '');
 	$wpdb->update( $wpdb->options, array('option_value' => ''), array('option_name' => 'admin_email') );
 
@@ -1394,8 +1444,8 @@ function install_blog_defaults($blog_id, $user_id) {
 	$blog_id = (int) $blog_id;
 
 	// Default links
-	$wpdb->insert( $wpdb->links,  array('link_url' => 'http://wordpress.com/', 'link_name' => 'WordPress.com', 'link_category' => '1356', 'link_owner' => $user_id, 'link_rss' => 'http://wordpress.com/feed/') );
-	$wpdb->insert( $wpdb->links,  array('link_url' => 'http://wordpress.org/', 'link_name' => 'WordPress.org', 'link_category' => '1356', 'link_owner' => $user_id, 'link_rss' => 'http://wordpress.org/development/feed/') );
+	$wpdb->insert( $wpdb->links,  array('link_url' => 'http://wordpress.com/', 'link_name' => 'WordPress.com', 'link_owner' => $user_id, 'link_rss' => 'http://wordpress.com/feed/') );
+	$wpdb->insert( $wpdb->links,  array('link_url' => 'http://wordpress.org/', 'link_name' => 'WordPress.org', 'link_owner' => $user_id, 'link_rss' => 'http://wordpress.org/development/feed/') );
 	$wpdb->insert( $wpdb->term_relationships, array('object_id' => 1, 'term_taxonomy_id' => 2));
 	$wpdb->insert( $wpdb->term_relationships, array('object_id' => 2, 'term_taxonomy_id' => 2));
 
@@ -1896,23 +1946,6 @@ function attach_wpmu_xmlrpc($methods) {
 	return $methods;
 }
 
-/*
-Users
-*/
-function promote_if_site_admin(&$user) {
-	return false;
-    if ( !is_site_admin( $user->user_login ) )
-        return false;
-
-    global $wpdb;
-    $level = $wpdb->prefix . 'user_level';
-    $user->{$level} = 10;
-    $user->user_level = 10;
-    $cap_key = $wpdb->prefix . 'capabilities';
-    $user->{$cap_key} = array_merge(array( 'administrator' => '1' ), (array)$user->{$cap_key});
-    return true;
-}
-
 function mu_locale( $locale ) {
 	if( defined('WP_INSTALLING') == false ) {
 		$mu_locale = get_option('WPLANG');
@@ -2026,77 +2059,108 @@ function strtolower_usernames( $username, $raw, $strict ) {
 	return strtolower( $username );
 }
 
-/* Shortcircuit the update checks. Make sure update informtion is 
+/* Short circuit the update checks. Make sure update informtion is 
    stored in wp_sitemeta rather than the options table of individual blogs */
-// update_plugins
+
+// update_plugins (transient)
+function site_delete_update_plugins() {
+	return update_site_option( 'update_plugins', false );
+}
+add_action( 'delete_transient_update_plugins', 'site_delete_update_plugins' );
+
 function site_pre_update_plugins() {
 	return get_site_option( 'update_plugins' );
 }
 add_filter( 'pre_transient_update_plugins', 'site_pre_update_plugins' );
 
-function site_pre_update_transient_update_plugins( $new, $old ) {
-	update_site_option( 'update_plugins', $new );
-	delete_option( 'update_plugins' );
-	return $old;
+function site_pre_set_transient_update_plugins( $value ) {
+	update_site_option( 'update_plugins', $value );
+	return $value;
 }
-add_filter( 'pre_update_transient_update_plugins', 'site_pre_update_transient_update_plugins', 10, 2 );
+add_filter( 'pre_set_transient_update_plugins', 'site_pre_set_transient_update_plugins' );
 
-// update_themes
+add_action( 'add_option__transient_update_plugins', 'site_add_option__transient_update');
+
+// update_themes (transient)
+function site_delete_update_themes() {
+	return update_site_option( 'update_themes', false );
+}
+add_action( 'delete_transient_update_themes', 'site_delete_update_themes' );
+
 function site_pre_update_themes() {
 	return get_site_option( 'update_themes' );
 }
 add_filter( 'pre_transient_update_themes', 'site_pre_update_themes' );
 
-function site_pre_update_transient_update_themes( $new, $old ) {
-	update_site_option( 'update_themes', $new );
-	delete_option( 'update_themes' );
-	return $old;
+function site_pre_set_transient_update_themes( $value ) {
+	update_site_option( 'update_themes', $value );
+	return $value;
 }
-add_filter( 'pre_update_transient_update_themes', 'site_pre_update_transient_update_themes', 10, 2 );
+add_filter( 'pre_set_transient_update_themes', 'site_pre_set_transient_update_themes' );
 
-// update_core
+add_action( 'add_option__transient_update_themes', 'site_add_option__transient_update');
+
+// update_core (transient)
+function site_delete_update_core() {
+	return update_site_option( 'update_core', false );
+}
+add_action( 'delete_transient_update_core', 'site_delete_update_core' );
+
 function site_pre_update_core() {
 	return get_site_option( 'update_core' );
 }
 add_filter( 'pre_transient_update_core', 'site_pre_update_core' );
 
-function site_pre_update_transient_update_core( $new, $old ) {
-	update_site_option( 'update_core', $new );
-	delete_option( 'update_core' );
-	return $old;
+function site_pre_set_transient_update_core( $value ) {
+	update_site_option( 'update_core', $value );
+	return $value;
 }
-add_filter( 'pre_update_transient_update_core', 'site_pre_update_transient_update_core', 10, 2 );
+add_filter( 'pre_set_transient_update_core', 'site_pre_set_transient_update_core' );
 
-// dismissed_update_core
+add_action( 'add_option__transient_update_core', 'site_add_option__transient_update');
+
+// dismissed_update_core (option, not a transient)
 function site_pre_dismissed_update_core() {
 	return get_site_option( 'dismissed_update_core' );
 }
-add_filter( 'pre_transient_dismissed_update_core', 'site_pre_dismissed_update_core' );
+add_filter( 'pre_option_dismissed_update_core', 'site_pre_dismissed_update_core' );
 
-function site_pre_update_transient_dismissed_update_core( $new, $old ) {
-	update_site_option( 'dismissed_update_core', $new );
-	return $old;
+function site_pre_update_option_dismissed_update_core( $newvalue, $oldvalue ) {
+	update_site_option( 'dismissed_update_core', $newvalue );
+	delete_option('dismissed_update_core');
+	// Return the old value so the update_option() call is aborted after this filter is run. It's in sitemeta now.
+	return $oldvalue;
 }
-add_action( 'pre_update_transient_dismissed_update_core', 'site_pre_update_transient_dismissed_update_core', 10, 2 );
+add_filter( 'pre_update_option_dismissed_update_core', 'site_pre_update_option_dismissed_update_core', 10, 2 );
 
-function site_update_transient_dismissed_update_core( $old, $new ) {
-	delete_option( 'dismissed_update_core' );
+
+
+function site_add_option__transient_update($name) {
+	delete_option($name);
 }
-add_action( 'update_transient_dismissed_update_core', 'site_update_transient_dismissed_update_core', 10, 2 );
 
+/* Redirect all hits to "dashboard" blog to wp-admin/ Dashboard. */
 function redirect_mu_dashboard() {
 	global $current_site, $current_blog;
 
-	$dashboard_blog = get_site_option( 'dashboard_blog' );
-	if ( false != $dashboard_blog && $current_blog->blog_id == $dashboard_blog && $dashboard_blog != $current_site->blog_id ) { 
-		$details = get_blog_details( $dashboard_blog );
+	$dashboard_blog = get_dashboard_blog();
+	if ( $current_blog->blog_id == $dashboard_blog->blog_id && $dashboard_blog->blog_id != $current_site->blog_id ) { 
 		$protocol = ( is_ssl() ? 'https://' : 'http://' ); 
-		if( $details )
-			wp_redirect( $protocol . $details->domain . trailingslashit( $details->path ) . 'wp-admin/' );
+		wp_redirect( $protocol . $dashboard_blog->domain . trailingslashit( $dashboard_blog->path ) . 'wp-admin/' );
 		die();
 	}
 }
 add_action( 'template_redirect', 'redirect_mu_dashboard' );
+
+function get_dashboard_blog() {
+	global $current_site;
+
+	if ( get_site_option( 'dashboard_blog' ) == false ) {
+		return get_blog_details( $current_site->blog_id );
+	} else {
+		return get_blog_details( get_site_option( 'dashboard_blog' ) );
+	}
+}
 
 function is_user_option_local( $key, $user_id = 0, $blog_id = 0 ) {
 	global $current_user, $wpdb;

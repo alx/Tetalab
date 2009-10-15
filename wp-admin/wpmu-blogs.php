@@ -68,10 +68,9 @@ if ( $_GET['updated'] == 'true' ) {
 switch( $_GET['action'] ) {
 	// Edit blog
 	case "editblog":
-		switch_to_blog( $id );
 		$options = $wpdb->get_results( "SELECT * FROM {$wpdb->base_prefix}{$id}_options WHERE option_name NOT LIKE 'rss%' AND option_name NOT LIKE '%user_roles'", ARRAY_A );
 		$details = $wpdb->get_row( "SELECT * FROM {$wpdb->blogs} WHERE blog_id = '{$id}'", ARRAY_A );
-		$editblog_roles = get_option( "{$wpdb->base_prefix}{$id}_user_roles" );
+		$editblog_roles = get_blog_option( $id, "{$wpdb->base_prefix}{$id}_user_roles" );
 		?>
 		<div class="wrap">
 		<h2><?php _e('Edit Blog'); ?> - <a href='http://<?php echo $details['domain'].$details['path']; ?>'>http://<?php echo $details['domain'].$details['path']; ?></a></h2>
@@ -90,7 +89,7 @@ switch( $_GET['action'] ) {
 							<tr class="form-field form-required">
 								<th scope="row"><?php _e('Path') ?></th> 
 								<td><input name="blog[path]" type="text" id="path" value="<?php echo $details['path'] ?>" size="40" style='margin-bottom:5px;' />
-								<br /><input type='checkbox' style='width:20px;' name='update_home_url' value='update' <?php if( get_option( 'siteurl' ) == preg_replace('|/+$|', '', 'http://' . $details['domain'] . $details['path']) || get_option( 'home' ) == preg_replace('|/+$|', '', 'http://' . $details['domain'] . $details['path']) ) echo 'checked="checked"'; ?> /> <?php _e( "Update 'siteurl' and 'home' as well." ); ?></td>
+								<br /><input type='checkbox' style='width:20px;' name='update_home_url' value='update' <?php if( get_blog_option( $id, 'siteurl' ) == preg_replace('|/+$|', '', 'http://' . $details['domain'] . $details['path']) || get_blog_option( $id, 'home' ) == preg_replace('|/+$|', '', 'http://' . $details['domain'] . $details['path']) ) echo 'checked="checked"'; ?> /> <?php _e( "Update 'siteurl' and 'home' as well." ); ?></td>
 							</tr> 
 							<tr class="form-field">
 								<th scope="row"><?php _e('Registered') ?></th> 
@@ -300,7 +299,6 @@ switch( $_GET['action'] ) {
 		</form>
 		</div>
 		<?php
-		restore_current_blog();
 	break;
 
 	// List blogs

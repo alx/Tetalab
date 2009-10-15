@@ -82,7 +82,8 @@ if( $mime[ 'type' ] != false ) {
 	$mimetype = "image/$ext";
 }
 @header( 'Content-type: ' . $mimetype ); // always send this
-@header( 'Content-Length: ' . filesize( $file ) );
+if ( false === strpos( $_SERVER['SERVER_SOFTWARE'], 'Microsoft-IIS' ) )
+	@header( 'Content-Length: ' . filesize( $file ) );
 
 $last_modified = gmdate('D, d M Y H:i:s', filemtime( $file ));
 $etag = '"' . md5($last_modified) . '"';

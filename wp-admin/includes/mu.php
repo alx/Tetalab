@@ -496,19 +496,42 @@ add_filter( 'get_term', 'sync_category_tag_slugs', 10, 2 );
 
 function redirect_user_to_blog() {
 	global $current_user, $current_site;
-	$details = get_active_blog_for_user( $current_user->ID );
-	if( $details == "username only" ) {
-		add_user_to_blog( get_blog_id_from_url( $current_site->domain, $current_site->path ), $current_user->ID, 'subscriber'); // Add subscriber permission for first blog.
-		wp_redirect( 'http://' . $current_site->domain . $current_site->path. 'wp-admin/' );
-		exit();
-	} elseif( is_object( $details ) ) {
-		wp_redirect( "http://" . $details->domain . $details->path . 'wp-admin/' );
-		exit;
-	} else {
-		wp_redirect( "http://" . $current_site->domain . $current_site->path );
+	$c = 0;
+	if ( isset( $_GET[ 'c' ] ) )
+		$c = (int)$_GET[ 'c' ];
+	
+	if ( $c >= 5 ) {
+		wp_die( __( "You don&#8217;t have permission to view this blog. Please contact the system administrator." ) );
+	}
+	$c ++;
+
+	$blog = get_active_blog_for_user( $current_user->ID );
+	$dashboard_blog = get_dashboard_blog();
+	if( is_object( $blog ) ) {
+		$protocol = ( is_ssl() ? 'https://' : 'http://' ); 
+		wp_redirect( $protocol . $blog->domain . $blog->path . 'wp-admin/?c=' . $c ); // redirect and count to 5, "just in case"
 		exit;
 	}
-	wp_die( __('You do not have sufficient permissions to access this page.') );
+
+	/* 
+	   If the user is a member of only 1 blog and the user's primary_blog isn't set to that blog, 
+	   then update the primary_blog record to match the user's blog
+	 */
+	$blogs = get_blogs_of_user( $current_user->ID );
+
+	if ( !empty( $blogs ) ) {
+		foreach( $blogs as $blogid => $blog ) {
+			if ( $blogid != $dashboard_blog->blog_id && get_usermeta( $current_user->ID , 'primary_blog' ) == $dashboard_blog->blog_id ) {
+				update_usermeta( $current_user->ID, 'primary_blog', $blogid );
+				continue;
+			}
+		}
+		$blog = get_blog_details( get_usermeta( $current_user->ID , 'primary_blog' ) );
+		$protocol = ( is_ssl() ? 'https://' : 'http://' ); 
+		wp_redirect( $protocol . $blog->domain . $blog->path . 'wp-admin/?c=' . $c ); // redirect and count to 5, "just in case"
+		exit;
+	}
+	wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 }
 add_action( 'admin_page_access_denied', 'redirect_user_to_blog', 99 );
 
@@ -543,6 +566,8 @@ function wpmu_menu() {
 			$message = str_replace( "'", "\'", "<div class='error'><p>$message</p></div>" );
 			add_action( 'admin_notices', create_function( '', "echo '$message';" ) );
 		}
+	} elseif ( !is_site_admin() ) {
+		$menu[65] = array( sprintf( __('Plugins %s'), "" ), 'activate_plugins', 'plugins.php', '', 'menu-top', 'menu-plugins', 'div' );
 	}
 	if( !get_site_option( 'add_new_users' ) ) {
 		if( !is_site_admin() ) {
@@ -676,6 +701,11 @@ add_action( 'wp_dashboard_setup', 'mu_dashboard' );
 
 function profile_update_primary_blog() {
 	global $current_user;
+
+	$blogs = get_blogs_of_user( $current_user->id );
+	if ( isset( $blogs[ $_POST[ 'primary_blog' ] ] ) == false ) {
+		return false;
+	}
 
 	if ( isset( $_POST['primary_blog'] ) ) {
 		update_user_option( $current_user->id, 'primary_blog', (int) $_POST['primary_blog'], true );
@@ -1170,8 +1200,6 @@ add_action ( 'myblogs_allblogs_options', 'choose_primary_blog' );
 if( strpos( $_SERVER['PHP_SELF'], 'profile.php' ) ) {
 	add_action( 'admin_init', 'update_profile_email' );
 	add_action( 'admin_init', 'profile_page_email_warning_ob_start' );
-} elseif( strpos( $_SERVER['PHP_SELF'], 'wp-admin/page.php' ) ) {
-	$wp_rewrite->flush_rules();
 }
 
 function disable_some_pages() {
@@ -1202,17 +1230,22 @@ function disable_some_pages() {
 }
 add_action( 'admin_init', 'disable_some_pages' );
 
+function blogs_listing_post() {
+	if ( !isset( $_POST[ 'action' ] ) ) {
+		return false;
+	}
+	switch( $_POST[ 'action' ] ) {
+		case "updateblogsettings":
+			do_action( 'myblogs_update' );
+		wp_redirect( admin_url( 'index.php?page=myblogs&updated=1' ) );
+		die();
+		break;
+	}
+}
+add_action( 'admin_init', 'blogs_listing_post' );
+
 function blogs_listing() {
 	global $current_user;
-	if ( isset( $_POST[ 'action' ] ) ) {
-		switch( $_POST[ 'action' ] ) {
-			case "update":
-				do_action( 'myblogs_update' );
-			wp_redirect( admin_url( 'blogs.php?updated=1' ) );
-			die();
-			break;
-		}
-	}
 
 	$blogs = get_blogs_of_user( $current_user->ID );
 	if( !$blogs || ( is_array( $blogs ) && empty( $blogs ) ) ) {
@@ -1250,7 +1283,7 @@ function blogs_listing() {
 	}
 	?>
 	</table>
-	<input type="hidden" name="action" value="update" />
+	<input type="hidden" name="action" value="updateblogsettings" />
 	<input type="submit" class="button-primary" value="<?php _e('Update Options') ?>" name="submit" />
 	</form>
 	</div>
@@ -1262,7 +1295,7 @@ function blogs_page_init() {
 	$all_blogs = get_blogs_of_user( $current_user->ID );
 	if ( $all_blogs != false && !empty( $all_blogs ) ) {
 		$title = apply_filters( 'my_blogs_title', __( 'My Blogs' ) );
-		add_submenu_page( 'index.php', $title, $title, 'subscriber', 'myblogs', 'blogs_listing' );
+		add_submenu_page( 'index.php', $title, $title, 'read', 'myblogs', 'blogs_listing' );
 	}
 }
 add_action('admin_menu', 'blogs_page_init');

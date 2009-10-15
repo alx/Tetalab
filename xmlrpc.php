@@ -434,6 +434,7 @@ class wp_xmlrpc_server extends IXR_Server {
 	 * @return array
 	 */
 	function wp_getUsersBlogs( $args ) {
+		global $current_site;
 		// If this isn't on WPMU then just use blogger_getUsersBlogs
 		if( !function_exists( 'is_site_admin' ) ) {
 			array_unshift( $args, 1 );

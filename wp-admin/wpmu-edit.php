@@ -167,7 +167,8 @@ switch( $_GET['action'] ) {
 		$id = wpmu_create_blog($newdomain, $path, $title, $user_id , array( "public" => 1 ), $current_site->id);
 		$wpdb->show_errors();
 		if( !is_wp_error($id) ) {
-			if( get_user_option( $user_id, 'primary_blog' ) == 1 )
+			$dashboard_blog = get_dashboard_blog();
+			if( get_user_option( 'primary_blog', $user_id ) == $dashboard_blog->blog_id )
 				update_user_option( $user_id, 'primary_blog', $id, true );
 			$content_mail = sprintf( __( "New blog created by %1s\n\nAddress: http://%2s\nName: %3s"), $current_user->user_login , $newdomain.$path, stripslashes( $title ) );
 			wp_mail( get_site_option('admin_email'),  sprintf(__('[%s] New Blog Created'), $current_site->site_name), $content_mail, 'From: "Site Admin" <' . get_site_option( 'admin_email' ) . '>' );

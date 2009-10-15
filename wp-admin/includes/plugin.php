@@ -496,6 +496,8 @@ function validate_active_plugins() {
 		if ( is_wp_error( $result ) ) {
 			$invalid[$check_plugin] = $result;
 			deactivate_plugins( $check_plugin, true);
+
+			do_action( 'deactivate_invalid_plugin', $check_plugin );
 		}
 	}
 	return $invalid;

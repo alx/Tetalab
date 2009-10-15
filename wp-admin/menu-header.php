@@ -131,10 +131,10 @@ function _wp_menu_output( $menu, $submenu, $submenu_as_parent = true ) {
 				if ( false !== $pos = strpos($sub_file, '?') )
 					$sub_file = substr($sub_file, 0, $pos);
 
-				if ( ( ('index.php' != $sub_item[2]) && ( file_exists(WP_PLUGIN_DIR . "/$menu_file") || file_exists( WPMU_PLUGIN_DIR . "/$menu_file") ) ) || ! empty($menu_hook) ) {
+				if ( ( ('index.php' != $sub_item[2]) && ( file_exists(WP_PLUGIN_DIR . "/$sub_file") || file_exists( WPMU_PLUGIN_DIR . "/$sub_file") ) ) || ! empty($menu_hook) ) {
 					// If admin.php is the current page or if the parent exists as a file in the plugins or admin dir
 					
-					$parent_exists = (!$admin_is_parent && file_exists(WP_PLUGIN_DIR . "/$menu_file") && !is_dir(WP_PLUGIN_DIR . "/{$item[2]}") || ( file_exists( WPMU_PLUGIN_DIR . "/$menu_file" ) && ! is_dir( WPMU_PLUGIN_DIR . "/{$item[2]}" ) ) ) || file_exists($menu_file);
+					$parent_exists = (!$admin_is_parent && ((file_exists(WP_PLUGIN_DIR . "/$menu_file") && !is_dir(WP_PLUGIN_DIR . "/{$item[2]}") ) || ( file_exists( WPMU_PLUGIN_DIR . "/$menu_file" ) && ! is_dir( WPMU_PLUGIN_DIR . "/{$item[2]}" ) ) ) ) || file_exists($menu_file);
 					if ( $parent_exists )
 						echo "<li$class><a href='{$item[2]}?page={$sub_item[2]}'$class$tabindex>{$sub_item[0]}</a></li>";
 					elseif ( 'admin.php' == $pagenow || !$parent_exists )

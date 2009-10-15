@@ -655,6 +655,8 @@ function delete_option( $name ) {
 function delete_transient($transient) {
 	global $_wp_using_ext_object_cache, $wpdb;
 
+	do_action( 'delete_transient_' . $transient );
+
 	if ( $_wp_using_ext_object_cache ) {
 		return wp_cache_delete($transient, 'transient');
 	} else {
@@ -721,6 +723,8 @@ function get_transient($transient) {
  */
 function set_transient($transient, $value, $expiration = 0) {
 	global $_wp_using_ext_object_cache, $wpdb;
+
+	$value = apply_filters( 'pre_set_transient_' . $transient, $value );
 
 	if ( $_wp_using_ext_object_cache ) {
 		return wp_cache_set($transient, $value, 'transient', $expiration);
@@ -3158,16 +3162,18 @@ function get_site_option( $key, $default = false, $use_cache = true ) {
 	if ( is_null($value) )
 		$value = $default;
 
-	$value = maybe_unserialize( stripslashes($value) );
+	$value = maybe_unserialize( $value );
 
 	wp_cache_set( $cache_key, $value, 'site-options' );
 
-	return apply_filters( 'site_option_' . $key, maybe_unserialize( $value ) );
+	return apply_filters( 'site_option_' . $key, $value );
 }
 
 // expects $key, $value not to be SQL escaped
 function add_site_option( $key, $value ) {
 	global $wpdb;
+
+	$value = apply_filters( 'pre_add_site_option_' . $key, $value );
 
 	$cache_key = "{$wpdb->siteid}:$key";
 
@@ -3181,6 +3187,7 @@ function add_site_option( $key, $value ) {
 
 	$wpdb->insert( $wpdb->sitemeta, array('site_id' => $wpdb->siteid, 'meta_key' => $key, 'meta_value' => $value) );
 
+	do_action( "add_site_option_{$key}", $key, $value );
 	return $wpdb->insert_id;
 }
 
@@ -3188,7 +3195,9 @@ function add_site_option( $key, $value ) {
 function update_site_option( $key, $value ) {
 	global $wpdb;
 
-	if ( $value == get_site_option( $key ) )
+	$oldvalue = get_site_option( $key );
+	$value = apply_filters( 'pre_update_site_option_' . $key, $value, $oldvalue );
+	if ( $value ==  $oldvalue )
 	 	return false;
 
 	$cache_key = "{$wpdb->siteid}:$key";
@@ -3202,6 +3211,7 @@ function update_site_option( $key, $value ) {
 	$value = maybe_serialize($value);
 	$wpdb->update( $wpdb->sitemeta, array('meta_value' => $value), array('site_id' => $wpdb->siteid, 'meta_key' => $key) );
 
+	do_action( "update_site_option_{$key}", $key, $value );
 	return true;
 }
 

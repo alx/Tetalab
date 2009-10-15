@@ -16,6 +16,9 @@ if( is_array( $menu_perms ) == false )
 if ( $menu_perms[ 'plugins' ] != 1 && !is_site_admin() )
 	wp_die( __( 'Page disabled by the administrator' ) );
 
+if ( ! current_user_can('activate_plugins') )
+	wp_die(__('You do not have sufficient permissions to manage plugins for this blog.'));
+
 if ( isset($_POST['clear-recent-list']) )
 	$action = 'clear-recent-list';
 elseif ( !empty($_REQUEST['action']) )
@@ -44,6 +47,9 @@ $_SERVER['REQUEST_URI'] = remove_query_arg(array('error', 'deleted', 'activate',
 if ( !empty($action) ) {
 	switch ( $action ) {
 		case 'activate':
+			if ( ! current_user_can('activate_plugins') )
+				wp_die(__('You do not have sufficient permissions to activate plugins for this blog.'));
+
 			check_admin_referer('activate-plugin_' . $plugin);
 
 			$result = activate_plugin($plugin, 'plugins.php?error=true&plugin=' . $plugin);
@@ -60,6 +66,9 @@ if ( !empty($action) ) {
 			exit;
 			break;
 		case 'activate-selected':
+			if ( ! current_user_can('activate_plugins') )
+				wp_die(__('You do not have sufficient permissions to activate plugins for this blog.'));
+			
 			check_admin_referer('bulk-manage-plugins');
 
 			$plugins = (array) $_POST['checked'];
@@ -85,6 +94,9 @@ if ( !empty($action) ) {
 			exit;
 			break;
 		case 'error_scrape':
+			if ( ! current_user_can('activate_plugins') )
+				wp_die(__('You do not have sufficient permissions to activate plugins for this blog.'));
+
 			check_admin_referer('plugin-activation-error_' . $plugin);
 
 			$valid = validate_plugin($plugin);
@@ -98,6 +110,9 @@ if ( !empty($action) ) {
 			exit;
 			break;
 		case 'deactivate':
+			if ( ! current_user_can('activate_plugins') )
+				wp_die(__('You do not have sufficient permissions to deactivate plugins for this blog.'));
+
 			check_admin_referer('deactivate-plugin_' . $plugin);
 			deactivate_plugins($plugin);
 			update_option('recently_activated', array($plugin => time()) + (array)get_option('recently_activated'));
@@ -105,6 +120,9 @@ if ( !empty($action) ) {
 			exit;
 			break;
 		case 'deactivate-selected':
+			if ( ! current_user_can('activate_plugins') )
+				wp_die(__('You do not have sufficient permissions to deactivate plugins for this blog.'));
+
 			check_admin_referer('bulk-manage-plugins');
 
 			$plugins = (array) $_POST['checked'];
@@ -303,6 +321,10 @@ foreach ( (array)$all_plugins as $plugin_file => $plugin_data) {
 
     if ( isset( $current->response[ $plugin_file ] ) )
         $upgrade_plugins[ $plugin_file ] = $plugin_data;
+}
+
+if ( !is_site_admin() ) {
+	$upgrade_plugins = false;
 }
 
 $total_all_plugins = count($all_plugins);

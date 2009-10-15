@@ -391,7 +391,7 @@ class WP_Widget_Text extends WP_Widget {
 		if ( current_user_can('unfiltered_html') )
 			$instance['text'] =  $new_instance['text'];
 		else
-			$instance['text'] = wp_filter_post_kses( $new_instance['text'] );
+			$instance['text'] = stripslashes( wp_filter_post_kses( $new_instance['text'] ) );
 		$instance['filter'] = isset($new_instance['filter']);
 		return $instance;
 	}
@@ -712,7 +712,7 @@ class WP_Widget_RSS extends WP_Widget {
 		if ( ! is_wp_error($rss) ) {
 			$desc = esc_attr(strip_tags(@html_entity_decode($rss->get_description(), ENT_QUOTES, get_option('blog_charset'))));
 			if ( empty($title) )
-				$title = htmlentities(strip_tags($rss->get_title()));
+				$title = esc_html(strip_tags($rss->get_title()));
 			$link = esc_url(strip_tags($rss->get_permalink()));
 			while ( stristr($link, 'http') != $link )
 				$link = substr($link, 1);

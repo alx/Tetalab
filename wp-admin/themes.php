@@ -9,6 +9,9 @@
 /** WordPress Administration Bootstrap */
 require_once('admin.php');
 
+if ( !current_user_can('switch_themes') )
+	wp_die( __( 'Cheatin&#8217; uh?' ) );
+
 $themes = get_themes();
 $ct = current_theme_info();
 $allowed_themes = apply_filters("allowed_themes", get_site_allowed_themes() ); 

@@ -162,6 +162,16 @@ files on a regular basis will alleviate this problem. YMMV.
 WP Super Cache: http://ocaoimh.ie/wp-super-cache/
 
 
+SPAM
+====
+On WordPress MU sites spam signups can be a major problem. Akismet (http://akismet.com/)
+protects against spam comments but the following will help defeat
+spammers using automated scripts to create blogs:
+http://ocaoimh.ie/cookies-for-comments/
+http://wordpress-plugins.feifei.us/hashcash/
+http://www.darcynorman.net/2009/05/20/stopping-spamblog-registration-in-wordpress-multiuser/
+
+
 Support Forum and Bug Reports
 =============================
 Please read http://codex.wordpress.org/Debugging_WPMU before

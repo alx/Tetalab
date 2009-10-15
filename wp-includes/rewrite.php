@@ -1720,51 +1720,46 @@ class WP_Rewrite {
 		if ( ! $this->using_permalinks()) {
 			return '';
 		}
-                $rules = '<rule name="Strip index.php" enabled="true" stopProcessing="false">
+		$rules = '<rule name="wordpress - strip index.php" stopProcessing="false">
                     <match url="^index.php/(.*)$" />
-                    <conditions logicalGrouping="MatchAll" />
                     <action type="Rewrite" url="{R:1}" />
                 </rule>
-                <rule name="Imported Rule 1" stopProcessing="true">
-                    <match url="^(.*/)?files/$" ignoreCase="false" />
-                    <conditions logicalGrouping="MatchAll" />
+                <rule name="wordpress - 1" stopProcessing="true">
+                    <match url="^(.*/)?files/$" />
                     <action type="Rewrite" url="index.php" />
                 </rule>
-                <rule name="Imported Rule 2" stopProcessing="true">
-                    <match url="^(.*/)?files/(.*)" ignoreCase="false" />
-                    <conditions logicalGrouping="MatchAll">
-                        <add input="{REQUEST_URI}" negate="true" pattern=".*wp-content/plugins.*" ignoreCase="false" />
+                <rule name="wordpress - 2" stopProcessing="true">
+                    <match url="^(.*/)?files/(.*)" />
+                    <conditions>
+                        <add input="{REQUEST_URI}" negate="true" pattern=".*wp-content/plugins.*"/>
                     </conditions>
                     <action type="Rewrite" url="wp-content/blogs.php?file={R:2}" appendQueryString="false" />
                 </rule>
-                <rule name="Imported Rule 3" stopProcessing="true">
-                    <match url="^(.+)$" ignoreCase="false" />
-                    <conditions logicalGrouping="MatchAll">
-                        <add input="{REQUEST_URI}" pattern="^.*/wp-admin$" ignoreCase="false" />
+                <rule name="wordpress - 3" stopProcessing="true">
+                    <match url="^(.+)$" />
+                    <conditions>
+                        <add input="{REQUEST_URI}" pattern="^.*/wp-admin$" />
                     </conditions>
                     <action type="Redirect" url="{R:1}/" redirectType="Permanent" />
                 </rule>
-                <rule name="Imported Rule 4" stopProcessing="true">
-                    <match url="." ignoreCase="false" />
+                <rule name="wordpress - 4" stopProcessing="true">
+                    <match url="."/>
                     <conditions logicalGrouping="MatchAny">
-                        <add input="{REQUEST_FILENAME}" matchType="IsFile" pattern="" ignoreCase="false" />
-                        <add input="{REQUEST_FILENAME}" matchType="IsDirectory" pattern="" ignoreCase="false" />
+                        <add input="{REQUEST_FILENAME}" matchType="IsFile" pattern="" />
+                        <add input="{REQUEST_FILENAME}" matchType="IsDirectory" pattern="" />
                     </conditions>
                     <action type="None" />
                 </rule>
-                <rule name="Imported Rule 5" stopProcessing="true">
-                    <match url="^([_0-9a-zA-Z-]+/)?(wp-.*)" ignoreCase="false" />
-                    <conditions logicalGrouping="MatchAll" />
+                <rule name="wordpress - 5" stopProcessing="true">
+                    <match url="^([_0-9a-zA-Z-]+/)?(wp-.*)" />
                     <action type="Rewrite" url="{R:2}" />
                 </rule>
-                <rule name="Imported Rule 6" stopProcessing="true">
-                    <match url="^([_0-9a-zA-Z-]+/)?(.*\.php)$" ignoreCase="false" />
-                    <conditions logicalGrouping="MatchAll" />
+                <rule name="wordpress - 6" stopProcessing="true">
+                    <match url="^([_0-9a-zA-Z-]+/)?(.*\.php)$" />
                     <action type="Rewrite" url="{R:2}" />
                 </rule>
-                <rule name="Imported Rule 7" stopProcessing="true">
-                    <match url="." ignoreCase="false" />
-                    <conditions logicalGrouping="MatchAll" />
+                <rule name="wordpress - 7" stopProcessing="true">
+                    <match url="." />
                     <action type="Rewrite" url="index.php" />
                 </rule>';
 

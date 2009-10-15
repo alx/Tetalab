@@ -37,7 +37,7 @@ function wpmu_signup_stylesheet() {
 			.mu_register #blog_title,
 			.mu_register #user_email, 
 			.mu_register #blogname,
-			.mu_register #user_nospam_name { width:100%; font-size: 24px; margin:5px 0; }	
+			.mu_register #user_name { width:100%; font-size: 24px; margin:5px 0; }	
 		.mu_register .prefix_address,
 			.mu_register .suffix_address {font-size: 18px;display:inline; }			
 		.mu_register label { font-weight:700; font-size:15px; display:block; margin:10px 0; }
@@ -117,11 +117,11 @@ function validate_blog_form() {
 
 function show_user_form($user_name = '', $user_email = '', $errors = '') {
 	// User name
-	echo '<label for="user_nospam_name">' . __('Username:') . '</label>';
+	echo '<label for="user_name">' . __('Username:') . '</label>';
 	if ( $errmsg = $errors->get_error_message('user_name') ) {
 		echo '<p class="error">'.$errmsg.'</p>';
 	}
-	echo '<input name="user_nospam_name" type="text" id="user_nospam_name" value="'.$user_name.'" maxlength="50" /><br />';
+	echo '<input name="user_name" type="text" id="user_name" value="'.$user_name.'" maxlength="50" /><br />';
 	_e('(Must be at least 4 characters, letters and numbers only.)');
 	?>
 
@@ -138,7 +138,7 @@ function show_user_form($user_name = '', $user_email = '', $errors = '') {
 }
 
 function validate_user_form() {
-	return wpmu_validate_user_signup($_POST['user_nospam_name'], $_POST['user_email']);
+	return wpmu_validate_user_signup($_POST['user_name'], $_POST['user_email']);
 }
 
 function signup_another_blog($blogname = '', $blog_title = '', $errors = '') {
@@ -310,7 +310,7 @@ function signup_blog($user_name = '', $user_email = '', $blogname = '', $blog_ti
 	?>
 	<form id="setupform" method="post" action="wp-signup.php">
 		<input type="hidden" name="stage" value="validate-blog-signup" />
-		<input type="hidden" name="user_nospam_name" value="<?php echo $user_name ?>" />
+		<input type="hidden" name="user_name" value="<?php echo $user_name ?>" />
 		<input type="hidden" name="user_email" value="<?php echo $user_email ?>" />
 		<?php do_action( "signup_hidden_fields" ); ?>
 		<?php show_blog_form($blogname, $blog_title, $errors); ?>
@@ -322,7 +322,7 @@ function signup_blog($user_name = '', $user_email = '', $blogname = '', $blog_ti
 
 function validate_blog_signup() {
 	// Re-validate user info.
-	$result = wpmu_validate_user_signup($_POST['user_nospam_name'], $_POST['user_email']);
+	$result = wpmu_validate_user_signup($_POST['user_name'], $_POST['user_email']);
 	extract($result);
 
 	if ( $errors->get_error_code() ) {

@@ -694,7 +694,7 @@ class Core_Upgrader extends WP_Upgrader {
 			return $working_dir;
 
 		// Copy update-core.php from the new version into place.
-		if ( !$wp_filesystem->copy($working_dir . '/wordpress/wp-admin/includes/update-core.php', $wp_dir . 'wp-admin/includes/update-core.php', true) ) {
+		if ( !$wp_filesystem->copy($working_dir . '/wordpress-mu/wp-admin/includes/update-core.php', $wp_dir . 'wp-admin/includes/update-core.php', true) ) {
 			$wp_filesystem->delete($working_dir, true);
 			return new WP_Error('copy_failed', $this->strings['copy_failed']);
 		}

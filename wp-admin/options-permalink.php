@@ -9,6 +9,9 @@
 /** WordPress Administration Bootstrap */
 require_once('admin.php');
 
+if ( ! current_user_can('manage_options') )
+	wp_die(__('You do not have sufficient permissions to manage options for this blog.'));
+
 $title = __('Permalink Settings');
 $parent_file = 'options-general.php';
 
@@ -231,22 +234,24 @@ $structures = array(
 	<input type="submit" name="submit" class="button-primary" value="<?php esc_attr_e('Save Changes') ?>" />
 </p>
   </form>
-<?php if ( is_site_admin() && $iis7_permalinks) :
-	if ( isset($_POST['submit']) && $permalink_structure && ! $usingpi && ! $writable ) : ?>
+<?php if ( is_site_admin() ) :
+	if ( $iis7_permalinks ) :
+		if ( isset($_POST['submit']) && $permalink_structure && ! $usingpi && ! $writable ) : ?>
 <p><?php _e('If your <code>web.config</code> file were <a href="http://codex.wordpress.org/Changing_File_Permissions">writable</a>, we could do this automatically, but it isn&#8217;t so this is the url rewrite rule you should have in your <code>web.config</code> file. Click in the field and press <kbd>CTRL + a</kbd> to select all. Then insert this rule inside of the <code>/&lt;configuration&gt;/&lt;system.webServer&gt;/&lt;rewrite&gt;/&lt;rules&gt;</code> element in <code>web.config</code> file.') ?></p>
 <form action="options-permalink.php" method="post">
 <?php wp_nonce_field('update-permalink') ?>
 	<p><textarea rows="10" class="large-text readonly" name="rules" id="rules" readonly="readonly"><?php echo esc_html($wp_rewrite->iis7_url_rewrite_rules()); ?></textarea></p>
 </form>
 <p><?php _e('If you temporarily make your <code>web.config</code> file writable for us to generate rewrite rules automatically, do not forget to revert the permissions after rule has been saved.')  ?></p>
-	<?php endif; ?>
-<?php else :
-	if ( $permalink_structure && ! $usingpi && ! $writable ) : ?>
+		<?php endif; ?>
+	<?php else :
+		if ( $permalink_structure && ! $usingpi && ! $writable ) : ?>
 <p><?php _e('If your <code>.htaccess</code> file were <a href="http://codex.wordpress.org/Changing_File_Permissions">writable</a>, we could do this automatically, but it isn&#8217;t so these are the mod_rewrite rules you should have in your <code>.htaccess</code> file. Click in the field and press <kbd>CTRL + a</kbd> to select all.') ?></p>
 <form action="options-permalink.php" method="post">
 <?php wp_nonce_field('update-permalink') ?>
 	<p><textarea rows="6" class="large-text readonly" name="rules" id="rules" readonly="readonly"><?php echo esc_html($wp_rewrite->mod_rewrite_rules()); ?></textarea></p>
 </form>
+		<?php endif; ?>
 	<?php endif; ?>
 <?php endif; ?>
 
