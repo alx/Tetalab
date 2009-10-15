@@ -1,7 +1,7 @@
 <?php
 
 function bp_core_admin_settings() {
-	global $wpdb, $bp;
+	global $wpdb, $bp, $current_blog;
 ?>
 	
 	<?php
@@ -84,32 +84,51 @@ function bp_core_admin_settings() {
 						<input type="radio" name="bp-admin[non-friend-wire-posting]"<?php if ( !(int)get_site_option( 'non-friend-wire-posting' ) ) : ?> checked="checked"<?php endif; ?> id="bp-admin-non-friend-wire-post" value="0" /> <?php _e( 'No', 'buddypress' ) ?>
 					</td>			
 				</tr>
-				<?php } ?>
+				<?php } ?>				
 				<tr>
-					<th scope="row"><?php _e('Select theme to use for BuddyPress generated pages', 'buddypress' ) ?>:</th>
+					<th scope="row"><?php _e( 'Disable user account deletion?', 'buddypress' ) ?>:</th>
 					<td>
-						<?php $themes = bp_core_get_buddypress_themes() ?>
-						<?php if ( $themes ) : ?>
-						<select name="bp-admin[active-member-theme]" id="active-member-theme">
-							<?php 
-							for ( $i = 0; $i < count($themes); $i++ ) { 
-								if ( $themes[$i]['template'] == get_site_option( 'active-member-theme' ) ) {
-									$selected = ' selected="selected"';
-								} else {
-									$selected = '';
-								}
-							?>
-							<option<?php echo $selected ?> value="<?php echo $themes[$i]['template'] ?>"><?php echo $themes[$i]['name'] ?> (<?php echo $themes[$i]['version'] ?>)</option>
-							<?php } ?>
-						</select>
-						<?php else : ?>
-							<div class="error">
-								<p><?php printf( __( '<strong>You do not have any BuddyPress themes installed.</strong><p style="line-height: 150%%">Please move the default BuddyPress themes to their correct location (move %s to %s) and reload this page. You can <a href="http://buddypress.org/extend/themes" title="Download">download more themes here</a>.</p>', 'buddypress' ), BP_PLUGIN_DIR . '/bp-themes/', WP_CONTENT_DIR . '/bp-themes/' ) ?></p>
-							</div>
-							<p><?php _e( 'No Themes Installed.', 'buddypress' ) ?></p>
-						<?php endif; ?>
+						<input type="radio" name="bp-admin[bp-disable-account-deletion]"<?php if ( (int)get_site_option( 'bp-disable-account-deletion' ) ) : ?> checked="checked"<?php endif; ?> id="bp-disable-account-deletion" value="1" /> <?php _e( 'Yes', 'buddypress' ) ?> &nbsp;
+						<input type="radio" name="bp-admin[bp-disable-account-deletion]"<?php if ( !(int)get_site_option( 'bp-disable-account-deletion' ) || '' == get_site_option( 'bp-disable-account-deletion' ) ) : ?> checked="checked"<?php endif; ?> id="bp-disable-account-deletion" value="0" /> <?php _e( 'No', 'buddypress' ) ?>
 					</td>			
 				</tr>
+				<?php if ( function_exists( 'bp_forums_setup') ) : ?>
+				<tr>
+					<th scope="row"><?php _e( 'Disable global forum directory?', 'buddypress' ) ?>:</th>
+					<td>
+						<input type="radio" name="bp-admin[bp-disable-forum-directory]"<?php if ( (int)get_site_option( 'bp-disable-forum-directory' ) ) : ?> checked="checked"<?php endif; ?> id="bp-disable-forum-directory" value="1" /> <?php _e( 'Yes', 'buddypress' ) ?> &nbsp;
+						<input type="radio" name="bp-admin[bp-disable-forum-directory]"<?php if ( !(int)get_site_option( 'bp-disable-forum-directory' ) || '' == get_site_option( 'bp-disable-forum-directory' ) ) : ?> checked="checked"<?php endif; ?> id="bp-disable-forum-directory" value="0" /> <?php _e( 'No', 'buddypress' ) ?>
+					</td>			
+				</tr>				
+				<?php endif; ?>
+				
+				<?php $themes = bp_core_get_buddypress_themes() ?>
+				<?php if ( $themes ) : ?>
+					<tr>
+						<th scope="row"><?php _e('Select theme to use for BuddyPress generated pages', 'buddypress' ) ?>:</th>
+						<td>
+								<select name="bp-admin[active-member-theme]" id="active-member-theme">
+								<?php 
+								for ( $i = 0; $i < count($themes); $i++ ) { 
+									if ( $themes[$i]['template'] == get_site_option( 'active-member-theme' ) ) {
+										$selected = ' selected="selected"';
+									} else {
+										$selected = '';
+									}
+								?>
+								<option<?php echo $selected ?> value="<?php echo $themes[$i]['template'] ?>"><?php echo $themes[$i]['name'] ?> (<?php echo $themes[$i]['version'] ?>)</option>
+								<?php } ?>
+							</select>
+						</td>			
+					</tr>
+				<?php else : ?>
+					<?php if ( '' == locate_template( array( 'registration/register.php' ), false ) && $current_blog->blog_id == BP_ROOT_BLOG ) : ?>
+						<div class="error">
+							<p><?php _e( '<strong>Your currently active theme is not BuddyPress enabled.</strong><p style="margin: 2px 0">Visit <a href="http://buddypress.org/extend/themes/">http://buddypress.org/extend/themes/</a> to browse themes that include support for BuddyPress features.</p>', 'buddypress' ) ?></p>
+						</div>
+					<?php endif; ?>
+				<?php endif; ?>
+							
 				<tr>
 					<th scope="row"><?php _e( 'Default User Avatar', 'buddypress' ) ?></th>
 					<td>
@@ -253,6 +272,15 @@ function bp_core_admin_component_setup() {
 					<td width="45%">
 						<input type="radio" name="bp_components[bp-xprofile.php]" value="1"<?php if ( !isset( $disabled_components['bp-xprofile.php'] ) ) : ?> checked="checked" <?php endif; ?>/> <?php _e( 'Enabled', 'buddypress' ) ?>  &nbsp;
 						<input type="radio" name="bp_components[bp-xprofile.php]" value="0"<?php if ( isset( $disabled_components['bp-xprofile.php'] ) ) : ?> checked="checked" <?php endif; ?>/> <?php _e( 'Disabled', 'buddypress' ) ?>
+					</td>
+				</tr>
+				<?php endif; ?>
+				<?php if ( file_exists( BP_PLUGIN_DIR . '/bp-status.php') ) : ?>
+				<tr>
+					<td><h3><?php _e( 'Status Updates', 'buddypress' ) ?></h3><p><?php _e( 'Allow users to post status updates.', 'buddypress' ) ?></p></td>
+					<td width="45%">
+						<input type="radio" name="bp_components[bp-status.php]" value="1"<?php if ( !isset( $disabled_components['bp-status.php'] ) ) : ?> checked="checked" <?php endif; ?>/> <?php _e( 'Enabled', 'buddypress' ) ?>  &nbsp;
+						<input type="radio" name="bp_components[bp-status.php]" value="0"<?php if ( isset( $disabled_components['bp-status.php'] ) ) : ?> checked="checked" <?php endif; ?>/> <?php _e( 'Disabled', 'buddypress' ) ?>
 					</td>
 				</tr>
 				<?php endif; ?>
