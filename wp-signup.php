@@ -23,7 +23,7 @@ function signuppageheaders() {
 }
 
 if( $current_blog->domain . $current_blog->path != $current_site->domain . $current_site->path ) {
-	wp_redirect( "http://" . $current_site->domain . $current_site->path . "wp-signup.php" );
+	wp_redirect( "http://" . $current_site->domain . $current_site->path . "register" );
 	die();
 }
 
