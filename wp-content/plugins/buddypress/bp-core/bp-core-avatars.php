@@ -127,6 +127,11 @@ function bp_core_fetch_avatar( $args = '' ) {
 	$legacy_user_avatar_name = ( 'full' == $type ) ? '-avatar2' : '-avatar1';	
 	$legacy_group_avatar_name = ( 'full' == $type ) ? '-groupavatar-full' : '-groupavatar-thumb';	
 	
+	error_log("avatar_name: $avatar_name");
+	error_log("avatar_folder_url: $avatar_folder_url");
+	error_log("legacy_user_avatar_name: $legacy_user_avatar_name");
+	error_log("legacy_group_avatar_name: $legacy_group_avatar_name");
+	
 	if ( $av_dir = opendir( $avatar_folder_dir ) ) {
 	    while ( false !== ( $avatar_file = readdir($av_dir) ) ) {
 			if ( preg_match( "/{$avatar_name}/", $avatar_file ) || preg_match( "/{$legacy_user_avatar_name}/", $avatar_file ) || preg_match( "/{$legacy_group_avatar_name}/", $avatar_file ) )
