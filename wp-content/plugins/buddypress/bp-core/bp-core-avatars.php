@@ -128,6 +128,7 @@ function bp_core_fetch_avatar( $args = '' ) {
 	$legacy_group_avatar_name = ( 'full' == $type ) ? '-groupavatar-full' : '-groupavatar-thumb';	
 	
 	error_log("avatar_name: $avatar_name");
+	error_log("avatar_file: $avatar_file");
 	error_log("avatar_folder_url: $avatar_folder_url");
 	error_log("legacy_user_avatar_name: $legacy_user_avatar_name");
 	error_log("legacy_group_avatar_name: $legacy_group_avatar_name");
@@ -138,6 +139,7 @@ function bp_core_fetch_avatar( $args = '' ) {
 				$avatar_url = $avatar_folder_url . '/' . $avatar_file;
 	    }
 	}
+		error_log("avatar_url: $avatar_url");
     closedir($av_dir);
 
 	return apply_filters( 'bp_core_fetch_avatar', "<img src='{$avatar_url}' alt='{$alt}' id='{$css_id}' class='{$class}'{$html_width}{$html_height} />", $params );	
