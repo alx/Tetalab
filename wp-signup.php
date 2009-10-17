@@ -3,8 +3,6 @@
 /** Sets up the WordPress Environment. */
 require( dirname(__FILE__) . '/wp-load.php' );
 
-add_action( 'wp_head', 'signuppageheaders' ) ;
-
 require( 'wp-blog-header.php' );
 require_once( ABSPATH . WPINC . '/registration.php' );
 
@@ -16,7 +14,6 @@ if( is_array( get_site_option( 'illegal_names' )) && $_GET[ 'new' ] != '' && in_
 function do_signup_header() {
 	do_action("signup_header");
 }
-add_action( 'wp_head', 'do_signup_header' );
 
 function signuppageheaders() {
 	error_log("signuppageheaders");
@@ -50,7 +47,10 @@ function wpmu_signup_stylesheet() {
 }
 
 error_log("pre_head");
+add_action( 'wp_head', 'signuppageheaders' ) ;
+add_action( 'wp_head', 'do_signup_header' );
 add_action( 'wp_head', 'wpmu_signup_stylesheet' );
+error_log("add_action done");
 get_header();
 
 error_log("post_head");
