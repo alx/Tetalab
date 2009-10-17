@@ -52,7 +52,7 @@ if ( !defined( 'BP_MEMBERS_SLUG' ) )
 
 /* Define the slug for the register/signup page */
 if ( !defined( 'BP_REGISTER_SLUG' ) )
-	define( 'BP_REGISTER_SLUG', 'register' );
+	define( 'BP_REGISTER_SLUG', 'wp-signup.php' );
 
 /* Define the slug for the activation page */
 if ( !defined( 'BP_ACTIVATION_SLUG' ) )
