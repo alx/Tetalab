@@ -12,25 +12,19 @@ if( is_array( get_site_option( 'illegal_names' )) && $_GET[ 'new' ] != '' && in_
 }
 
 function do_signup_header() {
-	error_log("signup_header");
 	do_action("signup_header");
-	error_log("signup_header done");
 }
 
 function signuppageheaders() {
-	error_log("signuppageheaders");
 	echo "<meta name='robots' content='noindex,nofollow' />\n";
-	error_log("signuppageheaders done");
 }
 
 if( $current_blog->domain . $current_blog->path != $current_site->domain . $current_site->path ) {
-	error_log("http://" . $current_site->domain . $current_site->path . "register");
 	wp_redirect( "http://" . $current_site->domain . $current_site->path . "register" );
 	die();
 }
 
 function wpmu_signup_stylesheet() {
-error_log("wpmu_signup_stylesheet");
 	?>
 	<style type="text/css">	
 		.mu_register { width: 90%; margin:0 auto; }
@@ -48,17 +42,13 @@ error_log("wpmu_signup_stylesheet");
 		.mu_register .mu_alert { font-weight:700; padding:10px; color:#333333; background:#ffffe0; border:1px solid #e6db55; }
 	</style>
 	<?php
-		error_log("wpmu_signup_stylesheet done");
 }
 
-error_log("pre_head");
 add_action( 'wp_head', 'signuppageheaders' ) ;
 //add_action( 'wp_head', 'do_signup_header' );
 add_action( 'wp_head', 'wpmu_signup_stylesheet' );
-error_log("add_action done");
 get_header();
 
-error_log("post_head");
 ?>
 <div id="content" class="widecolumn">
 <div class="mu_register">
