@@ -4,10 +4,10 @@
 require( dirname(__FILE__) . '/wp-load.php' );
 
 add_action( 'wp_head', 'signuppageheaders' ) ;
-error_log("1");
+
 require( 'wp-blog-header.php' );
 require_once( ABSPATH . WPINC . '/registration.php' );
-error_log("2");
+
 if( is_array( get_site_option( 'illegal_names' )) && $_GET[ 'new' ] != '' && in_array( $_GET[ 'new' ], get_site_option( 'illegal_names' ) ) == true ) {
 	wp_redirect( "http://{$current_site->domain}{$current_site->path}" );
 	die();
@@ -19,10 +19,12 @@ function do_signup_header() {
 add_action( 'wp_head', 'do_signup_header' );
 
 function signuppageheaders() {
+	error_log("signuppageheaders");
 	echo "<meta name='robots' content='noindex,nofollow' />\n";
 }
 
 if( $current_blog->domain . $current_blog->path != $current_site->domain . $current_site->path ) {
+	error_log("http://" . $current_site->domain . $current_site->path . "register");
 	wp_redirect( "http://" . $current_site->domain . $current_site->path . "register" );
 	die();
 }
@@ -49,6 +51,8 @@ function wpmu_signup_stylesheet() {
 
 add_action( 'wp_head', 'wpmu_signup_stylesheet' );
 get_header();
+
+error_log("post_head");
 ?>
 <div id="content" class="widecolumn">
 <div class="mu_register">
@@ -432,7 +436,6 @@ if( $active_signup == "none" ) {
 			break;
 	}
 }
-error_log("3");
 ?>
 </div>
 </div>
