@@ -53,7 +53,7 @@ error_log("wpmu_signup_stylesheet");
 
 error_log("pre_head");
 add_action( 'wp_head', 'signuppageheaders' ) ;
-add_action( 'wp_head', 'do_signup_header' );
+//add_action( 'wp_head', 'do_signup_header' );
 add_action( 'wp_head', 'wpmu_signup_stylesheet' );
 error_log("add_action done");
 get_header();
