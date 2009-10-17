@@ -49,6 +49,7 @@ function wpmu_signup_stylesheet() {
 	<?php
 }
 
+error_log("pre_head");
 add_action( 'wp_head', 'wpmu_signup_stylesheet' );
 get_header();
 
