@@ -123,7 +123,7 @@ h1, h2, h3 {
 			
 			#header ul li.selected a {
 				background: #444;
-				color: #00D9FF;
+				color: #00D9EE;
 				font-weight: bold;
 			}
 
@@ -584,7 +584,7 @@ a.page-numbers:hover { background: #e1e1e1; }
 
 	.pagination-links .current {
 		background: #d5d5d5;
-		border-bottom: 2px solid #00D9FF;
+		border-bottom: 2px solid #00D9EE;
 	}
 	
 .pag-count {
@@ -961,8 +961,8 @@ ul#letter-list {
 	
 		ul#letter-list li a:hover {
 			font-weight: bold;
-			background: #CCC;
-			color: #00D9FF;
+			background: #444;
+			color: #00D9EE;
 		}
 		
 		ul#letter-list li a.selected {
