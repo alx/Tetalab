@@ -120,8 +120,8 @@
 			}
 				/* Selected navigation elements include the .current class */
 				ul.content-header-nav li.current a {
-					background: #aaa;
-					color: #fff;
+					background: #444;
+					color: #00D9FF;
 					font-weight: bold;
 				}
 		
