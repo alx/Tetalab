@@ -122,8 +122,8 @@ h1, h2, h3 {
 			}
 			
 			#header ul li.selected a {
-				background: #fff9df;
-				color: #ff7900;
+				background: #444;
+				color: #00D9FF;
 				font-weight: bold;
 			}
 
@@ -776,7 +776,7 @@ h2.widgettitle, .directory h3, h2.pagetitle {
 	}
 
 	.widget_bp_core_welcome_widget h2 {
-		background: url(../images/welcome_header_back.gif) top left no-repeat !important;
+		background: url(../images/tetalab_header_back.gif) top left no-repeat !important;
 		color: #fff !important;
 	}
 
