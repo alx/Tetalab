@@ -1275,7 +1275,7 @@ input#signup_blog_title {
 
 .activity-list li {
 	position: relative;
-	margin: 5px 15px;
+	margin: 5px 5px;
 	padding: 0 50px 0 34px !important;
 	background: none !important;
 }
