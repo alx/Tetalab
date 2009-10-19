@@ -836,11 +836,11 @@ div.create-account {
 }
 
 span.activity, .message-metadata small {
-	color: #888;
-	background: #FFF9DB;
+	color: #666;
+	background: #DDD;
 	padding: 4px 6px;
-	border-right: 1px solid #FFE8C4;
-	border-bottom: 1px solid #FFE8C4;
+	border-right: 1px solid #C9C9C9;
+	border-bottom: 1px solid #C9C9C9;
 	display: inline-block;
 	font: normal 0.9em "Lucida Grande", "Lucida Sans Unicode", Tahoma, Verdana, sans-serif !important;
 	max-width: 60%; 
