@@ -1022,7 +1022,7 @@ ul#letter-list {
 	margin: 5px 0 15px 0;
 }
 	.post p.date em {
-		color: #f7740a;
+		color: #444;
 		font: italic 1em Georgia, times, serif;
 	}
 
@@ -1434,7 +1434,7 @@ a.rss-image {
 	font-size: 0.95em;
 }
 	.post p.date em {
-		color: #f7740a;
+		color: #444;
 		font: italic 1em Georgia, times, serif;
 	}
 	
@@ -2008,8 +2008,8 @@ table#message-threads a.delete {
 }
 
 span.unread-count {
-	background: #f7740a;
-	border: 2px solid #f7740a;
+	background: #444;
+	border: 2px solid #444;
 	padding: 0 0.5em;
 	color: #fff;
 	font-size: 0.8em;
