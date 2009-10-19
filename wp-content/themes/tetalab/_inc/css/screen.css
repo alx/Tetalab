@@ -584,7 +584,7 @@ a.page-numbers:hover { background: #e1e1e1; }
 
 	.pagination-links .current {
 		background: #d5d5d5;
-		border-bottom: 2px solid #f28935;
+		border-bottom: 2px solid #00D9FF;
 	}
 	
 .pag-count {
