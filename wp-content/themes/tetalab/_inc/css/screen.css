@@ -8,7 +8,7 @@ body {
 }
 
 a { 
-	color: #f7740a; 
+	color: #333; 
 	text-decoration: underline;
 }
 
@@ -40,8 +40,8 @@ h1, h2, h3 {
 /*** Search / Login Bar ************************************************/
 
 #search-login-bar {
-	border-top: 10px solid #f7740a;
-	background: #fff9df;
+	border-top: 10px solid #00d9ee;
+	background: #eee;
 	overflow: hidden;
 	width: 100%;
 }
