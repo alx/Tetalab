@@ -961,8 +961,8 @@ ul#letter-list {
 	
 		ul#letter-list li a:hover {
 			font-weight: bold;
-			background: #fff9df;
-			color: #f7740a;
+			background: #CCC;
+			color: #00D9FF;
 		}
 		
 		ul#letter-list li a.selected {
