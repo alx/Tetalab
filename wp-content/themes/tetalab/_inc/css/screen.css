@@ -781,8 +781,7 @@ h2.widgettitle, .directory h3, h2.pagetitle {
 	}
 
 .widget ul.item-list li, .activity-list {
-	background: url(../images/item_list_back.gif) top left repeat-x;
-	padding: 15px;
+	padding: 5px;
 }
 	.widget ul.item-list {
 		margin-top: 5px !important;
