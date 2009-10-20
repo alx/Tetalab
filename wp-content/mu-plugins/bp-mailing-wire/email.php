@@ -18,7 +18,6 @@ global $content;
 
 require("email/pop3.php");
 require("email/sasl.php");
-//require("commonstyle.php"); // skin
 
 $pop3=new pop3_class;
 $pop3->hostname="mail.XXXXXXX";         /* POP 3 server host name              */
@@ -146,13 +145,13 @@ global $content;
 
 if(($error=$pop3->Open())=="")
 {
-  $debugtext.= "<PRE>Connected to the POP3 server &quot;".$pop3->hostname."&quot;.</PRE>\n";
+  error_log("Connected to the POP3 server: ".$pop3->hostname);
   if(($error=$pop3->Login($user,$password,$apop))=="")
 	{
-	  $debugtext.= "<PRE>User &quot;$user&quot; logged in.</PRE>\n";
+	  error_log("User $user logged in.");
 	  if(($error=$pop3->Statistics($messages,$size))=="")
 		{
-		  $debugtext.= "<PRE>There are $messages messages in the mail box with a total of $size bytes.</PRE>\n";
+		  error_log("There are $messages messages in the mail box with a total of $size bytes.");
 		  $result=$pop3->ListMessages("",0);
 		  if(GetType($result)=="array")
 			{
@@ -217,53 +216,3 @@ if(($error=$pop3->Open())=="")
 		}
 	}
 }
-
-if($error!=""){
-	 echo "<H2>Error: ".HtmlSpecialChars($error)."</H2>";
-	 print_r($error);
-}
-	 ?><HTML><HEAD><TITLE>Interface Email L&eacute;zard Twist</TITLE>
-<style>
-*{
-  font-family:Verdana;
-  font-size:9pt;
-}
-a,img{
- border:0px;
-}
-#content{
- position:absolute;
- top:83px;
- left:140px;
- width:643px;
-}
-#list_message{
- margin-left:100px;
- font-size:10pt;
-}
-#message_from{
- margin-left:80px;
- font-size:12pt;
- font-style:bold;
-}
-#message_subject{
- margin-left:80px;
- font-size:13pt;
- font-style:bold;
-}
-</style>
-</HEAD>
-<BODY>
-<?php 
-//echo $include_output;
-echo '<div id="content">';
-echo "Listing messages ".$offset." to ".($offset+$count -1)."<br/>";
-echo $content;
-if ($debug)
-	 echo '<H3>DEBUG INFO</H3>
-<span style="margin-left:10px,font-size:10pt;font-family:Serif;color:#232323">'.$debugtext.'</span>';
-
-?>
-</div>
-</BODY>
-</HTML>
