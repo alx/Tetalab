@@ -94,6 +94,10 @@
 				<?php if ( function_exists( 'bp_blogs_install' ) ) : ?>
 					<li<?php if ( bp_is_page( BP_BLOGS_SLUG ) ) : ?> class="selected"<?php endif; ?>><a href="<?php echo get_option('home') ?>/<?php echo BP_BLOGS_SLUG ?>" title="<?php _e( 'Blogs', 'buddypress' ) ?>"><?php _e( 'Blogs', 'buddypress' ) ?></a></li>
 				<?php endif; ?>
+				
+				<li><a href="http://wiki.tetalab.org" title="Wiki">Wiki</a></li>
+				<li><a href="http://bookmarks.tetalab.org" title="Bookmarks">Bookmarks</a></li>
+				<li><a href="http://lists.tetalab.org/listinfo/tetalab" title="Mailing List">Mailing List</a></li>
 
 				<?php do_action( 'bp_nav_items' ); ?>
 			</ul>
