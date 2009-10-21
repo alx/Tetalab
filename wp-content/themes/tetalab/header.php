@@ -96,7 +96,6 @@
 				<?php endif; ?>
 				
 				<li><a href="http://wiki.tetalab.org" title="Wiki">Wiki</a></li>
-				<li><a href="http://bookmarks.tetalab.org" title="Bookmarks">Bookmarks</a></li>
 				<li><a href="http://lists.tetalab.org/listinfo/tetalab" title="Mailing List">Mailing List</a></li>
 
 				<?php do_action( 'bp_nav_items' ); ?>
