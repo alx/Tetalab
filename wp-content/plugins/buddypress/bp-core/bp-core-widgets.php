@@ -38,7 +38,7 @@ class BP_Core_Welcome_Widget extends WP_Widget {
 	function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
 		$instance['title'] = strip_tags( $new_instance['title'] );
-		$instance['text'] = strip_tags( wp_filter_post_kses( $new_instance['text'] ) );
+		$instance['text'] = strip_tags( wp_filter_post_kses( $new_instance['text'] ), '<p><a><ul><li><br><b>' );
 
 		return $instance;
 	}
