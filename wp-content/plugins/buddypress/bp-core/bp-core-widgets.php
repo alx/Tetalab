@@ -24,7 +24,6 @@ class BP_Core_Welcome_Widget extends WP_Widget {
 			. $instance['title']
 			. $after_title; ?>
 
-		<?php if ( $instance['title'] ) : ?><h3><?php echo attribute_escape( stripslashes( $instance['title'] ) ) ?></h3><?php endif; ?>
 		<?php if ( $instance['text'] ) : ?><p><?php echo $instance['text']  ?></p><?php endif; ?>
 
 		<?php if ( !is_user_logged_in() ) { ?>
