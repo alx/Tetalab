@@ -24,7 +24,8 @@ class BP_Core_Welcome_Widget extends WP_Widget {
 			. $instance['title']
 			. $after_title; ?>
 
-		<?php if ( $instance['text'] ) : ?><p><?php echo $instance['text'] ?></p><?php endif; ?>
+		<?php if ( $instance['title'] ) : ?><h3><?php echo attribute_escape( stripslashes( $instance['title'] ) ) ?></h3><?php endif; ?>
+		<?php if ( $instance['text'] ) : ?><p><?php echo apply_filters( 'bp_core_welcome_widget_text', $instance['text'] ) ?></p><?php endif; ?>
 
 		<?php if ( !is_user_logged_in() ) { ?>
 		<div class="create-account"><div class="visit generic-button"><a href="<?php bp_signup_page() ?>" title="<?php _e('Create Account', 'buddypress') ?>"><?php _e('Create Account', 'buddypress') ?></a></div></div>
@@ -37,7 +38,7 @@ class BP_Core_Welcome_Widget extends WP_Widget {
 	function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
 		$instance['title'] = strip_tags( $new_instance['title'] );
-		$instance['text'] = strip_tags( $new_instance['text'], '<p><a><ul><li><br><b>');
+		$instance['text'] = strip_tags( wp_filter_post_kses( $new_instance['text'] ) );
 
 		return $instance;
 	}

@@ -547,11 +547,11 @@ function bp_signup_page( $deprecated = true ) {
 	function bp_get_signup_page() {
 		global $bp;
 		
-		// if ( bp_has_custom_signup_page() ) {
-		// 		return apply_filters( 'bp_get_signup_page', $bp->root_domain . '/' . BP_REGISTER_SLUG );
-		// } else {
+		if ( bp_has_custom_signup_page() ) {
+				return apply_filters( 'bp_get_signup_page', $bp->root_domain . '/' . BP_REGISTER_SLUG );
+		} else {
 				return apply_filters( 'bp_get_signup_page', $bp->root_domain . '/wp-signup.php' );
-		// }
+		}
 	}
 
 function bp_has_custom_activation_page() {
