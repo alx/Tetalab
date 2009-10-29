@@ -17,7 +17,10 @@
 		
 		<div id="second-section" class="widget-section">
 			
-			<?php sidebarEventsList(10);?>
+			<div id="events-calendar" class="widget">
+				<h2 class="widgettitle">Groups</h2>
+				<?php sidebarEventsList(10);?>
+			</div>
 			
 			<?php if ( !function_exists('dynamic_sidebar')
 			        || !dynamic_sidebar('second-section') ) : ?>
