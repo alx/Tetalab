@@ -16,12 +16,6 @@
 		</div>
 		
 		<div id="second-section" class="widget-section">
-			
-			<div id="events-calendar" class="widget">
-				<h2 class="widgettitle">Groups</h2>
-				<?php sidebarEventsList(10);?>
-			</div>
-			
 			<?php if ( !function_exists('dynamic_sidebar')
 			        || !dynamic_sidebar('second-section') ) : ?>
 		
@@ -33,6 +27,12 @@
 		</div>
 
 		<div id="first-section" class="widget-section">
+			
+			<div id="events-calendar" class="widget">
+				<h2 class="widgettitle">Calendrier</h2>
+				<?php sidebarEventsList(10);?>
+			</div>
+		
 			<?php if ( !function_exists('dynamic_sidebar')
 			        || !dynamic_sidebar('first-section') ) : ?>
 
