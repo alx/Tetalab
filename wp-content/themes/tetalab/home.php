@@ -5,6 +5,12 @@
 		<?php do_action( 'bp_before_home' ) ?>
 
 		<div id="third-section" class="widget-section">
+			
+			<div id="events-calendar" class="widget">
+				<h2 class="widgettitle">Calendrier</h2>
+				<?php sidebarEventsList(10);?>
+			</div>
+			
 			<?php if ( !function_exists('dynamic_sidebar')
 			        || !dynamic_sidebar('third-section') ) : ?>
 		
@@ -27,12 +33,6 @@
 		</div>
 
 		<div id="first-section" class="widget-section">
-			
-			<div id="events-calendar" class="widget">
-				<h2 class="widgettitle">Calendrier</h2>
-				<?php sidebarEventsList(10);?>
-			</div>
-		
 			<?php if ( !function_exists('dynamic_sidebar')
 			        || !dynamic_sidebar('first-section') ) : ?>
 
