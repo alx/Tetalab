@@ -1,0 +1,99 @@
+/**
+ * Classes used by EC for tooltips
+ * This is kind of primitive. We'll do better in a next 7.x release.
+ */
+
+/** TOOLTIPS FOR THE LARGE CALENDAR */
+
+/** labels and data */
+.EC-tt-label {
+	font-weight: bold;
+	text-align: left;
+}
+.EC-tt-data {}
+
+/** tooltip titles */
+.EC-tt-title {
+	text-align: center;
+}
+.EC-tt-title-data {
+	font-weight: bold;
+	margin: 1px;
+	padding: 1px;
+}
+
+/** location div */
+.EC-tt-location {}
+.EC-tt-location-label {}
+.EC-tt-location-data {}
+
+.EC-tt-description {}
+.EC-tt-description-label {}
+.EC-tt-description-data {}
+
+.EC-tt-linkout {}
+.EC-tt-linkout-label {}
+.EC-tt-linkout-data {}
+
+.EC-tt-startdate {}
+.EC-tt-startdate-label {}
+.EC-tt-startdate-data {}
+
+.EC-tt-starttime {}
+.EC-tt-starttime-label {}
+.EC-tt-starttime-data {}
+
+.EC-tt-enddate {}
+.EC-tt-enddate-label {}
+.EC-tt-enddate-data {}
+
+.EC-tt-endtime {}
+.EC-tt-endtime-label {}
+.EC-tt-endtime-data {}
+
+/** title links */
+.EC-tt-title-link {}
+.EC-tt-title-no-link {}
+.EC-tt-user-link {}
+.EC-tt-post-link {}
+
+/* Depending on the description length, one of
+ * these class will be used
+ */
+.EC-tt-25 {
+	top: 0;
+	width: 25% !important;
+}
+.EC-tt-50 {
+	top: 0;
+	width: 50% !important;
+}
+.EC-tt-75 {
+	top: 0;
+	width: 75% !important;
+}
+.EC-tt-100 {
+	top: 0;
+	width: 100% !important;
+}
+
+/**
+ * TOOLTIPS FOR THE WIDGET
+ */
+
+.EC-tt-widget-day-event {}
+.EC-tt-widget-day-event-title {
+	font-weight: bold;
+}
+.EC-tt-widget-day-event-detail {}
+.EC-tt-widget-clickdate {
+	font-size: 10px;
+	font-weight:normal;
+}
+
+/**
+ * Management form
+ */
+.ec-mgmt-ttip {
+	font-weight: bold;
+}

@@ -1,0 +1,243 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: events-calendar\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-07-18 17:00+0100\n"
+"PO-Revision-Date: 2008-09-24 23:12+0100\n"
+"Last-Translator: Heirem <rmalkafr@yahoo.fr>\n"
+"Language-Team: Heirem <rmalkafr@yahoo.fr>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Language: French\n"
+"X-Poedit-Country: FRANCE\n"
+"X-Poedit-SearchPath-0: ..\\.\n"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_calendar.class.php:168
+msgid "Events"
+msgstr "События"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_day.class.php:69
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:117
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:181
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_managementjs.class.php:32
+msgid "Location"
+msgstr "Место проведения"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_day.class.php:83
+msgid "to"
+msgstr "к"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_js.class.php:43
+msgid "Click date for more details"
+msgstr "Щелкните по дате для большей информации"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_js.class.php:57
+msgid "Review your Large Calendar Date Format in the Events-Calendars options ;-)"
+msgstr "Отобразить формат вашего Большого Календаря с настройками Календаря-Событий ;-) "
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:106
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:109
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:160
+msgid "Add Event"
+msgstr "Добавить событие"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:113
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:177
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:242
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_managementjs.class.php:30
+msgid "Title"
+msgstr "Заголовок"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:121
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:185
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_managementjs.class.php:34
+msgid "Description"
+msgstr "Описание"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:125
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:189
+msgid "Start Date (YYYY-MM-DD, if blank will be today)"
+msgstr "Дата начала (dd-mm-yyyy, если поле пустое, то сегодняшнее число)"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:129
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:193
+msgid "Start Time (HH:MM, can be blank)"
+msgstr "Время начала (hh:mm, можно не заполнять)"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:133
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:197
+msgid "End Date (YYYY-MM-DD, if blank will be same as start date)"
+msgstr "Дата завершения (dd-mm-yyyy, если поле пустое = дата старта)"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:137
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:201
+msgid "End Time (HH:MM, can be blank)"
+msgstr "Время завершения (hh:mm, можно не заполнять)"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:141
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:205
+msgid "Visibility Level"
+msgstr "Уровень доступа"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:144
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:208
+msgid "Public"
+msgstr "Доступно всем"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:145
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:209
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:317
+msgid "Administrator"
+msgstr "Администратор"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:146
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:210
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:318
+msgid "Editor"
+msgstr "Редактор"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:147
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:211
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:319
+msgid "Author"
+msgstr "Автор"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:148
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:212
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:320
+msgid "Contributor"
+msgstr "Участник"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:149
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:213
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:321
+msgid "Subscriber"
+msgstr "Подписчик"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:154
+msgid "Create Post for Event"
+msgstr "Создать пост для этого события"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:170
+msgid "Edit Event"
+msgstr "Редактировать событие"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:173
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:221
+msgid "Update Event"
+msgstr "Обновить событие"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:231
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/events-calendar.php:75
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/events-calendar.php:76
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/events-calendar.php:89
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/events-calendar.php:90
+msgid "Events Calendar"
+msgstr "События"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:246
+msgid "Calendar Type"
+msgstr "Тип календаря"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:248
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/events-calendar.php:89
+msgid "Calendar"
+msgstr "Календарь"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:249
+msgid "Event List"
+msgstr "Список Событий"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:255
+msgid "Event List options"
+msgstr "Настройки Событий"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:259
+msgid "Number of events"
+msgstr "Число событий"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:307
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/events-calendar.php:91
+msgid "Events Calendar Options"
+msgstr "Настройки Календаря Событий"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:310
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:362
+msgid "Update Options"
+msgstr "Обновить настройки"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:314
+msgid "Access Level"
+msgstr "Уровень доступа"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:326
+msgid "Date/Time Formatting(see"
+msgstr "Форматирование Даты/Времени (смотри"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:329
+msgid "Widget Calendar Dates"
+msgstr "Даты в Малом Календаре"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:333
+msgid "Widget Calendar Times"
+msgstr "Отображение часов в Малом Календаре"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:337
+msgid "Large Calendar Dates"
+msgstr "Даты в Большом Календаре"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:341
+msgid "Large Calendar Times"
+msgstr "Отображение часов в Большом Календаре"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:345
+msgid "Step Increment for Time Selector (in minutes)"
+msgstr "Шаг увеличения временного селектора (в минутах)"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:349
+msgid "CSS for Day With Events"
+msgstr "CSS для дня события"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:353
+msgid "Length of day names in Widget Calendar"
+msgstr "Длина дней недели в Малом календаре "
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_management.class.php:356
+msgid "Length of day names in Large Calendar"
+msgstr "Длина дней недели в Большом календаре"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_managementjs.class.php:36
+msgid "Start Date"
+msgstr "Дата начала"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_managementjs.class.php:38
+msgid "Start Time"
+msgstr "Время начала"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_managementjs.class.php:40
+msgid "End Date"
+msgstr "Дата завершения"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_managementjs.class.php:42
+msgid "End Time"
+msgstr "Время завершения"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_managementjs.class.php:44
+msgid "Visibility"
+msgstr "Видимость"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/ec_managementjs.class.php:68
+msgid "Are you sure you want to delete the following event:\\n"
+msgstr "Подтвердите удаление события:\\n"
+
+#: D:\wamp\www\castalie\wp-content\plugins\events-calendar/events-calendar.php:91
+msgid "Options"
+msgstr "Настройки"
+
+#~ msgid "%A, %B %d , %Y"
+#~ msgstr "%A, %d %B %Y"
+

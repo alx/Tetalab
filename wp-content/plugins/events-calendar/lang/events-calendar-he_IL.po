@@ -1,0 +1,450 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: events-calendar\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-07-18 17:00+0100\n"
+"PO-Revision-Date: 2008-09-24 23:10+0100\n"
+"Last-Translator: Heirem <rmalkafr@yahoo.fr>\n"
+"Language-Team: Heirem <rmalkafr@yahoo.fr>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-KeywordsList: __;_e;_c\n"
+"X-Poedit-Language: Hebrew\n"
+"X-Poedit-Country: ISRAEL\n"
+"X-Poedit-SearchPath-0: ..\\.\n"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_calendar.class.php:55
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_calendar.class.php:55
+msgid "Events are coming soon, stay tuned!"
+msgstr "בקרוב יפורסמו אירועים ..."
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_calendar.class.php:184
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_calendar.class.php:184
+msgid "Events"
+msgstr "אירועים"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_day.class.php:52
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_js.class.php:191
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_js.class.php:309
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:36
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:119
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:222
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_managementjs.class.php:32
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_day.class.php:52
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_js.class.php:193
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_js.class.php:313
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:39
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:125
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:233
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_managementjs.class.php:32
+msgid "Location"
+msgstr "מיקום"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_day.class.php:66
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_day.class.php:66
+msgid "to"
+msgstr "ל"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_js.class.php:45
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_js.class.php:45
+msgid "Click date for more details"
+msgstr "לחץ על התאריך לפרטים נוספים"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_js.class.php:61
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_js.class.php:61
+msgid "Review your Large Calendar Date Format in the Events-Calendars options ;-)"
+msgstr "בדוק את פורמט התאריך בהגדרות לוח השנה הגדול"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_js.class.php:189
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_js.class.php:307
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:34
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:115
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:218
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:311
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_managementjs.class.php:30
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_js.class.php:191
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_js.class.php:311
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:37
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:121
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:229
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:326
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_managementjs.class.php:31
+msgid "Title"
+msgstr "כותרת"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_js.class.php:193
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_js.class.php:311
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:38
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:123
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:226
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_managementjs.class.php:34
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_js.class.php:195
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_js.class.php:315
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:43
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:133
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:241
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_managementjs.class.php:33
+msgid "Description"
+msgstr "תיאור"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_js.class.php:195
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_js.class.php:313
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:40
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_managementjs.class.php:36
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_js.class.php:197
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_js.class.php:317
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:45
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_managementjs.class.php:34
+msgid "Start Date"
+msgstr "תאריך התחלה"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_js.class.php:197
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_js.class.php:315
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:42
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_managementjs.class.php:38
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_js.class.php:199
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_js.class.php:319
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:47
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_managementjs.class.php:35
+msgid "Start Time"
+msgstr "שעת התחלה"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_js.class.php:199
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_js.class.php:317
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:44
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_managementjs.class.php:40
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_js.class.php:201
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_js.class.php:321
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:49
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_managementjs.class.php:36
+msgid "End Date"
+msgstr "תאריך סיום"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_js.class.php:201
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_js.class.php:319
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:48
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_managementjs.class.php:42
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_js.class.php:203
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_js.class.php:323
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:53
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_managementjs.class.php:37
+msgid "End Time"
+msgstr "שעת סיום"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:46
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:51
+msgid "Date"
+msgstr "תאריך"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:108
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:111
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:175
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/events-calendar.php:92
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:114
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:117
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:185
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/events-calendar.php:92
+msgid "Add Event"
+msgstr "הוסף אירוע"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:127
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:230
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:137
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:245
+msgid "Start Date (YYYY-MM-DD, if blank will be today)"
+msgstr "תאריך התחלה (dd-mm-yyyy, במקרה ותשאיר אותו ריק, יתחיל היום)"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:131
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:234
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:141
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:249
+msgid "Start Time (HH:MM, can be blank)"
+msgstr "שעת התחלה (hh:mm, ניתן להשאיר ריק)"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:135
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:238
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:145
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:253
+msgid "End Date (YYYY-MM-DD, if blank will be same as start date)"
+msgstr "תאריך סיום (dd-mm-yyyy, במקרה ותשאיר אותו ריק, יסתיים היום)"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:139
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:242
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:149
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:257
+msgid "End Time (HH:MM, can be blank)"
+msgstr "שעת סיום (hh:mm, ניתן להשאיר ריק)"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:143
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:246
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:153
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:261
+msgid "Visibility Level"
+msgstr "הרשאת צפיה"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:146
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:249
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:156
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:264
+msgid "Public"
+msgstr "ציבורי"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:147
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:250
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:394
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:157
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:265
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:409
+msgid "Administrator"
+msgstr "מנהל אתר"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:148
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:251
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:395
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:158
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:266
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:410
+msgid "Editor"
+msgstr "עורך"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:149
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:252
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:396
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:159
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:267
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:411
+msgid "Author"
+msgstr "כתב"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:150
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:253
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:397
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:160
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:268
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:412
+msgid "Contributor"
+msgstr "תורם תוכן"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:151
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:254
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:398
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:161
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:269
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:413
+msgid "Subscriber"
+msgstr "משתמש רשום"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:156
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:166
+msgid "Create Post for Event"
+msgstr "צור שירשור לאירוע"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:163
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:173
+msgid "Which Post Status ?"
+msgstr "מה סוג השרשור ?"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:166
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:176
+msgid "Draft"
+msgstr "טיוטה"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:167
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:177
+msgid "Publish"
+msgstr "פרסם"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:182
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:192
+msgid "Event Title can not be blank!"
+msgstr "כותרת האירוע אינה יכולה להיות ריקה !"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:211
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:222
+msgid "Edit Event"
+msgstr "ערוך אירוע"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:214
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:266
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:225
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:281
+msgid "Update Event"
+msgstr "עדכן אירוע"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:259
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:274
+msgid "Post ID"
+msgstr "מס' הפוסט"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:276
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:281
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:291
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:296
+msgid "Post ID must be a number!"
+msgstr "מס' הפוסט חייב להיות מספר!"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:300
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/events-calendar.php:75
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/events-calendar.php:76
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/events-calendar.php:89
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/events-calendar.php:90
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/events-calendar.php:92
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:315
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/events-calendar.php:75
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/events-calendar.php:76
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/events-calendar.php:89
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/events-calendar.php:90
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/events-calendar.php:92
+msgid "Events Calendar"
+msgstr "תאריכון"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:315
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:330
+msgid "Calendar Type"
+msgstr "פורמט התאריכון"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:317
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/events-calendar.php:89
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:332
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/events-calendar.php:89
+msgid "Calendar"
+msgstr "לוח שנה"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:318
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:333
+msgid "Event List"
+msgstr "רשימת אירועים"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:324
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:339
+msgid "Event List options"
+msgstr "הגדרות רשימת האירועים"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:328
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:343
+msgid "Number of events"
+msgstr "מס' אירועים"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:384
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/events-calendar.php:91
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:399
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/events-calendar.php:91
+msgid "Events Calendar Options"
+msgstr "הגדרות התאריכון"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:387
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:453
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:402
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:468
+msgid "Update Options"
+msgstr "עדכן הגדרות"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:391
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:406
+msgid "Access Level"
+msgstr "הרשאות גישה"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:403
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:418
+msgid "Date/Time Formatting(see"
+msgstr "פורמט תאריך/שעה (ראה"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:406
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:421
+msgid "Widget Calendar Dates"
+msgstr "תאריכי הוידג'ט"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:410
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:425
+msgid "Widget Calendar Times"
+msgstr "זמני הוידג'ט"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:414
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:429
+msgid "Large Calendar Dates"
+msgstr "פורמט תאריך גדול"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:418
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:433
+msgid "Large Calendar Times"
+msgstr "פורמט זמן גדול"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:422
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:437
+msgid "Step Increment for Time Selector (in minutes)"
+msgstr "מרווחי בורר הזמן (בדקות)"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:426
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:441
+msgid "I have adapted the Events-Calendar stylesheet (checked = yes)"
+msgstr "התאמתי את גליון הסגנון של התאריכון(מסומן=כן)"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:433
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:448
+msgid "CSS for Today Date"
+msgstr "הגדרות סגנון לתאריך של היום"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:437
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:452
+msgid "CSS for Day With Events"
+msgstr "הגדרות סגנון ליום עם אירועים"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:444
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:459
+msgid "Length of day names in Widget Calendar"
+msgstr "אורך שמות הימים בוידג'ט"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_management.class.php:447
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:462
+msgid "Length of day names in Large Calendar"
+msgstr "אורך שמות הימים בתאריכון הגדול"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_managementjs.class.php:44
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_managementjs.class.php:38
+msgid "Visibility"
+msgstr "תצוגה"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_managementjs.class.php:51
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_managementjs.class.php:49
+msgid "Post"
+msgstr "כתבה"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_managementjs.class.php:53
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_managementjs.class.php:50
+msgid "Associated post"
+msgstr "כתבה קשורה"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_managementjs.class.php:63
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_managementjs.class.php:60
+msgid "Delete"
+msgstr "מחק"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/ec_managementjs.class.php:88
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_managementjs.class.php:91
+msgid "Are you sure you want to delete the following event:\\n"
+msgstr "האם אתה בטוח שברצונך למחוק את האירוע ה:\\n"
+
+#: D:\WebServ\wwwroot\htdocs\heirem\wp-content\plugins\events-calendar/events-calendar.php:91
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/events-calendar.php:91
+msgid "Options"
+msgstr "אפשרויות"
+
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_js.class.php:206
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:41
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:129
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:237
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_managementjs.class.php:41
+msgid "Link out"
+msgstr "קישור חיצוני"
+
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_management.class.php:41
+msgid "Click here"
+msgstr "לחץ כאן"
+
+#: D:\wamp\www\www\wp-content\plugins\events-calendar/ec_managementjs.class.php:42
+msgid "Associated link"
+msgstr "קישור מקושר"
+

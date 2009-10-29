@@ -1,0 +1,373 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: events-calendar\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-09-24 23:11+0100\n"
+"PO-Revision-Date: 2008-09-24 23:11+0100\n"
+"Last-Translator: Heirem <rmalkafr@yahoo.fr>\n"
+"Language-Team: Heirem <rmalkafr@yahoo.fr>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-KeywordsList: __;_e;_c\n"
+"X-Poedit-Language: French\n"
+"X-Poedit-Country: FRANCE\n"
+"X-Poedit-SearchPath-0: ..\\.\n"
+
+#: ..\./ec_calendar.class.php:57
+msgid "Events are coming soon, stay tuned!"
+msgstr "Des événements sont à venir, restez en ligne!"
+
+#: ..\./ec_calendar.class.php:200
+msgid "Events"
+msgstr "Evénements"
+
+#: ..\./ec_day.class.php:47
+#: ..\./ec_js.class.php:221
+#: ..\./ec_js.class.php:351
+#: ..\./ec_management.class.php:38
+#: ..\./ec_management.class.php:130
+#: ..\./ec_management.class.php:268
+#: ..\./ec_managementjs.class.php:32
+msgid "Location"
+msgstr "Lieu"
+
+#: ..\./ec_day.class.php:53
+#: ..\./ec_js.class.php:60
+msgid "to"
+msgstr "à"
+
+#: ..\./ec_day.class.php:58
+msgid "Date range"
+msgstr "Période"
+
+#: ..\./ec_day.class.php:58
+msgid "Since"
+msgstr "Du"
+
+#: ..\./ec_day.class.php:58
+msgid "until"
+msgstr "au"
+
+#: ..\./ec_day.class.php:61
+#: ..\./ec_js.class.php:234
+#: ..\./ec_management.class.php:40
+#: ..\./ec_management.class.php:134
+#: ..\./ec_management.class.php:272
+#: ..\./ec_managementjs.class.php:41
+msgid "Link out"
+msgstr "Lien vers"
+
+#: ..\./ec_day.class.php:66
+#: ..\./ec_managementjs.class.php:49
+msgid "Post"
+msgstr "Article"
+
+#: ..\./ec_js.class.php:53
+msgid "Until"
+msgstr "Jusqu&#39;au"
+
+#: ..\./ec_js.class.php:61
+msgid "at"
+msgstr "à"
+
+#: ..\./ec_js.class.php:66
+msgid "Click date for more details"
+msgstr "Cliquer la date pour plus de détails"
+
+#: ..\./ec_js.class.php:82
+msgid "Review your Large Calendar Date Format in the Events-Calendars options ;-)"
+msgstr "Revoyez votre Format Date Grand Calendrier dans les options des Evénements ;-)"
+
+#: ..\./ec_js.class.php:223
+#: ..\./ec_js.class.php:353
+#: ..\./ec_management.class.php:42
+#: ..\./ec_management.class.php:138
+#: ..\./ec_management.class.php:276
+#: ..\./ec_managementjs.class.php:33
+msgid "Description"
+msgstr "Description"
+
+#: ..\./ec_js.class.php:225
+#: ..\./ec_js.class.php:355
+#: ..\./ec_management.class.php:44
+#: ..\./ec_managementjs.class.php:34
+msgid "Start Date"
+msgstr "Date début"
+
+#: ..\./ec_js.class.php:227
+#: ..\./ec_js.class.php:357
+#: ..\./ec_management.class.php:46
+#: ..\./ec_managementjs.class.php:35
+msgid "Start Time"
+msgstr "Heure début"
+
+#: ..\./ec_js.class.php:229
+#: ..\./ec_js.class.php:359
+#: ..\./ec_management.class.php:48
+#: ..\./ec_managementjs.class.php:36
+msgid "End Date"
+msgstr "Date fin"
+
+#: ..\./ec_js.class.php:231
+#: ..\./ec_js.class.php:361
+#: ..\./ec_management.class.php:52
+#: ..\./ec_managementjs.class.php:37
+msgid "End Time"
+msgstr "Heure fin"
+
+#: ..\./ec_js.class.php:349
+#: ..\./ec_management.class.php:36
+#: ..\./ec_management.class.php:126
+#: ..\./ec_management.class.php:264
+#: ..\./ec_management.class.php:394
+#: ..\./ec_managementjs.class.php:31
+msgid "Title"
+msgstr "Titre"
+
+#: ..\./ec_management.class.php:40
+msgid "Click here"
+msgstr "Cliquer ici"
+
+#: ..\./ec_management.class.php:50
+msgid "Date"
+msgstr "Date"
+
+#: ..\./ec_management.class.php:114
+#: ..\./ec_management.class.php:117
+#: ..\./ec_management.class.php:190
+#: ..\./events-calendar.php:114
+msgid "Add Event"
+msgstr "Ajouter un événement"
+
+#: ..\./ec_management.class.php:121
+#: ..\./ec_management.class.php:259
+msgid "Warning"
+msgstr "Attention"
+
+#: ..\./ec_management.class.php:142
+#: ..\./ec_management.class.php:280
+msgid "Start Date (YYYY-MM-DD, if blank will be today)"
+msgstr "Date début (YYYY-MM-DD, champs vide = aujourd'hui)"
+
+#: ..\./ec_management.class.php:146
+#: ..\./ec_management.class.php:284
+msgid "Start Time (HH:MM, can be blank)"
+msgstr "Heure début (hh:mm, peut être vide)"
+
+#: ..\./ec_management.class.php:150
+#: ..\./ec_management.class.php:288
+msgid "End Date (YYYY-MM-DD, if blank will be same as start date)"
+msgstr "Date fin (YYYY-MM-DD, si champs vide > date début)"
+
+#: ..\./ec_management.class.php:154
+#: ..\./ec_management.class.php:292
+msgid "End Time (HH:MM, can be blank)"
+msgstr "Heure fin (hh:mm, peut être vide)"
+
+#: ..\./ec_management.class.php:158
+#: ..\./ec_management.class.php:296
+msgid "Visibility Level"
+msgstr "Niveau d'accès"
+
+#: ..\./ec_management.class.php:161
+#: ..\./ec_management.class.php:299
+msgid "Public"
+msgstr "Public"
+
+#: ..\./ec_management.class.php:162
+#: ..\./ec_management.class.php:300
+#: ..\./ec_management.class.php:480
+msgid "Administrator"
+msgstr "Administrateur"
+
+#: ..\./ec_management.class.php:163
+#: ..\./ec_management.class.php:301
+#: ..\./ec_management.class.php:481
+msgid "Editor"
+msgstr "Editeur"
+
+#: ..\./ec_management.class.php:164
+#: ..\./ec_management.class.php:302
+#: ..\./ec_management.class.php:482
+msgid "Author"
+msgstr "Auteur"
+
+#: ..\./ec_management.class.php:165
+#: ..\./ec_management.class.php:303
+#: ..\./ec_management.class.php:483
+msgid "Contributor"
+msgstr "Contributeur"
+
+#: ..\./ec_management.class.php:166
+#: ..\./ec_management.class.php:304
+#: ..\./ec_management.class.php:484
+msgid "Subscriber"
+msgstr "Adhérent"
+
+#: ..\./ec_management.class.php:171
+msgid "Create Post for Event"
+msgstr "Créer un article pour cet événement"
+
+#: ..\./ec_management.class.php:178
+msgid "Which Post Status ?"
+msgstr "Avec quel statut ?"
+
+#: ..\./ec_management.class.php:181
+msgid "Draft"
+msgstr "Non publié"
+
+#: ..\./ec_management.class.php:182
+msgid "Publish"
+msgstr "Publié"
+
+#: ..\./ec_management.class.php:204
+#: ..\./ec_management.class.php:332
+msgid "Event Title can not be blank!"
+msgstr "Le Titre ne peut être vide !"
+
+#: ..\./ec_management.class.php:211
+#: ..\./ec_management.class.php:339
+msgid "The end time is earlier than the start time ;-)"
+msgstr "L'heure de fin est antérieure à l'heure de début ;-)"
+
+#: ..\./ec_management.class.php:252
+msgid "Edit Event"
+msgstr "Editer un événement"
+
+#: ..\./ec_management.class.php:255
+#: ..\./ec_management.class.php:316
+msgid "Update Event"
+msgstr "Enregistrer l'événement"
+
+#: ..\./ec_management.class.php:309
+msgid "Post ID"
+msgstr "Post ID"
+
+#: ..\./ec_management.class.php:351
+#: ..\./ec_management.class.php:356
+msgid "Post ID must be a number!"
+msgstr "Le 'Post ID' doit être un nombre !"
+
+#: ..\./ec_management.class.php:384
+#: ..\./events-calendar.php:93
+#: ..\./events-calendar.php:94
+#: ..\./events-calendar.php:102
+#: ..\./events-calendar.php:112
+#: ..\./events-calendar.php:114
+msgid "Events Calendar"
+msgstr "Evénements"
+
+#: ..\./ec_management.class.php:398
+msgid "Calendar Type"
+msgstr "Format"
+
+#: ..\./ec_management.class.php:400
+#: ..\./events-calendar.php:112
+msgid "Calendar"
+msgstr "Calendrier"
+
+#: ..\./ec_management.class.php:401
+msgid "Event List"
+msgstr "Liste Evénements"
+
+#: ..\./ec_management.class.php:407
+msgid "Event List options"
+msgstr "Options Liste Evénements"
+
+#: ..\./ec_management.class.php:411
+msgid "Number of events"
+msgstr "Nombre d'événements"
+
+#: ..\./ec_management.class.php:470
+#: ..\./events-calendar.php:113
+msgid "Events Calendar Options"
+msgstr "Options du Calendrier des Evénements"
+
+#: ..\./ec_management.class.php:473
+#: ..\./ec_management.class.php:546
+msgid "Update Options"
+msgstr "Enregistrer les Options"
+
+#: ..\./ec_management.class.php:477
+msgid "Access Level"
+msgstr "Niveau d'accès"
+
+#: ..\./ec_management.class.php:491
+msgid "Date/Time Formatting(see"
+msgstr "Format Date/Heure (voir"
+
+#: ..\./ec_management.class.php:495
+msgid "Widget Calendar Dates"
+msgstr "Dates dans le Petit Calendrier"
+
+#: ..\./ec_management.class.php:499
+msgid "Widget Calendar Times"
+msgstr "Heures dans le Petit Calendrier"
+
+#: ..\./ec_management.class.php:503
+msgid "Large Calendar Dates"
+msgstr "Dates dans le Grand Calendrier"
+
+#: ..\./ec_management.class.php:507
+msgid "Large Calendar Times"
+msgstr "Heures dans le Grand Calendrier"
+
+#: ..\./ec_management.class.php:511
+msgid "Step Increment for Time Selector (in minutes)"
+msgstr "Incrément du sélecteur (en minutes)"
+
+#: ..\./ec_management.class.php:515
+msgid "I have adapted the Events-Calendar stylesheet (checked = yes)"
+msgstr "J'ai adapté la feuille de style d'Events-Calendar (coché=oui)"
+
+#: ..\./ec_management.class.php:522
+msgid "CSS for Today Date"
+msgstr "CSS pour la date d'aujourd'hui"
+
+#: ..\./ec_management.class.php:526
+msgid "CSS for Day With Events"
+msgstr "CSS pour marquer un évènement"
+
+#: ..\./ec_management.class.php:533
+msgid "Length of day names in Widget Calendar"
+msgstr "Long. noms du jour dans le Petit Calendrier"
+
+#: ..\./ec_management.class.php:536
+msgid "Length of day names in Large Calendar"
+msgstr "Long. noms du jour dans le Grand Calendrier"
+
+#: ..\./ec_management.class.php:540
+msgid "jQuery Extrem Protection (checked = yes)"
+msgstr "Protection extrême de jQuery (coché = oui)"
+
+#: ..\./ec_management.class.php:541
+msgid "(Check if you don't see the Tooltips)"
+msgstr "(Ne cochez que si vous ne voyez pas les Tooltips)"
+
+#: ..\./ec_managementjs.class.php:38
+msgid "Visibility"
+msgstr "Accessibilité"
+
+#: ..\./ec_managementjs.class.php:42
+msgid "Associated link"
+msgstr "Lien associé"
+
+#: ..\./ec_managementjs.class.php:50
+msgid "Associated post"
+msgstr "Article associé"
+
+#: ..\./ec_managementjs.class.php:60
+msgid "Delete"
+msgstr "Supprimer"
+
+#: ..\./ec_managementjs.class.php:90
+msgid "Are you sure you want to delete the following event:\\n"
+msgstr "Confirmez-vous la suppression de l'événement suivant:\\n"
+
+#: ..\./events-calendar.php:113
+msgid "Options"
+msgstr "Options"
+

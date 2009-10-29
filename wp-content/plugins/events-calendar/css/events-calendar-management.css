@@ -1,0 +1,73 @@
+/* * Calendar formatting */
+
+/* add and edit forms CSS */ 
+@import url(ec_management-form.css);
+/**/
+
+#wp-calendar {
+	border-collapse: collapse;
+	margin: auto;
+}
+#wp-calendar td {
+	border: thin solid black;
+	width: 150px;
+	height: 100px;
+	padding: 0;
+	vertical-align: top;
+}
+.ec-wrap h2 {
+	clear: both;
+	font: 24px Georgia, "Times New Roman", Times, serif;
+	margin: 10px 0 0 0;
+	padding-left: 0;
+	padding-bottom: 7px;
+	padding-right: 280px;
+	color: #696969;
+}
+.ec-wrap a:link, .ec-wrap a:visited, .ec-wrap a:active {
+	text-decoration: none;
+	border: none;
+}
+.ec-wrap a:hover {
+	text-decoration: none;
+	border: none;
+	font-weight: bold;
+	color: #4682b4;
+}
+.dayHead {
+	background: #333333;
+	color: white;
+	font-weight: bold;
+}
+#today {
+	background: gainsboro;
+	color: #FFF;
+}
+/* * JQuery Tooltip */
+#tooltip {
+	position: absolute;
+	z-index: 3000;
+	border: 1px solid #111;
+	background-color: #eee;
+	padding: 5px;
+	opacity: 1;
+	width: 400px;
+}
+#tooltip h3, #tooltip div {
+	margin: 0;
+	font-size: 12px;
+	font-weight: normal;
+	color: #000;
+}
+/* Alert Message Box */
+.alertmsg {
+	border: 1px solid #CCCCCC;
+	position: absolute;
+	width: 153px;
+	border: 1px solid #c93;
+	background: #faebd7;
+	padding: 5px;
+	/*left: 0px;
+	top: -170px;
+*/
+}

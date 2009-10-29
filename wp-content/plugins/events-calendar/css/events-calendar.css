@@ -1,0 +1,225 @@
+/**
+ * Stylesheet for the WP Events Calendar
+ * Some overrides for thickbox and tooltip
+ * and calendar formatting
+ */
+
+/* import the tooltips stylesheet classes for EC */
+@import url(ec-tooltips.css);
+
+/* * Thickbox CSS */
+div#TB_title {
+	/*background-color: #105681;
+*/
+	background-color: #000000;
+	color: #FFFFFF;
+}
+div#TB_title a, div#TB_title a:visited {
+	color: #cfcfcf;
+}
+/* * JQuery Tooltip */
+#tooltip {
+	position: absolute;
+	z-index: 3000;
+	border: 1px solid #111;
+	background-color: #eee;
+	padding: 5px;
+	opacity: 1;
+	width: 225px;
+	word-wrap: break-word;
+}
+#tooltip h3, #tooltip div {
+	margin: 0;
+	font-size: 12px;
+	font-weight: normal;
+	color: #000;
+}
+#tooltip ul {
+	padding: 0;
+}
+#tooltip li {
+	margin: 0 10px;
+	width: auto;
+}
+
+/** Large Calendar */
+/** Calendar formatting */
+#wp-calendarLarge {
+	border-collapse: collapse;
+	margin: auto;
+}
+#calendar_wrapLarge img {
+	border: none;
+	padding: 0;
+	margin: 0;
+}
+#wp-calendarLarge td {
+	border: thin solid black;
+	width: 150px;
+	height: 100px;
+	padding: 0;
+	vertical-align: top;
+}
+.event-block a:link, .event-block a:visited, .event-block a:hover, .event-block a:active {
+	text-decoration: none;
+	border: none;
+}
+#wp-calendarLarge .event-block {
+	border-top: 1px solid #444;
+	display: block;
+	padding: 2px 0 0 2px;
+	line-height: 11pt;
+	color: navy;
+}
+#wp-calendarLarge .dayHead {
+	/* background-color: #333333;
+*/
+	background-color: #173b6d;
+	color: white;
+	font-weight: bold;
+	z-index: 1000;
+}
+#todayLarge {
+	background-color: #9BA9CF;
+	color: #FFF;
+}
+/* * Days events calendar */
+#EC_daysEvents {
+	font-size: 14px;
+}
+.EC_title {
+	background: #A4CAE6;
+}
+.EC_location {
+	background: #FFF8DC;
+}
+.EC_time {
+	background: #CCCCCC;
+}
+.EC_date {
+	background: #E0EEEE;
+}
+.EC_linkout_and_postid {
+	background: #bfd3ed;
+}
+#EC_current-month {
+	position: relative;
+}
+#EC_ajaxLoader {
+	display: none;
+	margin-top: -15px;
+}
+
+/* * Widget Calendar formatting OPTIONAL */
+.EC_Widget_display {
+	text-align: center;
+}
+.widgettitle {
+	text-align: left;
+	/* margin: 0 0 1em;
+*/
+}
+#wp-calendar caption {
+	margin: 10px 0 0 0;
+	width: auto;
+	text-align: center;
+	font-weight: bold;
+	background-color: white;
+	border: thin solid darkgray;
+	-moz-border-radius: 3px 3px 0 0;
+}
+#wp-calendar {
+	margin: 0 1px 0 2px;
+	border-collapse: collapse;
+}
+/* why this *+html stuff? */
+*+html #wp-calendar #today {
+	border: 3px solid blue !important;
+}
+#wp-calendar #today {
+	display: block;
+	font-weight: bold;
+	background-color: #a8c3d6;
+	-moz-border-radius: 50%;
+	/* -webkit-border-radius: 50%;
+	border: 2px solid blue;
+*/
+	z-index: 1;
+}
+#wp-calendar #todayWidget {
+	border: 3px solid blue !important;
+}
+#wp-calendar #todayWidget {
+	display: block;
+	font-weight: bold;
+	background-color: #a8c3d6;
+	-moz-border-radius: 50%;
+	/* -webkit-border-radius: 50%;
+	border: 2px solid blue;
+*/
+	z-index: 1;
+}
+#wp-calendar .pad {
+	font-weight: bold;
+}
+#wp-calendar .padcent {
+	background-color: white;
+	border: thin solid darkgray;
+}
+#wp-calendar .padday {
+	background-color: gainsboro;
+}
+#wp-calendar th {
+	width: 11%;
+	color: white;
+	background-color: #173b6d;
+}
+#wp-calendar td {
+	border: thin solid darkgray;
+	background-color: white;
+	text-align: center;
+}
+/* * Widget List Calendar OPTIONAL */
+#events-calendar-list li {
+	font-family: Arial, Tahoma, Script;
+	font-size: small;
+	font-stretch: condensed;
+	list-style-image: url(../images/list.gif);
+	line-height: normal;
+	text-align: left;
+}
+#events-calendar-list li a:link, #events-calendar-list li a:visited, #events-calendar-list li a:hover, #events-calendar-list li a:active {
+	background: none;
+	text-decoration: none;
+	border: none;
+	color: dimgray;
+}
+#events-calendar-list li:hover {
+	background-color: gainsboro;
+	padding: 4px;
+	border-style: solid;
+	border-width: 1px;
+}
+#tooltip.pretty {
+	font-family: Arial;
+	border: none;
+	width: 210px;
+	padding: 20px;
+	height: 160px;
+	opacity: 0.95;
+	background: url('../images/shadow3.png');
+}
+#tooltip.pretty h3 {
+	margin-bottom: 0.75em;
+	font-size: 12px;
+	width: 220px;
+}
+#tooltip.pretty div {
+	width: 220px;
+	text-align: left;
+}
+#tooltip.fancy {
+	background: url('../images/shadow2.png');
+	padding-top: 5em;
+	height: 100px;
+}

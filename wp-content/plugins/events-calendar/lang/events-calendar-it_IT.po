@@ -1,0 +1,432 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: events-calendar\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-09-18 05:48+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Heirem <rmalkafr@yahoo.fr>\n"
+"Language-Team: Heirem <rmalkafr@yahoo.fr>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-KeywordsList: __;_e;_c\n"
+"X-Poedit-Language: Spanish\n"
+"X-Poedit-Country: MEXICO\n"
+"X-Poedit-SearchPath-0: ..\\.\n"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_calendar.class.php:57
+msgid "Events are coming soon, stay tuned!"
+msgstr "Eventi sono in arrivo, resta sintonizzato!"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_calendar.class.php:200
+msgid "Events"
+msgstr "Eventi"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_day.class.php:53
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_js.class.php:221
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_js.class.php:351
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:38
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:130
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:268
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_managementjs.class.php:32
+msgid "Location"
+msgstr "Luogo"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_day.class.php:67
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_js.class.php:60
+msgid "to"
+msgstr "a"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_js.class.php:53
+msgid "Until"
+msgstr "Fino a"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_js.class.php:61
+msgid "at"
+msgstr "a"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_js.class.php:66
+msgid "Click date for more details"
+msgstr "Cliccare sulla data per maggiori dettagli"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_js.class.php:82
+msgid "Review your Large Calendar Date Format in the Events-Calendars options ;-)"
+msgstr "Controlla il formato della data nel calendario di grande formato nel link Events-Calendars ;-)"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_js.class.php:223
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_js.class.php:353
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:42
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:138
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:276
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_managementjs.class.php:33
+msgid "Description"
+msgstr "Descrizione"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_js.class.php:225
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_js.class.php:355
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:44
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_managementjs.class.php:34
+msgid "Start Date"
+msgstr "Data inizio"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_js.class.php:227
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_js.class.php:357
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:46
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_managementjs.class.php:35
+msgid "Start Time"
+msgstr "Ora inizio"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_js.class.php:229
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_js.class.php:359
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:48
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_managementjs.class.php:36
+msgid "End Date"
+msgstr "Data fine"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_js.class.php:231
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_js.class.php:361
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:52
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_managementjs.class.php:37
+msgid "End Time"
+msgstr "Ora fine"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_js.class.php:234
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:40
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:134
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:272
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_managementjs.class.php:41
+msgid "Link out"
+msgstr "Collegamento"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_js.class.php:349
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:36
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:126
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:264
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:394
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_managementjs.class.php:31
+msgid "Title"
+msgstr "Titolo"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:40
+msgid "Click here"
+msgstr "Clicca qui"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:50
+msgid "Date"
+msgstr "Data"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:114
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:117
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:190
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/events-calendar.php:114
+msgid "Add Event"
+msgstr "Aggiungi evento"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:121
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:259
+msgid "Warning"
+msgstr "Avvertenza"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:142
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:280
+msgid "Start Date (YYYY-MM-DD, if blank will be today)"
+msgstr "Data Inizio (gg-mm-aaaa, in bianco = oggi)"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:146
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:284
+msgid "Start Time (HH:MM, can be blank)"
+msgstr "Ora inizio (hh:mm, si puó lasciare in bianco)"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:150
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:288
+msgid "End Date (YYYY-MM-DD, if blank will be same as start date)"
+msgstr "Data fine (gg-mm-aaaa, in bianco = Data inizio)"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:154
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:292
+msgid "End Time (HH:MM, can be blank)"
+msgstr "Ora fine (hh:mm, si puó lasciare in bianco)"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:158
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:296
+msgid "Visibility Level"
+msgstr "Livello di visibilità"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:161
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:299
+msgid "Public"
+msgstr "Tutti i visitatori"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:162
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:300
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:480
+msgid "Administrator"
+msgstr "Amministratore"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:163
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:301
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:481
+msgid "Editor"
+msgstr "Editore"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:164
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:302
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:482
+msgid "Author"
+msgstr "Autore"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:165
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:303
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:483
+msgid "Contributor"
+msgstr "Collaboratore"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:166
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:304
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:484
+msgid "Subscriber"
+msgstr "Sottoscrittore"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:171
+msgid "Create Post for Event"
+msgstr "Creare un post per l'evento"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:178
+msgid "Which Post Status ?"
+msgstr "Che post status?"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:181
+msgid "Draft"
+msgstr "Bozza"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:182
+msgid "Publish"
+msgstr "Pubblicato"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:204
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:332
+msgid "Event Title can not be blank!"
+msgstr "Titolo evento non può essere vuoto!"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:211
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:339
+msgid "The end time is earlier than the start time ;-)"
+msgstr "L'ora di fine è anteriore all'ora di inizio ;-)"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:252
+msgid "Edit Event"
+msgstr "Editare evento"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:255
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:316
+msgid "Update Event"
+msgstr "Aggiornare evento"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:309
+msgid "Post ID"
+msgstr "ID Post"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:351
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:356
+msgid "Post ID must be a number!"
+msgstr "ID post deve essere un numero!"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:384
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/events-calendar.php:93
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/events-calendar.php:94
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/events-calendar.php:102
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/events-calendar.php:112
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/events-calendar.php:114
+msgid "Events Calendar"
+msgstr "Calendario di eventi"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:398
+msgid "Calendar Type"
+msgstr "Tipo di calendario"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:400
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/events-calendar.php:112
+msgid "Calendar"
+msgstr "Calendario"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:401
+msgid "Event List"
+msgstr "Lista di eventi"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:407
+msgid "Event List options"
+msgstr "Opzioni della Lista di eventos"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:411
+msgid "Number of events"
+msgstr "Numero de eventi"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:470
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/events-calendar.php:113
+msgid "Events Calendar Options"
+msgstr "Opzioni del Calendario di eventi"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:473
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:546
+msgid "Update Options"
+msgstr "Aggiornare opzioni"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:477
+msgid "Access Level"
+msgstr "Livello di accesso"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:491
+msgid "Date/Time Formatting(see"
+msgstr "Formato Data/ora (vedi"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:495
+msgid "Widget Calendar Dates"
+msgstr "Date del Calendario miniatura (widget)"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:499
+msgid "Widget Calendar Times"
+msgstr "Ore del Calendario miniatura (widget)"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:503
+msgid "Large Calendar Dates"
+msgstr "Date del Calendario grande"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:507
+msgid "Large Calendar Times"
+msgstr "Ore del Calendario Grande"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:511
+msgid "Step Increment for Time Selector (in minutes)"
+msgstr "Incremento del menu di ore (in minuti)"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:515
+msgid "I have adapted the Events-Calendar stylesheet (checked = yes)"
+msgstr "Ho adattato il Events-Calendar foglio di stile (controllati=si)"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:522
+msgid "CSS for Today Date"
+msgstr "CSS data per oggi"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:526
+msgid "CSS for Day With Events"
+msgstr "CSS per i giorni con eventi"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:533
+msgid "Length of day names in Widget Calendar"
+msgstr "Lunghezza per i nomi dei giorni nel calendario miniatura (widget)"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:536
+msgid "Length of day names in Large Calendar"
+msgstr "Lunghezza per i nomi dei giorni nel calendario grande"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:540
+msgid "jQuery Extrem Protection (checked = yes)"
+msgstr "jQuery extrem protezione (controllati=si)"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_management.class.php:541
+msgid "(Check if you don't see the Tooltips)"
+msgstr "(Controllare se non vedi il tooltip)"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_managementjs.class.php:38
+msgid "Visibility"
+msgstr "Visibilità"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_managementjs.class.php:42
+msgid "Associated link"
+msgstr "Link associati"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_managementjs.class.php:49
+msgid "Post"
+msgstr "Post"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_managementjs.class.php:50
+msgid "Associated post"
+msgstr "Associati post"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_managementjs.class.php:60
+msgid "Delete"
+msgstr "Eliminare"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/ec_managementjs.class.php:90
+msgid "Are you sure you want to delete the following event:\\n"
+msgstr "Sei sicuro di voler cancellare il seguente evento:\\n"
+
+#: D:\wamp\www\heirem\wp-content\plugins\events-calendar/events-calendar.php:113
+msgid "Options"
+msgstr "Opzioni"
+
+#~ msgid "January"
+#~ msgstr "janvier"
+#~ msgid "February"
+#~ msgstr "février"
+#~ msgid "March"
+#~ msgstr "mars"
+#~ msgid "April"
+#~ msgstr "avril"
+#~ msgid "May"
+#~ msgstr "mai"
+#~ msgid "June"
+#~ msgstr "juin"
+#~ msgid "July"
+#~ msgstr "juillet"
+#~ msgid "August"
+#~ msgstr "août"
+#~ msgid "September"
+#~ msgstr "septembre"
+#~ msgid "October"
+#~ msgstr "octobre"
+#~ msgid "November"
+#~ msgstr "novembre"
+#~ msgid "December"
+#~ msgstr "décembre"
+#~ msgid "Jan"
+#~ msgstr "jan"
+#~ msgid "Feb"
+#~ msgstr "fév"
+#~ msgid "Mar"
+#~ msgstr "mar"
+#~ msgid "Apr"
+#~ msgstr "avr"
+#~ msgid "Jun"
+#~ msgstr "juin"
+#~ msgid "Jul"
+#~ msgstr "juil"
+#~ msgid "Aug"
+#~ msgstr "août"
+#~ msgid "Sep"
+#~ msgstr "sept"
+#~ msgid "Oct"
+#~ msgstr "oct"
+#~ msgid "Nov"
+#~ msgstr "nov"
+#~ msgid "Dec"
+#~ msgstr "déc"
+#~ msgid "Sunday"
+#~ msgstr "Dimanche"
+#~ msgid "Monday"
+#~ msgstr "Lundi"
+#~ msgid "Tuesday"
+#~ msgstr "Mardi"
+#~ msgid "Wednesday"
+#~ msgstr "Mercredi"
+#~ msgid "Thursday"
+#~ msgstr "Jeudi"
+#~ msgid "Friday"
+#~ msgstr "Vendredi"
+#~ msgid "Saturday"
+#~ msgstr "Samedi"
+#~ msgid "Sun"
+#~ msgstr "dim"
+#~ msgid "Mon"
+#~ msgstr "lun"
+#~ msgid "Tue"
+#~ msgstr "mar"
+#~ msgid "Wed"
+#~ msgstr "mer"
+#~ msgid "Thu"
+#~ msgstr "jeu"
+#~ msgid "Fri"
+#~ msgstr "ven"
+

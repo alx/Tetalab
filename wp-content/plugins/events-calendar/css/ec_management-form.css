@@ -1,0 +1,75 @@
+/** 
+ * Stylesheet for the ec_management class form.
+ */
+
+/* START OF EVENT ADD/EDIT FORM */
+#EC_alertmsg {
+	display: none;
+}
+#EC_close_message_alert {
+   float: right;
+   cursor: pointer;
+}
+#ec-alert-img {
+   vertical-align: middle;
+}
+table.ec-edit-form {
+   width: 100%;
+   border-collapse: collapse;
+}
+table.ec-edit-form th, table.ec-edit-form td {
+   vertical-align : middle;
+   margin: 2px;
+   padding: 3px;
+}
+table.ec-edit-form th {
+   width: 33%;
+   text-align: right;
+}
+table.ec-edit-form td {
+   width: 67%;
+}
+table.ec-edit-form textarea.ec-edit-form-textarea {
+   width: 70%;
+   height: 10em;
+}
+table.ec-edit-form td input.ec-edit-form-text {
+   width: 70%;
+}
+table.ec-edit-form td input.ec-edit-form-date,
+table.ec-edit-form td input.ec-edit-form-time {
+   width: 20%;
+}
+table.ec-edit-form td.ec-edit-form-date img,
+table.ec-edit-form td.ec-edit-form-time img {
+   width: 20px;
+   height: 20px;
+   vertical-align: middle;
+}
+table.ec-edit-form select {
+   width: 24.5%;
+   border: 1px solid #aaa;
+}
+
+#EC_start_clockpick,
+#EC_end_clockpick,
+.ui-datepicker-trigger {
+   padding-left: 4px;
+   vertical-align: middle;
+}
+/* END OF EVENT ADD/EDIT FORM */
+
+
+/* START OF WIDGET CONTROL */
+/* END OF WIDGET CONTROL */
+
+
+/* START OF CALENDAR OPTIONS */
+/* END OF CALENDAR OPTIONS */
+
+/* START OF TOOLTIP FOR EC MANAGEMENT */
+p.ec-mgmt-ttip {
+   margin: 0;
+   padding: 0 0 .25em 0;
+}
+/* END OF TOOLTIP FOR EC MANAGEMENT */
