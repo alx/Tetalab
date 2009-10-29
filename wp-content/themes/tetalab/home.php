@@ -16,6 +16,9 @@
 		</div>
 		
 		<div id="second-section" class="widget-section">
+			
+			<?php sidebarEventsList(10);?>
+			
 			<?php if ( !function_exists('dynamic_sidebar')
 			        || !dynamic_sidebar('second-section') ) : ?>
 		
