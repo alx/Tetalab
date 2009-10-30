@@ -559,7 +559,9 @@ ecd.jq('#EC_nextMonthLarge')
 				});
 		ecd.jq('#events-calendar-list-<?php echo $e->id;?>').tooltip({
         delay:0,
-        track:true
+        track:true, 
+		fade: 250,
+		positionLeft: true
       });
 	});
 //})(jQuery);
