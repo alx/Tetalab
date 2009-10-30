@@ -134,13 +134,13 @@ add_action( 'admin_menu', 'bp_album_add_admin_menu' );
 function bp_album_setup_nav() {
 	global $bp;
 
-        bp_core_add_nav_item(
+        bp_core_new_nav_item(
 		__( 'Album', 'bp-album' ), /* The display name */
 		$bp->album->slug /* The slug */
         );
 
         /* Set a specific sub nav item as the default when the top level item is clicked */
-        bp_core_add_nav_default(
+        default_subnav_slug(
             $bp->album->slug, /* The slug of the parent nav item */
             'bp_album_picture', /* The function to run when clicked */
             'picture' /* The slug of the sub nav item to make default */
@@ -149,7 +149,7 @@ function bp_album_setup_nav() {
         $album_link = $bp->loggedin_user->domain . $bp->album->slug . '/';
 
         /* Create two sub nav items for this component */
-        bp_core_add_subnav_item(
+        bp_core_new_subnav_item(
             $bp->album->slug, /* The slug of the parent */
             'picture', /* The slug for the sub nav item */
             __( 'Pictures', 'bp-album' ), /* The display name for the sub nav item */
@@ -157,7 +157,7 @@ function bp_album_setup_nav() {
             'bp_album_picture' /* The function to run when clicked */
         );
 
-        bp_core_add_subnav_item( $bp->album->slug, 'upload', __('Upload Picture', 'bp-album'), $album_link, 'picture_upload_screen', false, bp_is_home() );
+        bp_core_new_subnav_item( $bp->album->slug, 'upload', __('Upload Picture', 'bp-album'), $album_link, 'picture_upload_screen', false, bp_is_home() );
 
         if ( $bp->current_component == $bp->album->slug ) {
             if ( bp_is_home() ) {
