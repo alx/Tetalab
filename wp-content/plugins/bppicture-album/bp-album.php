@@ -156,7 +156,7 @@ function bp_album_setup_nav() {
                 $bp->bp_options_title = __( 'My Album', 'bp-album' );
             } else {
                 /* If the user is viewing someone elses profile area, set the title to "[user fullname]" */
-                $bp->bp_options_avatar = bp_core_get_avatar( $bp->displayed_user->id, 1 );
+                $bp->bp_options_avatar = bp_core_fetch_avatar( array('item_id' => $bp->displayed_user->id) );
                 $bp->bp_options_title = $bp->displayed_user->fullname;
             }
 	}
