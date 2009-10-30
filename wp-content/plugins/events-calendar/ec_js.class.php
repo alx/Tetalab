@@ -558,8 +558,6 @@ ecd.jq('#EC_nextMonthLarge')
 				ecd.jq(this).css('cursor', 'pointer');
 				});
 		ecd.jq('#events-calendar-list-<?php echo $e->id;?>').tooltip({
-        delay:0,
-        track:true, 
 		fade: 250,
 		positionLeft: true
       });
