@@ -140,7 +140,7 @@ function bp_album_setup_nav() {
         );
 
         /* Set a specific sub nav item as the default when the top level item is clicked */
-        default_subnav_slug(
+        bp_core_new_nav_default(
             $bp->album->slug, /* The slug of the parent nav item */
             'bp_album_picture', /* The function to run when clicked */
             'picture' /* The slug of the sub nav item to make default */
