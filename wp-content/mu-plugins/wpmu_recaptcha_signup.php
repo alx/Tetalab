@@ -15,13 +15,14 @@ function signup_init()
 
 function signup_user_recaptcha($errors)
 {
+	require ( WPMU_PLUGIN_DIR . '/wpmu_recaptcha_signup/recaptchalib.php' );
 	$error = $errors->get_error_message('recaptcha');
 	$publickey = "6LfsGAkAAAAAAAjzKmnvmCMaSlR1aIcQUtK9bA6w";
 	echo recaptcha_get_html($publickey);
 }
 function signup_user_recaptcha_filter($content)
 {
-	require_once('recaptchalib.php');
+	require ( WPMU_PLUGIN_DIR . '/wpmu_recaptcha_signup/recaptchalib.php' );
 	$privatekey = "6LfsGAkAAAAAAFOd7jkM69o3QIa7VG_Diio7e2tC ";
 	$resp = recaptcha_check_answer ($privatekey,
 	                                $_SERVER["REMOTE_ADDR"],
