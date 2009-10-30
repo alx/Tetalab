@@ -134,30 +134,21 @@ add_action( 'admin_menu', 'bp_album_add_admin_menu' );
 function bp_album_setup_nav() {
 	global $bp;
 
-        bp_core_new_nav_item(
-		__( 'Album', 'bp-album' ), /* The display name */
-		$bp->album->slug /* The slug */
-        );
-
+		bp_core_new_nav_item( array(
+			'name' => __( 'Album', 'bp-album' ),
+			'slug' => $bp->album->slug
+			)
+		);
+		
         /* Set a specific sub nav item as the default when the top level item is clicked */
-        bp_core_new_nav_default(
-            $bp->album->slug, /* The slug of the parent nav item */
-            'bp_album_picture', /* The function to run when clicked */
-            'picture' /* The slug of the sub nav item to make default */
-        );
+        bp_core_new_nav_default(array( 'parent_slug' => $bp->album->slug, 'screen_function' => 'bp_album_picture', 'subnav_slug' => 'picture' ) ););
 
         $album_link = $bp->loggedin_user->domain . $bp->album->slug . '/';
 
         /* Create two sub nav items for this component */
-        bp_core_new_subnav_item(
-            $bp->album->slug, /* The slug of the parent */
-            'picture', /* The slug for the sub nav item */
-            __( 'Pictures', 'bp-album' ), /* The display name for the sub nav item */
-            $album_link, /* The URL of the parent */
-            'bp_album_picture' /* The function to run when clicked */
-        );
+        bp_core_new_subnav_item( array( 'name' => __( 'Pictures', 'bp-album' ), 'slug' => 'picture', 'parent_slug' => $bp->album->slug, 'parent_url' => $album_link, 'item_css_id' => false, 'user_has_access' => true, 'site_admin_only' => false, 'screen_function' => 'bp_album_picture'));
 
-        bp_core_new_subnav_item( $bp->album->slug, 'upload', __('Upload Picture', 'bp-album'), $album_link, 'picture_upload_screen', false, bp_is_home() );
+		bp_core_new_subnav_item( array( 'name' => __('Upload Picture', 'bp-album'), 'slug' => 'upload', 'parent_slug' => $bp->album->slug, 'parent_url' => $album_link, 'item_css_id' => false, 'user_has_access' => true, 'site_admin_only' => false, 'screen_function' => 'picture_upload_screen'));
 
         if ( $bp->current_component == $bp->album->slug ) {
             if ( bp_is_home() ) {
