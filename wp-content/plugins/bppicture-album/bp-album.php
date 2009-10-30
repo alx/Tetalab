@@ -141,7 +141,7 @@ function bp_album_setup_nav() {
 		);
 		
         /* Set a specific sub nav item as the default when the top level item is clicked */
-        bp_core_new_nav_default(array( 'parent_slug' => $bp->album->slug, 'screen_function' => 'bp_album_picture', 'subnav_slug' => 'picture' ) ););
+        bp_core_new_nav_default(array( 'parent_slug' => $bp->album->slug, 'screen_function' => 'bp_album_picture', 'subnav_slug' => 'picture' ) );
 
         $album_link = $bp->loggedin_user->domain . $bp->album->slug . '/';
 
