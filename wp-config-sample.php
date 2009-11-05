@@ -83,7 +83,7 @@ define ('WPLANG', '');
 if( $base == 'BASE' )
 	die( 'Problem in wp-config.php - $base is set to BASE when it should be the path like "/" or "/blogs/"! Please fix it!' );
 
-// uncomment this to enable WP_CONTENT_DIR/sunrise.php support
+// uncomment this to enable wp-content/sunrise.php support
 //define( 'SUNRISE', 'on' );
 
 // uncomment to move wp-content/blogs.dir to another relative path

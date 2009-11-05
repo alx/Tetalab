@@ -86,9 +86,6 @@ switch( $_GET['action'] ) {
 				$dashboard_blog_id = $blog_details->blog_id;
 			}
 		}
-		if ( is_wp_error( $dashboard_blog_id ) ) {
-			wp_die( __( 'Problem creating dashboard blog: ' ) . $dashboard_blog_id->get_error_message() );
-		}
 		if( $_POST[ 'dashboard_blog_orig' ] != $_POST[ 'dashboard_blog' ] ) {
 			$users = get_users_of_blog( get_site_option( 'dashboard_blog' ) );
 			$move_users = array();
@@ -105,7 +102,7 @@ switch( $_GET['action'] ) {
 			}
 		}
 		update_site_option( "dashboard_blog", $dashboard_blog_id );
-		$options = array( 'menu_items', 'mu_media_buttons', 'blog_upload_space', 'upload_filetypes', 'site_name', 'first_post', 'first_page', 'first_comment', 'first_comment_url', 'first_comment_author', 'welcome_email', 'welcome_user_email', 'fileupload_maxk', 'admin_notice_feed' );
+		$options = array( 'menu_items', 'mu_media_buttons', 'blog_upload_space', 'upload_filetypes', 'site_name', 'first_post', 'welcome_email', 'fileupload_maxk', 'admin_notice_feed' );
 		foreach( $options as $option_name ) {
 			$value = stripslashes_deep( $_POST[ $option_name ] );
 			update_site_option( $option_name, $value );
@@ -128,7 +125,7 @@ switch( $_GET['action'] ) {
 		// Update more options here
 		do_action( 'update_wpmu_options' );
 
-		wp_redirect( add_query_arg( "updated", "true", 'wpmu-options.php' ) );
+		wp_redirect( add_query_arg( "updated", "true", $_SERVER['HTTP_REFERER'] ) );
 		exit();
 	break;
 
@@ -200,7 +197,6 @@ switch( $_GET['action'] ) {
 			$c = 1;
 			$count = count( $_POST['option'] );
 			foreach ( (array) $_POST['option'] as $key => $val ) {
-				$val = stripslashes_deep( $val );
 				if( $c == $count ) {
 					update_option( $key, $val );
 				} else {

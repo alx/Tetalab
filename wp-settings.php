@@ -302,7 +302,7 @@ if ( function_exists('wp_cache_add_global_groups') ) {
 }
 
 if( defined( 'SUNRISE' ) )
-	include_once( WP_CONTENT_DIR . '/sunrise.php' );
+	include_once( ABSPATH . 'wp-content/sunrise.php' );
 
 require_once ( ABSPATH . 'wpmu-settings.php' );
 $wpdb->blogid           = $current_blog->blog_id;
@@ -312,7 +312,7 @@ $table_prefix = $table_prefix . $blog_id . '_';
 
 // Fix empty PHP_SELF
 $PHP_SELF = $_SERVER['PHP_SELF'];
-if ( empty($PHP_SELF) || ( empty($PHP_SELF) && constant( 'VHOST' ) == 'no' && $current_blog->path != '/' ) ) 
+if ( empty($PHP_SELF) || ( constant( 'VHOST' ) == 'no' && $current_blog->path != '/' ) )
 	$_SERVER['PHP_SELF'] = $PHP_SELF = preg_replace("/(\?.*)?$/",'',$_SERVER["REQUEST_URI"]);
 
 wp_cache_init(); // need to init cache again after blog_id is set
@@ -649,7 +649,7 @@ require (ABSPATH . WPINC . '/vars.php');
 // @plugin authors: warning: this gets registered again on the init hook
 create_initial_taxonomies();
 
-$current_plugins = apply_filters( 'active_plugins', get_option( 'active_plugins' ) );
+$current_plugins = get_option('active_plugins');
 if ( is_array($current_plugins) && !defined('WP_INSTALLING') ) {
 	foreach ( $current_plugins as $plugin ) {
 		// check the $plugin filename

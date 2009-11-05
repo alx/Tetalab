@@ -387,7 +387,7 @@ break;
 
 case 'register' :
 	// WPMU doesn't use this
-	wp_redirect( apply_filters( 'wp_signup_location', get_bloginfo('wpurl') . '/wp-signup.php' ) );
+	wp_redirect( get_bloginfo('wpurl') . '/wp-signup.php' );
 	exit;
 	if ( !get_option('users_can_register') ) {
 		wp_redirect('wp-login.php?registration=disabled');

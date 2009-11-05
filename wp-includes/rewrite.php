@@ -299,7 +299,7 @@ function url_to_postid($url) {
 			$query = preg_replace("!^.+\?!", '', $query);
 
 			// Substitute the substring matches into the query.
-			$query = addslashes(WP_MatchesMapRegex::apply($query, $matches));
+			eval("\$query = \"" . addslashes($query) . "\";");
 			// Filter out non-public query vars
 			global $wp;
 			parse_str($query, $query_vars);

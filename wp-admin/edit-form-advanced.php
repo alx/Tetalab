@@ -505,7 +505,7 @@ if ( !( 'pending' == $post->post_status && !current_user_can( 'publish_posts' ) 
 $authors = get_editable_user_ids( $current_user->id ); // TODO: ROLE SYSTEM
 if ( $post->post_author && !in_array($post->post_author, $authors) )
 	$authors[] = $post->post_author;
-if ( is_site_admin() || $authors && count( $authors ) > 1 ) :
+if ( $authors && count( $authors ) > 1 ) :
 /**
  * Display form field with list of authors.
  *

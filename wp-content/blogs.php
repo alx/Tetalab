@@ -85,15 +85,6 @@ if( $mime[ 'type' ] != false ) {
 if ( false === strpos( $_SERVER['SERVER_SOFTWARE'], 'Microsoft-IIS' ) )
 	@header( 'Content-Length: ' . filesize( $file ) );
 
-// Optional support for X-Sendfile and X-Accel-Redirect
-if ( defined('WPMU_ACCEL_REDIRECT') && WPMU_ACCEL_REDIRECT ) {
-	@header( 'X-Accel-Redirect: ' . str_replace( WP_CONTENT_DIR, '', $file ) );
-	exit;
-} elseif ( defined('WPMU_SENDFILE') && WPMU_SENDFILE ) {
-	@header( 'X-Sendfile: ' . $file );
-	exit;
-}
-
 $last_modified = gmdate('D, d M Y H:i:s', filemtime( $file ));
 $etag = '"' . md5($last_modified) . '"';
 @header( "Last-Modified: $last_modified GMT" );

@@ -90,7 +90,7 @@ function _walk_bookmarks($bookmarks, $args = '' ) {
 
 		$rel = $bookmark->link_rel;
 		if ( '' != $rel )
-			$rel = ' rel="' . esc_attr($rel) . '"';
+			$rel = ' rel="' . $rel . '"';
 
 		$target = $bookmark->link_target;
 		if ( '' != $target )
