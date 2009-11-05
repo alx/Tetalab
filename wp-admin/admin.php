@@ -29,10 +29,19 @@ if ( get_option('db_upgraded') ) {
 	 * @since 2.8
 	 */
 	do_action('after_db_upgrade');
-} elseif ( get_option('db_version') != $wp_db_version ) {
-	require_once( ABSPATH . WPINC . '/http.php' );
-	$response = wp_remote_get( admin_url('upgrade.php?step=1'), array( 'timeout' => 120, 'httpversion' => '1.1' ) );
-	// do something with response?
+} elseif ( true == apply_filters( 'do_mu_upgrade', true ) && get_option('db_version') != $wp_db_version ) {
+	/**
+	 * On really small MU installs run the upgrader every time, 
+	 * else run it less often to reduce load.
+	 *
+	 * @since 2.8.4b
+	 */
+	$c = get_blog_count();
+	if ( $c <= 50 || ( $c > 50 && mt_rand( 0, (int)( $c / 50 ) ) == 1 ) ) {
+		require_once( ABSPATH . WPINC . '/http.php' );
+		$response = wp_remote_get( admin_url( 'upgrade.php?step=1' ), array( 'timeout' => 120, 'httpversion' => '1.1' ) );
+		do_action( 'after_mu_upgrade', $response );
+	}
 }
 
 require_once(ABSPATH . 'wp-admin/includes/admin.php');

@@ -338,6 +338,8 @@ function get_comment_class( $class = '', $comment_id = null, $post_id = null ) {
 		$classes = array_merge($classes, $class);
 	}
 
+	$classes = array_map('esc_attr', $classes);
+
 	return apply_filters('comment_class', $classes, $class, $comment_id, $post_id);
 }
 
@@ -940,7 +942,7 @@ function comments_popup_link( $zero = false, $one = false, $more = false, $css_c
 	$number = get_comments_number( $id );
 
 	if ( 0 == $number && !comments_open() && !pings_open() ) {
-		echo '<span' . ((!empty($css_class)) ? ' class="' . $css_class . '"' : '') . '>' . $none . '</span>';
+		echo '<span' . ((!empty($css_class)) ? ' class="' . esc_attr( $css_class ) . '"' : '') . '>' . $none . '</span>';
 		return;
 	}
 
@@ -972,7 +974,7 @@ function comments_popup_link( $zero = false, $one = false, $more = false, $css_c
 
 	echo apply_filters( 'comments_popup_link_attributes', '' );
 
-	echo ' title="' . sprintf( __('Comment on %s'), $title ) . '">';
+	echo ' title="' . esc_attr( sprintf( __('Comment on %s'), $title ) ) . '">';
 	comments_number( $zero, $one, $more, $number );
 	echo '</a>';
 }
@@ -1253,7 +1255,7 @@ class Walker_Comment extends Walker {
 		}
 ?>
 		<<?php echo $tag ?> <?php comment_class(empty( $args['has_children'] ) ? '' : 'parent') ?> id="comment-<?php comment_ID() ?>">
-		<?php if ( 'ul' == $args['style'] ) : ?>
+		<?php if ( 'div' != $args['style'] ) : ?>
 		<div id="div-comment-<?php comment_ID() ?>" class="comment-body">
 		<?php endif; ?>
 		<div class="comment-author vcard">
@@ -1272,7 +1274,7 @@ class Walker_Comment extends Walker {
 		<div class="reply">
 		<?php comment_reply_link(array_merge( $args, array('add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
 		</div>
-		<?php if ( 'ul' == $args['style'] ) : ?>
+		<?php if ( 'div' != $args['style'] ) : ?>
 		</div>
 		<?php endif; ?>
 <?php

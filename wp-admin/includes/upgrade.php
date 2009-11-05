@@ -342,7 +342,7 @@ function upgrade_all() {
 	if ( $wp_current_db_version < 8989 )
 		upgrade_270();
 
-	if ( $wp_current_db_version < 10360 )
+	if ( $wp_current_db_version < 11549 )
 		upgrade_280();
 
 	maybe_disable_automattic_widgets();
@@ -988,6 +988,21 @@ function upgrade_280() {
 
 	if ( $wp_current_db_version < 10360 )
 		populate_roles_280();
+
+	if ( $wp_current_db_version < 11549 ) {
+		$wpmu_sitewide_plugins = get_site_option( 'wpmu_sitewide_plugins' );
+		$active_sitewide_plugins = get_site_option( 'active_sitewide_plugins' );
+		if ( $wpmu_sitewide_plugins ) {
+			if ( !$active_sitewide_plugins )
+				$sitewide_plugins = (array) $wpmu_sitewide_plugins;
+			else
+				$sitewide_plugins = array_merge( (array) $active_sitewide_plugins, (array) $wpmu_sitewide_plugins );
+
+			update_site_option( 'active_sitewide_plugins', $sitewide_plugins );
+		}
+		update_site_option( 'wpmu_sitewide_plugins', '' );
+		update_site_option( 'deactivated_sitewide_plugins', '' );
+	}
 }
 
 

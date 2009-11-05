@@ -17,12 +17,12 @@ require_once( ABSPATH . WPINC . '/registration.php');
 
 function admin_created_user_email( $text ) {
 	return sprintf( __( "Hi,
-You've been invited to join '%s' at 
-%s as a %s. 
+You've been invited to join '%s' at
+%s as a %s.
 If you do not want to join this blog please ignore
-this email. This invitation will expire in a few days. 
+this email. This invitation will expire in a few days.
 
-Please click the folowing link to activate your user account:
+Please click the following link to activate your user account:
 %%s" ), get_bloginfo('name'), site_url(), wp_specialchars( $_REQUEST[ 'role' ] ) );
 }
 add_filter( 'wpmu_signup_user_notification_email', 'admin_created_user_email' );
@@ -55,14 +55,15 @@ if ( isset($_REQUEST['action']) && 'adduser' == $_REQUEST['action'] ) {
 			} else {
 				$newuser_key = substr( md5( $user_id ), 0, 5 );
 				add_option( 'new_user_' . $newuser_key, array( 'user_id' => $user_id, 'email' => $user_details->user_email, 'role' => $_REQUEST[ 'role' ] ) );
-				$message = __("Hi,\n\nYou have been invited to join '%s' at\n%s\nPlease click the following link to confirm the invite:\n%s\n");
-				wp_mail( $new_user_email, sprintf( __( '[%s] Joining confirmation' ), get_option( 'blogname' ) ),  sprintf($message, get_option('blogname'), site_url(), site_url("/newbloguser/$newuser_key/")));
+				$message = __("Hi,\n\nYou have been invited to join '%s' at\n%s as a %s.\nPlease click the following link to confirm the invite:\n%s\n");
+				wp_mail( $new_user_email, sprintf( __( '[%s] Joining confirmation' ), get_option( 'blogname' ) ),  sprintf($message, get_option('blogname'), site_url(), $_REQUEST[ 'role' ], site_url("/newbloguser/$newuser_key/")));
 				$redirect = add_query_arg( array('update' => 'add'), 'user-new.php' );
 			}
 		}
 		wp_redirect( $redirect );
 		die();
 	} else {
+		// Adding a new user to this blog
 		$user_details = wpmu_validate_user_signup( $_REQUEST[ 'user_login' ], $_REQUEST[ 'email' ] );
 		unset( $user_details[ 'errors' ]->errors[ 'user_email_used' ] );
 		if ( is_wp_error( $user_details[ 'errors' ] ) && !empty( $user_details[ 'errors' ]->errors ) ) {

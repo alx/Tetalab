@@ -88,7 +88,7 @@ if (isset($_GET['updated'])) {
 					<?php 
 					if ( $dashboard_blog = get_site_option( 'dashboard_blog' ) ) { 
 						$details = get_blog_details( $dashboard_blog );
-						$blogname = str_replace( '.', '', str_replace( $current_site->domain . $current_site->path, '', $details->domain . $details->path ) );
+						$blogname = untrailingslashit( sanitize_user( str_replace( '.', '', str_replace( $current_site->domain . $current_site->path, '', $details->domain . $details->path ) ) ) );
 					} else {
 						$blogname = '';
 					}?>
@@ -147,13 +147,52 @@ if (isset($_GET['updated'])) {
 					<?php _e('The welcome email sent to new blog owners.') ?>
 				</td> 
 			</tr> 
-
+			<tr valign="top">
+				<th scope="row"><?php _e('Welcome User Email') ?></th>  
+				<td> 
+			    		<textarea name="welcome_user_email" id="welcome_user_email" rows='5' cols='45' style="width: 95%"><?php echo stripslashes( get_site_option('welcome_user_email') ) ?></textarea> 
+					<br /> 
+					<?php _e('The welcome email sent to new users.') ?> 
+				</td>  
+			</tr>  
 			<tr valign="top"> 
 				<th scope="row"><?php _e('First Post') ?></th> 
 				<td>
 					<textarea name="first_post" id="first_post" rows='5' cols='45' style="width: 95%"><?php echo stripslashes( get_site_option('first_post') ) ?></textarea>
 					<br />
 					<?php _e('First post on a new blog.') ?>
+				</td> 
+			</tr> 
+			<tr valign="top"> 
+				<th scope="row"><?php _e('First Page') ?></th> 
+				<td>
+					<textarea name="first_page" id="first_page" rows='5' cols='45' style="width: 95%"><?php echo stripslashes( get_site_option('first_page') ) ?></textarea>
+					<br />
+					<?php _e('First page on a new blog.') ?>
+				</td> 
+			</tr> 
+			<tr valign="top"> 
+				<th scope="row"><?php _e('First Comment') ?></th> 
+				<td>
+					<textarea name="first_comment" id="first_comment" rows='5' cols='45' style="width: 95%"><?php echo stripslashes( get_site_option('first_comment') ) ?></textarea>
+					<br />
+					<?php _e('First comment on a new blog.') ?>
+				</td> 
+			</tr> 
+			<tr valign="top"> 
+				<th scope="row"><?php _e('First Comment Author') ?></th> 
+				<td>
+					<input type="text" size='40' name="first_comment_author" id="first_comment_author" value="<?php echo get_site_option('first_comment_author') ?>" />
+					<br />
+					<?php _e('Author of first comment on a new blog.') ?>
+				</td> 
+			</tr> 
+			<tr valign="top"> 
+				<th scope="row"><?php _e('First Comment URL') ?></th> 
+				<td>
+					<input type="text" size='40' name="first_comment_url" id="first_comment_url" value="<?php echo get_site_option('first_comment_url') ?>" />
+					<br />
+					<?php _e('URL on first comment on a new blog.') ?>
 				</td> 
 			</tr> 
 

@@ -426,7 +426,7 @@ class wpdb {
 		if ( empty($this->blogid) )
 			return $old_prefix;
 
-		$this->prefix = $this->base_prefix . $this->blogid . '_';
+		$this->prefix = $this->get_blog_prefix( $this->blogid );
 
 		foreach ( (array) $this->tables as $table )
 			$this->$table = $this->prefix . $table;
@@ -447,7 +447,7 @@ class wpdb {
 		$old_blog_id = $this->blogid;
 		$this->blogid = $blog_id;
 
-		$this->prefix = $this->base_prefix . $this->blogid . '_';
+		$this->prefix = $this->get_blog_prefix( $this->blogid );
 
 		foreach ( $this->tables as $table )
 			$this->$table = $this->prefix . $table;
@@ -455,6 +455,13 @@ class wpdb {
 		return $old_blog_id;
 	}
 
+	function get_blog_prefix( $blog_id = '' ) {
+		if ( $blog_id ) {
+			return $this->base_prefix . $blog_id . '_';
+		} else {
+			return $this->prefix;
+		}
+	}
 
 	/**
 	 * Selects a database using the current database connection.

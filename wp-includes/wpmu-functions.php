@@ -839,12 +839,6 @@ function wpmu_admin_redirect_add_updated_param( $url = '' ) {
 	return $url;
 }
 
-function wpmu_admin_redirect_url() {
-	if( isset( $_GET['s'] ) ) {
-		return "s_".$_GET['s'];
-	}
-}
-
 function is_blog_user( $blog_id = 0 ) {
 	global $current_user, $wpdb;
 
@@ -879,6 +873,9 @@ function validate_email( $email, $check_domain = true) {
 
 function is_email_address_unsafe( $user_email ) {
 	$banned_names = get_site_option( "banned_email_domains" );
+	if ($banned_names && !is_array( $banned_names )) { 
+		$banned_names = explode( "\n", $banned_names); 
+	} 
 	if ( is_array( $banned_names ) && empty( $banned_names ) == false ) {
 		$email_domain = strtolower( substr( $user_email, 1 + strpos( $user_email, '@' ) ) );
 		foreach( (array) $banned_names as $banned_domain ) {
@@ -1050,9 +1047,9 @@ function wpmu_validate_blog_signup($blogname, $blog_title, $user = '') {
 	if ( domain_exists($mydomain, $path) )
 		$errors->add('blogname', __("Sorry, that blog already exists!"));
 
-	if ( username_exists($blogname) ) {
-		if  ( !is_object($user) && ( $user->user_login != $blogname ) )
-			$errors->add('blogname', __("Sorry, that blog is reserved!"));
+	if ( username_exists( $blogname ) ) {
+		if ( is_object( $user ) == false || ( is_object($user) && ( $user->user_login != $blogname ) ) )
+			$errors->add( 'blogname', __( "Sorry, that blog is reserved!" ) );
 	}
 
 	// Has someone already signed up for this domain?
@@ -1128,7 +1125,7 @@ function wpmu_signup_blog_notification($domain, $path, $title, $user, $user_emai
 		return false;
 
 	// Send email with activation link.
-	if( constant( "VHOST" ) == 'no' ) {
+	if( constant( "VHOST" ) == 'no' || $current_site->id != 1 ) {
 		$activate_url = "http://" . $current_site->domain . $current_site->path . "wp-activate.php?key=$key";
 	} else {
 		$activate_url = "http://{$domain}{$path}wp-activate.php?key=$key";
@@ -1139,7 +1136,7 @@ function wpmu_signup_blog_notification($domain, $path, $title, $user, $user_emai
 		$admin_email = 'support@' . $_SERVER['SERVER_NAME'];
 	$from_name = get_site_option( "site_name" ) == '' ? 'WordPress' : wp_specialchars( get_site_option( "site_name" ) );
 	$message_headers = "MIME-Version: 1.0\n" . "From: \"{$from_name}\" <{$admin_email}>\n" . "Content-Type: text/plain; charset=\"" . get_option('blog_charset') . "\"\n";
-	$message = sprintf( apply_filters( 'wpmu_signup_blog_notification_email', __( "To activate your blog, please click the following link:\n\n%s\n\nAfter you activate, you will receive *another email* with your login.\n\nAfter you activate, you can visit your blog here:\n\n%s" ) ), $activate_url, clean_url( "http://{$domain}{$path}" ) );
+	$message = sprintf( apply_filters( 'wpmu_signup_blog_notification_email', __( "To activate your blog, please click the following link:\n\n%s\n\nAfter you activate, you will receive *another email* with your login.\n\nAfter you activate, you can visit your blog here:\n\n%s" ) ), $activate_url, clean_url( "http://{$domain}{$path}" ), $key );
 	// TODO: Don't hard code activation link.
 	$subject = sprintf( apply_filters( 'wpmu_signup_blog_notification_subject', __( '[%s] Activate %s' ) ), $from_name, clean_url( 'http://' . $domain . $path ) );
 	wp_mail($user_email, $subject, $message, $message_headers);
@@ -1158,7 +1155,7 @@ function wpmu_signup_user_notification($user, $user_email, $key, $meta = '') {
 		$admin_email = 'support@' . $_SERVER['SERVER_NAME'];
 	$from_name = get_site_option( "site_name" ) == '' ? 'WordPress' : wp_specialchars( get_site_option( "site_name" ) );
 	$message_headers = "MIME-Version: 1.0\n" . "From: \"{$from_name}\" <{$admin_email}>\n" . "Content-Type: text/plain; charset=\"" . get_option('blog_charset') . "\"\n";
-	$message = sprintf( apply_filters( 'wpmu_signup_user_notification_email', __( "To activate your user, please click the following link:\n\n%s\n\nAfter you activate, you will receive *another email* with your login.\n\n" ) ), clean_url("http://{$current_site->domain}{$current_site->path}wp-activate.php?key=$key") );
+	$message = sprintf( apply_filters( 'wpmu_signup_user_notification_email', __( "To activate your user, please click the following link:\n\n%s\n\nAfter you activate, you will receive *another email* with your login.\n\n" ) ), site_url( "wp-activate.php?key=$key" ), $key );
 	// TODO: Don't hard code activation link.
 	$subject = sprintf(__( apply_filters( 'wpmu_signup_user_notification_subject', 'Activate %s' )), $user);
 	wp_mail($user_email, $subject, $message, $message_headers);
@@ -1166,7 +1163,7 @@ function wpmu_signup_user_notification($user, $user_email, $key, $meta = '') {
 }
 
 function wpmu_activate_signup($key) {
-	global $wpdb;
+	global $wpdb, $current_site;
 
 	$signup = $wpdb->get_row( $wpdb->prepare("SELECT * FROM $wpdb->signups WHERE activation_key = %s", $key) );
 
@@ -1199,10 +1196,11 @@ function wpmu_activate_signup($key) {
 		if ( isset($user_already_exists) )
 			return new WP_Error('user_already_exists', __('That username is already activated.'), $signup);
 		wpmu_welcome_user_notification($user_id, $password, $meta);
-		if ( get_site_option( 'dashboard_blog' ) == false ) {
+		$user_site = get_site_option( 'dashboard_blog', $current_site->blog_id );
+		if ( $user_site == false ) {
 			add_user_to_blog( '1', $user_id, get_site_option( 'default_user_role', 'subscriber' ) );
 		} else {
-			add_user_to_blog( get_site_option( 'dashboard_blog' ), $user_id, get_site_option( 'default_user_role', 'subscriber' ) );
+			add_user_to_blog( $user_site, $user_id, get_site_option( 'default_user_role', 'subscriber' ) );
 		}
 		add_new_user_to_blog( $user_id, $user_email, $meta );
 		do_action('wpmu_activate_user', $user_id, $password, $meta);
@@ -1444,8 +1442,8 @@ function install_blog_defaults($blog_id, $user_id) {
 	$blog_id = (int) $blog_id;
 
 	// Default links
-	$wpdb->insert( $wpdb->links,  array('link_url' => 'http://wordpress.com/', 'link_name' => 'WordPress.com', 'link_owner' => $user_id, 'link_rss' => 'http://wordpress.com/feed/') );
-	$wpdb->insert( $wpdb->links,  array('link_url' => 'http://wordpress.org/', 'link_name' => 'WordPress.org', 'link_owner' => $user_id, 'link_rss' => 'http://wordpress.org/development/feed/') );
+	$wpdb->insert( $wpdb->links, array( 'link_url' => 'http://wordpress.com/', 'link_name' => 'WordPress.com', 'link_owner' => $user_id, 'link_rss' => 'http://wordpress.com/feed/', 'link_notes' => '' ) );
+	$wpdb->insert( $wpdb->links, array( 'link_url' => 'http://wordpress.org/', 'link_name' => 'WordPress.org', 'link_owner' => $user_id, 'link_rss' => 'http://wordpress.org/development/feed/', 'link_notes' => '' ) );
 	$wpdb->insert( $wpdb->term_relationships, array('object_id' => 1, 'term_taxonomy_id' => 2));
 	$wpdb->insert( $wpdb->term_relationships, array('object_id' => 2, 'term_taxonomy_id' => 2));
 
@@ -1468,7 +1466,10 @@ function install_blog_defaults($blog_id, $user_id) {
 		'post_name' => __('hello-world'),
 		'post_modified' => $now,
 		'post_modified_gmt' => $now_gmt,
-		'comment_count' => 1
+		'comment_count' => 1,
+		'to_ping' => '',
+		'pinged' => '',
+		'post_content_filtered' => ''
 	) );	
 	$wpdb->insert( $wpdb->term_relationships, array('object_id' => 1, 'term_taxonomy_id' => 1));
 	update_option( "post_count", 1 );
@@ -1478,7 +1479,7 @@ function install_blog_defaults($blog_id, $user_id) {
 		'post_author' => $user_id, 
 		'post_date' => $now, 
 		'post_date_gmt' => $now_gmt,
-		'post_content' => __('This is an example of a WordPress page, you could edit this to put information about yourself or your site so readers know where you are coming from. You can create as many pages like this one or sub-pages as you like and manage all of your content inside of WordPress.'), 
+		'post_content' => get_site_option( 'first_page' ),
 		'post_excerpt' => '', 
 		'post_title' => __('About'),
 		'post_name' => __('about'),
@@ -1498,13 +1499,13 @@ function install_blog_defaults($blog_id, $user_id) {
 	// Default comment
 	$wpdb->insert( $wpdb->comments, array(
 		'comment_post_ID' => '1', 
-		'comment_author' => __('Mr WordPress'), 
+		'comment_author' => __( get_site_option( 'first_comment_author' ) ),
 		'comment_author_email' => '',
-		'comment_author_url' => 'http://' . $current_site->domain . $current_site->path, 
+		'comment_author_url' => get_site_option( 'first_comment_url' ),
 		'comment_author_IP' => '127.0.0.1', 
 		'comment_date' => $now,
 		'comment_date_gmt' => $now_gmt, 
-		'comment_content' => __("Hi, this is a comment.<br />To delete a comment, just log in, and view the posts' comments, there you will have the option to edit or delete them.") 
+		'comment_content' => __( get_site_option( 'first_comment' ) )
 	) );
 	
 	$user = new WP_User($user_id);
@@ -1549,6 +1550,7 @@ SITE_NAME" ) );
 	$user = new WP_User($user_id);
 
 	$welcome_email = str_replace( "SITE_NAME", $current_site->site_name, $welcome_email );
+	$welcome_email = str_replace( "BLOG_TITLE", $title, $welcome_email );
 	$welcome_email = str_replace( "BLOG_URL", $url, $welcome_email );
 	$welcome_email = str_replace( "USERNAME", $user->user_login, $welcome_email );
 	$welcome_email = str_replace( "PASSWORD", $password, $welcome_email );
@@ -1573,19 +1575,7 @@ function wpmu_welcome_user_notification($user_id, $password, $meta = '') {
 	if( !apply_filters('wpmu_welcome_user_notification', $user_id, $password, $meta) )
 		return false;
 
-	$welcome_email = __( "Dear User,
-
-Your new account is setup.
-
-You can log in with the following information:
-Username: USERNAME
-Password: PASSWORD
-LOGINLINK
-
-Thanks!
-
---The WordPress Team
-SITE_NAME" );
+	$welcome_email = get_site_option( 'welcome_user_email' ); 
 
 	$user = new WP_User($user_id);
 
@@ -1593,7 +1583,7 @@ SITE_NAME" );
 	$welcome_email = str_replace( "SITE_NAME", $current_site->site_name, $welcome_email );
 	$welcome_email = str_replace( "USERNAME", $user->user_login, $welcome_email );
 	$welcome_email = str_replace( "PASSWORD", $password, $welcome_email );
-	$welcome_email = str_replace( "LOGINLINK", site_url( 'wp-login.php' ), $welcome_email );
+	$welcome_email = str_replace( "LOGINLINK", wp_login_url(), $welcome_email );
 
 	$admin_email = get_site_option( "admin_email" );
 	if( $admin_email == '' )
@@ -2002,7 +1992,7 @@ function maybe_add_existing_user_to_blog() {
 	$details = get_option( "new_user_" . $key );
 	add_existing_user_to_blog( $details );
 	delete_option( 'new_user_' . $key );
-	wp_die( sprintf(__('You have been added to this blog. Please visit the <a href="%s">homepage</a> or <a href="%s">login</a> using your username and password.'), site_url(), site_url( '/wp-admin/' ) ) );
+	wp_die( sprintf(__('You have been added to this blog. Please visit the <a href="%s">homepage</a> or <a href="%s">login</a> using your username and password.'), site_url(), admin_url() ) );
 }
 
 function add_existing_user_to_blog( $details = false ) {
@@ -2042,7 +2032,7 @@ function is_user_spammy( $username = 0 ) {
 }
 
 function login_spam_check( $user, $password ) {
-	if( is_user_spammy( $user->id ) )
+	if( is_user_spammy( $user->ID ) )
 		return new WP_Error('invalid_username', __('<strong>ERROR</strong>: your account has been marked as a spammer.'));
 	return $user;
 }
@@ -2235,4 +2225,108 @@ function users_can_register_signup_filter() {
 	}
 }
 add_filter('option_users_can_register', 'users_can_register_signup_filter');
+
+function welcome_user_msg_filter( $text ) {
+	if ( !$text ) {
+		return __( "Dear User,
+
+Your new account is set up.
+
+You can log in with the following information:
+Username: USERNAME
+Password: PASSWORD
+LOGINLINK
+
+Thanks!
+
+--The Team @ SITE_NAME" );
+	}
+	return $text;
+}
+add_filter( 'site_option_welcome_user_email', 'welcome_user_msg_filter' );
+
+function first_page_filter( $text ) {
+	if ( !$text ) {
+		return __( "This is an example of a WordPress page, you could edit this to put information about yourself or your site so readers know where you are coming from. You can create as many pages like this one or sub-pages as you like and manage all of your content inside of WordPress." );
+	}
+	return $text;
+}
+add_filter( 'site_option_first_page', 'first_page_filter' );
+
+function first_comment_filter( $text ) {
+	if ( !$text ) {
+		return __( "This is an example of a WordPress comment, you could edit this to put information about yourself or your site so readers know where you are coming from. You can create as many comments like this one or sub-comments as you like and manage all of your content inside of WordPress." );
+	}
+	return $text;
+}
+add_filter( 'site_option_first_comment', 'first_comment_filter' );
+
+function first_comment_author_filter( $text ) {
+	if ( !$text ) {
+		return __( "Mr WordPress" );
+	}
+	return $text;
+}
+add_filter( 'site_option_first_comment_author', 'first_comment_author_filter' );
+
+function first_comment_url_filter( $text ) {
+	global $current_site;
+	if ( !$text ) {
+		return 'http://' . $current_site->domain . $current_site->path;
+	}
+	return $text;
+}
+add_filter( 'site_option_first_comment_url', 'first_comment_url_filter' );
+
+function mu_filter_plugins_list( $active_plugins ) {
+	$active_sitewide_plugins = get_site_option( 'active_sitewide_plugins' );
+
+	if ( !$active_sitewide_plugins )
+		return $active_plugins;
+	
+	return array_merge( (array) $active_plugins, array_keys( (array) $active_sitewide_plugins ) );
+}
+add_filter( 'active_plugins', 'mu_filter_plugins_list' );
+
+ /**
+ * Whether to force SSL on content.
+ *
+ * @since 2.8.5
+ *
+ * @param string|bool $force
+ * @return bool True if forced, false if not forced.
+ */
+function force_ssl_content( $force = '' ) {
+        static $forced_content;
+
+        if ( '' != $force ) {
+                $old_forced = $forced_content;
+                $forced_content = $force;
+                return $old_forced;
+        }
+        return $forced_content;
+}
+
+/**
+ * Formats an String URL to use HTTPS if HTTP is found.
+ * Useful as a filter.
+ *
+ * @since 2.8.5
+ **/
+function filter_SSL( $url) {
+	if ( !is_string( $url ) ) {
+		return get_bloginfo( 'url' ); //return home blog url with proper scheme
+	}
+
+	$arrURL = parse_url( $url );
+
+	if ( force_ssl_content() && is_ssl() ) {
+		if ( 'http' === $arrURL['scheme'] && 'https' !== $arrURL['scheme'] ) {
+			$url = str_replace( $arrURL['scheme'], 'https', $url );
+		}
+	}
+
+	return $url;
+}
+
 ?>

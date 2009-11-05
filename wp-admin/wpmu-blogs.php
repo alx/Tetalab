@@ -259,7 +259,7 @@ switch( $_GET['action'] ) {
 			<div id="blogedit_blogadduser" class="postbox">
 			<h3 class='hndle'><span><?php _e('Add a new user'); ?></span></h3>
 			<div class="inside">
-				<p style="margin:10px 0 0px;padding:0px 10px 10px;border-bottom:1px solid #DFDFDF;"><?php _e('As you type WordPress will offer you a choice of usernames.<br /> Click them to select and hit <em>Update Options</em> to add the user.') ?></p>
+				<p style="margin:10px 0 0px;padding:0px 10px 10px;border-bottom:1px solid #DFDFDF;"><?php _e('Enter the username of an existing user and hit <em>Update Options</em> to add the user.') ?></p>
 				<table class="form-table">
 						<tr>
 							<th scope="row"><?php _e('User&nbsp;Login:') ?></th>
@@ -573,6 +573,7 @@ switch( $_GET['action'] ) {
 		</div>
 
 		<div class="wrap">
+			<a name="form-add-blog"></a>
 			<h2><?php _e('Add Blog') ?></h2>
 			<form method="post" action="wpmu-edit.php?action=addblog">
 				<?php wp_nonce_field('add-blog') ?>
