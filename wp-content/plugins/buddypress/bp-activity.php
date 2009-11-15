@@ -1,6 +1,6 @@
 <?php
 
-define ( 'BP_ACTIVITY_DB_VERSION', '1800' );
+define ( 'BP_ACTIVITY_DB_VERSION', '1900' );
 
 /* Define the slug for the component */
 if ( !defined( 'BP_ACTIVITY_SLUG' ) )
@@ -13,14 +13,14 @@ require ( BP_PLUGIN_DIR . '/bp-activity/bp-activity-filters.php' );
 
 /* Include deprecated functions if settings allow */
 if ( !defined( 'BP_IGNORE_DEPRECATED' ) )
-	require ( BP_PLUGIN_DIR . '/bp-activity/deprecated/bp-activity-deprecated.php' );	
-	
+	require ( BP_PLUGIN_DIR . '/bp-activity/deprecated/bp-activity-deprecated.php' );
+
 function bp_activity_install() {
 	global $wpdb, $bp;
-	
+
 	if ( !empty($wpdb->charset) )
 		$charset_collate = "DEFAULT CHARACTER SET $wpdb->charset";
-	
+
 	$sql[] = "CREATE TABLE {$bp->activity->table_name} (
 		  		id bigint(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 				user_id bigint(20) NOT NULL,
@@ -32,6 +32,8 @@ function bp_activity_install() {
 				secondary_item_id varchar(75) NOT NULL,
 				date_recorded datetime NOT NULL,
 				hide_sitewide bool DEFAULT 0,
+				mptt_left int(11) NOT NULL,
+				mptt_right int(11) NOT NULL,
 				KEY date_recorded (date_recorded),
 				KEY user_id (user_id),
 				KEY item_id (item_id),
@@ -40,11 +42,11 @@ function bp_activity_install() {
 
 	require_once( ABSPATH . 'wp-admin/upgrade-functions.php' );
 	dbDelta($sql);
-	
+
 	/* Drop the old sitewide and user activity tables */
 	$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->base_prefix}bp_activity_user_activity" );
 	$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->base_prefix}bp_activity_sitewide" );
-	
+
 	/* TODO: Rename the old user activity cached table */
 	//$wpdb->query( "RENAME TABLE {$wpdb->base_prefix}bp_activity_user_activity_cached TO {$bp->activity->table_name}" );
 
@@ -56,21 +58,21 @@ function bp_activity_setup_globals() {
 
 	/* Internal identifier */
 	$bp->activity->id = 'activity';
-	
+
 	$bp->activity->table_name = $wpdb->base_prefix . 'bp_activity_user_activity_cached';
 	$bp->activity->slug = BP_ACTIVITY_SLUG;
-		
+
 	/* Register this in the active components array */
 	$bp->active_components[$bp->activity->slug] = $bp->activity->id;
-	
+
 	do_action( 'bp_activity_setup_globals' );
 }
 add_action( 'plugins_loaded', 'bp_activity_setup_globals', 5 );
 add_action( 'admin_menu', 'bp_activity_setup_globals', 2 );
 
-function bp_activity_check_installed() {	
+function bp_activity_check_installed() {
 	global $wpdb, $bp;
-	
+
 	if ( get_site_option('bp-activity-db-version') < BP_ACTIVITY_DB_VERSION )
 		bp_activity_install();
 }
@@ -99,7 +101,7 @@ function bp_activity_setup_nav() {
 			$bp->bp_options_title = __( 'My Activity', 'buddypress' );
 		} else {
 			$bp->bp_options_avatar = bp_core_fetch_avatar( array( 'item_id' => $bp->displayed_user->id, 'type' => 'thumb' ) );
-			$bp->bp_options_title = $bp->displayed_user->fullname; 
+			$bp->bp_options_title = $bp->displayed_user->fullname;
 		}
 	}
 
@@ -119,12 +121,12 @@ add_action( 'admin_menu', 'bp_activity_setup_nav' );
 
 function bp_activity_screen_my_activity() {
 	do_action( 'bp_activity_screen_my_activity' );
-	bp_core_load_template( apply_filters( 'bp_activity_template_my_activity', 'activity/just-me' ) );	
+	bp_core_load_template( apply_filters( 'bp_activity_template_my_activity', 'activity/just-me' ) );
 }
 
 function bp_activity_screen_friends_activity() {
 	do_action( 'bp_activity_screen_friends_activity' );
-	bp_core_load_template( apply_filters( 'bp_activity_template_friends_activity', 'activity/my-friends' ) );	
+	bp_core_load_template( apply_filters( 'bp_activity_template_friends_activity', 'activity/my-friends' ) );
 }
 
 
@@ -147,25 +149,25 @@ function bp_activity_action_delete_activity() {
 
 	/* Check the nonce */
 	check_admin_referer( 'bp_activity_delete_link' );
-	
+
 	$activity_id = $bp->action_variables[0];
-	
+
 	/* Check access */
 	if ( !is_site_admin() ) {
 		$activity = new BP_Activity_Activity( $activity_id );
-		
+
 		if ( $activity->user_id != $bp->loggedin_user->id )
 			return false;
 	}
-	
+
 	/* Now delete the activity item */
 	if ( bp_activity_delete_by_activity_id( $activity_id ) )
 		bp_core_add_message( __( 'Activity deleted', 'buddypress' ) );
 	else
 		bp_core_add_message( __( 'There was an error when deleting that activity', 'buddypress' ), 'error' );
-		
+
 	do_action( 'bp_activity_action_delete_activity', $activity_id );
-	
+
 	bp_core_redirect( $_SERVER['HTTP_REFERER'] );
 }
 add_action( 'wp', 'bp_activity_action_delete_activity', 3 );
@@ -186,11 +188,11 @@ function bp_activity_action_sitewide_feed() {
 add_action( 'wp', 'bp_activity_action_sitewide_feed', 3 );
 
 function bp_activity_action_personal_feed() {
-	global $bp, $wp_query;	
+	global $bp, $wp_query;
 
 	if ( $bp->current_component != $bp->activity->slug || !$bp->displayed_user->id || $bp->current_action != 'feed' )
 		return false;
-	
+
 	$wp_query->is_404 = false;
 	status_header( 200 );
 
@@ -205,11 +207,11 @@ function bp_activity_action_friends_feed() {
 	if ( $bp->current_component != $bp->activity->slug || !$bp->displayed_user->id || $bp->current_action != 'my-friends' || $bp->action_variables[0] != 'feed' )
 		return false;
 
-	$wp_query->is_404 = false;	
+	$wp_query->is_404 = false;
 	status_header( 200 );
 
 	include_once( 'bp-activity/feeds/bp-activity-friends-feed.php' );
-	die;	
+	die;
 }
 add_action( 'wp', 'bp_activity_action_friends_feed', 3 );
 
@@ -223,15 +225,85 @@ add_action( 'wp', 'bp_activity_action_friends_feed', 3 );
  * true or false on success or failure.
  */
 
+function bp_activity_get_sitewide( $args = '' ) {
+	$defaults = array(
+		'max' => false, // Maximum number of results to return
+		'page' => 1, // page 1 without a per_page will result in no pagination.
+		'per_page' => false, // results per page
+		'sort' => 'DESC', // sort ASC or DESC
+		'display_comments' => false, // false for no comments. 'stream' for within stream display, 'threaded' for below each activity item
+
+		'search_terms' => false, // Pass search terms as a string
+
+		/**
+		 * Pass filters as an array:
+		 * array(
+		 * 	'user_id' => false, // user_id to filter on
+		 *	'object' => false, // object to filter on e.g. groups, profile, status, friends
+		 *	'action' => false, // action to filter on e.g. new_wire_post, new_forum_post, profile_updated
+		 *	'primary_id' => false, // object ID to filter on e.g. a group_id or forum_id or blog_id etc.
+		 *	'secondary_id' => false, // secondary object ID to filter on e.g. a post_id
+		 * );
+		 */
+		'filter' => array()
+	);
+
+	$r = wp_parse_args( $args, $defaults );
+	extract( $r, EXTR_SKIP );
+
+	return apply_filters( 'bp_activity_get_sitewide', BP_Activity_Activity::get_sitewide_activity( $max, $page, $per_page, $sort, $search_terms, $filter, $display_comments ), &$r );
+}
+
+function bp_activity_get_for_user( $args = '' ) {
+	global $bp;
+
+	$defaults = array(
+		'user_id' => $bp->displayed_user->id,
+		'max' => false, // Maximum number of results to return
+		'page' => 1, // page 1 without a per_page will result in no pagination.
+		'per_page' => false, // results per page
+		'sort' => 'DESC', // sort ASC or DESC
+		'display_comments' => 'stream', // false for no comments. 'stream' for within stream display, 'threaded' for below each activity item
+
+		'search_terms' => false, // Pass search terms as a string
+		'filter' => array()
+	);
+
+	$r = wp_parse_args( $args, $defaults );
+	extract( $r, EXTR_SKIP );
+
+	return apply_filters( 'bp_activity_get_for_user', BP_Activity_Activity::get_activity_for_user( $user_id, $max, $page, $per_page, $sort, $search_terms, $filter, $display_comments ), &$r );
+}
+
+function bp_activity_get_friends_activity( $user_id, $max = 30, $max_items_per_friend = false, $pag_num = false, $pag_page = false, $filter = false ) {
+	return apply_filters( 'bp_activity_get_friends_activity', BP_Activity_Activity::get_activity_for_friends( $user_id, $max_items, $max_items_per_friend, $pag_num, $pag_page, $filter ), $user_id, $max_items, $max_items_per_friend, $pag_num, $pag_page, $filter );
+}
+
+function bp_activity_get_specific( $args = '' ) {
+	$defaults = array(
+		'activity_ids' => false, // A single activity_id or array of IDs.
+		'max' => false, // Maximum number of results to return
+		'page' => 1, // page 1 without a per_page will result in no pagination.
+		'per_page' => false, // results per page
+		'sort' => 'DESC', // sort ASC or DESC
+		'display_comments' => false // true or false to display threaded comments for these specific activity items
+	);
+
+	$r = wp_parse_args( $args, $defaults );
+	extract( $r, EXTR_SKIP );
+
+	return apply_filters( 'bp_activity_get_specific', BP_Activity_Activity::get_specific( $activity_ids, $max, $page, $per_page, $sort, $display_comments ) );
+}
+
 function bp_activity_add( $args = '' ) {
 	global $bp, $wpdb;
-	
+
 	$defaults = array(
 		'content' => false, // The content of the activity item
 		'primary_link' => false, // The primary URL for this item in RSS feeds
 		'component_name' => false, // The name/ID of the component e.g. groups, profile, mycomponent
 		'component_action' => false, // The component action e.g. new_wire_post, profile_updated
-		
+
 		'user_id' => $bp->loggedin_user->id, // Optional: The user to record the activity for, can be false if this activity is not for a user.
 		'item_id' => false, // Optional: The ID of the specific item being recorded, e.g. a blog_id, or wire_post_id
 		'secondary_item_id' => false, // Optional: A second ID used to further filter e.g. a comment_id
@@ -241,12 +313,14 @@ function bp_activity_add( $args = '' ) {
 
 	$r = wp_parse_args( $args, $defaults );
 	extract( $r, EXTR_SKIP );
-	
+
 	/* Insert the "time-since" placeholder */
 	if ( $content )
 		$content = bp_activity_add_timesince_placeholder( $content );
 
-	$activity = new BP_Activity_Activity;
+	/* Pass certain values so we can update an activity item if it already exists */
+	$activity = new BP_Activity_Activity();
+
 	$activity->user_id = $user_id;
 	$activity->content = $content;
 	$activity->primary_link = $primary_link;
@@ -256,13 +330,17 @@ function bp_activity_add( $args = '' ) {
 	$activity->secondary_item_id = $secondary_item_id;
 	$activity->date_recorded = $recorded_time;
 	$activity->hide_sitewide = $hide_sitewide;
-	
+
 	if ( !$activity->save() )
 		return false;
 
-	do_action( 'bp_activity_add', $args );
-	
-	return true;
+	/* If this is an activity comment, rebuild the tree */
+	if ( 'activity_comment' == $activity->component_action )
+		BP_Activity_Activity::rebuild_activity_comment_tree( $activity->item_id );
+
+	do_action( 'bp_activity_add', $r );
+
+	return $activity->id;
 }
 
 /* There are multiple ways to delete activity items, depending on the information you have at the time. */
@@ -295,7 +373,7 @@ function bp_activity_delete_by_activity_id( $activity_id ) {
 
 	do_action( 'bp_activity_delete_by_activity_id', $activity_id );
 
-	return true;	
+	return true;
 }
 
 function bp_activity_delete_by_content( $user_id, $content, $component_name, $component_action ) {
@@ -315,13 +393,13 @@ function bp_activity_delete_for_user_by_component( $user_id, $component_name ) {
 		return false;
 
 	do_action( 'bp_activity_delete_for_user_by_component', $user_id, $component_name );
-	
+
 	return true;
 }
 
 function bp_activity_add_timesince_placeholder( $content ) {
 	/* Check a time-since span doesn't already exist */
-	if ( false === strpos( $content, '<span class="time-since">' ) ) {		
+	if ( false === strpos( $content, '<span class="time-since">' ) ) {
 		if ( !$pos = strpos( $content, '<blockquote' ) ) {
 			if ( !$pos = strpos( $content, '<div' ) ) {
 				if ( !$pos = strpos( $content, '<ul' ) ) {
@@ -330,37 +408,37 @@ function bp_activity_add_timesince_placeholder( $content ) {
 			}
 		}
 	}
-	
+
 	if ( (int) $pos ) {
 		$before = substr( $content, 0, (int) $pos );
 		$after = substr( $content, (int) $pos, strlen( $content ) );
-		
+
 		$content = $before . ' <span class="time-since">%s</span>' . $after;
 	}
 
 	return apply_filters( 'bp_activity_add_timesince_placeholder', $content );
 }
 
-function bp_activity_set_action( $component_id, $key, $value ) { 
-	global $bp; 
+function bp_activity_set_action( $component_id, $key, $value ) {
+	global $bp;
 
-	if ( empty( $component_id ) || empty( $key ) || empty( $value ) ) 
-		return false; 
+	if ( empty( $component_id ) || empty( $key ) || empty( $value ) )
+		return false;
 
-	$bp->activity->actions->{$component_id}->{$key} = apply_filters( 'bp_activity_set_action', array( 
-		'key' => $key, 
-		'value' => $value 
-	), $component_id, $key, $value ); 
-} 
+	$bp->activity->actions->{$component_id}->{$key} = apply_filters( 'bp_activity_set_action', array(
+		'key' => $key,
+		'value' => $value
+	), $component_id, $key, $value );
+}
 
-function bp_activity_get_action( $component_id, $key ) { 
-	global $bp; 
+function bp_activity_get_action( $component_id, $key ) {
+	global $bp;
 
-	if ( empty( $component_id ) || empty( $key ) ) 
-		return false; 
+	if ( empty( $component_id ) || empty( $key ) )
+		return false;
 
-	return apply_filters( 'bp_activity_get_action', $bp->activity->actions->{$component_id}->{$key}, $component_id, $key ); 
-} 
+	return apply_filters( 'bp_activity_get_action', $bp->activity->actions->{$component_id}->{$key}, $component_id, $key );
+}
 
 function bp_activity_check_exists_by_content( $content ) {
 	/* Insert the "time-since" placeholder to match the existing content in the DB */
@@ -373,22 +451,10 @@ function bp_activity_get_last_updated() {
 	return apply_filters( 'bp_activity_get_last_updated', BP_Activity_Activity::get_last_updated() );
 }
 
-function bp_activity_get_sitewide_activity( $max_items = 30, $pag_num = false, $pag_page = false, $filter = false ) {
- 	return apply_filters( 'bp_activity_get_sitewide_activity', BP_Activity_Activity::get_sitewide_activity( $max_items, $pag_num, $pag_page, $filter ), $max_items, $pag_num, $pag_page, $filter );
-}
-
-function bp_activity_get_user_activity( $user_id, $max_items = 30, $pag_num = false, $pag_page = false, $filter = false ) {
-	return apply_filters( 'bp_activity_get_user_activity', BP_Activity_Activity::get_activity_for_user( $user_id, $max_items, $pag_num, $pag_page, $filter ), $user_id, $max_items, $pag_num, $pag_page, $filter );
-}
-
-function bp_activity_get_friends_activity( $user_id, $max_items = 30, $max_items_per_friend = false, $pag_num = false, $pag_page = false, $filter = false ) {
-	return apply_filters( 'bp_activity_get_friends_activity', BP_Activity_Activity::get_activity_for_friends( $user_id, $max_items, $max_items_per_friend, $pag_num, $pag_page, $filter ), $user_id, $max_items, $max_items_per_friend, $pag_num, $pag_page, $filter );
-}
-
 function bp_activity_remove_data( $user_id ) {
 	// Clear the user's activity from the sitewide stream and clear their activity tables
 	BP_Activity_Activity::delete_for_user( $user_id );
-	
+
 	do_action( 'bp_activity_remove_data', $user_id );
 }
 add_action( 'wpmu_delete_user', 'bp_activity_remove_data' );
@@ -397,7 +463,7 @@ add_action( 'make_spam_user', 'bp_activity_remove_data' );
 
 /* Ordering function - don't call this directly */
 function bp_activity_order_by_date( $a, $b ) {
-	return apply_filters( 'bp_activity_order_by_date', strcasecmp( $b['date_recorded'], $a['date_recorded'] ) );	
+	return apply_filters( 'bp_activity_order_by_date', strcasecmp( $b['date_recorded'], $a['date_recorded'] ) );
 }
 
 ?>

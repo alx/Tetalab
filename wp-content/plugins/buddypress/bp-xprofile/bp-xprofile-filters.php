@@ -2,6 +2,7 @@
 
 /* Apply WordPress defined filters */
 add_filter( 'bp_get_the_profile_field_value', 'wp_filter_kses', 1 );
+add_filter( 'bp_get_the_site_member_profile_data', 'wp_filter_kses', 1 );
 add_filter( 'xprofile_get_field_data', 'wp_filter_kses', 1 );
 add_filter( 'xprofile_field_name_before_save', 'wp_filter_kses', 1 );
 add_filter( 'xprofile_field_description_before_save', 'wp_filter_kses', 1 );
@@ -19,13 +20,21 @@ add_filter( 'bp_get_the_profile_field_value', 'wpautop' );
 add_filter( 'bp_get_the_profile_field_value', 'make_clickable' );
 add_filter( 'bp_get_the_profile_field_value', 'force_balance_tags' );
 
+add_filter( 'bp_get_the_site_member_profile_data', 'wptexturize' );
+add_filter( 'bp_get_the_site_member_profile_data', 'convert_smilies', 2 );
+add_filter( 'bp_get_the_site_member_profile_data', 'convert_chars' );
+add_filter( 'bp_get_the_site_member_profile_data', 'make_clickable' );
+add_filter( 'bp_get_the_site_member_profile_data', 'force_balance_tags' );
+
 add_filter( 'bp_get_the_profile_field_value', 'xprofile_filter_format_field_value', 1, 2 );
+add_filter( 'bp_get_the_site_member_profile_data', 'xprofile_filter_format_field_value', 1, 2 );
 add_filter( 'bp_get_the_profile_field_value', 'xprofile_filter_link_profile_data', 2, 2 );
 
 add_filter( 'bp_get_the_profile_field_edit_value', 'stripslashes' );
 add_filter( 'bp_get_the_profile_field_value', 'stripslashes' );
 add_filter( 'xprofile_get_field_data', 'stripslashes' );
 add_filter( 'bp_get_the_profile_field_description', 'stripslashes' );
+add_filter( 'bp_get_the_site_member_profile_data', 'stripslashes' );
 
 /* Custom BuddyPress filters */
 
@@ -38,23 +47,23 @@ function xprofile_filter_format_field_value( $field_value, $field_type = '' ) {
 	} else {
 		$field_value = str_replace(']]>', ']]&gt;', $field_value );
 	}
-	
+
 	return stripslashes( stripslashes( $field_value ) );
 }
 
 function xprofile_filter_link_profile_data( $field_value, $field_type = 'textbox' ) {
 	if ( 'datebox' == $field_type )
 		return $field_value;
-	
+
 	if ( !strpos( $field_value, ',' ) && ( count( explode( ' ', $field_value ) ) > 5 ) )
 		return $field_value;
-	
+
 	$values = explode( ',', $field_value );
 
 	if ( $values ) {
 		foreach ( $values as $value ) {
 			$value = trim( $value );
-			
+
 			/* If the value is a URL, skip it and just make it clickable. */
 			if ( preg_match( '@(https?://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)@', $value ) ) {
 				$new_values[] = make_clickable( $value );
@@ -65,10 +74,10 @@ function xprofile_filter_link_profile_data( $field_value, $field_type = 'textbox
 					$new_values[] = '<a href="' . site_url( BP_MEMBERS_SLUG ) . '/?s=' . strip_tags( $value ) . '">' . $value . '</a>';
 			}
 		}
-		
+
 		$values = implode( ', ', $new_values );
 	}
-	
+
 	return $values;
 }
 
