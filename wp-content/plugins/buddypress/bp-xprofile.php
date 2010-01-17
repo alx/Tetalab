@@ -1,5 +1,5 @@
 <?php
-define ( 'BP_XPROFILE_DB_VERSION', '1850' );
+define ( 'BP_XPROFILE_DB_VERSION', '1800' );
 
 /* Define the slug for the component */
 if ( !defined( 'BP_XPROFILE_SLUG' ) )
@@ -109,12 +109,10 @@ function xprofile_wire_install() {
 	  		   id bigint(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 			   item_id bigint(20) NOT NULL,
 			   user_id bigint(20) NOT NULL,
-			   parent_id bigint(20) NOT NULL,
 			   content longtext NOT NULL,
 			   date_posted datetime NOT NULL,
 			   KEY item_id (item_id),
-		       KEY user_id (user_id),
-		       KEY parent_id (parent_id)
+		       KEY user_id (user_id)
 	 	       ) {$charset_collate};";
 
 	require_once( ABSPATH . 'wp-admin/upgrade-functions.php' );
@@ -329,6 +327,7 @@ function xprofile_screen_edit_profile() {
 
 		/* Loop through the posted fields formatting any datebox values then validate the field */
 		foreach ( $posted_field_ids as $field_id ) {
+
 			if ( !isset( $_POST['field_' . $field_id] ) ) {
 
 				if ( is_numeric( $_POST['field_' . $field_id . '_day'] ) ) {
@@ -531,7 +530,7 @@ function xprofile_action_new_wire_post() {
 	if ( !check_admin_referer( 'bp_wire_post' ) )
 		return false;
 
-	if ( !$wire_post = bp_wire_new_post( $bp->displayed_user->id, $_POST['wire-post-textarea'], $bp->profile->id ) ) {
+	if ( !$wire_post = bp_wire_new_post( $bp->displayed_user->id, $_POST['wire-post-textarea'], $bp->profile->slug, false, $bp->profile->table_name_wire ) ) {
 		bp_core_add_message( __( 'Wire message could not be posted. Please try again.', 'buddypress' ), 'error' );
 	} else {
 		bp_core_add_message( __( 'Wire message successfully posted.', 'buddypress' ) );

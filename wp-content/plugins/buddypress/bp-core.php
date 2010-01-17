@@ -70,10 +70,6 @@ if ( !defined( 'BP_HOME_BLOG_SLUG' ) )
 if ( function_exists( 'register_theme_folder' ) )
 	register_theme_folder( 'buddypress/bp-themes' );
 
-/* Register BuddyPress themes contained within the theme folder */
-if ( function_exists( 'register_theme_folder' ) )
-	register_theme_folder( 'buddypress/bp-themes' );
-
 
 /* "And now for something completely different" .... */
 
@@ -532,35 +528,23 @@ add_action( 'wp', 'bp_core_action_delete_user', 3 );
  * @param user_id The ID of the user.
  * @uses get_usermeta() WordPress function to get the usermeta for a user.
  */
-function bp_core_get_user_domain( $user_id, $user_nicename = false, $user_login = false ) {
+function bp_core_get_user_domain( $user_id ) {
 	global $bp;
 
 	if ( !$user_id ) return;
 
-	if ( $domain = wp_cache_get( 'bp_user_domain_' . $user_id, 'bp' ) )
-		return apply_filters( 'bp_core_get_user_domain', $domain );
-
-	if ( !$user_nicename && !$user_login ) {
-		$ud = get_userdata($user_id);
-		$user_nicename = $ud->user_nicename;
-		$user_login = $ud->user_login;
-	}
+	$ud = get_userdata($user_id);
 
 	if ( defined( 'BP_ENABLE_USERNAME_COMPATIBILITY_MODE' ) )
-		$username = $user_login;
+		$username = $ud->user_login;
 	else
-		$username = $user_nicename;
+		$username = $ud->user_nicename;
 
 	/* If we are using a members slug, include it. */
 	if ( !defined( 'BP_ENABLE_ROOT_PROFILES' ) )
-		$domain = $bp->root_domain . '/' . BP_MEMBERS_SLUG . '/' . $username . '/';
+		return apply_filters( 'bp_core_get_user_domain', $bp->root_domain . '/' . BP_MEMBERS_SLUG . '/' . $username . '/' );
 	else
-		$domain = $bp->root_domain . '/' . $username . '/';
-
-	/* Cache the link */
-	wp_cache_set( 'bp_user_domain_' . $user_id, $domain, 'bp' );
-
-	return apply_filters( 'bp_core_get_user_domain', $domain );
+		return apply_filters( 'bp_core_get_user_domain', $bp->root_domain . '/' . $username . '/' );
 }
 
 /**
@@ -734,6 +718,20 @@ function bp_core_sort_nav_items() {
 add_action( 'wp_head', 'bp_core_sort_nav_items' );
 
 /**
+ * bp_core_remove_nav_item()
+ *
+ * Removes a navigation item from the main navigation array.
+ *
+ * @package BuddyPress Core
+ * @param $slug The slug of the sub navigation item.
+ */
+function bp_core_remove_nav_item( $slug ) {
+	global $bp;
+
+	unset( $bp->bp_nav[$slug] );
+}
+
+/**
  * bp_core_new_subnav_item()
  *
  * Adds a navigation item to the sub navigation array used in BuddyPress themes.
@@ -817,26 +815,6 @@ function bp_core_sort_subnav_items() {
 add_action( 'wp_head', 'bp_core_sort_subnav_items' );
 
 /**
- * bp_core_remove_nav_item()
- *
- * Removes a navigation item from the sub navigation array used in BuddyPress themes.
- *
- * @package BuddyPress Core
- * @param $parent_id The id of the parent navigation item.
- * @param $slug The slug of the sub navigation item.
- */
-function bp_core_remove_nav_item( $parent_id ) {
-	global $bp;
-
-	/* Unset subnav items for this nav item */
-	foreach( $bp->bp_options_nav[$parent_id] as $subnav_item ) {
-		bp_core_remove_subnav_item( $parent_id, $subnav_item['slug'] );
-	}
-
-	unset( $bp->bp_nav[$parent_id] );
-}
-
-/**
  * bp_core_remove_subnav_item()
  *
  * Removes a navigation item from the sub navigation array used in BuddyPress themes.
@@ -848,19 +826,7 @@ function bp_core_remove_nav_item( $parent_id ) {
 function bp_core_remove_subnav_item( $parent_id, $slug ) {
 	global $bp;
 
-	$function = $bp->bp_options_nav[$parent_id][$slug]['screen_function'];
-
-	if ( $function ) {
-		if ( !is_object( $screen_function[0] ) )
-			remove_action( 'wp', $screen_function, 3 );
-		else
-			remove_action( 'wp', array( &$screen_function[0], $screen_function[1] ), 3 );
-	}
-
 	unset( $bp->bp_options_nav[$parent_id][$slug] );
-
-	if ( !count( $bp->bp_options_nav[$parent_id] ) )
-		unset($bp->bp_options_nav[$parent_id]);
 }
 
 /**
@@ -1008,11 +974,10 @@ function bp_core_get_username( $uid ) {
 function bp_core_get_userurl( $uid ) {
 	global $bp;
 
-	if ( !$url = wp_cache_get( 'bp_user_url_' . $uid, 'bp' ) ) {
-		$url = bp_core_get_user_domain( $uid );
-	}
+	if ( !is_numeric($uid) )
+		return false;
 
-	return apply_filters( 'bp_core_get_userurl', $url );
+	return apply_filters( 'bp_core_get_userurl', bp_core_get_user_domain( $uid ) );
 }
 
 /**
@@ -1027,11 +992,8 @@ function bp_core_get_userurl( $uid ) {
  * @return str The email for the matched user.
  */
 function bp_core_get_user_email( $uid ) {
-	if ( !$email = wp_cache_get( 'bp_user_email_' . $uid, 'bp' ) ) {
-		$ud = get_userdata($uid);
-		$email = $ud->user_email;
-	}
-	return apply_filters( 'bp_core_get_user_email', $email );
+	$ud = get_userdata($uid);
+	return apply_filters( 'bp_core_get_user_email', $ud->user_email );
 }
 
 /**
@@ -1064,7 +1026,7 @@ function bp_core_get_userlink( $user_id, $no_anchor = false, $just_link = false,
 	if ( !$ud )
 		return false;
 
-	if ( function_exists( 'bp_core_get_user_displayname' ) ) {
+	if ( function_exists('bp_fetch_user_fullname') ) {
 		$display_name = bp_core_get_user_displayname( $user_id );
 
 		if ( $with_s )
@@ -1083,7 +1045,7 @@ function bp_core_get_userlink( $user_id, $no_anchor = false, $just_link = false,
 	if ( $just_link )
 		return $url;
 
-	return apply_filters( 'bp_core_get_userlink', '<a href="' . $url . '">' . $display_name . '</a>', $user_id );
+	return '<a href="' . $url . '">' . $display_name . '</a>';
 }
 
 
@@ -1581,7 +1543,7 @@ function bp_core_delete_account( $user_id = false ) {
 		$user_id = $bp->loggedin_user->id;
 
 	/* Make sure account deletion is not disabled */
-	if ( ( '' != get_site_option( 'bp-disable-account-deletion' ) || (int) get_site_option( 'bp-disable-account-deletion' ) ) && !is_site_admin() )
+	if ( (int)get_site_option( 'bp-disable-account-deletion' ) )
 		return false;
 
 	/* Site admins should not be allowed to be deleted */
@@ -1699,7 +1661,7 @@ function bp_core_clear_cache() {
 function bp_core_print_generation_time() {
 	global $wpdb;
 	?>
-<!-- Generated in <?php timer_stop(1); ?> seconds. <?php echo get_num_queries(); ?> -->
+<!-- Generated in <?php timer_stop(1); ?> seconds. -->
 	<?php
 }
 add_action( 'wp_footer', 'bp_core_print_generation_time' );
@@ -1805,7 +1767,7 @@ function bp_core_load_buddypress_textdomain() {
 	if ( file_exists( $mofile ) )
 		load_textdomain( 'buddypress', $mofile );
 }
-add_action ( 'plugins_loaded', 'bp_core_load_buddypress_textdomain', 9 );
+add_action ( 'plugins_loaded', 'bp_core_load_buddypress_textdomain', 5 );
 
 function bp_core_add_ajax_hook() {
 	/* Theme only, we already have the wp_ajax_ hook firing in wp-admin */

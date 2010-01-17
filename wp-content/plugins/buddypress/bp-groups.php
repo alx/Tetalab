@@ -109,12 +109,10 @@ function groups_wire_install() {
 	  		id bigint(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 			item_id bigint(20) NOT NULL,
 			user_id bigint(20) NOT NULL,
-			parent_id bigint(20) NOT NULL,
 			content longtext NOT NULL,
 			date_posted datetime NOT NULL,
 			KEY item_id (item_id),
-			KEY user_id (user_id),
-			KEY parent_id (parent_id)
+			KEY user_id (user_id)
 	 	   ) {$charset_collate};";
 
 	require_once(ABSPATH . 'wp-admin/upgrade-functions.php');
@@ -409,6 +407,10 @@ function groups_screen_group_invites() {
 
 function groups_screen_create_group() {
 	global $bp;
+
+	/* Initial check of action variable[0] to prevent conflicts */
+	if ( !empty( $bp->action_variables[0] ) && $bp->action_variables[0] != 'step' )
+		return false;
 
 	/* If no current step is set, reset everything so we can start a fresh group creation */
 	if ( !$bp->groups->current_create_step = $bp->action_variables[1] ) {
@@ -820,7 +822,7 @@ function groups_screen_group_wire() {
 	$wire_action = $bp->action_variables[0];
 
 	if ( $bp->is_single_item ) {
-		if ( 'post' == $wire_action && groups_is_user_member( $bp->loggedin_user->id, $bp->groups->current_group->id ) ) {
+		if ( 'post' == $wire_action && ( is_site_admin() || groups_is_user_member( $bp->loggedin_user->id, $bp->groups->current_group->id ) ) ) {
 			/* Check the nonce first. */
 			if ( !check_admin_referer( 'bp_wire_post' ) )
 				return false;
@@ -835,7 +837,7 @@ function groups_screen_group_wire() {
 			else
 				bp_core_redirect( bp_get_group_permalink( $bp->groups->current_group ) . '/' . $bp->wire->slug );
 
-		} else if ( 'delete' == $wire_action && groups_is_user_member( $bp->loggedin_user->id, $bp->groups->current_group->id ) ) {
+		} else if ( 'delete' == $wire_action && ( is_site_admin() || groups_is_user_member( $bp->loggedin_user->id, $bp->groups->current_group->id ) ) ) {
 			$wire_message_id = $bp->action_variables[1];
 
 			/* Check the nonce first. */
@@ -911,11 +913,12 @@ function groups_screen_group_leave() {
 
 	if ( $bp->is_single_item ) {
 		if ( isset($bp->action_variables) && 'yes' == $bp->action_variables[0] ) {
-
 			// Check if the user is the group admin first.
-			if ( groups_is_user_admin( $bp->loggedin_user->id, $bp->groups->current_group->id ) ) {
-				bp_core_add_message(  __('As the only group administrator, you cannot leave this group.', 'buddypress'), 'error' );
-				bp_core_redirect( bp_get_group_permalink( $bp->groups->current_group ) );
+			if ( count( groups_get_group_admins( $bp->groups->current_group->id ) ) < 2 ) {
+				if ( groups_is_user_admin( $bp->loggedin_user->id, $bp->groups->current_group->id ) ) {
+					bp_core_add_message(  __('As the only group administrator, you cannot leave this group.', 'buddypress'), 'error' );
+					bp_core_redirect( bp_get_group_permalink( $bp->groups->current_group ) );
+				}
 			}
 
 			// remove the user from the group.
@@ -1156,12 +1159,6 @@ function groups_screen_group_admin_manage_members() {
 		if ( 'demote' == $bp->action_variables[1] && is_numeric( $bp->action_variables[2] ) ) {
 			$user_id = $bp->action_variables[2];
 
-			/* Check if the user is the group admin first. */
-			if ( groups_is_user_admin( $bp->loggedin_user->id, $bp->groups->current_group->id ) ) {
-			        bp_core_add_message(  __('As the only group administrator, you cannot demote yourself.', 'buddypress'), 'error' );
-			        bp_core_redirect( bp_get_group_permalink( $bp->groups->current_group ) );
-			}
-
 			/* Check the nonce first. */
 			if ( !check_admin_referer( 'groups_demote_member' ) )
 				return false;
@@ -1180,12 +1177,6 @@ function groups_screen_group_admin_manage_members() {
 
 		if ( 'ban' == $bp->action_variables[1] && is_numeric( $bp->action_variables[2] ) ) {
 			$user_id = $bp->action_variables[2];
-
-			/* Check if the user is the group admin first. */
-			if ( groups_is_user_admin( $bp->loggedin_user->id, $bp->groups->current_group->id ) ) {
-			        bp_core_add_message(  __('As the only group administrator, you cannot ban yourself.', 'buddypress'), 'error' );
-			        bp_core_redirect( bp_get_group_permalink( $bp->groups->current_group ) );
-			}
 
 			/* Check the nonce first. */
 			if ( !check_admin_referer( 'groups_ban_member' ) )
@@ -1809,10 +1800,6 @@ function groups_leave_group( $group_id, $user_id = false ) {
 	if ( !$user_id )
 		$user_id = $bp->loggedin_user->id;
 
-	// Admins cannot leave a group, that is until promotion to admin support is implemented.
-	if ( groups_is_user_admin( $user_id, $group_id ) )
-		return false;
-
 	// This is exactly the same as deleting and invite, just is_confirmed = 1 NOT 0.
 	if ( !groups_uninvite_user( $user_id, $group_id, true ) )
 		return false;
@@ -1834,6 +1821,9 @@ function groups_join_group( $group_id, $user_id = false ) {
 	if ( groups_check_user_has_invite( $user_id, $group_id ) )
 		groups_delete_invite( $user_id, $group_id );
 
+	if ( !$bp->groups->current_group )
+		$bp->groups->current_group = new BP_Groups_Group( $group_id, false, false );
+
 	$new_member = new BP_Groups_Member;
 	$new_member->group_id = $group_id;
 	$new_member->user_id = $user_id;
@@ -1851,7 +1841,7 @@ function groups_join_group( $group_id, $user_id = false ) {
 		'content' => apply_filters( 'groups_activity_joined_group', sprintf( __( '%s joined the group %s', 'buddypress'), bp_core_get_userlink( $user_id ), '<a href="' . bp_get_group_permalink( $bp->groups->current_group ) . '">' . attribute_escape( $bp->groups->current_group->name ) . '</a>' ) ),
 		'primary_link' => apply_filters( 'groups_activity_joined_group_primary_link', bp_get_group_permalink( $bp->groups->current_group ) ),
 		'component_action' => 'joined_group',
-		'item_id' => $bp->groups->current_group->id
+		'item_id' => $group_id
 	) );
 
 	/* Modify group meta */

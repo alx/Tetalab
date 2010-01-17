@@ -246,8 +246,20 @@ class BP_Groups_User_Groups_Template {
 		$this->in_the_loop = true;
 		$this->group = $this->next_group();
 
-		if ( $this->single_group )
-			$this->group = new BP_Groups_Group( $this->group->group_id, true, true );
+		// If this is a single group then instantiate group meta when creating the object.
+		if ( $this->single_group ) {
+			if ( !$group = wp_cache_get( 'groups_group_' . $this->group->group_id, 'bp' ) ) {
+				$group = new BP_Groups_Group( $this->group->group_id, true );
+				wp_cache_set( 'groups_group_' . $this->group->group_id, $group, 'bp' );
+			}
+		} else {
+			if ( !$group = wp_cache_get( 'groups_group_nouserdata_' . $this->group->group_id, 'bp' ) ) {
+				$group = new BP_Groups_Group( $this->group->group_id, false, false );
+				wp_cache_set( 'groups_group_nouserdata_' . $this->group->group_id, $group, 'bp' );
+			}
+		}
+
+		$this->group = $group;
 
 		if ( 0 == $this->current_group ) // loop has just started
 			do_action('loop_start');
@@ -269,29 +281,27 @@ function bp_has_groups( $args = '' ) {
 	$r = wp_parse_args( $args, $defaults );
 	extract( $r, EXTR_SKIP );
 
-	if ( '' == $args ) {
-		/* The following code will auto set parameters based on the page being viewed.
-		 * for example on example.com/members/andy/groups/my-groups/most-popular/
-		 * $type = 'most-popular'
-		 */
-		if ( 'my-groups' == $bp->current_action ) {
-			$order = $bp->action_variables[0];
-			if ( 'recently-joined' == $order )
-				$type = 'recently-joined';
-			else if ( 'most-popular' == $order )
-				$type = 'popular';
-			else if ( 'admin-of' == $order )
-				$type = 'admin-of';
-			else if ( 'mod-of' == $order )
-				$type = 'mod-of';
-			else if ( 'alphabetically' == $order )
-				$type = 'alphabetical';
-		} else if ( 'invites' == $bp->current_action ) {
-			$type = 'invites';
-		} else if ( $bp->groups->current_group->slug ) {
-			$type = 'single-group';
-			$slug = $bp->groups->current_group->slug;
-		}
+	/* The following code will auto set parameters based on the page being viewed.
+	 * for example on example.com/members/andy/groups/my-groups/most-popular/
+	 * $type = 'most-popular'
+	 */
+	if ( 'my-groups' == $bp->current_action ) {
+		$order = $bp->action_variables[0];
+		if ( 'recently-joined' == $order )
+			$type = 'recently-joined';
+		else if ( 'most-popular' == $order )
+			$type = 'popular';
+		else if ( 'admin-of' == $order )
+			$type = 'admin-of';
+		else if ( 'mod-of' == $order )
+			$type = 'mod-of';
+		else if ( 'alphabetically' == $order )
+			$type = 'alphabetical';
+	} else if ( 'invites' == $bp->current_action ) {
+		$type = 'invites';
+	} else if ( $bp->groups->current_group->slug ) {
+		$type = 'single-group';
+		$slug = $bp->groups->current_group->slug;
 	}
 
 	if ( isset( $_REQUEST['group-filter-box'] ) )
@@ -459,10 +469,7 @@ function bp_group_last_active( $deprecated = true, $deprecated2 = false ) {
 		if ( !$group )
 			$group =& $groups_template->group;
 
-		$last_active = $group->last_activity;
-
-		if ( !$last_active )
-			$last_active = groups_get_groupmeta( $group->id, 'last_activity' );
+		$last_active = groups_get_groupmeta( $group->id, 'last_activity' );
 
 		if ( empty( $last_active ) ) {
 			return __( 'not yet active', 'buddypress' );
@@ -1989,25 +1996,13 @@ function bp_the_site_group_id() {
 		return apply_filters( 'bp_get_the_site_group_id', $site_groups_template->group->id );
 	}
 
-function bp_the_site_group_avatar( $args = '' ) {
-	echo bp_get_the_site_group_avatar( $args );
+function bp_the_site_group_avatar() {
+	echo bp_get_the_site_group_avatar();
 }
-	function bp_get_the_site_group_avatar( $args = '' ) {
+	function bp_get_the_site_group_avatar() {
 		global $site_groups_template;
 
-		$defaults = array(
-			'type' => 'full',
-			'width' => false,
-			'height' => false,
-			'class' => 'avatar',
-			'id' => false,
-			'alt' => __( 'Group avatar', 'buddypress' )
-		);
-
-		$r = wp_parse_args( $args, $defaults );
-		extract( $r, EXTR_SKIP );
-
-		return apply_filters( 'bp_the_site_group_avatar', bp_core_fetch_avatar( array( 'item_id' => $site_groups_template->group->id, 'object' => 'group', 'type' => $type, 'alt' => $alt, 'css_id' => $id, 'class' => $class, 'width' => $width, 'height' => $height ) ) );
+		return apply_filters( 'bp_the_site_group_avatar', bp_core_fetch_avatar( array( 'item_id' => $site_groups_template->group->id, 'object' => 'group', 'type' => 'full', 'avatar_dir' => 'group-avatars', 'alt' => __( 'Group Avatar', 'buddypress' ) ) ) );
 	}
 
 function bp_the_site_group_avatar_thumb() {

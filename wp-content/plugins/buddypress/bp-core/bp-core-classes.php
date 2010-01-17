@@ -56,25 +56,12 @@ class BP_Core_User {
 	 * @uses bp_profile_last_updated_date() Returns the last updated date for a user.
 	 */
 	function populate() {
-		if ( function_exists( 'xprofile_install' ) )
-			$this->profile_data = $this->get_profile_data();
+		$this->user_url = bp_core_get_userurl( $this->id );
+		$this->user_link = bp_core_get_userlink( $this->id );
 
-		if ( $this->profile_data ) {
-			$this->user_url = bp_core_get_user_domain( $this->id, $this->profile_data['user_nicename'], $this->profile_data['user_login'] );
-			$this->fullname = attribute_escape( $this->profile_data[BP_XPROFILE_FULLNAME_FIELD_NAME]['field_data'] );
-			$this->user_link = "<a href='{$this->user_url}'>{$this->fullname}</a>";
-			$this->email = attribute_escape( $this->profile_data['user_email'] );
-		} else {
-			$this->user_url = bp_core_get_userurl( $this->id );
-			$this->user_link = bp_core_get_userlink( $this->id );
-			$this->fullname = attribute_escape( bp_core_get_user_displayname( $this->id ) );
-			$this->email = attribute_escape( bp_core_get_user_email( $this->id ) );
-		}
-
-		/* Cache a few things that are fetched often */
-		wp_cache_set( 'bp_user_fullname_' . $this->id, $this->fullname, 'bp' );
-		wp_cache_set( 'bp_user_email_' . $this->id, $this->email, 'bp' );
-		wp_cache_set( 'bp_user_url_' . $this->id, $this->user_url, 'bp' );
+		$this->fullname = attribute_escape( bp_core_get_user_displayname( $this->id ) );
+		$this->email = attribute_escape( bp_core_get_user_email( $this->id ) );
+		$this->last_active = attribute_escape( bp_core_get_last_activity( get_usermeta( $this->id, 'last_activity' ), __( 'active %s ago', 'buddypress' ) ) );
 
 		$this->avatar = bp_core_fetch_avatar( array( 'item_id' => $this->id, 'type' => 'full' ) );
 		$this->avatar_thumb = bp_core_fetch_avatar( array( 'item_id' => $this->id, 'type' => 'thumb' ) );
@@ -84,15 +71,42 @@ class BP_Core_User {
 	function populate_extras() {
 		global $bp;
 
-		if ( function_exists('friends_install') )
-			$this->total_friends = BP_Friends_Friendship::total_friend_count( $this->id );
+		if ( function_exists('friends_install') ) {
+			$this->total_friends = BP_Friends_Friendship::total_friend_COUNT( $this->id );
 
-		if ( function_exists('groups_install') )
-			$this->total_groups = BP_Groups_Member::total_group_count( $this->id );
-	}
+			if ( $this->total_friends ) {
+				if ( 1 == $this->total_friends )
+					$this->total_friends .= ' ' . __( 'friend', 'buddypress' );
+				else
+					$this->total_friends .= ' ' . __( 'friends', 'buddypress' );
 
-	function get_profile_data() {
-		return BP_XProfile_ProfileData::get_all_for_user( $this->id );
+				$this->total_friends = '<a href="' . $this->user_url . $bp->friends->slug . '" title="' . sprintf( __( "%s's friend list", 'buddypress' ), $this->fullname ) . '">' . $this->total_friends . '</a>';
+			}
+		}
+
+		if ( function_exists('bp_blogs_install') ) {
+			if ( $this->total_blogs ) {
+				if ( 1 == $this->total_blogs )
+					$this->total_blogs .= ' ' . __( 'blog', 'buddypress' );
+				else
+					$this->total_blogs .= ' ' . __( 'blogs', 'buddypress' );
+
+				$this->total_blogs = '<a href="' . $this->user_url . $bp->blogs->slug . '" title="' . sprintf( __( "%s's blog list", 'buddypress' ), $this->fullname ) . '">' . $this->total_blogs . '</a>';
+			}
+		}
+
+		if ( function_exists('groups_install') ) {
+			$this->total_groups = BP_Groups_Member::total_group_COUNT( $this->id );
+
+			if ( $this->total_groups ) {
+				if ( 1 == $this->total_groups )
+					$this->total_groups .= ' ' . __( 'group', 'buddypress' );
+				else
+					$this->total_groups .= ' ' . __( 'groups', 'buddypress' );
+
+				$this->total_groups = '<a href="' . $this->user_url . $bp->groups->slug . '" title="' . sprintf( __( "%s's group list", 'buddypress' ), $this->fullname ) . '">' . $this->total_groups . '</a>';
+			}
+		}
 	}
 
 	/* Static Functions */
@@ -103,7 +117,7 @@ class BP_Core_User {
 		if ( $limit && $page )
 			$pag_sql = $wpdb->prepare( " LIMIT %d, %d", intval( ( $page - 1 ) * $limit), intval( $limit ) );
 
-		$total_users_sql = apply_filters( 'bp_core_newest_users_count_sql', "SELECT DISTINCT count(ID) FROM " . CUSTOM_USER_TABLE . " WHERE spam = 0 AND deleted = 0 AND user_status = 0 ORDER BY user_registered DESC" );
+		$total_users_sql = apply_filters( 'bp_core_newest_users_count_sql', "SELECT COUNT(DISTINCT ID) FROM " . CUSTOM_USER_TABLE . " WHERE spam = 0 AND deleted = 0 AND user_status = 0 ORDER BY user_registered DESC" );
 		$paged_users_sql = apply_filters( 'bp_core_newest_users_sql', "SELECT DISTINCT ID as user_id, DATE_ADD( user_registered, INTERVAL " . get_option('gmt_offset') . " HOUR ) as user_registered FROM " . CUSTOM_USER_TABLE . " WHERE spam = 0 AND deleted = 0 AND user_status = 0 ORDER BY user_registered DESC{$pag_sql}", $pag_sql );
 
 		$total_users = $wpdb->get_var( $total_users_sql );
@@ -118,7 +132,7 @@ class BP_Core_User {
 		if ( $limit && $page )
 			$pag_sql = $wpdb->prepare( " LIMIT %d, %d", intval( ( $page - 1 ) * $limit), intval( $limit ) );
 
-		$total_users_sql = apply_filters( 'bp_core_active_users_count_sql', "SELECT DISTINCT count(um.user_id) FROM " . CUSTOM_USER_META_TABLE . " um LEFT JOIN " . CUSTOM_USER_TABLE . " u ON u.ID = um.user_id WHERE um.meta_key = 'last_activity' AND u.spam = 0 AND u.deleted = 0 AND u.user_status = 0 ORDER BY FROM_UNIXTIME(um.meta_value) DESC" );
+		$total_users_sql = apply_filters( 'bp_core_active_users_count_sql', "SELECT COUNT(DISTINCT um.user_id) FROM " . CUSTOM_USER_META_TABLE . " um LEFT JOIN " . CUSTOM_USER_TABLE . " u ON u.ID = um.user_id WHERE um.meta_key = 'last_activity' AND u.spam = 0 AND u.deleted = 0 AND u.user_status = 0 ORDER BY FROM_UNIXTIME(um.meta_value) DESC" );
 		$paged_users_sql = apply_filters( 'bp_core_active_users_sql', "SELECT DISTINCT user_id FROM " . CUSTOM_USER_META_TABLE . " um LEFT JOIN " . CUSTOM_USER_TABLE . " u ON u.ID = um.user_id WHERE um.meta_key = 'last_activity' AND u.spam = 0 AND u.deleted = 0 AND u.user_status = 0 ORDER BY FROM_UNIXTIME(um.meta_value) DESC{$pag_sql}", $pag_sql );
 
 		$total_users = $wpdb->get_var( $total_users_sql );
@@ -136,7 +150,7 @@ class BP_Core_User {
 		if ( $limit && $page )
 			$pag_sql = $wpdb->prepare( " LIMIT %d, %d", intval( ( $page - 1 ) * $limit), intval( $limit ) );
 
-		$total_users_sql = apply_filters( 'bp_core_popular_users_count_sql', "SELECT DISTINCT count(um.user_id) FROM " . CUSTOM_USER_META_TABLE . " um LEFT JOIN " . CUSTOM_USER_TABLE . " u ON u.ID = um.user_id WHERE um.meta_key = 'total_friend_count' AND u.spam = 0 AND u.deleted = 0 AND u.user_status = 0 ORDER BY CONVERT(um.meta_value, SIGNED) DESC" );
+		$total_users_sql = apply_filters( 'bp_core_popular_users_count_sql', "SELECT COUNT(DISTINCT um.user_id) FROM " . CUSTOM_USER_META_TABLE . " um LEFT JOIN " . CUSTOM_USER_TABLE . " u ON u.ID = um.user_id WHERE um.meta_key = 'total_friend_count' AND u.spam = 0 AND u.deleted = 0 AND u.user_status = 0 ORDER BY CONVERT(um.meta_value, SIGNED) DESC" );
 		$paged_users_sql = apply_filters( 'bp_core_popular_users_sql', "SELECT DISTINCT um.user_id FROM " . CUSTOM_USER_META_TABLE . " um LEFT JOIN " . CUSTOM_USER_TABLE . " u ON u.ID = um.user_id WHERE um.meta_key = 'total_friend_count' AND u.spam = 0 AND u.deleted = 0 AND u.user_status = 0 ORDER BY CONVERT(um.meta_value, SIGNED) DESC{$pag_sql}", $pag_sql );
 
 		$total_users = $wpdb->get_var( $total_users_sql );
@@ -151,7 +165,7 @@ class BP_Core_User {
 		if ( $limit && $page )
 			$pag_sql = $wpdb->prepare( " LIMIT %d, %d", intval( ( $page - 1 ) * $limit), intval( $limit ) );
 
-		$total_users_sql = apply_filters( 'bp_core_random_users_count_sql', $wpdb->prepare( "SELECT DISTINCT count(um.user_id) FROM " . CUSTOM_USER_META_TABLE . " um LEFT JOIN " . CUSTOM_USER_TABLE . " u ON u.ID = um.user_id WHERE u.spam = 0 AND u.deleted = 0 AND u.user_status = 0 AND u.ID != %d ORDER BY RAND() DESC", $bp->loggedin_user->id ) );
+		$total_users_sql = apply_filters( 'bp_core_random_users_count_sql', $wpdb->prepare( "SELECT COUNT(DISTINCT um.user_id) FROM " . CUSTOM_USER_META_TABLE . " um LEFT JOIN " . CUSTOM_USER_TABLE . " u ON u.ID = um.user_id WHERE u.spam = 0 AND u.deleted = 0 AND u.user_status = 0 AND u.ID != %d ORDER BY RAND() DESC", $bp->loggedin_user->id ) );
 		$paged_users_sql = apply_filters( 'bp_core_random_users_sql', $wpdb->prepare( "SELECT DISTINCT um.user_id FROM " . CUSTOM_USER_META_TABLE . " um LEFT JOIN " . CUSTOM_USER_TABLE . " u ON u.ID = um.user_id WHERE u.spam = 0 AND u.deleted = 0 AND u.user_status = 0 AND u.ID != %d ORDER BY RAND(){$pag_sql}", $bp->loggedin_user->id ), $pag_sql );
 
 		$total_users = $wpdb->get_var( $total_users_sql );
@@ -166,7 +180,7 @@ class BP_Core_User {
 		if ( $limit && $page )
 			$pag_sql = $wpdb->prepare( " LIMIT %d, %d", intval( ( $page - 1 ) * $limit), intval( $limit ) );
 
-		$total_users_sql = apply_filters( 'bp_core_online_users_count_sql', "SELECT DISTINCT count(um.user_id) FROM " . CUSTOM_USER_META_TABLE . " um LEFT JOIN " . CUSTOM_USER_TABLE . " u ON u.ID = um.user_id WHERE um.meta_key = 'last_activity' AND u.spam = 0 AND u.deleted = 0 AND u.user_status = 0 AND DATE_ADD( FROM_UNIXTIME(um.meta_value), INTERVAL 5 MINUTE ) >= NOW() ORDER BY FROM_UNIXTIME(um.meta_value) DESC" );
+		$total_users_sql = apply_filters( 'bp_core_online_users_count_sql', "SELECT COUNT(DISTINCT um.user_id) FROM " . CUSTOM_USER_META_TABLE . " um LEFT JOIN " . CUSTOM_USER_TABLE . " u ON u.ID = um.user_id WHERE um.meta_key = 'last_activity' AND u.spam = 0 AND u.deleted = 0 AND u.user_status = 0 AND DATE_ADD( FROM_UNIXTIME(um.meta_value), INTERVAL 5 MINUTE ) >= NOW() ORDER BY FROM_UNIXTIME(um.meta_value) DESC" );
 		$paged_users_sql = apply_filters( 'bp_core_online_users_sql', "SELECT DISTINCT um.user_id FROM " . CUSTOM_USER_META_TABLE . " um LEFT JOIN " . CUSTOM_USER_TABLE . " u ON u.ID = um.user_id WHERE um.meta_key = 'last_activity' AND u.spam = 0 AND u.deleted = 0 AND u.user_status = 0 AND DATE_ADD( FROM_UNIXTIME(um.meta_value), INTERVAL 5 MINUTE ) >= NOW() ORDER BY FROM_UNIXTIME(um.meta_value) DESC{$pag_sql}", $pag_sql );
 
 		$total_users = $wpdb->get_var( $total_users_sql );
@@ -184,8 +198,8 @@ class BP_Core_User {
 		if ( $limit && $page )
 			$pag_sql = $wpdb->prepare( " LIMIT %d, %d", intval( ( $page - 1 ) * $limit), intval( $limit ) );
 
-		$total_users_sql = apply_filters( 'bp_core_alphabetical_users_count_sql', $wpdb->prepare( "SELECT DISTINCT count(u.ID) FROM " . CUSTOM_USER_TABLE . " u LEFT JOIN {$bp->profile->table_name_data} pd ON u.ID = pd.user_id LEFT JOIN {$bp->profile->table_name_fields} pf ON pd.field_id = pf.id WHERE u.spam = 0 AND u.deleted = 0 AND u.user_status = 0 AND pf.name = %s ORDER BY pd.value ASC", BP_XPROFILE_FULLNAME_FIELD_NAME ) );
-		$paged_users_sql = apply_filters( 'bp_core_alphabetical_users_sql', $wpdb->prepare( "SELECT DISTINCT u.ID as user_id FROM " . CUSTOM_USER_TABLE . " u LEFT JOIN {$bp->profile->table_name_data} pd ON u.ID = pd.user_id LEFT JOIN {$bp->profile->table_name_fields} pf ON pd.field_id = pf.id WHERE u.spam = 0 AND u.deleted = 0 AND u.user_status = 0 AND pf.name = %s ORDER BY pd.value ASC{$pag_sql}", BP_XPROFILE_FULLNAME_FIELD_NAME ), $pag_sql );
+		$total_users_sql = apply_filters( 'bp_core_search_users_count_sql', "SELECT DISTINCT u.ID as user_id FROM " . CUSTOM_USER_TABLE . " u LEFT JOIN {$bp->profile->table_name_data} pd ON u.ID = pd.user_id WHERE u.spam = 0 AND u.deleted = 0 AND u.user_status = 0 AND pd.value LIKE '%%$search_terms%%' ORDER BY pd.value ASC", $search_terms );
+		$paged_users_sql = apply_filters( 'bp_core_search_users_sql', "SELECT DISTINCT u.ID as user_id FROM " . CUSTOM_USER_TABLE . " u LEFT JOIN {$bp->profile->table_name_data} pd ON u.ID = pd.user_id WHERE u.spam = 0 AND u.deleted = 0 AND u.user_status = 0 AND pd.value LIKE '%%$search_terms%%' ORDER BY pd.value ASC{$pag_sql}", $search_terms, $pag_sql );
 
 		$total_users = $wpdb->get_var( $total_users_sql );
 		$paged_users = $wpdb->get_results( $paged_users_sql );
@@ -207,7 +221,7 @@ class BP_Core_User {
 
 		$letter = like_escape( $wpdb->escape( $letter ) );
 
-		$total_users_sql = apply_filters( 'bp_core_users_by_letter_count_sql', $wpdb->prepare( "SELECT DISTINCT count(u.ID) FROM " . CUSTOM_USER_TABLE . " u LEFT JOIN {$bp->profile->table_name_data} pd ON u.ID = pd.user_id LEFT JOIN {$bp->profile->table_name_fields} pf ON pd.field_id = pf.id WHERE u.spam = 0 AND u.deleted = 0 AND u.user_status = 0 AND pf.name = %s AND pd.value LIKE '$letter%%' ORDER BY pd.value ASC", BP_XPROFILE_FULLNAME_FIELD_NAME ), $letter );
+		$total_users_sql = apply_filters( 'bp_core_users_by_letter_count_sql', $wpdb->prepare( "SELECT COUNT(DISTINCT u.ID) FROM " . CUSTOM_USER_TABLE . " u LEFT JOIN {$bp->profile->table_name_data} pd ON u.ID = pd.user_id LEFT JOIN {$bp->profile->table_name_fields} pf ON pd.field_id = pf.id WHERE u.spam = 0 AND u.deleted = 0 AND u.user_status = 0 AND pf.name = %s AND pd.value LIKE '$letter%%' ORDER BY pd.value ASC", BP_XPROFILE_FULLNAME_FIELD_NAME ), $letter );
 		$paged_users_sql = apply_filters( 'bp_core_users_by_letter_sql', $wpdb->prepare( "SELECT DISTINCT u.ID as user_id FROM " . CUSTOM_USER_TABLE . " u LEFT JOIN {$bp->profile->table_name_data} pd ON u.ID = pd.user_id LEFT JOIN {$bp->profile->table_name_fields} pf ON pd.field_id = pf.id WHERE u.spam = 0 AND u.deleted = 0 AND u.user_status = 0 AND pf.name = %s AND pd.value LIKE '$letter%%' ORDER BY pd.value ASC{$pag_sql}", BP_XPROFILE_FULLNAME_FIELD_NAME ), $letter, $pag_sql );
 
 		$total_users = $wpdb->get_var( $total_users_sql );
@@ -227,7 +241,7 @@ class BP_Core_User {
 
 		$search_terms = like_escape( $wpdb->escape( $search_terms ) );
 
-		$total_users_sql = apply_filters( 'bp_core_search_users_count_sql', "SELECT DISTINCT count(u.ID) as user_id FROM " . CUSTOM_USER_TABLE . " u LEFT JOIN {$bp->profile->table_name_data} pd ON u.ID = pd.user_id WHERE u.spam = 0 AND u.deleted = 0 AND u.user_status = 0 AND pd.value LIKE '%%$search_terms%%' ORDER BY pd.value ASC", $search_terms );
+		$total_users_sql = apply_filters( 'bp_core_search_users_count_sql', "SELECT COUNT(DISTINCT u.ID) as user_id FROM " . CUSTOM_USER_TABLE . " u LEFT JOIN {$bp->profile->table_name_data} pd ON u.ID = pd.user_id WHERE u.spam = 0 AND u.deleted = 0 AND u.user_status = 0 AND pd.value LIKE '%%$search_terms%%' ORDER BY pd.value ASC", $search_terms );
 		$paged_users_sql = apply_filters( 'bp_core_search_users_sql', "SELECT DISTINCT u.ID as user_id FROM " . CUSTOM_USER_TABLE . " u LEFT JOIN {$bp->profile->table_name_data} pd ON u.ID = pd.user_id WHERE u.spam = 0 AND u.deleted = 0 AND u.user_status = 0 AND pd.value LIKE '%%$search_terms%%' ORDER BY pd.value ASC{$pag_sql}", $search_terms, $pag_sql );
 
 		$total_users = $wpdb->get_var( $total_users_sql );
@@ -299,7 +313,7 @@ class BP_Core_Notification {
 	function check_access( $user_id, $notification_id ) {
 		global $wpdb, $bp;
 
-		return $wpdb->get_var( $wpdb->prepare( "SELECT count(id) FROM {$bp->core->table_name_notifications} WHERE id = %d AND user_id = %d", $notification_id, $user_id ) );
+		return $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(id) FROM {$bp->core->table_name_notifications} WHERE id = %d AND user_id = %d", $notification_id, $user_id ) );
 	}
 
 	function get_all_for_user( $user_id ) {

@@ -77,8 +77,11 @@ function bp_core_fetch_avatar( $args = '' ) {
 		if ( !$avatar_dir ) return false;
 	}
 
-	if ( !$css_id )
-		$css_id = $object . '-' . $item_id . '-avatar';
+	/* Add an identifying class to each item */
+	$class .= ' ' . $object . '-' . $item_id . '-avatar';
+
+	if ( !empty($css_id) )
+		$css_id = " id='{$css_id}'";
 
 	if ( $width )
 		$html_width = " width='{$width}'";
@@ -112,11 +115,11 @@ function bp_core_fetch_avatar( $args = '' ) {
 		closedir($av_dir);
 
 		if ( $avatar_url )
-			return apply_filters( 'bp_core_fetch_avatar', "<img src='{$avatar_url}' alt='{$alt}' id='{$css_id}' class='{$class}'{$html_width}{$html_height} />", $params );
+			return apply_filters( 'bp_core_fetch_avatar', "<img src='{$avatar_url}' alt='{$alt}' class='{$class}'{$css_id}{$html_width}{$html_height} />", $params );
 	}
 
 	/* If no avatars have been uploaded for this item, display a gravatar */
-	if ( !file_exists( $avatar_url ) && !$no_grav ) {
+	if ( !$no_grav ) {
 		if ( empty( $bp->grav_default->{$object} ) )
 			$default_grav = 'wavatar';
 		else if ( 'mystery' == $bp->grav_default->{$object} )
@@ -129,7 +132,8 @@ function bp_core_fetch_avatar( $args = '' ) {
 		else if ( 'thumb' == $type ) $grav_size = BP_AVATAR_THUMB_WIDTH;
 
 		if ( 'user' == $object ) {
-			$grav_email = bp_core_get_user_email( $item_id );
+			$ud = get_userdata( $item_id );
+			$grav_email = $ud->user_email;
 		} else if ( 'group' == $object || 'blog' == $object ) {
 			$grav_email = "{$item_id}-{$object}@{$bp->root_domain}";
 		}
@@ -137,10 +141,11 @@ function bp_core_fetch_avatar( $args = '' ) {
 		$grav_email = apply_filters( 'bp_core_gravatar_email', $grav_email, $item_id, $object );
 		$gravatar = apply_filters( 'bp_gravatar_url', 'http://www.gravatar.com/avatar/' ) . md5( $grav_email ) . '?d=' . $default_grav . '&amp;s=' . $grav_size;
 
-		return apply_filters( 'bp_core_fetch_avatar', "<img src='{$gravatar}' alt='{$alt}' id='{$css_id}' class='{$class}'{$html_width}{$html_height} />", $params );
+		return apply_filters( 'bp_core_fetch_avatar', "<img src='{$gravatar}' alt='{$alt}' class='{$class}'{$css_id}{$html_width}{$html_height} />", $params );
 
-	} else if ( !file_exists( $avatar_url ) && $no_grav )
+	} else {
 		return false;
+	}
 }
 
 function bp_core_delete_existing_avatar( $args = '' ) {
@@ -216,12 +221,12 @@ function bp_core_avatar_handle_upload( $file, $upload_dir_filter ) {
 	require_once( ABSPATH . '/wp-admin/includes/file.php' );
 
 	$uploadErrors = array(
-        0 => __("There is no error, the file uploaded with success", 'buddypress'),
-        1 => __("Your image was bigger than the maximum allowed file size of: ", 'buddypress') . size_format(BP_AVATAR_ORIGINAL_MAX_FILESIZE),
-        2 => __("Your image was bigger than the maximum allowed file size of: ", 'buddypress') . size_format(BP_AVATAR_ORIGINAL_MAX_FILESIZE),
-        3 => __("The uploaded file was only partially uploaded", 'buddypress'),
-        4 => __("No file was uploaded", 'buddypress'),
-        6 => __("Missing a temporary folder", 'buddypress')
+		0 => __("There is no error, the file uploaded with success", 'buddypress'),
+		1 => __("Your image was bigger than the maximum allowed file size of: ", 'buddypress') . size_format(BP_AVATAR_ORIGINAL_MAX_FILESIZE),
+		2 => __("Your image was bigger than the maximum allowed file size of: ", 'buddypress') . size_format(BP_AVATAR_ORIGINAL_MAX_FILESIZE),
+		3 => __("The uploaded file was only partially uploaded", 'buddypress'),
+		4 => __("No file was uploaded", 'buddypress'),
+		6 => __("Missing a temporary folder", 'buddypress')
 	);
 
 	if ( !bp_core_check_avatar_upload( $file ) ) {
@@ -263,6 +268,12 @@ function bp_core_avatar_handle_upload( $file, $upload_dir_filter ) {
 	else {
 		$bp->avatar_admin->image->dir = $bp->avatar_admin->resized;
 		@unlink( $bp->avatar_admin->original['file'] );
+	}
+
+	/* Check for WP_Error on what should be an image */
+	if ( is_wp_error( $bp->avatar_admin->image->dir ) ) {
+		bp_core_add_message( sprintf( __( 'Upload failed! Error was: %s', 'buddypress' ), $bp->avatar_admin->image->dir->get_error_message() ), 'error' );
+		return false;
 	}
 
 	/* Set the url value for the image */

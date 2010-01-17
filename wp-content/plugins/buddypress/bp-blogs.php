@@ -126,7 +126,7 @@ add_action( 'plugins_loaded', 'bp_blogs_setup_globals', 5 );
 add_action( 'admin_menu', 'bp_blogs_setup_globals', 2 );
 
 function bp_blogs_setup_root_component() {
-	/* Register 'groups' as a root component */
+	/* Register 'blogs' as a root component */
 	bp_core_add_root_component( BP_BLOGS_SLUG );
 }
 add_action( 'plugins_loaded', 'bp_blogs_setup_root_component', 2 );
@@ -351,6 +351,7 @@ function bp_blogs_record_post( $post_id, $post, $user_id = false ) {
 
 	if ( !$user_id )
 		$user_id = (int)$post->post_author;
+
 	/* This is to stop infinate loops with Donncha's sitewide tags plugin */
 	if ( (int)get_site_option( 'tags_blog_id' ) == (int)$blog_id )
 		return false;
@@ -445,6 +446,10 @@ function bp_blogs_record_comment( $comment_id, $is_approved ) {
 	$user_id = (int)$user->ID;
 
 	if ( !$user_id )
+		return false;
+
+	/* If this is a password protected post, don't record the comment */
+	if ( !empty( $post->post_password ) )
 		return false;
 
 	$recorded_comment = new BP_Blogs_Comment;
