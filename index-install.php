@@ -520,7 +520,7 @@ function get_clean_basedomain() {
 }
 
 function step3() {
-	global $wpdb, $current_site, $dirs, $wpmu_version;
+	global $wpdb, $current_site, $dirs, $wpmu_version, $wp_db_version;
 	$base = stripslashes( dirname( $_SERVER["SCRIPT_NAME"] ) );
 	if( $base != "/") {
 		$base .= "/";
@@ -544,6 +544,7 @@ function step3() {
 	$wpdb->query( "INSERT INTO ".$wpdb->sitemeta." (meta_id, site_id, meta_key, meta_value) VALUES (NULL, 1, 'site_admins', '" . serialize( array( 'admin' ) ) . "' )" );
 	$wpdb->query( "INSERT INTO ".$wpdb->sitemeta." (meta_id, site_id, meta_key, meta_value) VALUES (NULL, 1, 'allowedthemes', '" . serialize( array( 'classic' => 1, 'default' => 1 ) ) . "' )" );
 	$wpdb->query( "INSERT INTO ".$wpdb->sitemeta." (meta_id, site_id, meta_key, meta_value) VALUES (NULL, 1, 'illegal_names', '" . serialize( array(  "www", "web", "root", "admin", "main", "invite", "administrator" ) ) . "' )" );
+	$wpdb->query( "INSERT INTO ".$wpdb->sitemeta." (meta_id, site_id, meta_key, meta_value) VALUES (NULL, 1, 'wpmu_upgrade_site', '{$wp_db_version}')" );
 	$wpdb->query( "INSERT INTO ".$wpdb->sitemeta." (meta_id, site_id, meta_key, meta_value) VALUES (NULL, 1, 'welcome_email', 'Dear User,
 
 Your new SITE_NAME blog has been successfully set up at:
@@ -577,6 +578,7 @@ Thanks!
 	} else {
 		update_blog_option( 1, 'permalink_structure', '/blog/%year%/%monthnum%/%day%/%postname%/');
 	}
+	update_blog_option( 1, 'rewrite_rules', false );
 	
 	$msg = "Your new WordPress MU site has been created at\nhttp://{$domain}{$base}\n\nLogin details:\nUsername: admin\nPassword: $pass\nLogin: http://{$domain}{$base}wp-login.php\n";
 	wp_mail( $email, "Your new WordPress MU site is ready!", $msg, "From: wordpress@" . $_SERVER[ 'HTTP_HOST' ]  );

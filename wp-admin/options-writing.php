@@ -81,6 +81,39 @@ wp_dropdown_categories(array('hide_empty' => 0, 'name' => 'default_link_category
 <?php do_settings_fields('writing', 'remote_publishing'); ?>
 </table>
 
+<?php if ( defined( 'POST_BY_EMAIL' ) ) { ?>
+<h3><?php _e('Post via e-mail') ?></h3>
+<p><?php printf(__('To post to WordPress by e-mail you must set up a secret e-mail account with POP3 access. Any mail received at this address will be posted, so it&#8217;s a good idea to keep this address very secret. Here are three random strings you could use: <kbd>%s</kbd>, <kbd>%s</kbd>, <kbd>%s</kbd>.'), wp_generate_password(8, false), wp_generate_password(8, false), wp_generate_password(8, false)) ?></p>
+
+<table class="form-table">
+<tr valign="top">
+<th scope="row"><label for="mailserver_url"><?php _e('Mail Server') ?></label></th>
+<td><input name="mailserver_url" type="text" id="mailserver_url" value="<?php form_option('mailserver_url'); ?>" class="regular-text code" />
+<label for="mailserver_port"><?php _e('Port') ?></label>
+<input name="mailserver_port" type="text" id="mailserver_port" value="<?php form_option('mailserver_port'); ?>" class="small-text" />
+</td>
+</tr>
+<tr valign="top">
+<th scope="row"><label for="mailserver_login"><?php _e('Login Name') ?></label></th>
+<td><input name="mailserver_login" type="text" id="mailserver_login" value="<?php form_option('mailserver_login'); ?>" class="regular-text" /></td>
+</tr>
+<tr valign="top">
+<th scope="row"><label for="mailserver_pass"><?php _e('Password') ?></label></th>
+<td>
+<input name="mailserver_pass" type="text" id="mailserver_pass" value="<?php form_option('mailserver_pass'); ?>" class="regular-text" />
+</td>
+</tr>
+<tr valign="top">
+<th scope="row"><label for="default_email_category"><?php _e('Default Mail Category') ?></label></th>
+<td>
+<?php
+wp_dropdown_categories(array('hide_empty' => 0, 'name' => 'default_email_category', 'orderby' => 'name', 'selected' => get_option('default_email_category'), 'hierarchical' => true));
+?>
+</td>
+</tr>
+<?php do_settings_fields('writing', 'post_via_email'); ?>
+</table>
+<?php } ?>
 
 <?php do_settings_sections('writing'); ?>
 

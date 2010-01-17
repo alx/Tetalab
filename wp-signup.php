@@ -33,7 +33,7 @@ function wpmu_signup_stylesheet() {
 		.mu_register { width: 90%; margin:0 auto; }
 		.mu_register form { margin-top: 2em; }
 		.mu_register .error { font-weight:700; padding:10px; color:#333333; background:#FFEBE8; border:1px solid #CC0000; }
-		.mu_register #submit,
+		.mu_register input[type="submit"],
 			.mu_register #blog_title,
 			.mu_register #user_email, 
 			.mu_register #blogname,
@@ -89,19 +89,21 @@ function show_blog_form($blogname = '', $blog_title = '', $errors = '') {
 	echo '<input name="blog_title" type="text" id="blog_title" value="'.wp_specialchars($blog_title, 1).'" /></p>';
 	?>
 
-	<p>
-		<label for="blog_public_on"><?php _e('Privacy:') ?></label>
-		<?php _e('I would like my blog to appear in search engines like Google and Technorati, and in public listings around this site.'); ?> 
-		<div style="clear:both;"></div>
-		<label class="checkbox" for="blog_public_on">
-			<input type="radio" id="blog_public_on" name="blog_public" value="1" <?php if( !isset( $_POST['blog_public'] ) || $_POST['blog_public'] == '1' ) { ?>checked="checked"<?php } ?> />
-			<strong><?php _e( 'Yes' ); ?></strong>
-		</label>
-		<label class="checkbox" for="blog_public_off">
-			<input type="radio" id="blog_public_off" name="blog_public" value="0" <?php if( isset( $_POST['blog_public'] ) && $_POST['blog_public'] == '0' ) { ?>checked="checked"<?php } ?> />
-			<strong><?php _e( 'No' ); ?></strong>
-		</label>
-	</p>
+	<div id="privacy">
+        <p class="privacy-intro">
+            <label for="blog_public_on"><?php _e('Privacy:') ?></label>
+            <?php _e('I would like my blog to appear in search engines like Google and Technorati, and in public listings around this site.'); ?> 
+            <div style="clear:both;"></div>
+            <label class="checkbox" for="blog_public_on">
+                <input type="radio" id="blog_public_on" name="blog_public" value="1" <?php if( !isset( $_POST['blog_public'] ) || $_POST['blog_public'] == '1' ) { ?>checked="checked"<?php } ?> />
+                <strong><?php _e( 'Yes' ); ?></strong>
+            </label>
+            <label class="checkbox" for="blog_public_off">
+                <input type="radio" id="blog_public_off" name="blog_public" value="0" <?php if( isset( $_POST['blog_public'] ) && $_POST['blog_public'] == '0' ) { ?>checked="checked"<?php } ?> />
+                <strong><?php _e( 'No' ); ?></strong>
+            </label>
+        </p>
+	</div>
 	
 	<?php
 	do_action('signup_blogform', $errors);
@@ -180,8 +182,7 @@ function signup_another_blog($blogname = '', $blog_title = '', $errors = '') {
 		<input type="hidden" name="stage" value="gimmeanotherblog" />
 		<?php do_action( "signup_hidden_fields" ); ?>
 		<?php show_blog_form($blogname, $blog_title, $errors); ?>
-		<p>
-			<input id="submit" type="submit" name="submit" class="submit" value="<?php _e('Create Blog &raquo;') ?>" /></p>
+		<p class="submit"><input type="submit" name="submit" class="submit" value="<?php _e('Create Blog &raquo;') ?>" /></p>
 	</form>
 	<?php
 }
@@ -258,7 +259,7 @@ function signup_user($user_name = '', $user_email = '', $errors = '') {
 		<?php } ?>
 		</p>
 		
-		<input id="submit" type="submit" name="submit" class="submit" value="<?php _e('Next &raquo;') ?>" />
+		<p class="submit"><input type="submit" name="submit" class="submit" value="<?php _e('Next &raquo;') ?>" /></p>
 	</form>
 	<?php
 }
@@ -314,8 +315,7 @@ function signup_blog($user_name = '', $user_email = '', $blogname = '', $blog_ti
 		<input type="hidden" name="user_email" value="<?php echo $user_email ?>" />
 		<?php do_action( "signup_hidden_fields" ); ?>
 		<?php show_blog_form($blogname, $blog_title, $errors); ?>
-		<p>
-			<input id="submit" type="submit" name="submit" class="submit" value="<?php _e('Signup &raquo;') ?>" /></p>
+		<p class="submit"><input type="submit" name="submit" class="submit" value="<?php _e('Signup &raquo;') ?>" /></p>
 	</form>
 	<?php
 }
@@ -357,7 +357,7 @@ function confirm_blog_signup($domain, $path, $blog_title, $user_name = '', $user
 	<h2><?php _e('Still waiting for your email?'); ?></h2>
 	<p>
 		<?php _e("If you haven't received your email yet, there are a number of things you can do:") ?>
-		<ul>
+		<ul id="noemail-tips">
 			<li><p><strong><?php _e('Wait a little longer.  Sometimes delivery of email can be delayed by processes outside of our control.') ?></strong></p></li>
 			<li><p><?php _e('Check the junk email or spam folder of your email client.  Sometime emails wind up there by mistake.') ?></p></li>
 			<li><?php printf(__("Have you entered your email correctly?  We think it's %s but if you've entered it incorrectly, you won't receive it."), $user_email) ?></li>
@@ -374,14 +374,18 @@ if( !$active_signup )
 
 $active_signup = apply_filters( 'wpmu_active_signup', $active_signup ); // return "all", "none", "blog" or "user"
 
-if( is_site_admin() )
-	echo '<div class="mu_alert">' . sprintf( __( "Greetings Site Administrator! You are currently allowing '%s' registrations. To change or disable registration go to your <a href='wp-admin/wpmu-options.php'>Options page</a>." ), $active_signup ) . '</div>';
+if( is_site_admin() ) {
+	echo '<div class="mu_alert"><p>' . sprintf( __( "Greetings Site Administrator! You are currently allowing '%s' registrations. To change or disable registration go to your <a href='wp-admin/wpmu-options.php'>Options page</a>." ), $active_signup ) . '</p>';
+	if ( function_exists( 'cfc_stylesheet_html' ) == false && function_exists( 'wphc_option' ) == false )
+		echo '<p>' . __( 'Spam is a huge problem on the Internet. Protect your site by using <a href="http://wordpress-plugins.feifei.us/hashcash/">WP-Hashcash</a>, <a href="http://ocaoimh.ie/cookies-for-comments/">Cookies For Comments</a> or follow <a href="http://www.darcynorman.net/2009/05/20/stopping-spamblog-registration-in-wordpress-multiuser/">this advice</a>. They should help stop or slow down those who create spam blogs on your site.' ) . '</p>';
+	echo '</div>';
+}
 
 $newblogname = isset($_GET['new']) ? strtolower(preg_replace('/^-|-$|[^-a-zA-Z0-9]/', '', $_GET['new'])) : null;
 
 $current_user = wp_get_current_user();
 if( $active_signup == "none" ) {
-	_e( "Registration has been disabled." );
+	echo '<p>' . __( "Registration has been disabled." ) . '</p>';
 } elseif( $active_signup == 'blog' && !is_user_logged_in() ){
 	if( is_ssl() ) {
 		$proto = 'https://';

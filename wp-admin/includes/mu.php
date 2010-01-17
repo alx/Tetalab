@@ -1,5 +1,8 @@
 <?php
 function check_upload_size( $file ) {
+	if ( get_site_option( 'upload_space_check_disabled' ) ) {
+		return $file;
+	}
 	if( $file['error'] != '0' ) // there's already an error
 		return $file;
 
@@ -52,7 +55,7 @@ function wpmu_delete_blog($blog_id, $drop = false) {
 			$wpdb->query( "DROP TABLE IF EXISTS ". current( $drop_table ) ."" );
 		}
 		$wpdb->query( $wpdb->prepare("DELETE FROM $wpdb->blogs WHERE blog_id = %d", $blog_id) );
-		$dir = apply_filters( 'wpmu_delete_blog_upload_dir', constant( "ABSPATH" ) . "wp-content/blogs.dir/{$blog_id}/files/", $blog_id );
+		$dir = apply_filters( 'wpmu_delete_blog_upload_dir', constant( "WP_CONTENT_DIR" ) . "/blogs.dir/{$blog_id}/files/", $blog_id );
 		$dir = rtrim($dir, DIRECTORY_SEPARATOR);
 		$top_dir = $dir;
 		$stack = array($dir);
@@ -144,7 +147,11 @@ function confirm_delete_users( $users ) {
 	echo '<input type="hidden" name="alluser_transfer_delete" />';
 	wp_nonce_field( 'allusers' );
 	foreach ( (array) $_POST['allusers'] as $key => $val ) {
-		if( $val != '' && $val != '0' && $val != '1' ) {
+		if( $val != '' && $val != '0' ) {
+			$user = new WP_User( $val );
+			if ( in_array( $user->user_login, get_site_option( 'site_admins', array( 'admin' ) ) ) ) {
+				wp_die( sprintf( __( 'Warning! User cannot be deleted. The user %s is a site admnistrator.' ), $user->user_login ) );
+			}
 			echo "<input type='hidden' name='user[]' value='{$val}'/>\n";
 			$blogs = get_blogs_of_user( $val, true );
 			if( !empty( $blogs ) ) {
@@ -267,7 +274,8 @@ function update_profile_email() {
 
 function send_confirmation_on_profile_email() {
 	global $errors, $wpdb, $current_user, $current_site;
-	$errors = new WP_Error();
+	if ( ! is_object($errors) )
+		$errors = new WP_Error();
 
 	if( $current_user->id != $_POST[ 'user_id' ] )
 		return false;
@@ -374,6 +382,9 @@ function display_space_usage() {
 
 // Display File upload quota on dashboard
 function dashboard_quota() {	
+	if ( get_site_option( 'upload_space_check_disabled' ) ) {
+		return true;
+	}
 	$quota = get_space_allowed();
 	$used = get_dirsize( BLOGUPLOADDIR )/1024/1024;
 
@@ -387,9 +398,9 @@ function dashboard_quota() {
 	<div class="table">
 	<table>
 		<tr class="first">
-			<td class="first b b-posts"><?php _e('<a href="upload.php" title="Manage Uploads..." class="musublink">'); echo $quota . __('MB</a>'); ?></td>
+			<td class="first b b-posts"><?php printf( __( '<a href="upload.php" title="Manage Uploads..." class="musublink">%sMB</a>' ), $quota ); ?></td>
 			<td class="t posts"><?php _e('Space Allowed'); ?></td>
-			<td class="b b-comments"><?php _e('<a href="upload.php" title="Manage Uploads..." class="musublink">'. $used .'MB ('. $percentused .'%)</a>'); ?></td>
+			<td class="b b-comments"><?php printf( __( '<a href="upload.php" title="Manage Uploads..." class="musublink">%1sMB (%2s%%)</a>' ), $used, $percentused ); ?>
 			<td class="last t comments <?php echo $used_color;?>"><?php _e('Space Used');?></td>
 		</tr>
 	</table>
@@ -447,6 +458,9 @@ function refresh_user_details($id) {
   Determines if the available space defined by the admin has been exceeded by the user
 */
 function wpmu_checkAvailableSpace() {
+	if ( get_site_option( 'upload_space_check_disabled' ) ) {
+		return true;
+	}
 	$spaceAllowed = get_space_allowed();
 
 	$dirName = trailingslashit( BLOGUPLOADDIR );
@@ -469,11 +483,10 @@ function wpmu_checkAvailableSpace() {
 	$size = $size / 1024 / 1024;
 
 	if( ($spaceAllowed - $size) <= 0 ) {
-		define( 'DISABLE_UPLOADS', true );
-		define( 'DISABLE_UPLOADS_MESSAGE', __('Sorry, you must delete files before you can upload any more.') );
+		wp_die( __('Sorry, you must delete files before you can upload any more.') );
 	}
 }
-add_action('upload_files_upload','wpmu_checkAvailableSpace');
+add_action('pre-upload-ui','wpmu_checkAvailableSpace');
 
 function format_code_lang( $code = '' ) {
 	$code = strtolower(substr($code, 0, 2));
@@ -582,10 +595,15 @@ function wpmu_menu() {
 add_action( '_admin_menu', 'wpmu_menu' );
 
 function mu_options( $options ) {
+	if ( defined( 'POST_BY_EMAIL' ) ) {
+		$writing = array( 'ping_sites' );
+	} else {
+		$writing = array( 'ping_sites', 'mailserver_login', 'mailserver_pass', 'default_email_category', 'mailserver_port', 'mailserver_url' );
+	}
 	$removed = array( 
 		'general' => array( 'siteurl', 'home', 'admin_email', 'users_can_register', 'default_role' ),
 		'reading' => array( 'gzipcompression' ),
-		'writing' => array( 'ping_sites', 'mailserver_login', 'mailserver_pass', 'default_email_category', 'mailserver_port', 'mailserver_url' ),
+		'writing' => $writing,
 	);
 
 	$added = array( 'general' => array( 'new_admin_email', 'WPLANG', 'language' ) );
@@ -750,9 +768,13 @@ function admin_notice_feed() {
 add_action( 'admin_notices', 'admin_notice_feed' );
 
 function site_admin_notice() {
-	global $current_user;
-	if( is_site_admin() )
-		printf("<div id='update-nag'>" . __("Hi %s! You're logged in as a site administrator.") . "</div>", $current_user->user_login);
+	global $current_user, $wp_db_version;
+	if( !is_site_admin() )
+		return false;
+	printf("<div id='update-nag'>" . __("Hi %s! You're logged in as a site administrator.") . "</div>", $current_user->user_login);
+	if ( get_site_option( 'wpmu_upgrade_site' ) != $wp_db_version ) {
+		echo "<div id='update-nag'>" . __( 'Thank you for Upgrading! Please visit the <a href="wpmu-upgrade-site.php">Upgrade Site</a> page to update all your blogs.' ) . "</div>";
+	}
 }
 add_action( 'admin_notices', 'site_admin_notice' );
 
@@ -784,32 +806,15 @@ add_filter( 'wp_insert_post_data', 'avoid_blog_page_permalink_collision', 10, 2 
  *
  * Activates a plugin site wide (for all blogs on an installation)
  */
-function activate_sitewide_plugin( $file, $silent = false ) {
-	/* Run the plugin through the normal activation procedure to register hooks and test the code */
-	if ( !$silent )
-		do_action( 'activate_' . $file );
-	
-	/* Run the check on 'Site Wide Only: true' in the plugin header */
-	if ( is_wpmu_sitewide_plugin( $file ) ) {
-		/*** 
-		 * Because this is an WPMU specific plugin that expects to be included rather than
-		 * activated, we'll an an option to include it as it would be in the mu-plugins folder.
-		 */
-		$wpmu_sitewide_plugins = maybe_unserialize( get_site_option( 'wpmu_sitewide_plugins' ) );
+function activate_sitewide_plugin() {
+	if ( !isset( $_GET['sitewide'] ) )
+		return false;
 		
-		/* Add the activated plugin to the list */
-		$wpmu_sitewide_plugins[$file] = time();
-
-		/* Write the updated option to the DB */
-		if ( !update_site_option( 'wpmu_sitewide_plugins', $wpmu_sitewide_plugins ) )
-			return false;
-	}
-
 	/* Add the plugin to the list of sitewide active plugins */
 	$active_sitewide_plugins = maybe_unserialize( get_site_option( 'active_sitewide_plugins' ) );
 	
 	/* Add the activated plugin to the list */
-	$active_sitewide_plugins[ $file ] = time();
+	$active_sitewide_plugins[ $_GET['plugin'] ] = time();
 
 	/* Write the updated option to the DB */
 	if ( !update_site_option( 'active_sitewide_plugins', $active_sitewide_plugins ) )
@@ -817,55 +822,33 @@ function activate_sitewide_plugin( $file, $silent = false ) {
 
 	return true;
 }
+add_action( 'activate_' . $_GET['plugin'], 'activate_sitewide_plugin' ); 
 
 /**
  * deactivate_sitewide_plugin()
  *
  * Deactivates a plugin site wide (for all blogs on an installation)
  */
-function deactivate_sitewide_plugin( $file, $silent = false ) {
-	/* If this is a wpmu specific plugin, we need to remove it from the include list. */
-	if ( is_wpmu_sitewide_plugin( $file ) ) {
-		$wpmu_sitewide_plugins = (array) maybe_unserialize( get_site_option( 'wpmu_sitewide_plugins' ) );
-		unset( $wpmu_sitewide_plugins[ $file ] );
-			
-		/* Write the updated option to the DB */
-		if ( !update_site_option( 'wpmu_sitewide_plugins', $wpmu_sitewide_plugins ) )
-			return false;
-	}
-	
+function deactivate_sitewide_plugin( $plugin = false ) {
+	if ( !$plugin )
+		$plugin = $_GET['plugin'];
+		
 	/* Get the active sitewide plugins */
 	$active_sitewide_plugins = (array) maybe_unserialize( get_site_option( 'active_sitewide_plugins' ) );
-	
+
 	/* Remove the plugin we are deactivating from the list of active sitewide plugins */
 	foreach ( $active_sitewide_plugins as $plugin_file => $activation_time ) {
-		if ( $file == $plugin_file )
+		if ( $plugin == $plugin_file )
 			unset( $active_sitewide_plugins[ $plugin_file ] );
 	}
-	
+
 	if ( !update_site_option( 'active_sitewide_plugins', $active_sitewide_plugins ) )
 		wp_redirect( 'plugins.php?error=true' );
 	
-	/***
-	 * Add the plugin to the list of deactivated sitewide plugins, along with a unique hash 
-	 * so that the plugin can be re-activated on a blog level by blog administrators.
-	 */
-	$deactivated_sitewide_plugins = (array) maybe_unserialize( get_site_option( 'deactivated_sitewide_plugins' ) );
-	
-	/* Add the deactivated plugin to the list */
-	$deactivated_sitewide_plugins[ $file ] = wp_hash( $file . time() );
-		
-	/* Write the updated option to the DB */
-	if ( !update_site_option( 'deactivated_sitewide_plugins', $deactivated_sitewide_plugins ) )
-		return false;
-
-	/* Run the deactivate hook */
-	if ( !$silent )
-		do_action( 'deactivate_' . $file );
-		
 	return true;
 }
-add_action( 'deactivate_invalid_plugin', 'deactivate_sitewide_plugin', 10, 1 );
+add_action( 'deactivate_' . $_GET['plugin'], 'deactivate_sitewide_plugin' ); 
+add_action( 'deactivate_invalid_plugin', 'deactivate_sitewide_plugin' ); 
 
 /**
  * add_sitewide_activate_row()
@@ -878,10 +861,13 @@ function add_sitewide_activate_row( $file, $plugin_data, $context ) {
 	
 	if ( 'sitewide-active' == $context )
 		return false;
+	
+	if ( is_plugin_active( $file ) )
+		return false;
 		
 	echo '<tr><td colspan="5" style="background: #f5f5f5; text-align: right;">';
 
-	echo '<a href="' . wp_nonce_url( admin_url( 'wpmu-sitewide-plugins.php?action=activate&amp;plugin=' . $file ), 'activate-sitewide-plugin' ) . '" title="' . __( 'Activate this plugin for all blogs across the entire network' ) . '">&uarr; ' . sprintf( __( 'Activate %s Site Wide' ), strip_tags( $plugin_data["Title"] ) ) . '</a>';
+	echo '<a href="' . wp_nonce_url( admin_url( 'plugins.php?action=activate&amp;sitewide=1&amp;plugin=' . $file ), 'activate-plugin_' . $file ) . '" title="' . __( 'Activate this plugin for all blogs across the entire network' ) . '">&uarr; ' . sprintf( __( 'Activate %s Site Wide' ), strip_tags( $plugin_data["Title"] ) ) . '</a>';
 	echo '</td></tr>';
 }
 add_action( 'after_plugin_row', 'add_sitewide_activate_row', 9, 3 );
@@ -907,6 +893,7 @@ function is_wpmu_sitewide_plugin( $file ) {
 
 	return false;
 }
+
 
 /**
  * list_activate_sitewide_plugins()
@@ -949,7 +936,7 @@ function list_activate_sitewide_plugins() {
 		<?php
 			foreach ( (array) $active_sitewide_plugins as $plugin_file => $activated_time ) {
 				$action_links = array();
-				$action_links[] = '<a href="' . wp_nonce_url( 'wpmu-sitewide-plugins.php?action=deactivate&amp;plugin=' . $plugin_file, 'deactivate-sitewide-plugin' ) . '" title="' . __('Deactivate this plugin site wide') . '">' . __('Deactivate') . '</a>';
+				$action_links[] = '<a href="' . wp_nonce_url( 'plugins.php?action=deactivate&amp;sitewide=1&amp;plugin=' . $plugin_file, 'deactivate-plugin_' . $plugin_file ) . '" title="' . __('Deactivate this plugin site wide') . '">' . __('Deactivate') . '</a>';
 
 				if ( current_user_can('edit_plugins') && is_writable(WP_PLUGIN_DIR . '/' . $plugin_file) )
 					$action_links[] = '<a href="plugin-editor.php?file=' . $plugin_file . '" title="' . __('Open this file in the Plugin Editor') . '" class="edit">' . __('Edit') . '</a>';
@@ -1051,31 +1038,28 @@ add_filter( 'all_plugins', 'sitewide_filter_active_plugins_list' );
 /**
  * check_is_wpmu_plugin_on_activate()
  *
- * When a plugin is activated for just a single blog this function checks to see
- * if the plugin is only supposed to be activated for an entire site (mu-plugin)
- * If so, deactivate it for the blog, and activate it site wide.
+ * When a plugin is activated, this will check if it should be activated site wide
+ * only.
  */
 function check_is_wpmu_plugin_on_activate() {
 	/***
 	 * On plugin activation on a blog level, check to see if this is actually a 
 	 * site wide MU plugin. If so, deactivate and activate it site wide.
 	 */
-	if ( is_wpmu_sitewide_plugin( $_GET['plugin'] ) ) {
+	if ( is_wpmu_sitewide_plugin( $_GET['plugin'] ) || isset( $_GET['sitewide'] ) ) {
 		deactivate_plugins( $_GET['plugin'], true );
 		
 		/* Silently activate because the activate_* hook has already run. */
-		if ( is_site_admin() )
+		if ( is_site_admin() ) {
+			$_GET['sitewide'] = true;
 			activate_sitewide_plugin( $_GET['plugin'], true );
+		}
 	}
 }
 add_action( 'activate_' . $_GET['plugin'], 'check_is_wpmu_plugin_on_activate' );
 
 /**
- * check_is_wpmu_plugin_on_activate()
- *
- * When a plugin is activated for just a single blog this function checks to see
- * if the plugin is only supposed to be activated for an entire site (mu-plugin)
- * If so, deactivate it for the blog, and activate it site wide.
+ * check_wpmu_plugins_on_bulk_activate()
  */
 function check_wpmu_plugins_on_bulk_activate( $plugins ) {
 	if ( $plugins ) {
@@ -1089,63 +1073,6 @@ function check_wpmu_plugins_on_bulk_activate( $plugins ) {
 		}
 	}
 }
-
-/**
- * manage_sitewide_plugins_for_blog()
- *
- * This will run when a blog admin logs into their blog. It will check to see what
- * plugins are active/deactive site wide and make sure the blog matches these settings.
- */
-function manage_sitewide_plugins_for_blog() {
-	if ( !current_user_can( 'activate_plugins' ) )
-		return false;
-	
-	/* Get the activate sitewide plugins */
-	$active_sitewide_plugins = (array) maybe_unserialize( get_site_option('active_sitewide_plugins') );
-	$wpmu_sitewide_plugins = (array) maybe_unserialize( get_site_option('wpmu_sitewide_plugins') );
-
-	/* Check to see if any of the sitewide plugins are inactive for the blog, and activate them */
-	foreach ( $active_sitewide_plugins as $sitewide_plugin => $activated_time ) {
-		if ( !is_plugin_active( $sitewide_plugin ) && !array_key_exists( $sitewide_plugin, $wpmu_sitewide_plugins ) )
-			activate_plugin( $sitewide_plugin );
-
-		/* Remove the plugin from the "recently active" list */
-		$recently_active_plugins = (array) maybe_unserialize( get_option('recently_activated') );
-		unset( $recently_active_plugins[$sitewide_plugin] );
-
-		update_option( 'recently_activated', $recently_active_plugins );
-	}
-	
-	/* Get the deactivated sitewide plugins */
-	$deactivated_sitewide_plugins = (array) maybe_unserialize( get_site_option('deactivated_sitewide_plugins') );
-	$deactivated_for_blog = (array) maybe_unserialize( get_option('deactivated_sitewide_plugins') );
-	
-	/* Check to see if any of the deactivated sitewide plugins are active for the blog, and deactivate them */
-	foreach ( $deactivated_sitewide_plugins as $plugin_name => $plugin_hash ) {
-		$deactivated_for_blog_hash = $deactivated_for_blog[ $plugin_name ];
-		
-		/* Check the deactivated hash to see if this deactivation has already been done for the current blog */
-		if ( is_plugin_active( $plugin_name ) && $deactivated_for_blog_hash != $plugin_hash ) {
-			deactivate_plugins( $plugin_name );
-
-			/***
-			 * If this plugin has not been deactivated for this sitewide deactivation before,
-			 * update the deactivated_sitewide_plugins option for this blog, to record the hash and plugin name.
-			 * This will allow the blog administrator to re-enable the plugin just for this blog.
-			 */
-			$deactivated_for_blog[ $plugin_name ] = $plugin_hash;
-
-			update_option( 'deactivated_sitewide_plugins', $deactivated_for_blog );
-		}
-	}
-}
-if( is_site_admin() ) {
-	add_action( 'admin_init', 'manage_sitewide_plugins_for_blog' );
-} else {
-	add_action( 'wp_login', 'manage_sitewide_plugins_for_blog' );
-}
-add_action( 'activate_sitewide_plugin', 'manage_sitewide_plugins_for_blog' );
-add_action( 'deactivate_sitewide_plugin', 'manage_sitewide_plugins_for_blog' );
 
 function remove_edit_plugin_link( $action_links, $plugin_file, $plugin_data, $context ) {
 	foreach( $action_links as $t => $link ) {
@@ -1272,19 +1199,38 @@ function blogs_listing() {
 		echo "</td></tr>";
 	}
 	reset( $blogs );
-	foreach( $blogs as $user_blog ) {
-		$c = $c == "alternate" ? "" : "alternate";
-		?><tr class='<?php echo $c; ?>'><td valign='top'><h3><?php echo $user_blog->blogname; ?></h3>
-		<p><?php echo apply_filters( "myblogs_blog_actions", "<a href='{$user_blog->siteurl}'>" . __( 'Visit' ) . "</a> | <a href='{$user_blog->siteurl}/wp-admin/'>" . __( 'Dashboard' ) . "</a>", $user_blog ); ?></p>
-		</td><td valign='top'>
-		<?php
-		echo apply_filters( 'myblogs_options', '', $user_blog );
-		?></td></tr><?php
+	$num = count( $blogs );
+	$cols = 1;
+	if ( $num >= 20 ) {
+		$cols = 4;
+	} elseif ( $num >= 10 ) {
+		$cols = 2;
 	}
-	?>
+	$num_rows = ceil($num/$cols);
+	$split = 0;
+	for( $i = 1; $i <= $num_rows; $i++ ) {
+		$rows[] = array_slice( $blogs, $split, $cols );
+		$split = $split + $cols;
+	}
+  
+	foreach( $rows as $row ) {
+		$c = $c == "alternate" ? "" : "alternate";
+		echo "<tr class='$c'>";
+		foreach( $row as $user_blog ) {
+			$t = $t == "border-right: 1px solid #ccc;" ? "" : "border-right: 1px solid #ccc;";
+			echo "<td valign='top' style='$t; width:50%'>";
+			echo "<h3>{$user_blog->blogname}</h3>";
+			echo "<p>" . apply_filters( "myblogs_blog_actions", "<a href='{$user_blog->siteurl}'>" . __( 'Visit' ) . "</a> | <a href='{$user_blog->siteurl}/wp-admin/'>" . __( 'Dashboard' ) . "</a>", $user_blog ) . "</p>";
+			echo apply_filters( 'myblogs_options', '', $user_blog );
+			echo "</td>";
+		}
+		echo "</tr>";
+	}?>
 	</table>
 	<input type="hidden" name="action" value="updateblogsettings" />
-	<input type="submit" class="button-primary" value="<?php _e('Update Options') ?>" name="submit" />
+	<p>
+	 <input type="submit" class="button-primary" value="<?php _e('Update Options') ?>" name="submit" />
+	</p>
 	</form>
 	</div>
 	<?php
@@ -1309,4 +1255,73 @@ function update_signup_email_from_profile( $user_id ) {
 }
 add_action( 'edit_user_profile_update', 'update_signup_email_from_profile' );
 
+function stripslashes_from_options( $blog_id ) {
+	global $wpdb;
+
+	if ( $blog_id == 1 ) { // check site_options too
+		$start = 0;
+		while( $rows = $wpdb->get_results( "SELECT meta_key, meta_value FROM {$wpdb->sitemeta} ORDER BY meta_id LIMIT $start, 20" ) ) {
+			foreach( $rows as $row ) {
+				$value = $row->meta_value;
+				if ( !@unserialize( $value ) ) 
+					$value = stripslashes( $value ); 
+				if ( $value !== $row->meta_value ) {
+					update_site_option( $row->meta_key, $value );
+				}
+			}
+			$start += 20;
+		}
+	}
+	$start = 0;
+	$options_table = $wpdb->get_blog_prefix( $blog_id ) . "options";
+	while( $rows = $wpdb->get_results( "SELECT option_name, option_value FROM $options_table ORDER BY option_id LIMIT $start, 20" ) ) {
+		foreach( $rows as $row ) {
+			$value = $row->option_value;
+			if ( !@unserialize( $value ) ) 
+				$value = stripslashes( $value ); 
+			if ( $value !== $row->option_value ) {
+				update_blog_option( $blog_id, $row->option_name, $value );
+			}
+		}
+		$start += 20;
+	}
+	refresh_blog_details( $blog_id );
+}
+add_action( 'wpmu_upgrade_site', 'stripslashes_from_options' );
+
+function show_post_thumbnail_warning() {
+	if ( false == is_site_admin() ) {
+		return;
+	}
+	$mu_media_buttons = get_site_option( 'mu_media_buttons', array() );
+	if ( !$mu_media_buttons[ 'image' ] && current_theme_supports( 'post-thumbnails' ) ) {
+		echo "<div id='update-nag'>" . sprintf( __( "Warning! The current theme supports post thumbnails. You must enable image uploads on <a href='%s'>the options page</a> for it to work." ), admin_url( 'wpmu-options.php' ) ) . "</div>";
+	}
+}
+add_action( 'admin_notices', 'show_post_thumbnail_warning' );
+
+function anti_spam_nag() {
+	if ( is_site_admin() == false || get_site_option( 'no_anti_spam_nag' ) ) {
+		return false;
+	}
+
+	if ( !get_site_option( 'registration' ) || get_site_option( 'registration' ) != 'all' )
+		return false;
+
+	if ( $_POST[ 'no_anti_spam_nag' ] ) {
+		check_admin_referer( 'spam_nag' );
+		update_site_option( 'no_anti_spam_nag', 1 );
+		return false;
+	}
+
+	if ( function_exists( 'cfc_stylesheet_html' ) == false && function_exists( 'wphc_option' ) == false ) {
+		echo "<div id='update-nag'><p>" . sprintf( __( "Warning! People can create blogs on your site. Please consider using <a href='%1s'>Cookies for Comments</a> or <a href='%2s'>WP-Hashcash</a> to fight the spammers." ), 'http://wordpress.org/extend/plugins/cookies-for-comments/', 'http://wordpress.org/extend/plugins/wp-hashcash/' );
+		echo "<form action='index.php' method='POST'>";
+		echo "<input type='hidden' name='no_anti_spam_nag' value='1' />";
+		wp_nonce_field( 'spam_nag' );
+		echo "<input type='submit' value='" . __( 'Hide' ) . "' />";
+		echo "</p></div>";
+	}
+}
+add_action( 'admin_notices', 'anti_spam_nag' );
 ?>

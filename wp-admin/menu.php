@@ -91,7 +91,7 @@ else
 if ( current_user_can('edit_users') ) {
 	$_wp_real_parent_file['profile.php'] = 'users.php'; // Back-compat for plugins adding submenus to profile.php.
 	$submenu['users.php'][5] = array(__('Authors &amp; Users'), 'edit_users', 'users.php');
-	$submenu['users.php'][10] = array(__('Add New'), 'create_users', 'user-new.php');
+	$submenu['users.php'][10] = array(_x('Add New', 'user'), 'create_users', 'user-new.php');
 	$submenu['users.php'][15] = array(__('Your Profile'), 'read', 'profile.php');
 } else {
 	$_wp_real_parent_file['users.php'] = 'profile.php';
@@ -128,7 +128,7 @@ do_action('_admin_menu');
 // Create list of page plugin hook names.
 foreach ($menu as $menu_page) {
 	$hook_name = sanitize_title(basename($menu_page[2], '.php'));
-	
+
 	// ensure we're backwards compatible
 	$compat = array(
 		'index' => 'dashboard',
@@ -140,12 +140,12 @@ foreach ($menu as $menu_page) {
 		'options-general' => 'settings',
 		'themes' => 'appearance',
 		);
-	
+
 	if ( isset($compat[$hook_name]) )
 		$hook_name = $compat[$hook_name];
 	elseif ( !$hook_name )
 		continue;
-	
+
 	$admin_page_hooks[$menu_page[2]] = $hook_name;
 }
 

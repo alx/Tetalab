@@ -1,6 +1,12 @@
-<?php get_header(); ?>
+<?php
+/**
+ * @package WordPress
+ * @subpackage Default_Theme
+ */
 
-	<div id="content" class="narrowcolumn">
+get_header(); ?>
+
+	<div id="content" class="narrowcolumn" role="main">
 
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 		<div class="post" id="post-<?php the_ID(); ?>">
@@ -14,6 +20,9 @@
 		</div>
 		<?php endwhile; endif; ?>
 	<?php edit_post_link('Edit this entry.', '<p>', '</p>'); ?>
+	
+	<?php comments_template(); ?>
+	
 	</div>
 
 <?php get_sidebar(); ?>

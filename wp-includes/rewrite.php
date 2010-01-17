@@ -299,7 +299,7 @@ function url_to_postid($url) {
 			$query = preg_replace("!^.+\?!", '', $query);
 
 			// Substitute the substring matches into the query.
-			eval("\$query = \"" . addslashes($query) . "\";");
+			$query = addslashes(WP_MatchesMapRegex::apply($query, $matches));
 			// Filter out non-public query vars
 			global $wp;
 			parse_str($query, $query_vars);
@@ -1060,6 +1060,8 @@ class WP_Rewrite {
 	 * @return string|bool False if not found. Permalink structure string.
 	 */
 	function get_extra_permastruct($name) {
+		if ( empty($this->permalink_structure) )
+			return false;
 		if ( isset($this->extra_permastructs[$name]) )
 			return $this->extra_permastructs[$name];
 		return false;
@@ -1442,10 +1444,10 @@ class WP_Rewrite {
 					$subcommentquery = $subquery . '&cpage=' . $this->preg_index(2);
 
 					//do endpoints for attachments
-					if ( !empty($endpoint) ) { foreach ( (array) $ep_query_append as $regex => $ep ) {
+					if ( !empty($endpoints) ) { foreach ( (array) $ep_query_append as $regex => $ep ) {
 						if ($ep[0] & EP_ATTACHMENT) {
-							$rewrite[$sub1 . $regex] = $subquery . '?' . $ep[1] . $this->preg_index(2);
-							$rewrite[$sub2 . $regex] = $subquery . '?' . $ep[1] . $this->preg_index(2);
+							$rewrite[$sub1 . $regex] = $subquery . $ep[1] . $this->preg_index(2);
+							$rewrite[$sub2 . $regex] = $subquery . $ep[1] . $this->preg_index(2);
 						}
 					} }
 
@@ -1607,11 +1609,11 @@ class WP_Rewrite {
 	 * @return array Rewrite rules.
 	 */
 	function wp_rewrite_rules() {
-		$this->rules = get_transient('rewrite_rules');
+		$this->rules = get_option('rewrite_rules');
 		if ( empty($this->rules) ) {
 			$this->matches = 'matches';
 			$this->rewrite_rules();
-			set_transient('rewrite_rules', $this->rules);
+			update_option('rewrite_rules', $this->rules);
 		}
 
 		return $this->rules;
@@ -1715,7 +1717,7 @@ class WP_Rewrite {
 	 *
 	 * @return string
 	 */
-	function iis7_url_rewrite_rules(){
+	function iis7_url_rewrite_rules($add_parent_tags = false, $indent = "  ", $end_of_line = "\n") {
 
 		if ( ! $this->using_permalinks()) {
 			return '';
@@ -1856,10 +1858,10 @@ class WP_Rewrite {
 	 *
 	 * @since 2.0.1
 	 * @access public
-	 * @param $hard bool Whether to update .htaccess (hard flush) or just update rewrite_rules transient (soft flush). Default is true (hard).
+	 * @param $hard bool Whether to update .htaccess (hard flush) or just update rewrite_rules option (soft flush). Default is true (hard).
 	 */
 	function flush_rules($hard = true) {
-		delete_transient('rewrite_rules');
+		delete_option('rewrite_rules');
 		$this->wp_rewrite_rules();
 		if ( $hard && function_exists('save_mod_rewrite_rules') )
 			save_mod_rewrite_rules();

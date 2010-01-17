@@ -201,6 +201,9 @@ class wp_xmlrpc_server extends IXR_Server {
 
 		$this->initialise_blog_option_info( );
 		$this->methods = apply_filters('xmlrpc_methods', $this->methods);
+	}
+
+	function serve_request() {
 		$this->IXR_Server($this->methods);
 	}
 
@@ -419,6 +422,11 @@ class wp_xmlrpc_server extends IXR_Server {
 				'desc'			=> __( 'Time Format' ),
 				'readonly'		=> false,
 				'option'		=> 'time_format'
+			),
+			'users_can_register'	=> array(
+				'desc'			=> __( 'Allow new users to sign up' ),
+				'readonly'		=> false,
+				'option'		=> 'users_can_register'
 			)
 		);
 
@@ -434,7 +442,6 @@ class wp_xmlrpc_server extends IXR_Server {
 	 * @return array
 	 */
 	function wp_getUsersBlogs( $args ) {
-		global $current_site;
 		// If this isn't on WPMU then just use blogger_getUsersBlogs
 		if( !function_exists( 'is_site_admin' ) ) {
 			array_unshift( $args, 1 );
@@ -527,6 +534,11 @@ class wp_xmlrpc_server extends IXR_Server {
 			$page_date = mysql2date("Ymd\TH:i:s", $page->post_date, false);
 			$page_date_gmt = mysql2date("Ymd\TH:i:s", $page->post_date_gmt, false);
 
+			// For drafts use the GMT version of the date
+			if ( $page->post_status == 'draft' ) {
+				$page_date_gmt = get_gmt_from_date( mysql2date( 'Y-m-d H:i:s', $page->post_date ), 'Ymd\TH:i:s' );
+			}
+
 			// Pull the categories info together.
 			$categories = array();
 			foreach(wp_get_post_categories($page->ID) as $cat_id) {
@@ -589,7 +601,7 @@ class wp_xmlrpc_server extends IXR_Server {
 		$blog_id	= (int) $args[0];
 		$username	= $args[1];
 		$password	= $args[2];
-		$num_pages	= (int) $args[3];
+		$num_pages	= isset($args[3]) ? (int) $args[3] : 10;
 
 		if ( !$user = $this->login($username, $password) ) {
 			return $this->error;
@@ -600,12 +612,7 @@ class wp_xmlrpc_server extends IXR_Server {
 
 		do_action('xmlrpc_call', 'wp.getPages');
 
-		$page_limit = 10;
-		if( isset( $num_pages ) ) {
-			$page_limit = $num_pages;
-		}
-
-		$pages = get_posts( array('post_type' => 'page', 'post_status' => 'all', 'numberposts' => $page_limit) );
+		$pages = get_posts( array('post_type' => 'page', 'post_status' => 'any', 'numberposts' => $num_pages) );
 		$num_pages = count($pages);
 
 		// If we have pages, put together their info.
@@ -791,7 +798,8 @@ class wp_xmlrpc_server extends IXR_Server {
 				post_title page_title,
 				post_parent page_parent_id,
 				post_date_gmt,
-				post_date
+				post_date,
+				post_status
 			FROM {$wpdb->posts}
 			WHERE post_type = 'page'
 			ORDER BY ID
@@ -806,8 +814,15 @@ class wp_xmlrpc_server extends IXR_Server {
 			$page_list[$i]->dateCreated = new IXR_Date($post_date);
 			$page_list[$i]->date_created_gmt = new IXR_Date($post_date_gmt);
 
+			// For drafts use the GMT version of the date
+			if ( $page_list[$i]->post_status == 'draft' ) {
+				$page_list[$i]->date_created_gmt = get_gmt_from_date( mysql2date( 'Y-m-d H:i:s', $page_list[$i]->post_date ), 'Ymd\TH:i:s' );
+				$page_list[$i]->date_created_gmt = new IXR_Date( $page_list[$i]->date_created_gmt );
+			}
+
 			unset($page_list[$i]->post_date_gmt);
 			unset($page_list[$i]->post_date);
+			unset($page_list[$i]->post_status);
 		}
 
 		return($page_list);
@@ -1051,11 +1066,11 @@ class wp_xmlrpc_server extends IXR_Server {
 		$comment_date = mysql2date("Ymd\TH:i:s", $comment->comment_date, false);
 		$comment_date_gmt = mysql2date("Ymd\TH:i:s", $comment->comment_date_gmt, false);
 
-		if ( 0 == $comment->comment_approved )
+		if ( '0' == $comment->comment_approved )
 			$comment_status = 'hold';
 		else if ( 'spam' == $comment->comment_approved )
 			$comment_status = 'spam';
-		else if ( 1 == $comment->comment_approved )
+		else if ( '1' == $comment->comment_approved )
 			$comment_status = 'approve';
 		else
 			$comment_status = $comment->comment_approved;
@@ -1552,9 +1567,6 @@ class wp_xmlrpc_server extends IXR_Server {
 
 		foreach( $options as $o_name => $o_value ) {
 			$option_names[] = $o_name;
-			if( empty( $o_value ) )
-				continue;
-
 			if( !array_key_exists( $o_name, $this->blog_options ) )
 				continue;
 
@@ -2080,7 +2092,7 @@ class wp_xmlrpc_server extends IXR_Server {
 		}
 
 		$post_title = $content_struct['title'];
-		$post_content = apply_filters( 'content_save_pre', $content_struct['description'] );
+		$post_content = $content_struct['description'];
 
 		$post_status = $publish ? 'publish' : 'draft';
 
@@ -2270,7 +2282,7 @@ class wp_xmlrpc_server extends IXR_Server {
 		global $wpdb;
 
 		// find any unattached files
-		$attachments = $wpdb->get_results( "SELECT ID, guid FROM {$wpdb->posts} WHERE post_parent = '-1' AND post_type = 'attachment'" );
+		$attachments = $wpdb->get_results( "SELECT ID, guid FROM {$wpdb->posts} WHERE post_parent = '0' AND post_type = 'attachment'" );
 		if( is_array( $attachments ) ) {
 			foreach( $attachments as $file ) {
 				if( strpos( $post_content, $file->guid ) !== false ) {
@@ -2447,7 +2459,7 @@ class wp_xmlrpc_server extends IXR_Server {
 		}
 
 		$post_title = $content_struct['title'];
-		$post_content = apply_filters( 'content_save_pre', $content_struct['description'] );
+		$post_content = $content_struct['description'];
 		$catnames = $content_struct['categories'];
 
 		$post_category = array();
@@ -2577,9 +2589,7 @@ class wp_xmlrpc_server extends IXR_Server {
 
 			// For drafts use the GMT version of the post date
 			if ( $postdata['post_status'] == 'draft' ) {
-				$post_date_gmt = get_gmt_from_date( mysql2date( 'Y-m-d H:i:s', $postdata['post_date'] ) );
-				$post_date_gmt = preg_replace( '|\-|', '', $post_date_gmt );
-				$post_date_gmt = preg_replace( '| |', 'T', $post_date_gmt );
+				$post_date_gmt = get_gmt_from_date( mysql2date( 'Y-m-d H:i:s', $postdata['post_date'] ), 'Ymd\TH:i:s' );
 			}
 
 			$categories = array();
@@ -2697,6 +2707,11 @@ class wp_xmlrpc_server extends IXR_Server {
 
 			$post_date = mysql2date('Ymd\TH:i:s', $entry['post_date'], false);
 			$post_date_gmt = mysql2date('Ymd\TH:i:s', $entry['post_date_gmt'], false);
+
+			// For drafts use the GMT version of the date
+			if ( $entry['post_status'] == 'draft' ) {
+				$post_date_gmt = get_gmt_from_date( mysql2date( 'Y-m-d H:i:s', $entry['post_date'] ), 'Ymd\TH:i:s' );
+			}
 
 			$categories = array();
 			$catids = wp_get_post_categories($entry['ID']);
@@ -2874,8 +2889,8 @@ class wp_xmlrpc_server extends IXR_Server {
 			return new IXR_Error(500, $errorString);
 		}
 		// Construct the attachment array
-		// attach to post_id -1
-		$post_id = -1;
+		// attach to post_id 0
+		$post_id = 0;
 		$attachment = array(
 			'post_title' => $name,
 			'post_content' => '',
@@ -2932,6 +2947,11 @@ class wp_xmlrpc_server extends IXR_Server {
 
 			$post_date = mysql2date('Ymd\TH:i:s', $entry['post_date'], false);
 			$post_date_gmt = mysql2date('Ymd\TH:i:s', $entry['post_date_gmt'], false);
+
+			// For drafts use the GMT version of the date
+			if ( $entry['post_status'] == 'draft' ) {
+				$post_date_gmt = get_gmt_from_date( mysql2date( 'Y-m-d H:i:s', $entry['post_date'] ), 'Ymd\TH:i:s' );
+			}
 
 			$struct[] = array(
 				'dateCreated' => new IXR_Date($post_date),
@@ -3404,5 +3424,5 @@ class wp_xmlrpc_server extends IXR_Server {
 }
 
 $wp_xmlrpc_server = new wp_xmlrpc_server();
-
+$wp_xmlrpc_server->serve_request();
 ?>

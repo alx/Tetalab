@@ -43,6 +43,11 @@ define('PATH_CURRENT_SITE', 'current_site_path' );
 define('SITE_ID_CURRENT_SITE', 1);
 define('BLOGID_CURRENT_SITE', '1' );
 
+/* Uncomment to allow blog admins to edit their users. See http://trac.mu.wordpress.org/ticket/1169 */
+//define( "EDIT_ANY_USER", true );
+/* Uncomment to enable post by email options. See http://trac.mu.wordpress.org/ticket/1084 */
+//define( "POST_BY_EMAIL", true );
+
 /**#@+
  * Authentication Unique Keys.
  *
@@ -83,7 +88,7 @@ define ('WPLANG', '');
 if( $base == 'BASE' )
 	die( 'Problem in wp-config.php - $base is set to BASE when it should be the path like "/" or "/blogs/"! Please fix it!' );
 
-// uncomment this to enable wp-content/sunrise.php support
+// uncomment this to enable WP_CONTENT_DIR/sunrise.php support
 //define( 'SUNRISE', 'on' );
 
 // uncomment to move wp-content/blogs.dir to another relative path
@@ -105,7 +110,7 @@ define( "WP_USE_MULTIPLE_DB", false );
 
 /* That's all, stop editing! Happy blogging. */
 
-/** WordPress absolute path to the Wordpress directory. */
+/** Absolute path to the WordPress directory. */
 if ( !defined('ABSPATH') )
 	define('ABSPATH', dirname(__FILE__) . '/');
 

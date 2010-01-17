@@ -18,6 +18,9 @@ if ( function_exists('memory_get_usage') && ( (int) @ini_get('memory_limit') < a
 set_magic_quotes_runtime(0);
 @ini_set('magic_quotes_sybase', 0);
 
+if ( function_exists('date_default_timezone_set') )
+	date_default_timezone_set('UTC');
+
 if ( defined( 'VHOST' ) && ( constant( 'VHOST' ) != 'yes' && constant( 'VHOST' ) != 'no' ) )
 	die( "Warning! VHOST must be 'yes' or 'no' in wp-config.php" );
 
@@ -49,9 +52,6 @@ function wp_unregister_GLOBALS() {
 wp_unregister_GLOBALS();
 
 unset( $wp_filter, $cache_lastcommentmodified, $cache_lastpostdate );
-
-// Force REQUEST to be GET + POST.  If SERVER, COOKIE, or ENV are needed, use those superglobals directly.
-$_REQUEST = array_merge($_GET, $_POST);
 
 /**
  * The $blog_id global, which you can change in the config allows you to create a simple
@@ -125,6 +125,7 @@ if ( file_exists(ABSPATH . '.maintenance') && !defined('WP_INSTALLING') ) {
 			$protocol = 'HTTP/1.0';
 		header( "$protocol 503 Service Unavailable", true, 503 );
 		header( 'Content-Type: text/html; charset=utf-8' );
+		header( 'Retry-After: 600' );
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -199,10 +200,22 @@ function timer_stop($display = 0, $precision = 3) { //if called like timer_stop(
 }
 timer_start();
 
-// Add define('WP_DEBUG',true); to wp-config.php to enable display of notices during development.
-if (defined('WP_DEBUG') and WP_DEBUG == true) {
-	error_reporting(E_ALL);
+// Add define('WP_DEBUG', true); to wp-config.php to enable display of notices during development.
+if ( defined('WP_DEBUG') && WP_DEBUG ) {
+	if ( defined('E_DEPRECATED') )
+		error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT);
+	else
+		error_reporting(E_ALL);
+	// Add define('WP_DEBUG_DISPLAY', false); to wp-config.php to use the globally configured setting for display_errors and not force it to On
+	if ( ! defined('WP_DEBUG_DISPLAY') || WP_DEBUG_DISPLAY )
+		ini_set('display_errors', 1);
+	// Add define('WP_DEBUG_LOG', true); to enable php debug logging to WP_CONTENT_DIR/debug.log
+	if ( defined('WP_DEBUG_LOG') && WP_DEBUG_LOG ) {
+		ini_set('log_errors', 1);
+		ini_set('error_log', WP_CONTENT_DIR . '/debug.log');
+	}
 } else {
+	define('WP_DEBUG', false);
 	if ( defined('E_RECOVERABLE_ERROR') )
 		error_reporting(E_ERROR | E_WARNING | E_PARSE | E_USER_ERROR | E_USER_WARNING | E_RECOVERABLE_ERROR);
 	else
@@ -210,8 +223,14 @@ if (defined('WP_DEBUG') and WP_DEBUG == true) {
 }
 
 // For an advanced caching plugin to use, static because you would only want one
-if ( defined('WP_CACHE') )
+if ( defined('WP_CACHE') && WP_CACHE )
 	@include WP_CONTENT_DIR . '/advanced-cache.php';
+
+/**
+ * Private
+ */ 
+if ( !defined('MEDIA_TRASH') )
+	define('MEDIA_TRASH', false);
 
 /**
  * Stores the location of the WordPress directory of functions, classes, and core content.
@@ -287,6 +306,33 @@ function wp_clone( $object ) {
 	return $can_clone ? clone( $object ) : $object;
 }
 
+/**
+ * Whether the current request is in WordPress admin Panel
+ *
+ * Does not inform on whether the user is an admin! Use capability checks to
+ * tell if the user should be accessing a section or not.
+ *
+ * @since 1.5.1
+ *
+ * @return bool True if inside WordPress administration pages.
+ */
+function is_admin() {
+	if ( defined('WP_ADMIN') )
+		return WP_ADMIN;
+	return false;
+}
+
+/**
+ * Whether Multisite support is enabled (stub from WP 3.0)
+ * 
+ * @since 2.9.1
+ *
+ * @return bool True always.
+ */
+function is_multisite() {
+	return true;
+}
+
 if ( file_exists(WP_CONTENT_DIR . '/object-cache.php') ) {
 	require_once (WP_CONTENT_DIR . '/object-cache.php');
 	$_wp_using_ext_object_cache = true;
@@ -297,12 +343,12 @@ if ( file_exists(WP_CONTENT_DIR . '/object-cache.php') ) {
 
 wp_cache_init();
 if ( function_exists('wp_cache_add_global_groups') ) {
-	wp_cache_add_global_groups(array ('users', 'userlogins', 'usermeta', 'site-options', 'site-lookup', 'blog-lookup', 'blog-details', 'rss'));
+	wp_cache_add_global_groups(array ('users', 'userlogins', 'usermeta', 'site-transient', 'site-options', 'site-lookup', 'blog-lookup', 'blog-details', 'rss'));
 	wp_cache_add_non_persistent_groups(array( 'comment', 'counts', 'plugins' ));
 }
 
 if( defined( 'SUNRISE' ) )
-	include_once( ABSPATH . 'wp-content/sunrise.php' );
+	include_once( WP_CONTENT_DIR . '/sunrise.php' );
 
 require_once ( ABSPATH . 'wpmu-settings.php' );
 $wpdb->blogid           = $current_blog->blog_id;
@@ -312,7 +358,7 @@ $table_prefix = $table_prefix . $blog_id . '_';
 
 // Fix empty PHP_SELF
 $PHP_SELF = $_SERVER['PHP_SELF'];
-if ( empty($PHP_SELF) || ( constant( 'VHOST' ) == 'no' && $current_blog->path != '/' ) )
+if ( empty($PHP_SELF) || ( empty($PHP_SELF) && constant( 'VHOST' ) == 'no' && $current_blog->path != '/' ) ) 
 	$_SERVER['PHP_SELF'] = $PHP_SELF = preg_replace("/(\?.*)?$/",'',$_SERVER["REQUEST_URI"]);
 
 wp_cache_init(); // need to init cache again after blog_id is set
@@ -349,8 +395,6 @@ register_shutdown_function('shutdown_action_hook');
 if( defined( "SHORTINIT" ) && constant( "SHORTINIT" ) == true ) // stop most of WP being loaded, we just want the basics
 	return false;
 
-include_once(ABSPATH . WPINC . '/streams.php');
-include_once(ABSPATH . WPINC . '/gettext.php');
 require_once (ABSPATH . WPINC . '/l10n.php');
 
 if ( !is_blog_installed() && !defined('WP_INSTALLING') ) {
@@ -362,6 +406,7 @@ require (ABSPATH . WPINC . '/capabilities.php');
 require (ABSPATH . WPINC . '/query.php');
 require (ABSPATH . WPINC . '/theme.php');
 require (ABSPATH . WPINC . '/user.php');
+require (ABSPATH . WPINC . '/meta.php');
 require (ABSPATH . WPINC . '/general-template.php');
 require (ABSPATH . WPINC . '/link-template.php');
 require (ABSPATH . WPINC . '/author-template.php');
@@ -642,6 +687,12 @@ force_ssl_login(FORCE_SSL_LOGIN);
 if ( !defined( 'AUTOSAVE_INTERVAL' ) )
 	define( 'AUTOSAVE_INTERVAL', 60 );
 
+/**
+ * It is possible to define this in wp-config.php
+ * @since 2.9.0
+ */
+if ( !defined( 'EMPTY_TRASH_DAYS' ) )
+	define( 'EMPTY_TRASH_DAYS', 30 );
 
 require (ABSPATH . WPINC . '/vars.php');
 
@@ -649,7 +700,7 @@ require (ABSPATH . WPINC . '/vars.php');
 // @plugin authors: warning: this gets registered again on the init hook
 create_initial_taxonomies();
 
-$current_plugins = get_option('active_plugins');
+$current_plugins = apply_filters( 'active_plugins', get_option( 'active_plugins' ) );
 if ( is_array($current_plugins) && !defined('WP_INSTALLING') ) {
 	foreach ( $current_plugins as $plugin ) {
 		// check the $plugin filename
@@ -700,6 +751,9 @@ $_GET    = add_magic_quotes($_GET   );
 $_POST   = add_magic_quotes($_POST  );
 $_COOKIE = add_magic_quotes($_COOKIE);
 $_SERVER = add_magic_quotes($_SERVER);
+
+// Force REQUEST to be GET + POST.  If SERVER, COOKIE, or ENV are needed, use those superglobals directly.
+$_REQUEST = array_merge($_GET, $_POST);
 
 do_action('sanitize_comment_cookies');
 
@@ -780,6 +834,9 @@ if ( TEMPLATEPATH !== STYLESHEETPATH && file_exists(STYLESHEETPATH . '/functions
 	include(STYLESHEETPATH . '/functions.php');
 if ( file_exists(TEMPLATEPATH . '/functions.php') )
 	include(TEMPLATEPATH . '/functions.php');
+
+// Load in support for template functions which the theme supports
+require_if_theme_supports( 'post-thumbnails', ABSPATH . WPINC . '/post-thumbnail-template.php' );
 
 $wp->init();  // Sets up current user.
 

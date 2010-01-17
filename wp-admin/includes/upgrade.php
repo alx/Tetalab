@@ -269,6 +269,7 @@ function wp_upgrade() {
 
 	wp_check_mysql_version();
 	wp_cache_flush();
+	pre_schema_upgrade();
 	make_db_current_silent();
 	upgrade_all();
 	wp_cache_flush();
@@ -345,12 +346,13 @@ function upgrade_all() {
 	if ( $wp_current_db_version < 10360 )
 		upgrade_280();
 
+	if ( $wp_current_db_version < 11958 )
+		upgrade_290();
+
 	maybe_disable_automattic_widgets();
 
 	update_option( 'db_version', $wp_db_version );
 	update_option( 'db_upgraded', true );
-
-	$wp_rewrite->flush_rules();
 }
 
 /**
@@ -556,8 +558,10 @@ function upgrade_130() {
 		if ( 1 != $option->dupes ) { // Could this be done in the query?
 			$limit = $option->dupes - 1;
 			$dupe_ids = $wpdb->get_col( $wpdb->prepare("SELECT option_id FROM $wpdb->options WHERE option_name = %s LIMIT %d", $option->option_name, $limit) );
-			$dupe_ids = join($dupe_ids, ',');
-			$wpdb->query("DELETE FROM $wpdb->options WHERE option_id IN ($dupe_ids)");
+			if ( $dupe_ids ) {
+				$dupe_ids = join($dupe_ids, ',');
+				$wpdb->query("DELETE FROM $wpdb->options WHERE option_id IN ($dupe_ids)");
+			}
 		}
 	}
 
@@ -988,6 +992,38 @@ function upgrade_280() {
 
 	if ( $wp_current_db_version < 10360 )
 		populate_roles_280();
+
+	if ( $wp_current_db_version < 11549 ) {
+		$wpmu_sitewide_plugins = get_site_option( 'wpmu_sitewide_plugins' );
+		$active_sitewide_plugins = get_site_option( 'active_sitewide_plugins' );
+		if ( $wpmu_sitewide_plugins ) {
+			if ( !$active_sitewide_plugins )
+				$sitewide_plugins = (array) $wpmu_sitewide_plugins;
+			else
+				$sitewide_plugins = array_merge( (array) $active_sitewide_plugins, (array) $wpmu_sitewide_plugins );
+
+			update_site_option( 'active_sitewide_plugins', $sitewide_plugins );
+		}
+		update_site_option( 'wpmu_sitewide_plugins', '' );
+		update_site_option( 'deactivated_sitewide_plugins', '' );
+	}
+}
+
+/**
+ * Execute changes made in WordPress 2.9.
+ *
+ * @since 2.9.0
+ */
+function upgrade_290() {
+	global $wp_current_db_version;
+
+	if ( $wp_current_db_version < 11958 ) {
+		// Previously, setting depth to 1 would redundantly disable threading, but now 2 is the minimum depth to avoid confusion
+		if ( get_option( 'thread_comments_depth' ) == '1' ) {
+			update_option( 'thread_comments_depth', 2 );
+			update_option( 'thread_comments', 0 );
+		}
+	}
 }
 
 
@@ -1665,6 +1701,26 @@ function maybe_disable_automattic_widgets() {
 			break;
 		}
 	}
+}
+
+/**
+ * Runs before the schema is upgraded.
+ */
+function pre_schema_upgrade() {
+	global $wp_current_db_version, $wp_db_version, $wpdb;
+
+	// Upgrade versions prior to 2.9
+	if ( $wp_current_db_version < 11557 ) {
+		// Delete duplicate options.  Keep the option with the highest option_id.
+		$wpdb->query("DELETE o1 FROM $wpdb->options AS o1 JOIN $wpdb->options AS o2 USING (`option_name`) WHERE o2.option_id > o1.option_id");
+
+		// Drop the old primary key and add the new.
+		$wpdb->query("ALTER TABLE $wpdb->options DROP PRIMARY KEY, ADD PRIMARY KEY(option_id)");
+
+		// Drop the old option_name index. dbDelta() doesn't do the drop.
+		$wpdb->query("ALTER TABLE $wpdb->options DROP INDEX option_name");
+	}
+
 }
 
 ?>

@@ -12,29 +12,30 @@ require_once('admin.php');
 if ( !current_user_can('switch_themes') )
 	wp_die( __( 'Cheatin&#8217; uh?' ) );
 
-$themes = get_themes();
-$ct = current_theme_info();
-$allowed_themes = apply_filters("allowed_themes", get_site_allowed_themes() ); 
-if( $allowed_themes == false )
-	$allowed_themes = array();
+if ( is_multisite() ) {
+	$themes = get_themes();
+	$ct = current_theme_info();
+	$allowed_themes = apply_filters("allowed_themes", get_site_allowed_themes() ); 
+	if( $allowed_themes == false )
+		$allowed_themes = array();
 
-$blog_allowed_themes = wpmu_get_blog_allowedthemes();
-if( is_array( $blog_allowed_themes ) )
-	$allowed_themes = array_merge( $allowed_themes, $blog_allowed_themes );
-if( $blog_id != 1 )
-	unset( $allowed_themes[ "h3" ] );
+	$blog_allowed_themes = wpmu_get_blog_allowedthemes();
+	if( is_array( $blog_allowed_themes ) )
+		$allowed_themes = array_merge( $allowed_themes, $blog_allowed_themes );
+	if( $blog_id != 1 )
+		unset( $allowed_themes[ "h3" ] );
 
-if( isset( $allowed_themes[ wp_specialchars( $ct->stylesheet ) ] ) == false )
-    $allowed_themes[ wp_specialchars( $ct->stylesheet ) ] = true;
+	if( isset( $allowed_themes[ wp_specialchars( $ct->stylesheet ) ] ) == false )
+		$allowed_themes[ wp_specialchars( $ct->stylesheet ) ] = true;
 
-reset( $themes );
-foreach( $themes as $key => $theme ) {
-    if( isset( $allowed_themes[ wp_specialchars( $theme[ 'Stylesheet' ] ) ] ) == false ) {
-		unset( $themes[ $key ] );
-    }
+	reset( $themes );
+	foreach( $themes as $key => $theme ) {
+		if( isset( $allowed_themes[ wp_specialchars( $theme[ 'Stylesheet' ] ) ] ) == false ) {
+			unset( $themes[ $key ] );
+		}
+	}
+	reset( $themes );
 }
-reset( $themes );
-
 if ( isset($_GET['action']) ) {
 	if ( 'activate' == $_GET['action'] ) {
 		check_admin_referer('switch-theme_' . $_GET['template']);
@@ -55,7 +56,7 @@ $title = __('Manage Themes');
 $parent_file = 'themes.php';
 
 $help = '<p>' . __('Themes give your WordPress style. Once a theme is installed, you may preview it, activate it or deactivate it here.') . '</p>';
-if ( is_site_admin() ) {
+if ( is_multisite() && is_site_admin() || is_multisite() == false && current_user_can('install_themes') ) {
 	$help .= '<p>' . sprintf(__('You can find additional themes for your site by using the new <a href="%1$s">Theme Browser/Installer</a> functionality or by browsing the <a href="http://wordpress.org/extend/themes/">WordPress Theme Directory</a> directly and installing manually.  To install a theme <em>manually</em>, <a href="%2$s">upload its ZIP archive with the new uploader</a> or copy its folder via FTP into your <code>wp-content/themes</code> directory.'), 'theme-install.php', 'theme-install.php?tab=upload' ) . '</p>';
 	$help .= '<p>' . __('Once a theme is uploaded, you should see it on this page.') . '</p>' ;
 }
@@ -66,7 +67,7 @@ add_thickbox();
 wp_enqueue_script( 'theme-preview' );
 
 require_once('admin-header.php');
-if( is_site_admin() ) {
+if( is_multisite() && is_site_admin() ) {
 	?><div id="message0" class="updated fade"><p><?php _e('Administrator: new themes must be activated in the <a href="wpmu-themes.php">Themes Admin</a> page before they appear here.'); ?></p></div><?php
 }
 ?>
@@ -84,6 +85,8 @@ if( is_site_admin() ) {
 <?php endif; ?>
 
 <?php
+if( false == is_multisite() )
+	$themes = get_themes();
 $ct = current_theme_info();
 unset($themes[$ct->name]);
 
@@ -123,7 +126,7 @@ $themes = array_slice( $themes, $start, $per_page );
 function theme_update_available( $theme ) {
 	static $themes_update;
 
-	if( false == is_site_admin() )
+	if( is_multisite() && false == is_site_admin() )
 		return;
 
 	if ( !isset($themes_update) )
@@ -156,22 +159,22 @@ function theme_update_available( $theme ) {
 
 <div class="wrap">
 <?php screen_icon(); ?>
-<h2><?php echo esc_html( $title ); ?></h2>
+<h2><?php echo esc_html( $title ); if ( is_multisite() && is_site_admin() || is_multisite() == false ) { ?> <a href="theme-install.php" class="button add-new-h2"><?php echo esc_html_x('Add New', 'theme'); ?></a> <?php } ?></h2>
 
 <h3><?php _e('Current Theme'); ?></h3>
 <div id="current-theme">
 <?php if ( $ct->screenshot ) : ?>
-<img src="<?php echo WP_CONTENT_URL . $ct->stylesheet_dir . '/' . $ct->screenshot; ?>" alt="<?php _e('Current theme preview'); ?>" />
+<img src="<?php echo $ct->theme_root_uri . '/' . $ct->stylesheet . '/' . $ct->screenshot; ?>" alt="<?php _e('Current theme preview'); ?>" />
 <?php endif; ?>
 <h4><?php
 	/* translators: 1: theme title, 2: theme version, 3: theme author */
 	printf(__('%1$s %2$s by %3$s'), $ct->title, $ct->version, $ct->author) ; ?></h4>
 <p class="theme-description"><?php echo $ct->description; ?></p>
-<?php if( is_site_admin() ) { if ($ct->parent_theme) { ?>
-	<p><?php printf(__('The template files are located in <code>%2$s</code>.  The stylesheet files are located in <code>%3$s</code>.  <strong>%4$s</strong> uses templates from <strong>%5$s</strong>.  Changes made to the templates will affect both themes.'), $ct->title, $ct->template_dir, $ct->stylesheet_dir, $ct->title, $ct->parent_theme); ?></p>
+<?php if( is_multisite() && is_site_admin() || is_multisite() == false ) if ($ct->parent_theme) { ?>
+	<p><?php printf(__('The template files are located in <code>%2$s</code>.  The stylesheet files are located in <code>%3$s</code>.  <strong>%4$s</strong> uses templates from <strong>%5$s</strong>.  Changes made to the templates will affect both themes.'), $ct->title, str_replace( WP_CONTENT_DIR, '', $ct->template_dir ), str_replace( WP_CONTENT_DIR, '', $ct->stylesheet_dir ), $ct->title, $ct->parent_theme); ?></p>
 <?php } else { ?>
-	<p><?php printf(__('All of this theme&#8217;s files are located in <code>%2$s</code>.'), $ct->title, $ct->template_dir, $ct->stylesheet_dir); ?></p>
-<?php } } // site admin ?>
+	<p><?php printf(__('All of this theme&#8217;s files are located in <code>%2$s</code>.'), $ct->title, str_replace( WP_CONTENT_DIR, '', $ct->template_dir ), str_replace( WP_CONTENT_DIR, '', $ct->stylesheet_dir ) ); ?></p>
+<?php } ?>
 <?php if ( $ct->tags ) : ?>
 <p><?php _e('Tags:'); ?> <?php echo join(', ', $ct->tags); ?></p>
 <?php endif; ?>
@@ -232,6 +235,8 @@ foreach ( $cols as $col => $theme_name ) {
 	$stylesheet_dir = $themes[$theme_name]['Stylesheet Dir'];
 	$template_dir = $themes[$theme_name]['Template Dir'];
 	$parent_theme = $themes[$theme_name]['Parent Theme'];
+	$theme_root = $themes[$theme_name]['Theme Root'];
+	$theme_root_uri = $themes[$theme_name]['Theme Root URI'];
 	$preview_link = esc_url(get_option('home') . '/');
 	if ( is_ssl() )
 		$preview_link = str_replace( 'http://', 'https://', $preview_link );
@@ -244,7 +249,7 @@ foreach ( $cols as $col => $theme_name ) {
 	$actions = array();
 	$actions[] = '<a href="' . $activate_link .  '" class="activatelink" title="' . $activate_text . '">' . __('Activate') . '</a>';
 	$actions[] = '<a href="' . $preview_link . '" class="thickbox thickbox-preview" title="' . esc_attr(sprintf(__('Preview &#8220;%s&#8221;'), $theme_name)) . '">' . __('Preview') . '</a>';
-	if ( is_site_admin() )
+	if ( is_multisite() && is_site_admin() || is_multisite() == false && current_user_can('update_themes') )
 		$actions[] = '<a class="submitdelete deletion" href="' . wp_nonce_url("themes.php?action=delete&amp;template=$stylesheet", 'delete-theme_' . $stylesheet) . '" onclick="' . "if ( confirm('" . esc_js(sprintf( __("You are about to delete this theme '%s'\n  'Cancel' to stop, 'OK' to delete."), $theme_name )) . "') ) {return true;}return false;" . '">' . __('Delete') . '</a>';
 	$actions = apply_filters('theme_action_links', $actions, $themes[$theme_name]);
 
@@ -252,7 +257,7 @@ foreach ( $cols as $col => $theme_name ) {
 ?>
 		<a href="<?php echo $preview_link; ?>" class="<?php echo $thickbox_class; ?> screenshot">
 <?php if ( $screenshot ) : ?>
-			<img src="<?php echo content_url($stylesheet_dir . '/' . $screenshot); ?>" alt="" />
+			<img src="<?php echo $theme_root_uri . '/' . $stylesheet . '/' . $screenshot; ?>" alt="" />
 <?php endif; ?>
 		</a>
 <h3><?php
@@ -260,11 +265,12 @@ foreach ( $cols as $col => $theme_name ) {
 	printf(__('%1$s %2$s by %3$s'), $title, $version, $author) ; ?></h3>
 <p class="description"><?php echo $description; ?></p>
 <span class='action-links'><?php echo $actions ?></span>
-	<?php if( is_site_admin() ) { if ($parent_theme) { ?>
-	<p><?php printf(__('The template files are located in <code>%2$s</code>.  The stylesheet files are located in <code>%3$s</code>.  <strong>%4$s</strong> uses templates from <strong>%5$s</strong>.  Changes made to the templates will affect both themes.'), $title, $template_dir, $stylesheet_dir, $title, $parent_theme); ?></p>
+	<?php if ( is_multisite() && is_site_admin() || is_multisite() == false ) if ($parent_theme) {
+	/* translators: 1: theme title, 2:  template dir, 3: stylesheet_dir, 4: theme title, 5: parent_theme */ ?>
+	<p><?php printf(__('The template files are located in <code>%2$s</code>.  The stylesheet files are located in <code>%3$s</code>.  <strong>%4$s</strong> uses templates from <strong>%5$s</strong>.  Changes made to the templates will affect both themes.'), $title, str_replace( WP_CONTENT_DIR, '', $template_dir ), str_replace( WP_CONTENT_DIR, '', $stylesheet_dir ), $title, $parent_theme); ?></p>
 <?php } else { ?>
-	<p><?php printf(__('All of this theme&#8217;s files are located in <code>%2$s</code>.'), $title, $template_dir, $stylesheet_dir); ?></p>
-<?php } } // site admin ?>
+	<p><?php printf(__('All of this theme&#8217;s files are located in <code>%2$s</code>.'), $title, str_replace( WP_CONTENT_DIR, '', $template_dir ), str_replace( WP_CONTENT_DIR, '', $stylesheet_dir ) ); ?></p>
+<?php } ?>
 <?php if ( $tags ) : ?>
 <p><?php _e('Tags:'); ?> <?php echo join(', ', $tags); ?></p>
 <?php endif; ?>
@@ -292,13 +298,13 @@ foreach ( $cols as $col => $theme_name ) {
 <?php
 // List broken themes, if any.
 $broken_themes = get_broken_themes();
-if ( is_site_admin() && count($broken_themes) ) {
+if ( is_multisite() && is_site_admin() || is_multisite() == false ) if ( count($broken_themes) ) {
 ?>
 
-<h2><?php _e('Broken Themes'); ?> <?php _e( '(Site admin only)' ); ?></h2>
+<h2><?php _e('Broken Themes'); ?> <?php if ( is_multisite() ) _e( '(Site admin only)' ); ?></h2>
 <p><?php _e('The following themes are installed but incomplete.  Themes must have a stylesheet and a template.'); ?></p>
 
-<table width="100%" cellpadding="3" cellspacing="3">
+<table id="broken-themes">
 	<tr>
 		<th><?php _e('Name'); ?></th>
 		<th><?php _e('Description'); ?></th>

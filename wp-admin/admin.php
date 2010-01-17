@@ -29,10 +29,19 @@ if ( get_option('db_upgraded') ) {
 	 * @since 2.8
 	 */
 	do_action('after_db_upgrade');
-} elseif ( get_option('db_version') != $wp_db_version ) {
-	require_once( ABSPATH . WPINC . '/http.php' );
-	$response = wp_remote_get( admin_url('upgrade.php?step=1'), array( 'timeout' => 120, 'httpversion' => '1.1' ) );
-	// do something with response?
+} elseif ( true == apply_filters( 'do_mu_upgrade', true ) && get_option('db_version') != $wp_db_version ) {
+	/**
+	 * On really small MU installs run the upgrader every time, 
+	 * else run it less often to reduce load.
+	 *
+	 * @since 2.8.4b
+	 */
+	$c = get_blog_count();
+	if ( $c <= 50 || ( $c > 50 && mt_rand( 0, (int)( $c / 50 ) ) == 1 ) ) {
+		require_once( ABSPATH . WPINC . '/http.php' );
+		$response = wp_remote_get( admin_url( 'upgrade.php?step=1' ), array( 'timeout' => 120, 'httpversion' => '1.1' ) );
+		do_action( 'after_mu_upgrade', $response );
+	}
 }
 
 require_once(ABSPATH . 'wp-admin/includes/admin.php');
@@ -43,13 +52,17 @@ nocache_headers();
 
 update_category_cache();
 
+// Schedule trash collection
+if ( !wp_next_scheduled('wp_scheduled_delete') && !defined('WP_INSTALLING') )
+	wp_schedule_event(time(), 'daily', 'wp_scheduled_delete');
+
 set_screen_options();
 
 $posts_per_page = get_option('posts_per_page');
 $date_format = get_option('date_format');
 $time_format = get_option('time_format');
 
-wp_reset_vars(array('profile', 'redirect', 'redirect_url', 'a', 'popuptitle', 'popupurl', 'text', 'trackback', 'pingback'));
+wp_reset_vars(array('profile', 'redirect', 'redirect_url', 'a', 'text', 'trackback', 'pingback'));
 
 wp_admin_css_color('classic', __('Blue'), admin_url("css/colors-classic.css"), array('#073447', '#21759B', '#EAF3FA', '#BBD8E7'));
 wp_admin_css_color('fresh', __('Gray'), admin_url("css/colors-fresh.css"), array('#464646', '#6D6D6D', '#F1F1F1', '#DFDFDF'));

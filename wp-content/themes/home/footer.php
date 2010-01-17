@@ -1,7 +1,13 @@
+<?php
+/**
+ * @package WordPress
+ * @subpackage Default_Theme
+ */
+?>
 
 <?php $current_site = get_current_site(); ?>
 <hr />
-<div id="footer">
+<div id="footer" role="contentinfo">
 <!-- If you'd like to support WordPress, having the "powered by" link somewhere on your blog is the best way; it's our only promotion or advertising. -->
 	<p>
 		<?php bloginfo('name'); ?> is proudly powered by

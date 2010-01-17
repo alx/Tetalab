@@ -155,9 +155,11 @@ function iis7_save_url_rewrite_rules(){
 	// Using win_is_writable() instead of is_writable() because of a bug in Windows PHP
 	if ( ( ! file_exists($web_config_file) && win_is_writable($home_path) && $wp_rewrite->using_mod_rewrite_permalinks() ) || win_is_writable($web_config_file) ) {
 		if ( iis7_supports_permalinks() ) {
-			$rule = $wp_rewrite->iis7_url_rewrite_rules();
+			$rule = $wp_rewrite->iis7_url_rewrite_rules(false, '', '');
 			if ( ! empty($rule) ) {
 				return iis7_add_rewrite_rule($web_config_file, $rule);
+			} else {
+				return iis7_delete_rewrite_rule($web_config_file);
 			}
 		}
 	}
@@ -473,7 +475,7 @@ function iis7_rewrite_rule_exists($filename) {
 	if ( $doc->load($filename) === false )
 		return false;
 	$xpath = new DOMXPath($doc);
-	$rules = $xpath->query('/configuration/system.webServer/rewrite/rules/rule[starts-with(@name,\'wordpress\')]');
+	$rules = $xpath->query('/configuration/system.webServer/rewrite/rules/rule[@name=\'wordpress\']');
 	if ( $rules->length == 0 )
 		return false;
 	else
@@ -502,12 +504,11 @@ function iis7_delete_rewrite_rule($filename) {
 	if ( $doc -> load($filename) === false )
 		return false;
 	$xpath = new DOMXPath($doc);
-	$rules = $xpath->query('/configuration/system.webServer/rewrite/rules/rule[starts-with(@name,\'wordpress\')]');
+	$rules = $xpath->query('/configuration/system.webServer/rewrite/rules/rule[@name=\'wordpress\']');
 	if ( $rules->length > 0 ) {
-		foreach ($rules as $child) {
-			$parent = $child->parentNode;
-			$parent->removeChild($child);		
-		}
+		$child = $rules->item(0);
+		$parent = $child->parentNode;
+		$parent->removeChild($child);
 		$doc->formatOutput = true;
 		saveDomDocument($doc, $filename);
 	}
@@ -542,8 +543,8 @@ function iis7_add_rewrite_rule($filename, $rewrite_rule) {
 
 	$xpath = new DOMXPath($doc);
 
-	// First check if any of the wordpress rules already exist as in that case there is no need to re-add them
-	$wordpress_rules = $xpath->query('/configuration/system.webServer/rewrite/rules/rule[starts-with(@name,\'wordpress\')]');
+	// First check if the rule already exists as in that case there is no need to re-add it
+	$wordpress_rules = $xpath->query('/configuration/system.webServer/rewrite/rules/rule[@name=\'wordpress\']');
 	if ( $wordpress_rules->length > 0 )
 		return true;
 
@@ -587,6 +588,7 @@ function iis7_add_rewrite_rule($filename, $rewrite_rule) {
 	$rule_fragment->appendXML($rewrite_rule);
 	$rules_node->appendChild($rule_fragment);
 
+	$doc->encoding = "UTF-8";
 	$doc->formatOutput = true;
 	saveDomDocument($doc, $filename);
 

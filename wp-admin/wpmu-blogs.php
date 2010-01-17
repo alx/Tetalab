@@ -11,6 +11,7 @@ if( is_site_admin() == false ) {
     wp_die( __('You do not have permission to access this page.') );
 }
 $id = intval( $_GET['id'] );
+$protocol = is_ssl() ? 'https://' : 'http://';
 
 if ( $_GET['updated'] == 'true' ) {
 	?>
@@ -68,9 +69,10 @@ if ( $_GET['updated'] == 'true' ) {
 switch( $_GET['action'] ) {
 	// Edit blog
 	case "editblog":
-		$options = $wpdb->get_results( "SELECT * FROM {$wpdb->base_prefix}{$id}_options WHERE option_name NOT LIKE 'rss%' AND option_name NOT LIKE '%user_roles'", ARRAY_A );
+		$blog_prefix = $wpdb->get_blog_prefix( $id );
+		$options = $wpdb->get_results( "SELECT * FROM {$blog_prefix}options WHERE option_name NOT LIKE '_transient_rss%' AND option_name NOT LIKE '%user_roles'", ARRAY_A );
 		$details = $wpdb->get_row( "SELECT * FROM {$wpdb->blogs} WHERE blog_id = '{$id}'", ARRAY_A );
-		$editblog_roles = get_blog_option( $id, "{$wpdb->base_prefix}{$id}_user_roles" );
+		$editblog_roles = get_blog_option( $id, "{$blog_prefix}user_roles" );
 		?>
 		<div class="wrap">
 		<h2><?php _e('Edit Blog'); ?> - <a href='http://<?php echo $details['domain'].$details['path']; ?>'>http://<?php echo $details['domain'].$details['path']; ?></a></h2>
@@ -259,7 +261,7 @@ switch( $_GET['action'] ) {
 			<div id="blogedit_blogadduser" class="postbox">
 			<h3 class='hndle'><span><?php _e('Add a new user'); ?></span></h3>
 			<div class="inside">
-				<p style="margin:10px 0 0px;padding:0px 10px 10px;border-bottom:1px solid #DFDFDF;"><?php _e('As you type WordPress will offer you a choice of usernames.<br /> Click them to select and hit <em>Update Options</em> to add the user.') ?></p>
+				<p style="margin:10px 0 0px;padding:0px 10px 10px;border-bottom:1px solid #DFDFDF;"><?php _e('Enter the username of an existing user and hit <em>Update Options</em> to add the user.') ?></p>
 				<table class="form-table">
 						<tr>
 							<th scope="row"><?php _e('User&nbsp;Login:') ?></th>
@@ -469,27 +471,25 @@ switch( $_GET['action'] ) {
 									<br/>
 									<?php
 									$controlActions	= array();
-									
 									$controlActions[]	= '<a href="wpmu-blogs.php?action=editblog&amp;id=' . $blog['blog_id'] . '" class="edit">' . __('Edit') . '</a>';
-									
-									$controlActions[]	= "<a href='http://{$blog['domain']}{$blog['path']}wp-admin/' class='edit'>" . __('Backend') . '</a>';
+									$controlActions[]	= "<a href='{$protocol}{$blog['domain']}{$blog['path']}wp-admin/' class='edit'>" . __('Backend') . '</a>';
 									
 									if( get_blog_status( $blog['blog_id'], "deleted" ) == '1' )
-										$controlActions[]	= '<a class="delete" href="wpmu-edit.php?action=confirm&amp;action2=activateblog&amp;ref=' . urlencode( $_SERVER['REQUEST_URI'] ) . '&amp;id=' . $blog['blog_id'] . '&amp;msg=' . urlencode( sprintf( __( "You are about to activate the blog %s" ), $blogname ) ) . '">' . __('Activate') . '</a>';
+										$controlActions[]	= '<a class="delete" href="wpmu-edit.php?action=confirm&amp;action2=activateblog&amp;ref=' . urlencode( $_SERVER['REQUEST_URI'] ) . '&amp;id=' . $blog['blog_id'] . '">' . __('Activate') . '</a>';
 									else
-										$controlActions[]	= '<a class="delete" href="wpmu-edit.php?action=confirm&amp;action2=deactivateblog&amp;ref=' . urlencode( $_SERVER['REQUEST_URI'] ) . '&amp;id=' . $blog['blog_id'] . '&amp;msg=' . urlencode( sprintf( __( "You are about to deactivate the blog %s" ), $blogname ) ) . '">' . __('Deactivate') . '</a>';
+										$controlActions[]	= '<a class="delete" href="wpmu-edit.php?action=confirm&amp;action2=deactivateblog&amp;ref=' . urlencode( $_SERVER['REQUEST_URI'] ) . '&amp;id=' . $blog['blog_id'] . '">' . __('Deactivate') . '</a>';
 									
 									if( get_blog_status( $blog['blog_id'], "archived" ) == '1' )
-										$controlActions[]	= '<a class="delete" href="wpmu-edit.php?action=confirm&amp;action2=unarchiveblog&amp;id=' .  $blog['blog_id'] . '&amp;msg=' . urlencode( sprintf( __( "You are about to unarchive the blog %s" ), $blogname ) ) . '">' . __('Unarchive') . '</a>';
+										$controlActions[]	= '<a class="delete" href="wpmu-edit.php?action=confirm&amp;action2=unarchiveblog&amp;id=' .  $blog['blog_id'] . '">' . __('Unarchive') . '</a>';
 									else
-										$controlActions[]	= '<a class="delete" href="wpmu-edit.php?action=confirm&amp;action2=archiveblog&amp;id=' . $blog['blog_id'] . '&amp;msg=' . urlencode( sprintf( __( "You are about to archive the blog %s" ), $blogname ) ) . '">' . __('Archive') . '</a>';
+										$controlActions[]	= '<a class="delete" href="wpmu-edit.php?action=confirm&amp;action2=archiveblog&amp;id=' . $blog['blog_id'] . '">' . __('Archive') . '</a>';
 									
 									if( get_blog_status( $blog['blog_id'], "spam" ) == '1' )
-										$controlActions[]	= '<a class="delete" href="wpmu-edit.php?action=confirm&amp;action2=unspamblog&amp;id=' . $blog['blog_id'] . '&amp;msg=' . urlencode( sprintf( __( "You are about to unspam the blog %s" ), $blogname ) ) . '">' . __('Not Spam') . '</a>';
+										$controlActions[]	= '<a class="delete" href="wpmu-edit.php?action=confirm&amp;action2=unspamblog&amp;id=' . $blog['blog_id'] . '">' . __('Not Spam') . '</a>';
 									else
-										$controlActions[]	= '<a class="delete" href="wpmu-edit.php?action=confirm&amp;action2=spamblog&amp;id=' . $blog['blog_id'] . '&amp;msg=' . urlencode( sprintf( __( "You are about to mark the blog %s as spam" ), $blogname ) ) . '">' . __("Spam") . '</a>';
+										$controlActions[]	= '<a class="delete" href="wpmu-edit.php?action=confirm&amp;action2=spamblog&amp;id=' . $blog['blog_id'] . '">' . __("Spam") . '</a>';
 									
-									$controlActions[]	= '<a class="delete" href="wpmu-edit.php?action=confirm&amp;action2=deleteblog&amp;id=' . $blog['blog_id'] . '&amp;msg=' . urlencode( sprintf( __( "You are about to delete the blog %s" ), $blogname ) ) . '">' . __("Delete") . '</a>';
+									$controlActions[]	= '<a class="delete" href="wpmu-edit.php?action=confirm&amp;action2=deleteblog&amp;id=' . $blog['blog_id'] . '">' . __("Delete") . '</a>';
 									
 									$controlActions[]	= "<a href='http://{$blog['domain']}{$blog['path']}' rel='permalink'>" . __('Visit') . '</a>';
 									?>
@@ -524,7 +524,7 @@ switch( $_GET['action'] ) {
 										$blogusers_warning = '';
 										if ( count( $blogusers ) > 5 ) {
 											$blogusers = array_slice( $blogusers, 0, 5 );
-											$blogusers_warning = __( 'Only showing first 5 users.' ) . ' <a href="http://' . $blog[ 'domain' ] . $blog[ 'path' ] . 'wp-admin/users.php">' . __( 'More' ) . '</a>';
+											$blogusers_warning = __( 'Only showing first 5 users.' ) . ' <a href="' . $protocol . $blog[ 'domain' ] . $blog[ 'path' ] . 'wp-admin/users.php">' . __( 'More' ) . '</a>';
 										}
 										foreach ( $blogusers as $key => $val ) {
 											echo '<a href="user-edit.php?user_id=' . $val->user_id . '">' . $val->user_login . '</a> ('.$val->user_email.')<br />'; 
@@ -573,6 +573,7 @@ switch( $_GET['action'] ) {
 		</div>
 
 		<div class="wrap">
+			<a name="form-add-blog"></a>
 			<h2><?php _e('Add Blog') ?></h2>
 			<form method="post" action="wpmu-edit.php?action=addblog">
 				<?php wp_nonce_field('add-blog') ?>

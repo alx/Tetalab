@@ -1,7 +1,7 @@
 <?php
 require_once('admin.php');
 if( is_site_admin() == false ) {
-    wp_die( __('You do not have permission to access this page.') );
+	wp_die( __('You do not have permission to access this page.') );
 }
 
 do_action('wpmuadminedit', '');
@@ -17,7 +17,6 @@ if( isset( $_POST['ref'] ) == false && !empty($_SERVER['HTTP_REFERER']) ) {
 }
 
 switch( $_GET['action'] ) {
-	// Options
 	case "siteoptions":
 		check_admin_referer('siteoptions');
 		if( empty( $_POST ) )
@@ -35,10 +34,6 @@ switch( $_GET['action'] ) {
 				$names[] = trim( $name );
 		}
 		update_site_option( "illegal_names", $names );
-
-		update_site_option( "registration", $_POST['registration'] );
-		update_site_option( "registrationnotification", $_POST['registrationnotification'] );
-		update_site_option( "add_new_users", $_POST['add_new_users'] );
 
 		if( $_POST['limited_email_domains'] != '' ) {
 			$limited_email_domains = str_replace( ' ', "\n", $_POST[ 'limited_email_domains' ] );
@@ -86,6 +81,9 @@ switch( $_GET['action'] ) {
 				$dashboard_blog_id = $blog_details->blog_id;
 			}
 		}
+		if ( is_wp_error( $dashboard_blog_id ) ) {
+			wp_die( __( 'Problem creating dashboard blog: ' ) . $dashboard_blog_id->get_error_message() );
+		}
 		if( $_POST[ 'dashboard_blog_orig' ] != $_POST[ 'dashboard_blog' ] ) {
 			$users = get_users_of_blog( get_site_option( 'dashboard_blog' ) );
 			$move_users = array();
@@ -102,7 +100,7 @@ switch( $_GET['action'] ) {
 			}
 		}
 		update_site_option( "dashboard_blog", $dashboard_blog_id );
-		$options = array( 'menu_items', 'mu_media_buttons', 'blog_upload_space', 'upload_filetypes', 'site_name', 'first_post', 'welcome_email', 'fileupload_maxk', 'admin_notice_feed' );
+		$options = array( 'registrationnotification', 'registration', 'add_new_users', 'menu_items', 'mu_media_buttons', 'upload_space_check_disabled', 'blog_upload_space', 'upload_filetypes', 'site_name', 'first_post', 'first_page', 'first_comment', 'first_comment_url', 'first_comment_author', 'welcome_email', 'welcome_user_email', 'fileupload_maxk', 'admin_notice_feed' );
 		foreach( $options as $option_name ) {
 			$value = stripslashes_deep( $_POST[ $option_name ] );
 			update_site_option( $option_name, $value );
@@ -125,14 +123,15 @@ switch( $_GET['action'] ) {
 		// Update more options here
 		do_action( 'update_wpmu_options' );
 
-		wp_redirect( add_query_arg( "updated", "true", $_SERVER['HTTP_REFERER'] ) );
+		wp_redirect( add_query_arg( "updated", "true", 'wpmu-options.php' ) );
 		exit();
 	break;
-
-	// Blogs
 	case "addblog":
 		check_admin_referer('add-blog');
 
+		if( is_array( $_POST[ 'blog' ] ) == false ) {
+			wp_die( "Can't create an empty blog." );
+		}
 		$blog = $_POST['blog'];
 		$domain = sanitize_user( str_replace( '/', '', $blog[ 'domain' ] ) );
 		$email = sanitize_email( $blog[ 'email' ] );
@@ -143,7 +142,7 @@ switch( $_GET['action'] ) {
 		if( !is_email( $email ) ) 
 			wp_die( __('Invalid email address') ); 
 
-		if( constant('VHOST') == 'yes' ) {
+		if( constant( 'VHOST' ) == 'yes' ) {
 			$newdomain = $domain.".".$current_site->domain;
 			$path = $base;
 		} else {
@@ -153,7 +152,7 @@ switch( $_GET['action'] ) {
 
 		$password = 'N/A';
 		$user_id = email_exists($email);
-		if( !$user_id ) {
+		if( !$user_id ) { // Create a new user with a random password
 			$password = generate_random_password();
 			$user_id = wpmu_create_user( $domain, $password, $email );
 			if(false == $user_id) {
@@ -186,17 +185,19 @@ switch( $_GET['action'] ) {
 			wp_die( __('You probably need to go back to the <a href="wpmu-blogs.php">blogs page</a>') );
 
 		// themes
-		if( is_array( $_POST['theme'] ) ) {
-			$_POST['option']['allowedthemes'] = $_POST['theme'];
+		if( is_array( $_POST[ 'theme' ] ) ) {
+			$_POST[ 'option' ][ 'allowedthemes' ] = $_POST[ 'theme' ];
 		} else {
-			$_POST['option']['allowedthemes'] = '';
+			$_POST[ 'option' ][ 'allowedthemes' ] = '';
 		}
 
 		switch_to_blog( $id );
-		if( is_array( $_POST['option'] ) ) {
+		if( is_array( $_POST[ 'option' ] ) ) {
 			$c = 1;
-			$count = count( $_POST['option'] );
+			$count = count( $_POST[ 'option' ] );
 			foreach ( (array) $_POST['option'] as $key => $val ) {
+				if( $key === 0 )
+					continue; // Avoids "0 is a protected WP option and may not be modified" error when edit blog options
 				if( $c == $count ) {
 					update_option( $key, $val );
 				} else {
@@ -217,71 +218,76 @@ switch( $_GET['action'] ) {
 		$wp_rewrite->flush_rules();
 
 		// update blogs table
-		$result = $wpdb->query("UPDATE {$wpdb->blogs} SET
-				domain       = '".$_POST['blog']['domain']."',
-				path         = '".$_POST['blog']['path']."',
-				registered   = '".$_POST['blog']['registered']."',
-				public       = '".$_POST['blog']['public']."',
-				archived     = '".$_POST['blog']['archived']."',
-				mature       = '".$_POST['blog']['mature']."',
-				deleted      = '".$_POST['blog']['deleted']."',
-				spam         = '".$_POST['blog']['spam']."' 
-			WHERE  blog_id = '$id'");
+		$result = $wpdb->query( "UPDATE {$wpdb->blogs} SET
+				domain       = '".$_POST[ 'blog' ][ 'domain' ]."',
+				path         = '".$_POST[ 'blog' ][ 'path' ]."',
+				registered   = '".$_POST[ 'blog' ][ 'registered' ]."',
+				public       = '".$_POST[ 'blog' ][ 'public' ]."',
+				archived     = '".$_POST[ 'blog' ][ 'archived' ]."',
+				mature       = '".$_POST[ 'blog' ][ 'mature' ]."',
+				deleted      = '".$_POST[ 'blog' ][ 'deleted' ]."',
+				spam         = '".$_POST[ 'blog' ][ 'spam' ]."'
+			WHERE  blog_id = '$id'" );
 
-		update_blog_status( $id, 'spam', $_POST['blog']['spam'] );
-		update_option( 'blog_public', $_POST['blog']['public'] );
+		update_blog_status( $id, 'spam', $_POST[ 'blog' ][ 'spam' ] );
+		update_option( 'blog_public', $_POST[ 'blog' ][ 'public' ] );
 
+		// get blog prefix
+		$blog_prefix = $wpdb->get_blog_prefix( $id );
 		// user roles
-		if( is_array( $_POST['role'] ) == true ) {
-			$newroles = $_POST['role'];
+		if( is_array( $_POST[ 'role' ] ) == true ) {
+			$newroles = $_POST[ 'role' ];
 			reset( $newroles );
 			foreach ( (array) $newroles as $userid => $role ) {
 				$role_len = strlen( $role );
-				$existing_role = $wpdb->get_var( "SELECT meta_value FROM $wpdb->usermeta WHERE user_id = '$userid'  AND meta_key = '" . $wpdb->base_prefix . $id . "_capabilities'" );
+				$existing_role = $wpdb->get_var( "SELECT meta_value FROM $wpdb->usermeta WHERE user_id = '$userid'  AND meta_key = '" . $blog_prefix. "capabilities'" );
 				if( false == $existing_role ) {
-					$wpdb->query( "INSERT INTO " . $wpdb->usermeta . "( `umeta_id` , `user_id` , `meta_key` , `meta_value` ) VALUES ( NULL, '$userid', '" . $wpdb->base_prefix . $id . "_capabilities', 'a:1:{s:" . strlen( $role ) . ":\"" . $role . "\";b:1;}')" );
+					$wpdb->query( "INSERT INTO " . $wpdb->usermeta . "( `umeta_id` , `user_id` , `meta_key` , `meta_value` ) VALUES ( NULL, '$userid', '" . $blog_prefix . "capabilities', 'a:1:{s:" . strlen( $role ) . ":\"" . $role . "\";b:1;}')" );
 				} elseif( $existing_role != "a:1:{s:" . strlen( $role ) . ":\"" . $role . "\";b:1;}" ) {
-					$wpdb->query( "UPDATE $wpdb->usermeta SET meta_value = 'a:1:{s:" . strlen( $role ) . ":\"" . $role . "\";b:1;}' WHERE user_id = '$userid'  AND meta_key = '" . $wpdb->base_prefix . $id . "_capabilities'" );
+					$wpdb->query( "UPDATE $wpdb->usermeta SET meta_value = 'a:1:{s:" . strlen( $role ) . ":\"" . $role . "\";b:1;}' WHERE user_id = '$userid'  AND meta_key = '" . $blog_prefix . "capabilities'" );
 				}
 
 			}
 		}
 
 		// remove user
-		if( is_array( $_POST['blogusers'] ) ) {
-			reset( $_POST['blogusers'] );
-			foreach ( (array) $_POST['blogusers'] as $key => $val )
+		if( is_array( $_POST[ 'blogusers' ] ) ) {
+			reset( $_POST[ 'blogusers' ] );
+			foreach ( (array) $_POST[ 'blogusers' ] as $key => $val )
 				remove_user_from_blog( $key, $id );
 		}
 
 		// change password
-		if( is_array( $_POST['user_password'] ) ) {
-			reset( $_POST['user_password'] );
-			$newroles = $_POST['role'];
-			foreach ( (array) $_POST['user_password'] as $userid => $pass ) {
-				unset( $_POST['role'] );
-				$_POST['role'] = $newroles[ $userid ];
+		if( is_array( $_POST[ 'user_password' ] ) ) {
+			reset( $_POST[ 'user_password' ] );
+			$newroles = $_POST[ 'role' ];
+			foreach ( (array) $_POST[ 'user_password' ] as $userid => $pass ) {
+				unset( $_POST[ 'role' ] );
+				$_POST[ 'role' ] = $newroles[ $userid ];
 				if( $pass != '' ) {
-					$cap = $wpdb->get_var( "SELECT meta_value FROM {$wpdb->usermeta} WHERE user_id = '{$userid}' AND meta_key = '{$wpdb->base_prefix}{$wpdb->blogid}_capabilities' AND meta_value = 'a:0:{}'" );
+					$cap = $wpdb->get_var( "SELECT meta_value FROM {$wpdb->usermeta} WHERE user_id = '{$userid}' AND meta_key = '{$blog_prefix}capabilities' AND meta_value = 'a:0:{}'" );
 					$userdata = get_userdata($userid);
-					$_POST['pass1'] = $_POST['pass2'] = $pass;
-					$_POST['email'] = $userdata->user_email;
-					$_POST['rich_editing'] = $userdata->rich_editing;
+					$_POST[ 'pass1' ] = $_POST[ 'pass2' ] = $pass;
+					$_POST[ 'email' ] = $userdata->user_email;
+					$_POST[ 'rich_editing' ] = $userdata->rich_editing;
 					edit_user( $userid );
 					if( $cap == null )
-						$wpdb->query( "DELETE FROM {$wpdb->usermeta} WHERE user_id = '{$userid}' AND meta_key = '{$wpdb->base_prefix}{$wpdb->blogid}_capabilities' AND meta_value = 'a:0:{}'" );
+						$wpdb->query( "DELETE FROM {$wpdb->usermeta} WHERE user_id = '{$userid}' AND meta_key = '{$blog_prefix}capabilities' AND meta_value = 'a:0:{}'" );
 				}
 			}
-			unset( $_POST['role'] );
-			$_POST['role'] = $newroles;
+			unset( $_POST[ 'role' ] );
+			$_POST[ 'role' ] = $newroles;
 		}
 
 		// add user?
-		if( $_POST['newuser'] != '' ) {
-			$newuser = $_POST['newuser'];
+		if( $_POST[ 'newuser' ] != '' ) {
+			$newuser = $_POST[ 'newuser' ];
 			$userid = $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM " . $wpdb->users . " WHERE user_login = %s", $newuser ) );
-			if( $userid )
-				add_user_to_blog( $id, $userid, $_POST['new_role'] );
+			if( $userid ) {
+				$user = $wpdb->get_var( "SELECT user_id FROM " . $wpdb->usermeta . " WHERE user_id='$userid' AND meta_key='wp_" . $id . "_capabilities'" );
+				if( $user == false )
+					add_user_to_blog($id, $userid, $_POST[ 'new_role' ]);
+			}
 		}
 		do_action( 'wpmu_update_blog_options' );
 		restore_current_blog();
@@ -290,7 +296,7 @@ switch( $_GET['action'] ) {
 
 	case "deleteblog":
 		check_admin_referer('deleteblog');
-		if( $id != '0' && $id != '1' )
+		if( $id != '0' && $id != $current_site->blog_id )
 			wpmu_delete_blog( $id, true );
 
 		wp_redirect( add_query_arg( array('updated' => 'true', 'action' => 'delete'), $_POST[ 'ref' ] ) );
@@ -299,8 +305,8 @@ switch( $_GET['action'] ) {
 
 	case "allblogs":
 		check_admin_referer('allblogs');
-		foreach ( (array) $_POST['allblogs'] as $key => $val ) {
-			if( $val != '0' && $val != '1' ) {
+		foreach ( (array) $_POST[ 'allblogs' ] as $key => $val ) {
+			if( $val != '0' && $val != $current_site->blog_id ) {
 				if ( isset($_POST['allblog_delete']) ) {
 					$blogfunction = 'all_delete';
 					wpmu_delete_blog( $val, true );
@@ -355,7 +361,6 @@ switch( $_GET['action'] ) {
 	case "unspamblog":
 		check_admin_referer('unspamblog');
 		update_blog_status( $id, "spam", '0' );
-		do_action( "unspam_blog", $id );
 		wp_redirect( add_query_arg( array('updated' => 'true', 'action' => 'unspam'), $_POST['ref'] ) );
 		exit();
 	break;
@@ -363,7 +368,6 @@ switch( $_GET['action'] ) {
 	case "spamblog":
 		check_admin_referer('spamblog');
 		update_blog_status( $id, "spam", '1' );
-		do_action( 'make_spam_blog', $id );
 		wp_redirect( add_query_arg( array('updated' => 'true', 'action' => 'spam'), $_POST['ref'] ) );
 		exit();
 	break;
@@ -406,6 +410,16 @@ switch( $_GET['action'] ) {
 			nocache_headers();
 			header( 'Content-Type: text/html; charset=utf-8' );
 		}
+		$blog_details = get_blog_details( $_GET[ 'id' ] );
+		$confirmation_messages = array( "activateblog" => __( "You are about to activate the blog %s" ),
+						"deactivateblog" => __( "You are about to deactivate the blog %s" ),
+						"unarchiveblog" => __( "You are about to unarchive the blog %s" ),
+						"archiveblog" => __( "You are about to archive the blog %s" ),
+						"unspamblog" => __( "You are about to unspam the blog %s" ),
+						"spamblog" => __( "You are about to mark the blog %s as spam" ),
+						"deleteblog" => __( "You are about to delete the blog %s" ),
+				);
+
 		?>
 		<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 		<html xmlns="http://www.w3.org/1999/xhtml" <?php if ( function_exists('language_attributes') ) language_attributes(); ?>>
@@ -418,11 +432,11 @@ switch( $_GET['action'] ) {
 			<body id="error-page">
 				<h1 id="logo"><img alt="WordPress" src="images/wordpress-logo.png" /></h1>
 				<form action='wpmu-edit.php?action=<?php echo wp_specialchars( $_GET[ 'action2' ] ) ?>' method='post'>
-					<input type='hidden' name='action' value='<?php echo wp_specialchars( $_GET['action2'] ) ?>' />
-					<input type='hidden' name='id' value='<?php echo wp_specialchars( $id ); ?>' />
+					<input type='hidden' name='action' value='<?php echo esc_attr( $_GET['action2'] ) ?>' />
+					<input type='hidden' name='id' value='<?php echo intval( $id ); ?>' />
 					<input type='hidden' name='ref' value='<?php echo $referrer; ?>' />
 					<?php wp_nonce_field( $_GET['action2'] ) ?>
-					<p><?php echo wp_specialchars( stripslashes($_GET['msg']) ); ?></p>
+					<p><?php printf( __( $confirmation_messages[ $_GET[ 'action2' ] ] ), $blog_details->siteurl ); ?></p>
 					<p class="submit"><input class="button" type='submit' value='<?php _e("Confirm"); ?>' /></p>						
 				</form>
 			</body>
@@ -430,7 +444,7 @@ switch( $_GET['action'] ) {
 		<?php
 	break;
 
-	// Users
+	// Users (not used any more)
 	case "deleteuser":
 		check_admin_referer('deleteuser');
 		if( $id != '0' && $id != '1' )
@@ -451,7 +465,7 @@ switch( $_GET['action'] ) {
 			if( is_array( $_POST[ 'blog' ] ) && !empty( $_POST[ 'blog' ] ) ) {
 				foreach( $_POST[ 'blog' ] as $id => $users ) {
 					foreach( $users as $blogid => $user_id ) {
-						$wpdb->query( "UPDATE {$wpdb->base_prefix}{$blogid}_posts SET post_author = '{$user_id}' WHERE post_author = '{$id}'" );
+						remove_user_from_blog( $id, $blogid, $user_id );
 					}
 				}
 			}
@@ -461,16 +475,20 @@ switch( $_GET['action'] ) {
 
 			wp_redirect( add_query_arg( array('updated' => 'true', 'action' => 'all_delete'), 'wpmu-users.php' ) );
 		} else {
-		foreach ( (array) $_POST['allusers'] as $key => $val ) {
-			if( $val != '' && $val != '0' && $val != '1' ) {
-				$user_details = get_userdata( $val );
+			foreach ( (array) $_POST['allusers'] as $key => $val ) {
+				if( $val == '' || $val == '0' ) {
+					continue;
+				}
+				$user = new WP_User( $val );
+				if ( in_array( $user->user_login, get_site_option( 'site_admins', array( 'admin' ) ) ) ) {
+					wp_die( sprintf( __( 'Warning! User cannot be modified. The user %s is a site admnistrator.' ), $user->user_login ) );
+				}
 				if ( isset($_POST['alluser_spam']) ) {
 					$userfunction = 'all_spam';
 					$blogs = get_blogs_of_user( $val, true );
 					foreach ( (array) $blogs as $key => $details ) {
-						if ( $details->userblog_id == 1 ) { continue; } // main blog not a spam !
+						if ( $details->userblog_id == $current_site->blog_id ) { continue; } // main blog not a spam !
 						update_blog_status( $details->userblog_id, "spam", '1' );
-						do_action( "make_spam_blog", $details->userblog_id );
 					}
 					update_user_status( $val, "spam", '1', 1 );
 				} elseif ( isset($_POST['alluser_notspam']) ) {
@@ -482,8 +500,7 @@ switch( $_GET['action'] ) {
 					update_user_status( $val, "spam", '0', 1 );
 				}
 			}
-		}
-		wp_redirect( add_query_arg( array('updated' => 'true', 'action' => $userfunction), $_SERVER['HTTP_REFERER'] ) );
+			wp_redirect( add_query_arg( array('updated' => 'true', 'action' => $userfunction), $_SERVER['HTTP_REFERER'] ) );
 		}
 		exit();
 	break;
@@ -491,6 +508,9 @@ switch( $_GET['action'] ) {
 	case "adduser":
 		check_admin_referer('add-user');
 
+		if( is_array( $_POST[ 'user' ] ) == false ) {
+			wp_die( __( "Cannot create an empty user." ) );
+		}
 		$user = $_POST['user'];
 		if ( empty($user['username']) && empty($user['email']) ) {
 			wp_die( __('Missing username and email.') );
@@ -509,7 +529,7 @@ switch( $_GET['action'] ) {
 			wp_new_user_notification($user_id, $password);
 		}
 		if ( get_site_option( 'dashboard_blog' ) == false ) {
-			add_user_to_blog( '1', $user_id, get_site_option( 'default_user_role', 'subscriber' ) );
+			add_user_to_blog( $current_site->blog_id, $user_id, get_site_option( 'default_user_role', 'subscriber' ) );
 		} else {
 			add_user_to_blog( get_site_option( 'dashboard_blog' ), $user_id, get_site_option( 'default_user_role', 'subscriber' ) );
 		}
@@ -522,5 +542,4 @@ switch( $_GET['action'] ) {
 		wpmu_admin_do_redirect( "wpmu-admin.php" );
 	break;
 }
-
 ?>
