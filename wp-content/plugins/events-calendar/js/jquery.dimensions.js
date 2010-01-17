@@ -390,7 +390,7 @@ $.fn.extend({
 				}
 				parent = op;
 
-				if (parent.tagName.toLowerCase() == 'body' || parent.tagName.toLowerCase() == 'html') {
+				if (parent && (parent.tagName.toLowerCase() == 'body' || parent.tagName.toLowerCase() == 'html')) {
 					// Safari and IE Standards Mode doesn't add the body margin for elments positioned with static or relative
 					if ((sf || (ie && $.boxModel)) && elemPos != 'absolute' && elemPos != 'fixed') {
 						x += num(parent, 'marginLeft');
