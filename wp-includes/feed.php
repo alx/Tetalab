@@ -187,13 +187,13 @@ function the_excerpt_rss() {
  */
 function the_permalink_rss() {
 	global $post;
-	echo "post: ".$post->ID;
+	
 	$link = get_post_meta($post->ID, "wpmu-link", true);
 	if(strlen($link) == 0){
 		$link = get_permalink();
 	}
 
-	echo $link;
+	echo apply_filters('the_permalink_rss', $link);
 	//echo apply_filters('the_permalink_rss', get_permalink());
 }
 
