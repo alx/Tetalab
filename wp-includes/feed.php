@@ -186,9 +186,7 @@ function the_excerpt_rss() {
  * @uses apply_filters() Call 'the_permalink_rss' on the post permalink
  */
 function the_permalink_rss() {
-	global $post;
-	
-	echo apply_filters('the_permalink_rss', "123");
+	echo apply_filters('the_permalink_rss', "post-".$post->ID);
 	//echo apply_filters('the_permalink_rss', get_metadata('post', $post->ID, 'wpmu-link', true));
 	//echo apply_filters('the_permalink_rss', get_permalink());
 }
