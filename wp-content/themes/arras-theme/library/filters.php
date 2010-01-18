@@ -15,15 +15,9 @@ function remove_gallery_css() {
  */
 function arras_newsheader($page_type) {
 	global $post;
-	
-	$link = get_post_meta($post->ID, "wpmu-link", true);
-	echo "link:".$link;
-	if(strlen($link) == 0){
-		$link = get_permalink();
-	}
-	
+
 	$postheader = '<div class="entry-thumbnails">';
-	$postheader .= '<a class="entry-thumbnails-link" href="' . $link . '">';
+	$postheader .= '<a class="entry-thumbnails-link" href="' . wpmu_link() . '">';
 
 	if ( ($thumbnail = arras_get_thumbnail($page_type . '-post-thumb')) ) {	
 		$postheader .= '<img src="' . $thumbnail . '" alt="' . get_the_title() . '" title="' . get_the_title()	. '" />';	
@@ -34,13 +28,13 @@ function arras_newsheader($page_type) {
 	$postheader .= '</a>';
 	
 	if ( arras_get_option($page_type . '_display_meta_inpic') ) {	
-		$postheader .= '<span class="entry-meta"><a href="' . $link . '"><span class="entry-comments">' . get_comments_number() . '</span></a>';
+		$postheader .= '<span class="entry-meta"><a href="' . wpmu_link() . '"><span class="entry-comments">' . get_comments_number() . '</span></a>';
 		$postheader .= '<abbr class="published" title="' . get_the_time('c') . '">' . get_the_time( get_option('date_format') ) . '</abbr></span>';
 	}
 	
 	$postheader .= '</div>';
 	
-	$postheader .= '<h3 class="entry-title"><a href="' . $link . '" rel="bookmark">' . get_the_title() . '</a></h3>';
+	$postheader .= '<h3 class="entry-title"><a href="' . wpmu_link() . '" rel="bookmark">' . get_the_title() . '</a></h3>';
 	
 	echo apply_filters('arras_newsheader', $postheader);
 }
