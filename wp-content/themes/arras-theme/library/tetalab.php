@@ -66,9 +66,7 @@ function wpmu_link(){
 	global $post;
 	
 	$link = get_post_meta($post->ID, "wpmu-link", true);
-	if(strlen($link) > 0){
-		$link = "http://".$link;
-	} else {
+	if(strlen($link) == 0){
 		$link = get_permalink();
 	}
 	
