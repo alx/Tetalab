@@ -28,7 +28,7 @@ function get_video_posts() {
 			echo 'alt="'.htmlspecialchars($ret[$i]['title']).'" ';
 			echo 'title="'.htmlspecialchars($ret[$i]['title']).'">';
 			echo '</a></div><h3 class="entry-title">';
-			echo '<a href="'.$ret[$i]['url'].'" rel="bookmark">'.htmlspecialchars($ret[$i]['title']).'</a></h3>'-;
+			echo '<a href="'.$ret[$i]['url'].'" rel="bookmark">'.htmlspecialchars($ret[$i]['title']).'</a></h3>';
 			echo '<div class="entry-summary">'.htmlspecialchars($ret[$i]['description']);
 			echo '</div></li>';
 		}
