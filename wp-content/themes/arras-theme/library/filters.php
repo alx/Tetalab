@@ -16,9 +16,7 @@ function remove_gallery_css() {
 function arras_newsheader($page_type) {
 	global $post;
 	
-	echo "post-id: ".$post->ID;
-	echo "wmpu-link: ".get_post_meta($post->ID, "wmpu-link", true);
-	$link = get_post_meta($post->ID, "wmpu-link", true) || get_permalink();
+	$link = get_post_meta($post->ID, "wpmu-link", true) || get_permalink();
 	
 	$postheader = '<div class="entry-thumbnails">';
 	$postheader .= '<a class="entry-thumbnails-link" href="' . $link . '">';
