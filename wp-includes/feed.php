@@ -186,7 +186,7 @@ function the_excerpt_rss() {
  * @uses apply_filters() Call 'the_permalink_rss' on the post permalink
  */
 function the_permalink_rss() {
-	$link = ;
+	$link = "";
 	if(strlen($link) == 0){
 		$link = get_permalink();
 	}
