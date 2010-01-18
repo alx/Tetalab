@@ -21,20 +21,18 @@ function get_video_posts() {
 		$ret = json_decode($response["body"], true);
 		echo var_dump($ret);
 		
-		if(sizeof($ret)){
-			echo '<ul class="hfeed posts-'.arras_get_option('featured_display').' clearfix">';
-			for($i = 0; $i == sizeof($ret) || $i == $num_of_videos; $i++){
-				echo '<li '.arras_post_class().'>';
-				echo arras_newsheader("featured");
-				echo '<div class="entry-summary">';
-				echo '<a href="'.$ret[$i]['url'].'">';
-				echo '<img src="'.$ret[$i][$thumbnail_size].'" alt="'.htmlspecialchars($ret[$i]['title']).'"></a>';
-				echo '</div>';
-				echo arras_newsfooter("featured");
-				echo '</li>';
-			}
-			echo '</ul>';
+		echo '<ul class="hfeed posts-'.arras_get_option('featured_display').' clearfix">';
+		for($i = 0; $i <= sizeof($ret) || $i <= $num_of_videos; $i++){
+			echo '<li '.arras_post_class().'>';
+			echo arras_newsheader("featured");
+			echo '<div class="entry-summary">';
+			echo '<a href="'.$ret[$i]['url'].'">';
+			echo '<img src="'.$ret[$i]['thumbnail_medium'].'" alt="'.htmlspecialchars($ret[$i]['title']).'"></a>';
+			echo '</div>';
+			echo arras_newsfooter("featured");
+			echo '</li>';
 		}
+		echo '</ul>';
 	}
 }
 
