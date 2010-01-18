@@ -192,9 +192,8 @@ function the_permalink_rss() {
 	if(strlen($link) == 0){
 		$link = get_permalink();
 	}
-	echo "post: ".$post->ID;
-	echo "get_metadata: ".get_metadata('post', $post->ID, 'wpmu-link', true);
-	echo apply_filters('the_permalink_rss', get_metadata('post', $post->ID, 'wpmu-link', true));
+	echo apply_filters('the_permalink_rss', $post->ID);
+	//echo apply_filters('the_permalink_rss', get_metadata('post', $post->ID, 'wpmu-link', true));
 	//echo apply_filters('the_permalink_rss', get_permalink());
 }
 
