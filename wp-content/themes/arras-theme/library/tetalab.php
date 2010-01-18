@@ -13,7 +13,7 @@ function curl_get($url) {
 function get_video_posts() {
 	
 	$num_of_videos = 4;
-	$vimeo_call = 'http://vimeo.com/api/v2/channel/tetalab/videos.json';
+	$vimeo_call = 'http://vimeo.com/api/v2/group/tetalab/videos.json';
 	
 	$response = wp_remote_get($vimeo_call, array('timeout' => 60));
 	
