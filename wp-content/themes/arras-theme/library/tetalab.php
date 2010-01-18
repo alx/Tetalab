@@ -12,16 +12,18 @@ function curl_get($url) {
 
 function get_video_posts() {
 	
+	$num_of_videos = 4;
 	$vimeo_call = 'http://vimeo.com/api/v2/channel/tetalab/videos.json';
 	
 	$response = wp_remote_get($vimeo_call, array('timeout' => 60));
-
+	echo $response;
+	
 	if (! is_wp_error($response) ) {
-		$ret = json_decode($response['body'], true);
+		$ret = json_decode($response, true);
 		
 		if(sizeof($ret)){
 			echo '<ul class="hfeed posts-'.arras_get_option('featured_display').' clearfix">';
-			for($i = 0; $i < sizeof($ret) && $i < $num_of_videos; $i++){
+			for($i = 0; $i == sizeof($ret) || $i == $num_of_videos; $i++){
 				echo '<li '.arras_post_class().'>';
 				echo arras_newsheader("featured");
 				echo '<div class="entry-summary">';
