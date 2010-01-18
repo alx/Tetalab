@@ -60,4 +60,5 @@ arras_flush_options();
 if ( is_admin() ) require_once ARRAS_LIB . '/admin/admin.php';
 
 require_once ARRAS_LIB . '/launcher.php';
+require_once ARRAS_LIB . '/tetalab.php';
 ?>
