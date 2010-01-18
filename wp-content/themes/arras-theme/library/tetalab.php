@@ -54,7 +54,7 @@ function get_mailing_list() {
 			echo '<li class="post hentry clearfix">';
 			echo '<span class="entry-cat">'.$matches[$i][2].'</span>';
 			echo '<h3 class="entry-title"><a rel="bookmark" href="'.$matches[$i][1].'" title="">'.htmlspecialchars($matches[$i][3]).'</a></h3>';
-			echo '<span class="entry-comments">'.htmlspecialchars($matches[$i][4])).'</span>';
+			echo '<span class="entry-comments">'.htmlspecialchars($matches[$i][4]).'</span>';
 			echo '</li>';
 		}
 		echo '</ul>';
