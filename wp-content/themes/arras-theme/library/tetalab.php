@@ -16,10 +16,10 @@ function get_video_posts() {
 	$vimeo_call = 'http://vimeo.com/api/v2/channel/tetalab/videos.json';
 	
 	$response = wp_remote_get($vimeo_call, array('timeout' => 60));
-	echo var_dump($response);
 	
 	if (! is_wp_error($response) ) {
-		$ret = json_decode($response, true);
+		$ret = json_decode($response["body"], true);
+		echo var_dump($ret);
 		
 		if(sizeof($ret)){
 			echo '<ul class="hfeed posts-'.arras_get_option('featured_display').' clearfix">';
