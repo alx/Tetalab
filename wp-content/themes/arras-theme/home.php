@@ -52,20 +52,8 @@ $stickies = get_option('sticky_posts');
 <!-- Featured Articles -->
 <?php if (!$paged) : if ( ($featured2_cat = arras_get_option('featured_cat') ) !== '' && $featured2_cat != '-1' ) : ?>
 <div id="index-featured">
-<div class="home-title"><?php _e('Featured', 'arras') ?></div>
-	<?php
-	if ($featured2_cat == '-5') {
-		if (count($stickies) > 0) 
-			$query2 = array('post__in' => $stickies, 'showposts' => arras_get_option('featured_count') );
-	} elseif ($featured2_cat == '0') {
-		$query2 = 'showposts=' . arras_get_option('featured_count');
-	} else {
-		$query2 = 'showposts=' . arras_get_option('featured_count') . '&cat=' . $featured2_cat;
-	}
-	
-	$q2 = new WP_Query( apply_filters('arras_featured_query', $query2) );
-	arras_get_posts('featured', $q2);
-	?>
+<div class="home-title">Videos</div>
+	<?php get_video_posts(); ?>
 </div><!-- #index-featured -->
 <?php endif; endif; ?>
 

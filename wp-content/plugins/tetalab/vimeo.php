@@ -10,7 +10,7 @@ function curl_get($url) {
 	return $return;
 }
 
-function read_lucas_vimeo() {
+function get_video_posts() {
 
 	// API endpoint
 	$api_endpoint = 'http://www.vimeo.com/api/v2/user593108';
@@ -18,22 +18,20 @@ function read_lucas_vimeo() {
 	// Load clips
 	$videos = simplexml_load_string(curl_get($api_endpoint.'/videos.xml'));
 	
-	foreach ($videos->video as $video):
+	?>
 	
-		$content = "";
-		
-		if(bp_activity_check_exists_by_content($content)):
-			bp_activity_add( array( 'user_id' => false, 
-									'content' => $content, 
-									'primary_link' => $primary_link, 
-									'component_name' => $component_name, 
-									'component_action' => $component_action, 
-									'item_id' => $item_id, 
-									'secondary_item_id' => $secondary_item_id, 
-									'recorded_time' => $recorded_time) );
-		endif;
-		
-	endforeach;
+	<ul class="hfeed posts-<?php echo arras_get_option('featured_display') ?> clearfix">
+	<?php foreach ($videos->video as $video): ?>
+	<li <?php arras_post_class() ?>>
+		<?php arras_newsheader("featured") ?>
+		<div class="entry-summary">
+			<a href=""><img src="http://ats.vimeo.com/400/652/40065219_200.jpg" width="125" height="94" alt=""></a>
+		</div>
+		<?php arras_newsfooter("featured") ?>		
+	</li>
+	<?php endforeach; ?>
+	</ul>
+	<?php
 }
 
 ?>
