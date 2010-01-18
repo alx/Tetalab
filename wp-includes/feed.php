@@ -188,7 +188,7 @@ function the_excerpt_rss() {
 function the_permalink_rss() {
 	global $post;
 	
-	$link = get_metadata('post', $post->ID, 'wpmu-link', true)
+	$link = get_metadata('post', $post->ID, 'wpmu-link', true);
 	if(strlen($link) == 0){
 		$link = get_permalink();
 	}
