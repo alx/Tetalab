@@ -29,7 +29,7 @@ function get_video_posts() {
 			echo 'title="'.htmlspecialchars($ret[$i]['title']).'" width="200px" height="150px">';
 			echo '</a></div><h3 class="entry-title">';
 			echo '<a href="'.$ret[$i]['url'].'" rel="bookmark">'.htmlspecialchars($ret[$i]['title']).'</a></h3>';
-			echo '</div></li>';
+			echo '</li>';
 		}
 		echo '</ul>';
 	}
