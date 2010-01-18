@@ -11,27 +11,29 @@ function curl_get($url) {
 }
 
 function get_video_posts() {
-
-	// API endpoint
-	$api_endpoint = 'http://www.vimeo.com/api/v2/user593108';
-
-	// Load clips
-	$videos = simplexml_load_string(curl_get($api_endpoint.'/videos.xml'));
 	
-	?>
+	$vimeo_call = 'http://vimeo.com/api/v2/channel/tetalab/videos.json';
 	
-	<ul class="hfeed posts-<?php echo arras_get_option('featured_display') ?> clearfix">
-	<?php foreach ($videos->video as $video): ?>
-	<li <?php arras_post_class() ?>>
-		<?php arras_newsheader("featured") ?>
-		<div class="entry-summary">
-			<a href=""><img src="http://ats.vimeo.com/400/652/40065219_200.jpg" width="125" height="94" alt=""></a>
-		</div>
-		<?php arras_newsfooter("featured") ?>		
-	</li>
-	<?php endforeach; ?>
-	</ul>
-	<?php
+	$response = wp_remote_get($vimeo_call, array('timeout' => 60));
+
+	if (! is_wp_error($response) ) {
+		$ret = json_decode($response['body'], true);
+		
+		if(sizeof($ret)){
+			echo '<ul class="hfeed posts-'.arras_get_option('featured_display').' clearfix">';
+			for($i = 0; $i < sizeof($ret) && $i < $num_of_videos; $i++){
+				echo '<li '.arras_post_class().'>';
+				echo arras_newsheader("featured");
+				echo '<div class="entry-summary">';
+				echo '<a href="'.$ret[$i]['url'].'">';
+				echo '<img src="'.$ret[$i][$thumbnail_size].'" alt="'.htmlspecialchars($ret[$i]['title']).'"></a>';
+				echo '</div>';
+				echo arras_newsfooter("featured");
+				echo '</li>';
+			}
+			echo '</ul>';
+		}
+	}
 }
 
 ?>
