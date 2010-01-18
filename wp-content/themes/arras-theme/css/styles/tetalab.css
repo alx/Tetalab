@@ -319,3 +319,8 @@ html[xmlns] #wp125adwrap_2c	{ display: block; }
 	float:right;
 	padding-right:20px;
 }
+
+.video-link a{
+	font-weight: bold;
+	text-decoration:none;
+}

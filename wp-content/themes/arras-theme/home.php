@@ -52,9 +52,9 @@ $stickies = get_option('sticky_posts');
 <!-- Featured Articles -->
 <?php if (!$paged) : if ( ($featured2_cat = arras_get_option('featured_cat') ) !== '' && $featured2_cat != '-1' ) : ?>
 <div id="index-featured">
-<div class="home-title">Videos</div>
-	<?php get_video_posts(); ?>
 	<div class="video-link"><a href="http://vimeo.com/groups/tetalab/videos">Plus de Videos &#x2192;</a></div>
+	<div class="home-title">Videos</div>
+	<?php get_video_posts(); ?>
 </div><!-- #index-featured -->
 <?php endif; endif; ?>
 
