@@ -40,7 +40,7 @@ function get_mailing_list() {
 	$num_of_mails = 10;
 	
 	$base_url = "http://lists.tetalab.org/pipermail/tetalab/";
-	$url = $base_url."2010-January/date.html"
+	$url = $base_url."2010-January/date.html";
 	$input = @file_get_contents($url) or die('Could not access file: $url');
 	$regexp = "<li><a\s[^>]*href=(\"??)([^\" >]*?)\\1[^>]*>(.*)<\/a><a \s[^>]*name=(\"??)([^\" >]*?)\\1[^>]*(.*)</a><i>(.*)</i></li>";
 	
