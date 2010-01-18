@@ -313,3 +313,9 @@ html[xmlns] #wp125adwrap_2c	{ display: block; }
 #footer-sidebar li	{ margin: 0 0 3px; }
 #footer .widgetcontent a:link, #footer .widgetcontent a:visited	{ font-size: 11px; }
 
+/*video link*/
+
+.video-link{
+	float:right;
+	padding-right:20px;
+}

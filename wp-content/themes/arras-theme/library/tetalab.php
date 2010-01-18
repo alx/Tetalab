@@ -38,19 +38,23 @@ function get_video_posts() {
 function get_mailing_list() {
 	
 	$num_of_mails = 10;
-	$ml_call = 'http://tetalab.org/ml.json';
 	
-	$response = wp_remote_get($ml_call, array('timeout' => 60));
+	$base_url = "http://lists.tetalab.org/pipermail/tetalab/";
+	$url = $base_url."2010-January/date.html"
+	$input = @file_get_contents($url) or die('Could not access file: $url');
+	$regexp = "<li><a\s[^>]*href=(\"??)([^\" >]*?)\\1[^>]*>(.*)<\/a><a \s[^>]*name=(\"??)([^\" >]*?)\\1[^>]*(.*)</a><i>(.*)</i></li>";
 	
-	if (! is_wp_error($response) ) {
-		$ret = json_decode($response["body"], true);
+	// <li><a href="000584.html">[Tetalab] Cette semaine au tetalab
+	// 	</a><a name="584">&nbsp;</a><i>Thomas Barandon</i></li>
+	
+	if(preg_match_all("/$regexp/siU", $input, $matches, PREG_SET_ORDER)) {
 		
 		echo '<ul class="hfeed posts-line clearfix">';
-		for($i = 0; $i < sizeof($ret) && $i < $num_of_videos; $i++){
+		for($i = 0; $i < sizeof($matches) && $i < $num_of_mails; $i++){
 			echo '<li class="post hentry clearfix">';
-			echo '<span class="entry-cat">'.$ret[$i]['date'].'</span>';
-			echo '<h3 class="entry-title"><a rel="bookmark" href="'.$ret[$i]['url'].'" title="">'.htmlspecialchars($ret[$i]['thread']).'</a></h3>';
-			echo '<span class="entry-comments">'.htmlspecialchars($ret[$i]['author']).'</span>';
+			echo '<span class="entry-cat">'.$matches[$i][2].'</span>';
+			echo '<h3 class="entry-title"><a rel="bookmark" href="'.$matches[$i][1].'" title="">'.htmlspecialchars($matches[$i][3]).'</a></h3>';
+			echo '<span class="entry-comments">'.htmlspecialchars($matches[$i][4])).'</span>';
 			echo '</li>';
 		}
 		echo '</ul>';
