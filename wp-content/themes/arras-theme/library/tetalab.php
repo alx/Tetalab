@@ -49,7 +49,7 @@ function get_mailing_list() {
 		for($i = 0; $i < sizeof($ret) && $i < $num_of_videos; $i++){
 			echo '<li class="post hentry clearfix">';
 			echo '<span class="entry-cat">'.$ret[$i]['date'].'</span>';
-			echo '<h3 class="entry-title"><a rel="bookmark" href="" title="">'.htmlspecialchars($ret[$i]['thread']).'</a></h3>';
+			echo '<h3 class="entry-title"><a rel="bookmark" href="'.$ret[$i]['url'].'" title="">'.htmlspecialchars($ret[$i]['thread']).'</a></h3>';
 			echo '<span class="entry-comments">'.htmlspecialchars($ret[$i]['author']).'</span>';
 			echo '</li>';
 		}
