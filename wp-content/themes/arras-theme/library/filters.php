@@ -16,7 +16,7 @@ function remove_gallery_css() {
 function arras_newsheader($page_type) {
 	global $post;
 	
-	echo "post-id: ".$post->ID
+	echo "post-id: ".$post->ID;
 	echo "wmpu-link: ".get_post_meta($post->ID, "wmpu-link", true)
 	$link = get_post_meta($post->ID, "wmpu-link", true) || get_permalink();
 	
