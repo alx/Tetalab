@@ -21,15 +21,14 @@ function get_video_posts() {
 		$ret = json_decode($response["body"], true);
 		
 		echo '<ul class="hfeed posts-'.arras_get_option('featured_display').' clearfix">';
-		for($i = 0; $i <= sizeof($ret) && $i <= $num_of_videos; $i++){
+		for($i = 0; $i < sizeof($ret) && $i < $num_of_videos; $i++){
 			echo '<li class="post hentry clearfix">';
 			echo '<div class="entry-thumbnails"><a class="entry-thumbnails-link" href="'.$ret[$i]['url'].'">';
 			echo '<img src="'.$ret[$i]['thumbnail_medium'].'" ';
 			echo 'alt="'.htmlspecialchars($ret[$i]['title']).'" ';
-			echo 'title="'.htmlspecialchars($ret[$i]['title']).'">';
+			echo 'title="'.htmlspecialchars($ret[$i]['title']).'" width="200px" height="150px">';
 			echo '</a></div><h3 class="entry-title">';
 			echo '<a href="'.$ret[$i]['url'].'" rel="bookmark">'.htmlspecialchars($ret[$i]['title']).'</a></h3>';
-			echo '<div class="entry-summary">'.htmlspecialchars($ret[$i]['description']);
 			echo '</div></li>';
 		}
 		echo '</ul>';
