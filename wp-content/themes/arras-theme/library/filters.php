@@ -16,7 +16,7 @@ function remove_gallery_css() {
 function arras_newsheader($page_type) {
 	global $post;
 	
-	$link = get_post_meta($post->ID, "wpmu-link", true)
+	$link = get_post_meta($post->ID, "wpmu-link", true);
 	echo "link:".$link;
 	if(strlen($link) == 0){
 		$link = get_permalink();
