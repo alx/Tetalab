@@ -35,4 +35,26 @@ function get_video_posts() {
 	}
 }
 
+function get_mailing_list() {
+	
+	$num_of_mails = 10;
+	$ml_call = 'http://tetalab.org/ml.json';
+	
+	$response = wp_remote_get($ml_call, array('timeout' => 60));
+	
+	if (! is_wp_error($response) ) {
+		$ret = json_decode($response["body"], true);
+		
+		echo '<ul class="hfeed posts-line clearfix">';
+		for($i = 0; $i < sizeof($ret) && $i < $num_of_videos; $i++){
+			echo '<li class="post hentry clearfix">';
+			echo '<span class="entry-cat">'.$ret[$i]['date'].'</span>';
+			echo '<h3 class="entry-title"><a rel="bookmark" href="" title="">'.htmlspecialchars($ret[$i]['thread']).'</a></h3>';
+			echo '<span class="entry-comments">'.htmlspecialchars($ret[$i]['author']).'</span>';
+			echo '</li>';
+		}
+		echo '</ul>';
+	}
+}
+
 ?>
