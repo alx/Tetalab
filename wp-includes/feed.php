@@ -188,11 +188,7 @@ function the_excerpt_rss() {
 function the_permalink_rss() {
 	global $post;
 	
-	$link = "";
-	if(strlen($link) == 0){
-		$link = get_permalink();
-	}
-	echo apply_filters('the_permalink_rss', "123".$post->ID);
+	echo apply_filters('the_permalink_rss', "123");
 	//echo apply_filters('the_permalink_rss', get_metadata('post', $post->ID, 'wpmu-link', true));
 	//echo apply_filters('the_permalink_rss', get_permalink());
 }
