@@ -10,8 +10,21 @@ function curl_get($url) {
 	return $return;
 }
 
-function get_video_posts() {
+function convertVimeoTime($vimeo_time) {
+  extract(strptime($vimeo_time,'%Y-%m-%d %H:%M:%S'));
+  return strftime('%a, %d %b %Y %H:%M:%S %z',mktime(
+                                intval($tm_hour),
+                                intval($tm_min),
+                                intval($tm_sec),
+                                intval($tm_mon)+1,
+                                intval($tm_mday),
+                                intval($tm_year)+1900
+                              ));
+}
+
+function get_video_posts($format = 'post') {
 	
+	$output = '';
 	$num_of_videos = 4;
 	$vimeo_call = 'http://vimeo.com/api/v2/group/tetalab/videos.json';
 	
@@ -20,19 +33,38 @@ function get_video_posts() {
 	if (! is_wp_error($response) ) {
 		$ret = json_decode($response["body"], true);
 		
-		echo '<ul class="hfeed posts-'.arras_get_option('featured_display').' clearfix">';
 		for($i = 0; $i < sizeof($ret) && $i < $num_of_videos; $i++){
-			echo '<li class="post hentry clearfix">';
-			echo '<div class="entry-thumbnails"><a class="entry-thumbnails-link" href="'.$ret[$i]['url'].'">';
-			echo '<img src="'.$ret[$i]['thumbnail_medium'].'" ';
-			echo 'alt="'.htmlspecialchars($ret[$i]['title']).'" ';
-			echo 'title="'.htmlspecialchars($ret[$i]['title']).'" width="200px" height="150px">';
-			echo '</a></div><h3 class="entry-title">';
-			echo '<a href="'.$ret[$i]['url'].'" rel="bookmark">'.htmlspecialchars($ret[$i]['title']).'</a></h3>';
-			echo '</li>';
+			
+			switch ($format) {
+				case 'rss':
+					$output .= '<item><title>'.htmlspecialchars($ret[$i]['title']).'</title>';
+					$output .= '<link>'.$ret[$i]['url'].'</link>';
+					$output .= '<comments>'.$ret[$i]['url'].'#comment</comments>';
+					$output .= '<pubDate>'.convertVimeoTime($ret[$i]['upload_date'])'</pubDate>';
+					$output .= '<dc:creator>'.$ret[$i]['author_name'].'</dc:creator>';
+					$output .= '<guid isPermaLink="false">'.$ret[$i]['url'].'</guid>';
+					$output .= '<description><![CDATA['.$ret[$i]['description'].']]></description></item>';
+					break;
+				
+				default:
+					$output .= '<li class="post hentry clearfix">';
+					$output .= '<div class="entry-thumbnails"><a class="entry-thumbnails-link" href="'.$ret[$i]['url'].'">';
+					$output .= '<img src="'.$ret[$i]['thumbnail_medium'].'" ';
+					$output .= 'alt="'.htmlspecialchars($ret[$i]['title']).'" ';
+					$output .= 'title="'.htmlspecialchars($ret[$i]['title']).'" width="200px" height="150px">';
+					$output .= '</a></div><h3 class="entry-title">';
+					$output .= '<a href="'.$ret[$i]['url'].'" rel="bookmark">';
+					$output .= htmlspecialchars($ret[$i]['title']).'</a></h3></li>';
+					break;
+			}
 		}
-		echo '</ul>';
+		
+		if($format == 'post') {
+			$output = '<ul class="hfeed posts-'.arras_get_option('featured_display').' clearfix">'.$output.'</ul>';
+		}
 	}
+	
+	echo $output;
 }
 
 function get_mailing_list() {
@@ -81,5 +113,11 @@ function wpmu_link(){
 	
 	return $link;
 }
+
+//Add a feed image
+function include_video_in_rss() {
+	get_video_posts('rss');
+}
+add_action('rss2_head', 'include_video_in_rss');
 
 ?>
