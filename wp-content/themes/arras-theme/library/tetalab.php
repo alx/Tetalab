@@ -81,18 +81,15 @@ function get_mailing_list() {
 	// Get rid of data outside of (and including) the <BODY> tags.
 	$html = preg_replace("/.*<body[^>]*>(.*)<\/body>.*/i","\$1",$html);
 	
-	$regexp = "<li><a href=\"(.[^\"]*)\">(.*)<\/a><a name=\"(.[^\"]*)\">(.*)<\/a><i>(.*)<\/i>";
+	$regexp = '<LI><A HREF="(.*)">(.*)\n<\/A><A NAME="\d+">(.*)<\/A>\n<I>(.*)';
 	
-	// <li><a href="000584.html">[Tetalab] Cette semaine au tetalab
-	// 	</a><a name="584">&nbsp;</a><i>Thomas Barandon</i></li>
-	
-	if(preg_match_all("/$regexp/siU", $input, $matches, PREG_SET_ORDER)) {
+	if(preg_match_all("/$regexp/", $input, $matches, PREG_SET_ORDER)) {
 		
 		echo '<ul class="hfeed posts-line clearfix">';
 		for($i = 0; $i < sizeof($matches) && $i < $num_of_mails; $i++){
 			echo '<li class="post hentry clearfix">';
-			echo '<span class="entry-cat">'.$matches[$i][2].'</span>';
-			echo '<h3 class="entry-title"><a rel="bookmark" href="'.$matches[$i][1].'" title="">'.htmlspecialchars($matches[$i][3]).'</a></h3>';
+			echo '<span class="entry-cat">'.$matches[$i][3].'</span>';
+			echo '<h3 class="entry-title"><a rel="bookmark" href="'.$matches[$i][1].'" title="">'.htmlspecialchars($matches[$i][2]).'</a></h3>';
 			echo '<span class="entry-comments">'.htmlspecialchars($matches[$i][4]).'</span>';
 			echo '</li>';
 		}
