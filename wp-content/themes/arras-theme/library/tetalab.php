@@ -76,9 +76,6 @@ function get_mailing_list() {
 	// Get HTML tmpfile into string.
 	$fileHandle = fopen('/var/lib/mailman/archives/private/tetalab/'.$month_ml.'/date.html', 'r');
 	$html = fread($fileHandle,'1000000');
-	
-	// Get rid of newlines in string for purposes of chopping things up.
-	$html = preg_replace("/\n/","__NEWLINE__",$html);
 
 	// Get rid of data outside of (and including) the <BODY> tags.
 	$html = preg_replace("/.*<body[^>]*>(.*)<\/body>.*/i","\$1",$html);
