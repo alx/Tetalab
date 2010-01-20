@@ -81,10 +81,11 @@ arras_get_posts('news') ?>
 		<div class="floatleft"><?php next_posts_link( __('Older Entries', 'arras') ) ?></div>
 		<div class="floatright"><?php previous_posts_link( __('Newer Entries', 'arras') ) ?></div>
 	</div>
-<?php } ?>
+<?php } 
 
-	<div class="home-title">Mailing List</div>
-	<?php get_mailing_list(); ?>
+	if ( current_user_can('manage_options') ) {get_mailing_list();}
+	
+?>
 
 </div><!-- #index-news -->
 
