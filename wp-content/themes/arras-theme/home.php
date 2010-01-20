@@ -83,8 +83,8 @@ arras_get_posts('news') ?>
 	</div>
 <?php } ?>
 
-	<!-- <div class="home-title">Mailing List</div> -->
-	<?php //get_mailing_list(); ?>
+	<div class="home-title">Mailing List</div>
+	<?php get_mailing_list(); ?>
 
 </div><!-- #index-news -->
 
