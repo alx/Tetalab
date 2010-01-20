@@ -85,7 +85,7 @@ function get_mailing_list() {
 	
 	$regexp = '<LI><A HREF="(.*)">(.*)\n<\/A><A NAME="\d+">(.*)<\/A>\n<I>(.*)';
 	
-	if(preg_match_all("/$regexp/", $html, $matches, PREG_SET_ORDER)) {
+	if(preg_match_all("/$regexp/", $html, $matches, PREG_SET_ORDER) > 0) {
 		
 		echo '<ul class="hfeed posts-line clearfix">';
 		for($i = 0; $i < sizeof($matches) && $i < $num_of_mails; $i++){
