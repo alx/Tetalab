@@ -82,6 +82,10 @@ arras_get_posts('news') ?>
 		<div class="floatright"><?php previous_posts_link( __('Newer Entries', 'arras') ) ?></div>
 	</div>
 <?php } ?>
+
+	<div class="home-title">Mailing List</div>
+	<?php get_mailing_list(); ?>
+
 </div><!-- #index-news -->
 
 <?php arras_below_index_news_post() ?>
@@ -89,10 +93,12 @@ arras_get_posts('news') ?>
 <?php $sidebars = wp_get_sidebars_widgets(); ?>
 
 <div id="bottom-content-1">
-	<div class="home-title">Mailing List</div>
+	<?php if ( $sidebars['sidebar-4'] ) : ?>
 	<ul class="clearfix xoxo">
-		<?php get_mailing_list(); ?>
+    	<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('Bottom Content #1') ) : ?>
+        <?php endif; ?>
 	</ul>
+	<?php endif; ?>
 </div>
 
 <div id="bottom-content-2">
