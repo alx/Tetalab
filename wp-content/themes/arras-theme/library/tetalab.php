@@ -70,7 +70,7 @@ function get_video_posts($format = 'post') {
 function get_mailing_list() {
 	
 	$num_of_mails = 10;
-	$month_ml = date("%Y-%F");
+	$month_ml = date("Y-F");
 	$base_ml = 'http://lists.tetalab.org/pipermail/tetalab/';
 	
 	// Get HTML tmpfile into string.
