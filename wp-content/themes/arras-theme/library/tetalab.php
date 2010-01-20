@@ -80,7 +80,7 @@ function get_mailing_list() {
 	// Get rid of data outside of (and including) the <BODY> tags.
 	$html = preg_replace("/.*<body[^>]*>(.*)<\/body>.*/i","\$1",$html);
 	
-	$regexp = '<LI><A HREF="(.*)">(.*)\n<\/A><A NAME="\d+">(.*)<\/A>\n<I>(.*)';
+	$regexp = '<LI><A HREF="(.*)">(.*)\n<\/A><A NAME="(\d+)">.*<\/A>\n<I>(.*)';
 	
 	if(preg_match_all("/$regexp/", $html, $matches, PREG_SET_ORDER) > 0) {
 		
@@ -89,8 +89,8 @@ function get_mailing_list() {
 			echo '<li class="post hentry clearfix">';
 			echo '<span class="entry-cat">'.$matches[$i][3].'</span>';
 			echo '<h3 class="entry-title"><a rel="bookmark" href="'.$base_ml.$month_ml.'/'.$matches[$i][1].'"';
-			echo 'title="">'.str_ireplace("[tetalab]", "", htmlspecialchars($matches[$i][4])).'</a></h3>';
-			echo '<span class="entry-comments">'.htmlspecialchars($matches[$i][2]).'</span>';
+			echo 'title="">'.str_ireplace("[tetalab]", "", htmlspecialchars($matches[$i][2])).'</a></h3>';
+			echo '<span class="entry-comments">'.htmlspecialchars($matches[$i][4]).'</span>';
 			echo '</li>';
 		}
 		echo '</ul>';
