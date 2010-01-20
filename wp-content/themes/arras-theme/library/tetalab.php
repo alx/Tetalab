@@ -76,9 +76,6 @@ function get_mailing_list() {
 	// Get HTML tmpfile into string.
 	$fileHandle = fopen('/var/lib/mailman/archives/private/tetalab/'.$month_ml.'/date.html', 'r');
 	$html = fread($fileHandle,'1000000');
-	
-	// Get rid of newlines in string for purposes of chopping things up.
-	$html = preg_replace("/\n/","__NEWLINE__",$html);
 
 	// Get rid of data outside of (and including) the <BODY> tags.
 	$html = preg_replace("/.*<body[^>]*>(.*)<\/body>.*/i","\$1",$html);
@@ -87,7 +84,6 @@ function get_mailing_list() {
 	
 	if(preg_match_all("/$regexp/", $html, $matches, PREG_SET_ORDER) > 0) {
 		
-		echo '<ul class="hfeed posts-line clearfix">';
 		for($i = 0; $i < sizeof($matches) && $i < $num_of_mails; $i++){
 			echo '<li class="post hentry clearfix">';
 			echo '<span class="entry-cat">'.$matches[$i][3].'</span>';
@@ -96,7 +92,6 @@ function get_mailing_list() {
 			echo '<span class="entry-comments">'.htmlspecialchars($matches[$i][4]).'</span>';
 			echo '</li>';
 		}
-		echo '</ul>';
 	}
 	
 	// Close HTML tmpfile.

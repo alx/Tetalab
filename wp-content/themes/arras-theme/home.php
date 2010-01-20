@@ -89,8 +89,8 @@ arras_get_posts('news') ?>
 <?php $sidebars = wp_get_sidebars_widgets(); ?>
 
 <div id="bottom-content-1">
+	<div class="home-title">Mailing List</div>
 	<ul class="clearfix xoxo">
-		<div class="home-title">Mailing List</div>
 		<?php get_mailing_list(); ?>
 	</ul>
 </div>
