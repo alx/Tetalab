@@ -70,9 +70,11 @@ function get_video_posts($format = 'post') {
 function get_mailing_list() {
 	
 	$num_of_mails = 10;
+	$month_ml = date("%Y-%F");
+	$base_ml = 'http://lists.tetalab.org/pipermail/tetalab/';
 	
 	// Get HTML tmpfile into string.
-	$fileHandle = fopen('/var/lib/mailman/archives/private/tetalab/2010-January/date.html', 'r');
+	$fileHandle = fopen('/var/lib/mailman/archives/private/tetalab/'.$month_ml.'/date.html', 'r');
 	$html = fread($fileHandle,'1000000');
 	
 	// Get rid of newlines in string for purposes of chopping things up.
@@ -83,13 +85,14 @@ function get_mailing_list() {
 	
 	$regexp = '<LI><A HREF="(.*)">(.*)\n<\/A><A NAME="\d+">(.*)<\/A>\n<I>(.*)';
 	
-	if(preg_match_all("/$regexp/", $input, $matches, PREG_SET_ORDER)) {
+	if(preg_match_all("/$regexp/", $html, $matches, PREG_SET_ORDER)) {
 		
 		echo '<ul class="hfeed posts-line clearfix">';
 		for($i = 0; $i < sizeof($matches) && $i < $num_of_mails; $i++){
 			echo '<li class="post hentry clearfix">';
 			echo '<span class="entry-cat">'.$matches[$i][3].'</span>';
-			echo '<h3 class="entry-title"><a rel="bookmark" href="'.$matches[$i][1].'" title="">'.htmlspecialchars($matches[$i][2]).'</a></h3>';
+			echo '<h3 class="entry-title"><a rel="bookmark" href="'.$base_ml.$month_ml.'/'.$matches[$i][1].'"';
+			echo 'title="">'.htmlspecialchars($matches[$i][2]).'</a></h3>';
 			echo '<span class="entry-comments">'.htmlspecialchars($matches[$i][4]).'</span>';
 			echo '</li>';
 		}
