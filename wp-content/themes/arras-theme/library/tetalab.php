@@ -85,11 +85,11 @@ function get_mailing_list() {
 	if(preg_match_all("/$regexp/", $html, $matches, PREG_SET_ORDER) > 0) {
 		
 		echo '<ul class="hfeed posts-line clearfix">';
-		for($i = sizeof($matches); (sizeof($matches) - $i) < $num_of_mails; $i--){
+		for($i = sizeof($matches) - 1; (sizeof($matches) - $i) < $num_of_mails; $i--){
 			echo '<li class="post hentry clearfix">';
 			echo '<span class="entry-cat">'.$matches[$i][3].'</span>';
 			echo '<h3 class="entry-title"><a rel="bookmark" href="'.$base_ml.$month_ml.'/'.$matches[$i][1].'"';
-			echo 'title="">'.str_ireplace("[tetalab]", "", htmlspecialchars($matches[$i][2])).'</a></h3>';
+			echo 'title="">'.str_ireplace("[tetalab]", "", htmlspecialchars(iconv("UTF-8", "ISO-8859-1", $matches[$i][2]))).'</a></h3>';
 			echo '<span class="entry-comments">'.htmlspecialchars($matches[$i][4]).'</span>';
 			echo '</li>';
 		}
