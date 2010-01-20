@@ -40,7 +40,7 @@ function get_video_posts($format = 'post') {
 					$output .= '<item><title>'.htmlspecialchars($ret[$i]['title']).'</title>';
 					$output .= '<link>'.$ret[$i]['url'].'</link>';
 					$output .= '<comments>'.$ret[$i]['url'].'#comment</comments>';
-					$output .= '<pubDate>'.convertVimeoTime($ret[$i]['upload_date'])'</pubDate>';
+					$output .= '<pubDate>'.convertVimeoTime($ret[$i]['upload_date']).'</pubDate>';
 					$output .= '<dc:creator>'.$ret[$i]['author_name'].'</dc:creator>';
 					$output .= '<guid isPermaLink="false">'.$ret[$i]['url'].'</guid>';
 					$output .= '<description><![CDATA['.$ret[$i]['description'].']]></description></item>';
