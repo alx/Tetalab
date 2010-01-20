@@ -89,7 +89,7 @@ function get_mailing_list() {
 			echo '<li class="post hentry clearfix">';
 			echo '<span class="entry-cat">'.$matches[$i][3].'</span>';
 			echo '<h3 class="entry-title"><a rel="bookmark" href="'.$base_ml.$month_ml.'/'.$matches[$i][1].'"';
-			echo 'title="">'.str_ireplace("[tetalab]", "", htmlspecialchars(iconv("UTF-8", "ISO-8859-1", $matches[$i][2]))).'</a></h3>';
+			echo 'title="">'.str_ireplace("[tetalab]", "", htmlspecialchars(iconv("ISO-8859-1", "UTF-8", $matches[$i][2]))).'</a></h3>';
 			echo '<span class="entry-comments">'.htmlspecialchars($matches[$i][4]).'</span>';
 			echo '</li>';
 		}
