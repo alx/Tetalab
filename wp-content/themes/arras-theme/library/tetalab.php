@@ -85,8 +85,8 @@ function get_mailing_list() {
 	if(preg_match_all("/$regexp/", $html, $matches, PREG_SET_ORDER) > 0) {
 		for($i = 0; $i < sizeof($matches) && $i < $num_of_mails; $i++){
 			echo '<li class="post hentry clearfix"><a href="'.$base_ml.$month_ml.'/'.$matches[$i][1].'">';
-			echo str_ireplace("[tetalab]", "", $matches[$i][3]);
-			echo '</a> par '.htmlspecialchars($matches[$i][2]).'</li>';
+			echo str_ireplace("[tetalab]", "", htmlspecialchars($matches[$i][2]));
+			echo '</a> par '.htmlspecialchars($matches[$i][4]).'</li>';
 		}
 	}
 	
