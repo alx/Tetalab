@@ -81,7 +81,7 @@ function get_mailing_list() {
 	// Get rid of data outside of (and including) the <BODY> tags.
 	$html = preg_replace("/.*<body[^>]*>(.*)<\/body>.*/i","\$1",$html);
 	
-	$regexp = "<li><a\s[^>]*href=(\"??)([^\" >]*?)\\1[^>]*>(.*)<\/a><a \s[^>]*name=(\"??)([^\" >]*?)\\1[^>]*(.*)</a><i>(.*)</i></li>";
+	$regexp = "<li><a\s[^>]*href=(\"??)([^\" >]*?)\\1[^>]*>(.*)<\/a><a \s[^>]*name=(\"??)([^\" >]*?)\\1[^>]*(.*)<\/a><i>(.*)<\/i><\/li>";
 	
 	// <li><a href="000584.html">[Tetalab] Cette semaine au tetalab
 	// 	</a><a name="584">&nbsp;</a><i>Thomas Barandon</i></li>
