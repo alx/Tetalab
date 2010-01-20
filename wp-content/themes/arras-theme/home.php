@@ -89,16 +89,10 @@ arras_get_posts('news') ?>
 <?php $sidebars = wp_get_sidebars_widgets(); ?>
 
 <div id="bottom-content-1">
-	<?php if ( $sidebars['sidebar-4'] ) : ?>
 	<ul class="clearfix xoxo">
-		
-
 		<div class="home-title">Mailing List</div>
 		<?php get_mailing_list(); ?>
-    	<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('Bottom Content #1') ) : ?>
-        <?php endif; ?>
 	</ul>
-	<?php endif; ?>
 </div>
 
 <div id="bottom-content-2">
