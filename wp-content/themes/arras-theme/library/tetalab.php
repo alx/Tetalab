@@ -72,8 +72,9 @@ function get_mailing_list() {
 	$num_of_mails = 10;
 	
 	// Get HTML tmpfile into string.
-	$html = fread("/var/lib/mailman/archives/private/tetalab/2010-January/date.html",'1000000');
-
+	$fileHandle = fopen('/var/lib/mailman/archives/private/tetalab/2010-January/date.html', 'r+');
+	$html = fread($fileHandle,'1000000');
+	
 	// Get rid of newlines in string for purposes of chopping things up.
 	$html = preg_replace("/\n/","__NEWLINE__",$html);
 
