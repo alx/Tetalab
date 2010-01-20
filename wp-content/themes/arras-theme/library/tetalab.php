@@ -100,7 +100,7 @@ function get_mailing_list() {
 	}
 	
 	// Close HTML tmpfile.
-	fclose("/var/lib/mailman/archives/private/tetalab/2010-January/date.html");
+	fclose($fileHandle);
 }
 
 function wpmu_link(){
