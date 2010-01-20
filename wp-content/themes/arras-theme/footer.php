@@ -12,7 +12,7 @@
                 	<div class="widgetcontent">
                 	<?php echo stripslashes(arras_get_option('footer_message')); ?>
 					
-                	<p><a href="http://www.arrastheme.com/"><strong><?php _e('About Arras Theme', 'arras') ?></strong></a></p>
+                	<p>Theme: <a href="http://www.arrastheme.com/"><strong>Arras</strong></a></p>
                 	</div>
             </li>
 		</ul>
