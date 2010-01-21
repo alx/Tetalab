@@ -19,4 +19,13 @@ jQuery(document).ready(function($) {
 		prev: '#controls .prev',
 		timeout: 6000
 	});
+	
+	$('#show_projects').click(function(){
+		if($("#more_projects").is(':visible')){
+			$("#more_projects").hide("slide", { direction: "down" }, 1000);
+		} else {
+			$("#more_projects").show("slide", { direction: "down" }, 1000);
+		}
+		
+	});
 });

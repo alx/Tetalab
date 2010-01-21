@@ -67,6 +67,14 @@ arras_head();
 <div id="wrapper">
 
     <div id="header">
+		
+		<div id="more" style="position:relative; top:-100px;left:1000px;color:#FFF;">
+			<a href="#" id="show_projects" style="text-decoration:none; color:#FFF">Plus de projets</a>
+		</div>
+		<div id="more_projects" style="display:none;with:100%;background:#FFF;">
+			<p>more to come...</p>
+		</div>
+		
     	<div id="branding" class="clearfix">
         <div class="logo clearfix">
         	<?php if ( is_home() || is_front_page() ) : ?>
