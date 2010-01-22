@@ -1,5 +1,8 @@
 <?php
 
+// Public Forum for commiters:
+//   Alx: hello :)
+
 // Curl helper function
 function curl_get($url) {
 	$curl = curl_init($url);
