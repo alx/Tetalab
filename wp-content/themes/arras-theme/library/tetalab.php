@@ -1,5 +1,8 @@
 <?php
 
+// Forum for tetalab committers!
+//   alx: hello world :)
+
 // Curl helper function
 function curl_get($url) {
 	$curl = curl_init($url);
