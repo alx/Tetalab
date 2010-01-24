@@ -337,34 +337,23 @@ html[xmlns] #wp125adwrap_2c	{ display: block; }
 #more_projects_content {
 	background:#f1efe6;
 	border-bottom:2px solid #383332;
+	display:none;
 	height:1000px;
 	width:100%;
 }
 
 #more_projects_tab {
 	background: url(../../images/more_projects_tab.png) no-repeat;
-	float:left;
-	height:24px;
-	left:1000px;
-	padding: 3px 0px 0px 20px;
-	width:176px;
-}
-
-#more_projects_tab a {
 	border:0;
 	color:#f1efe6;
 	font-size:12px;
+	height:24px;
+	margin-left:1000px;
+	padding: 3px 0px 0px 20px;
 	text-decoration:none;
+	width:176px;
 }
 
-#more_projects_tab a img{
+#more_projects_tab img {
 	padding-right:3px;
-}
-
-#more_projects_tab img#down{
-	background: url(../../images/more_projects_down.png) no-repeat;
-}
-
-#more_projects_tab img#up{
-	background: url(../../images/more_projects_up.png) no-repeat;
 }
