@@ -71,12 +71,9 @@ arras_head();
 
     <div id="header">
 		
-		<div id="more_projects" style="display:none;with:100%;background:#FFF;">
-			<p>more to come...</p>
-		</div>
-		
-		<div id="more_projects_tab">
-			<a href="#" id="show_projects"><img src="<?php bloginfo('template_url') ?>/images/more_projects_down.png" width="13px" height="11px" alt="Voir plus de projets"/>Plus de projets</a>
+		<div id="more_projects">
+			<div id="more_projects_content"><p>more to come...</p></div>
+			<a href="#" id="more_projects_tab"><img src="<?php bloginfo('template_url') ?>/images/more_projects_down.png" width="13px" height="11px" alt="Voir plus de projets"/>Plus de projets</a>
 		</div>
 		
     	<div id="branding" class="clearfix">

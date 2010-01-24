@@ -326,19 +326,24 @@ html[xmlns] #wp125adwrap_2c	{ display: block; }
 }
 
 /* More Projects */
+
 #more_projects {
+	position:fixed;
+	top:-1000px;
+}
+
+#more_projects_content {
 	background:#f1efe6;
-	display:none;
+	border-bottom:2px solid #383332;
+	height:1000px;
 	width:100%;
 }
 
 #more_projects_tab {
-	color:#f1efe6;
 	background: url(../../images/more_projects_tab.png) no-repeat;
 	height:24px;
 	left:1000px;
-	position:relative;
-	top:-100px;
+	padding: 3px 0px 0px 20px;
 	width:176px;
 }
 
