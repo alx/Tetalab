@@ -330,15 +330,14 @@ html[xmlns] #wp125adwrap_2c	{ display: block; }
 #more_projects {
 	display:block;
 	position:fixed;
-	height:1024px;
-	top:-1000px;
+	height:326px;
+	top:-302px;
 }
 
 #more_projects_content {
 	background:#f1efe6;
 	border-bottom:2px solid #383332;
-	display:none;
-	height:1000px;
+	height:300px;
 	width:100%;
 }
 
@@ -352,7 +351,7 @@ html[xmlns] #wp125adwrap_2c	{ display: block; }
 	padding: 3px 0px 0px 25px;
 	position:relative;
 	text-decoration:none;
-	top:1000px;
+	top:300px;
 	width:176px;
 	z-index:1000;
 }
