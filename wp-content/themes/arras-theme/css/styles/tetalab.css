@@ -328,7 +328,9 @@ html[xmlns] #wp125adwrap_2c	{ display: block; }
 /* More Projects */
 
 #more_projects {
+	display:block;
 	position:fixed;
+	height:1024px;
 	top:-1000px;
 }
 
@@ -341,6 +343,7 @@ html[xmlns] #wp125adwrap_2c	{ display: block; }
 
 #more_projects_tab {
 	background: url(../../images/more_projects_tab.png) no-repeat;
+	float:left;
 	height:24px;
 	left:1000px;
 	padding: 3px 0px 0px 20px;
