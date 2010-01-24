@@ -344,11 +344,12 @@ html[xmlns] #wp125adwrap_2c	{ display: block; }
 
 #more_projects_tab {
 	background: url(../../images/more_projects_tab.png) no-repeat;
-	border:0;
 	color:#f1efe6;
 	font-size:12px;
 	height:24px;
 	padding: 3px 0px 0px 20px;
+	position:relative;
+	top:1000px;
 	width:176px;
 }
 
