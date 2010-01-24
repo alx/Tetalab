@@ -333,16 +333,24 @@ html[xmlns] #wp125adwrap_2c	{ display: block; }
 }
 
 #more_projects_tab {
-	color:#FFF;
+	color:#f1efe6;
 	background: url(../../images/more_projects_tab.png) no-repeat;
+	height:24px;
 	left:1000px;
 	position:relative;
 	top:-100px;
+	width:176px;
 }
 
 #more_projects_tab a {
 	border:0;
+	color:#f1efe6;
+	font-size:12px;
 	text-decoration:none;
+}
+
+#more_projects_tab a img{
+	padding-right:3px;
 }
 
 #more_projects_tab img#down{
