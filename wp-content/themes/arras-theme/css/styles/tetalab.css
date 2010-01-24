@@ -348,12 +348,10 @@ html[xmlns] #wp125adwrap_2c	{ display: block; }
 	color:#f1efe6;
 	font-size:12px;
 	height:24px;
-	margin-left:1000px;
 	padding: 3px 0px 0px 20px;
-	text-decoration:none;
 	width:176px;
 }
 
-#more_projects_tab img {
+#more_projects_tab img{
 	padding-right:3px;
 }
