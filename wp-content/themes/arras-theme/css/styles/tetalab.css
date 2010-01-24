@@ -354,6 +354,7 @@ html[xmlns] #wp125adwrap_2c	{ display: block; }
 	text-decoration:none;
 	top:1000px;
 	width:176px;
+	z-index:1000;
 }
 
 #more_projects_tab img{

@@ -5,7 +5,7 @@ j(document).ready(function() {
 		
 		var img = j('#more_projects_tab img').attr('src');
 		
-		if(j("#more_projects").is(':visible')){
+		if(img.search(/up/) != -1){
 			j("#more_projects").hide("slide", { direction: "up" }, 1000);
 			j('#more_projects_tab img').attr('src', img.replace("up", "down"));
 		} else {
