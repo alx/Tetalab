@@ -47,6 +47,7 @@ if ( is_singular() ) {
 }
 
 wp_enqueue_script('arras_base', get_template_directory_uri() . '/js/base.js', null, null, false);
+wp_enqueue_script('arras_base', get_template_directory_uri() . '/js/jquery.galleryview.js', null, null, false);
 
 wp_head();
 arras_head();
@@ -72,7 +73,27 @@ arras_head();
     <div id="header">
 		
 		<div id="more_projects">
-			<div id="more_projects_content"><p>more to come...</p></div>
+			<div id="more_projects_content">
+				<div class="gallery">
+					<div class="panel">
+						<img src="path/to/image.jpg" />
+						<div class="panel-overlay">
+							...overlay content...
+						</div>
+						<div class="overlay-background"></div>
+					</div>
+					<ul class="filmstrip">
+						<li class="frame current">
+							<img src="path/to/thumbnail.jpg" />
+							<div class="caption">caption text</div>
+						</li>
+						<li class="frame">
+							<img src="path/to/thumbnail.jpg" />
+							<div class="caption">caption text</div>
+						</li>
+					</ul>
+				</div>
+			</div>
 			<a href="#" id="more_projects_tab"><img src="<?php bloginfo('template_url') ?>/images/more_projects_down.png" width="13px" height="11px" alt="Voir plus de projets"/>Plus de projets</a>
 		</div>
 		
