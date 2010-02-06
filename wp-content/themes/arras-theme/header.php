@@ -74,7 +74,7 @@ arras_head();
 		
 		<div id="more_projects">
 			<div id="more_projects_content">
-				<div class="gallery">
+				<div id="gallery">
 					<div class="panel">
 						<img src="<?php bloginfo('template_url') ?>/images/projects/ledpong.jpg" />
 						<div class="panel-overlay">
