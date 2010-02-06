@@ -15,8 +15,6 @@ j(document).ready(function() {
 		
 	});
 	
-	
-
 	j('#photos').galleryView({
 		panel_width: 1200,
 		panel_height: 400,
