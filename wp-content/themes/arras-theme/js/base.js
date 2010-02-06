@@ -14,4 +14,13 @@ j(document).ready(function() {
 		}
 		
 	});
+	
+	
+
+	j('#photos').galleryView({
+		panel_width: 1200,
+		panel_height: 400,
+		frame_width: 100,
+		frame_height: 100
+	});
 });

@@ -76,20 +76,20 @@ arras_head();
 			<div id="more_projects_content">
 				<div class="gallery">
 					<div class="panel">
-						<img src="path/to/image.jpg" />
+						<img src="<?php bloginfo('template_url') ?>/images/projects/ledpong.jpg" />
 						<div class="panel-overlay">
-							...overlay content...
+							Led Pong
 						</div>
 						<div class="overlay-background"></div>
 					</div>
 					<ul class="filmstrip">
 						<li class="frame current">
-							<img src="path/to/thumbnail.jpg" />
-							<div class="caption">caption text</div>
+							<img src="<?php bloginfo('template_url') ?>/images/projects/thumbs/ledpong.jpg" />
+							<div class="caption">Led Pong</div>
 						</li>
 						<li class="frame">
-							<img src="path/to/thumbnail.jpg" />
-							<div class="caption">caption text</div>
+							<img src="<?php bloginfo('template_url') ?>/images/projects/thumbs/arduino.jpg" />
+							<div class="caption">Arduino</div>
 						</li>
 					</ul>
 				</div>
