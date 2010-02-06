@@ -72,31 +72,6 @@ arras_head();
 
     <div id="header">
 		
-		<div id="more_projects">
-			<div id="more_projects_content">
-				<div id="gallery">
-					<div class="panel">
-						<img src="<?php bloginfo('template_url') ?>/images/projects/ledpong.jpg" />
-						<div class="panel-overlay">
-							Led Pong
-						</div>
-						<div class="overlay-background"></div>
-					</div>
-					<ul class="filmstrip">
-						<li class="frame current">
-							<img src="<?php bloginfo('template_url') ?>/images/projects/thumbs/ledpong.jpg" />
-							<div class="caption">Led Pong</div>
-						</li>
-						<li class="frame">
-							<img src="<?php bloginfo('template_url') ?>/images/projects/thumbs/arduino.jpg" />
-							<div class="caption">Arduino</div>
-						</li>
-					</ul>
-				</div>
-			</div>
-			<a href="#" id="more_projects_tab"><img src="<?php bloginfo('template_url') ?>/images/more_projects_down.png" width="13px" height="11px" alt="Voir plus de projets"/>Plus de projets</a>
-		</div>
-		
     	<div id="branding" class="clearfix">
         <div class="logo clearfix">
         	<?php if ( is_home() || is_front_page() ) : ?>

@@ -14,11 +14,4 @@ j(document).ready(function() {
 		}
 		
 	});
-	
-	j('#gallery').galleryView({
-		panel_width: 900,
-		panel_height: 300,
-		frame_width: 100,
-		frame_height: 100
-	});
 });
