@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generator="PhotoQ/1.8" created="2009-08-16 16:02"-->
+
+<photoQSave version="1.0">
+<photoQSaveMeta>
+	<generator>http://www.whoismanu.com/photoq-wordpress-photoblog-plugin/?v=1.8</generator>
+	<theme>
+		<name>Zack 990</name>
+		<version>1.1</version>
+		<category>photoblog</category>
+		<url>http://andreamignolo.com/zack-990/</url>
+		<author>
+			<name>A. Mignolo and Joshua Weinberg</name>
+			<contact>hello@andreamignolo.com</contact>
+		</author>
+	</theme>
+	<creator>
+		<name>whoismanu</name>
+		<contact>http://www.whoismanu.com/photoq-wordpress-photoblog-plugin/</contact>
+	</creator>
+</photoQSaveMeta>
+<photoQSettings>
+	<photoQFields>
+<field><name>caption</name></field>
+</photoQFields>
+<photoQOptions>
+<option name="imageSizes">
+<arrayValue>
+<entry>
+<key>thumbnail</key>
+<val>0</val>
+</entry>
+<entry>
+<key>main</key>
+<val>0</val>
+</entry>
+</arrayValue>
+<children>
+<option name="thumbnail">
+<children>
+<option name="thumbnail-imgConstraint">
+<value><![CDATA[rect]]></value>
+<children>
+<option name="thumbnail-imgWidth">
+<value><![CDATA[80]]></value>
+</option>
+<option name="thumbnail-imgHeight">
+<value><![CDATA[60]]></value>
+</option>
+<option name="thumbnail-zoomCrop">
+<value><![CDATA[0]]></value>
+</option>
+</children>
+</option>
+<option name="thumbnail-imgQuality">
+<value><![CDATA[95]]></value>
+</option>
+<option name="thumbnail-watermark">
+<value><![CDATA[0]]></value>
+</option>
+</children>
+</option>
+<option name="main">
+<children>
+<option name="main-imgConstraint">
+<value><![CDATA[rect]]></value>
+<children>
+<option name="main-imgWidth">
+<value><![CDATA[990]]></value>
+</option>
+<option name="main-imgHeight">
+<value><![CDATA[9999]]></value>
+</option>
+<option name="main-zoomCrop">
+<value><![CDATA[0]]></value>
+</option>
+</children>
+</option>
+<option name="main-imgQuality">
+<value><![CDATA[95]]></value>
+</option>
+<option name="main-watermark">
+<value><![CDATA[0]]></value>
+</option>
+</children>
+</option>
+</children>
+</option>
+<option name="views">
+<arrayValue>
+<entry>
+<key>content</key>
+<val>0</val>
+</entry>
+<entry>
+<key>excerpt</key>
+<val>0</val>
+</entry>
+</arrayValue>
+<children>
+<option name="content">
+<children>
+<option name="contentView-type">
+<value><![CDATA[freeform]]></value>
+<children>
+<option name="contentView-freeform">
+<value><![CDATA[&lt;br/&gt;[descr]&lt;br/&gt;&lt;img src=\&quot;[imgUrl|main]\&quot; width=\&quot;[imgWidth|main]\&quot; height=\&quot;[imgHeight|main]\&quot; alt=\&quot;[title]\&quot; /&gt;&lt;p class=\&quot;caption\&quot;&gt;[caption]&lt;/p&gt;[exif] ]]></value>
+</option>
+</children>
+</option>
+<option name="inlineDescr">
+<value><![CDATA[0]]></value>
+</option>
+<option name="inlineExif">
+<value><![CDATA[0]]></value>
+</option>
+</children>
+</option>
+<option name="excerpt">
+<children>
+<option name="excerptView-type">
+<value><![CDATA[none]]></value>
+</option>
+</children>
+</option>
+</children>
+</option>
+<option name="exifDisplay">
+<children>
+<option name="exifBefore">
+<value><![CDATA[Exif: ]]></value>
+</option>
+<option name="exifAfter">
+<value><![CDATA[]]></value>
+</option>
+<option name="exifElementBetween">
+<value><![CDATA[|]]></value>
+</option>
+<option name="exifElementFormatting">
+<value><![CDATA[ [value] ]]></value>
+</option>
+</children>
+</option>
+</photoQOptions>
+</photoQSettings>
+</photoQSave>

@@ -1,0 +1,61 @@
+/*draggable/sortable list item*/
+.reorderable li{
+	cursor: move;
+	border-bottom: 1px solid #CCCCCC;
+	padding: 5px 2px;
+	margin: 0px;
+	font-size: 11px;
+}
+
+.reorderable{
+	padding: 0px 0px 10px 0px;
+	margin: 0px;
+}
+
+.reorderableList{
+	width: 40%;
+	float: left;
+	margin-right: 20px;
+	padding: 1px;
+	padding-bottom: 0px;
+	border: 1px solid #CCCCCC;
+}
+
+.reorderableListTitle{
+	margin: 0px;
+	margin-bottom: 1px;
+	padding: 0px 5px;
+	background-color: #F1F1F1;
+	border-bottom: 1px solid #DDD;
+}
+
+.switchLink{
+	float: right;
+}
+
+.deleteLink{
+	margin-bottom: -10px;
+	margin-right: 10px;
+	float: right;
+}
+
+.expCompEl{
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #DDD;
+}
+
+.expCompOption{
+	margin-bottom: 20px;
+}
+
+.expCompOptionList{
+	font-size: 11px;
+}
+
+
+.addExpCompElLabel{
+	padding: 0px 10px;
+}
+
+

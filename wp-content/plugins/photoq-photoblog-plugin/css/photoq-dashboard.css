@@ -1,0 +1,28 @@
+#dashboard_photoq div.table{
+	margin: 0px -9px 10px -9px;
+	padding: 0px;
+	background: #F9F9F9;
+	font-size: 12px;
+}
+
+#dashboard_photoq h5{
+	margin-bottom: 5px;
+}
+
+#dashboard_photoq table {
+	width:100%;
+}
+
+#dashboard_photoq td{
+	border-top: 1px solid #ECECEC;
+	padding: 6px 5px 5px 5px;
+	font-size: 12px;
+}
+
+#dashboard_photoq .first td{
+	border-top: none;
+}
+
+#dashboard_photoq form{
+	float: right;
+}

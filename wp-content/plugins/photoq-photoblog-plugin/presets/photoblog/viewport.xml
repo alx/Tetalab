@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generator="PhotoQ/1.7" created="2009-08-14 02:29"-->
+
+<photoQSave version="1.0">
+<photoQSaveMeta>
+	<generator>http://www.whoismanu.com/photoq-wordpress-photoblog-plugin/?v=1.7</generator>
+	<theme>
+		<name>Viewport</name>
+		<version>1.1</version>
+		<category>photoblog</category>
+		<url>http://paulicio.us/2008/11/05/viewport-a-free-wordpress-theme/</url>
+		<author>
+			<name>Paul Bennett</name>
+			<contact>http://paulicio.us/about/#contact</contact>
+		</author>
+	</theme>
+	<creator>
+		<name>whoismanu</name>
+		<contact>http://www.whoismanu.com/photoq-wordpress-photoblog-plugin/</contact>
+	</creator>
+</photoQSaveMeta>
+<photoQSettings>
+	<photoQOptions>
+<option name="imageSizes">
+<arrayValue>
+<entry>
+<key>thumbnail</key>
+<val>0</val>
+</entry>
+<entry>
+<key>main</key>
+<val>0</val>
+</entry>
+<entry>
+<key>single</key>
+<val>1</val>
+</entry>
+</arrayValue>
+<children>
+<option name="thumbnail">
+<children>
+<option name="thumbnail-imgConstraint">
+<value><![CDATA[rect]]></value>
+<children>
+<option name="thumbnail-imgWidth">
+<value><![CDATA[270]]></value>
+</option>
+<option name="thumbnail-imgHeight">
+<value><![CDATA[172]]></value>
+</option>
+<option name="thumbnail-zoomCrop">
+<value><![CDATA[1]]></value>
+</option>
+</children>
+</option>
+<option name="thumbnail-imgQuality">
+<value><![CDATA[95]]></value>
+</option>
+<option name="thumbnail-watermark">
+<value><![CDATA[0]]></value>
+</option>
+</children>
+</option>
+<option name="main">
+<children>
+<option name="main-imgConstraint">
+<value><![CDATA[rect]]></value>
+<children>
+<option name="main-imgWidth">
+<value><![CDATA[940]]></value>
+</option>
+<option name="main-imgHeight">
+<value><![CDATA[600]]></value>
+</option>
+<option name="main-zoomCrop">
+<value><![CDATA[1]]></value>
+</option>
+</children>
+</option>
+<option name="main-imgQuality">
+<value><![CDATA[95]]></value>
+</option>
+<option name="main-watermark">
+<value><![CDATA[0]]></value>
+</option>
+</children>
+</option>
+<option name="single">
+<children>
+<option name="single-imgConstraint">
+<value><![CDATA[rect]]></value>
+<children>
+<option name="single-imgWidth">
+<value><![CDATA[940]]></value>
+</option>
+<option name="single-imgHeight">
+<value><![CDATA[300]]></value>
+</option>
+<option name="single-zoomCrop">
+<value><![CDATA[1]]></value>
+</option>
+</children>
+</option>
+<option name="single-imgQuality">
+<value><![CDATA[95]]></value>
+</option>
+<option name="single-watermark">
+<value><![CDATA[0]]></value>
+</option>
+</children>
+</option>
+</children>
+</option>
+<option name="views">
+<arrayValue>
+<entry>
+<key>content</key>
+<val>0</val>
+</entry>
+<entry>
+<key>excerpt</key>
+<val>0</val>
+</entry>
+<entry>
+<key>lead_image</key>
+<val>1</val>
+</entry>
+<entry>
+<key>single_image</key>
+<val>1</val>
+</entry>
+<entry>
+<key>archive_image</key>
+<val>1</val>
+</entry>
+</arrayValue>
+<children>
+<option name="content">
+<children>
+<option name="contentView-type">
+<value><![CDATA[freeform]]></value>
+<children>
+<option name="contentView-freeform">
+<value><![CDATA[[descr]
+
+Exif: [exif] ]]></value>
+</option>
+</children>
+</option>
+<option name="inlineDescr">
+<value><![CDATA[0]]></value>
+</option>
+<option name="inlineExif">
+<value><![CDATA[0]]></value>
+</option>
+</children>
+</option>
+<option name="excerpt">
+<children>
+<option name="excerptView-type">
+<value><![CDATA[freeform]]></value>
+<children>
+<option name="excerptView-freeform">
+<value><![CDATA[[descr]
+
+]]></value>
+</option>
+</children>
+</option>
+</children>
+</option>
+<option name="lead_image">
+<children>
+<option name="lead_imageView-type">
+<value><![CDATA[freeform]]></value>
+<children>
+<option name="lead_imageView-freeform">
+<value><![CDATA[[imgUrl|main] ]]></value>
+</option>
+</children>
+</option>
+</children>
+</option>
+<option name="single_image">
+<children>
+<option name="single_imageView-type">
+<value><![CDATA[freeform]]></value>
+<children>
+<option name="single_imageView-freeform">
+<value><![CDATA[[imgUrl|single] ]]></value>
+</option>
+</children>
+</option>
+</children>
+</option>
+<option name="archive_image">
+<children>
+<option name="archive_imageView-type">
+<value><![CDATA[freeform]]></value>
+<children>
+<option name="archive_imageView-freeform">
+<value><![CDATA[[imgUrl|thumbnail] ]]></value>
+</option>
+</children>
+</option>
+</children>
+</option>
+</children>
+</option>
+<option name="exifDisplay">
+<children>
+<option name="exifBefore">
+<value><![CDATA[]]></value>
+</option>
+<option name="exifAfter">
+<value><![CDATA[]]></value>
+</option>
+<option name="exifElementBetween">
+<value><![CDATA[|]]></value>
+</option>
+<option name="exifElementFormatting">
+<value><![CDATA[ [value] ]]></value>
+</option>
+</children>
+</option>
+</photoQOptions>
+</photoQSettings>
+</photoQSave>

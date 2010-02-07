@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generator="PhotoQ/1.8" created="2009-08-16 20:45"-->
+
+<photoQSave version="1.0">
+<photoQSaveMeta>
+	<generator>http://www.whoismanu.com/photoq-wordpress-photoblog-plugin/?v=1.8</generator>
+	<theme>
+		<name>Grace Photoblog</name>
+		<version>1.1</version>
+		<category>photoblog</category>
+		<url>http://7879designs.co.uk/downloads/free-wordpress-photoblog-theme-grace/</url>
+		<author>
+			<name>7879 Designs</name>
+			<contact>http://7879designs.co.uk/contact/</contact>
+		</author>
+	</theme>
+	<creator>
+		<name>whoismanu</name>
+		<contact>http://www.whoismanu.com/photoq-wordpress-photoblog-plugin/</contact>
+	</creator>
+</photoQSaveMeta>
+<photoQSettings>
+	<photoQOptions>
+<option name="imageSizes">
+<arrayValue>
+<entry>
+<key>thumbnail</key>
+<val>0</val>
+</entry>
+<entry>
+<key>main</key>
+<val>0</val>
+</entry>
+</arrayValue>
+<children>
+<option name="thumbnail">
+<children>
+<option name="thumbnail-imgConstraint">
+<value><![CDATA[rect]]></value>
+<children>
+<option name="thumbnail-imgWidth">
+<value><![CDATA[280]]></value>
+</option>
+<option name="thumbnail-imgHeight">
+<value><![CDATA[140]]></value>
+</option>
+<option name="thumbnail-zoomCrop">
+<value><![CDATA[1]]></value>
+</option>
+</children>
+</option>
+<option name="thumbnail-imgQuality">
+<value><![CDATA[95]]></value>
+</option>
+<option name="thumbnail-watermark">
+<value><![CDATA[0]]></value>
+</option>
+</children>
+</option>
+<option name="main">
+<children>
+<option name="main-imgConstraint">
+<value><![CDATA[rect]]></value>
+<children>
+<option name="main-imgWidth">
+<value><![CDATA[900]]></value>
+</option>
+<option name="main-imgHeight">
+<value><![CDATA[900]]></value>
+</option>
+<option name="main-zoomCrop">
+<value><![CDATA[0]]></value>
+</option>
+</children>
+</option>
+<option name="main-imgQuality">
+<value><![CDATA[95]]></value>
+</option>
+<option name="main-watermark">
+<value><![CDATA[0]]></value>
+</option>
+</children>
+</option>
+</children>
+</option>
+<option name="views">
+<arrayValue>
+<entry>
+<key>content</key>
+<val>0</val>
+</entry>
+<entry>
+<key>excerpt</key>
+<val>0</val>
+</entry>
+<entry>
+<key>Description</key>
+<val>1</val>
+</entry>
+<entry>
+<key>Thumbnail</key>
+<val>1</val>
+</entry>
+</arrayValue>
+<children>
+<option name="content">
+<children>
+<option name="contentView-type">
+<value><![CDATA[single]]></value>
+<children>
+<option name="contentView-singleSize">
+<value><![CDATA[main]]></value>
+</option>
+</children>
+</option>
+<option name="inlineDescr">
+<value><![CDATA[0]]></value>
+</option>
+<option name="inlineExif">
+<value><![CDATA[0]]></value>
+</option>
+</children>
+</option>
+<option name="excerpt">
+<children>
+<option name="excerptView-type">
+<value><![CDATA[single]]></value>
+<children>
+<option name="excerptView-singleSize">
+<value><![CDATA[main]]></value>
+</option>
+</children>
+</option>
+</children>
+</option>
+<option name="Description">
+<children>
+<option name="DescriptionView-type">
+<value><![CDATA[freeform]]></value>
+<children>
+<option name="DescriptionView-freeform">
+<value><![CDATA[[descr][exif] ]]></value>
+</option>
+</children>
+</option>
+</children>
+</option>
+<option name="Thumbnail">
+<children>
+<option name="ThumbnailView-type">
+<value><![CDATA[single]]></value>
+<children>
+<option name="ThumbnailView-singleSize">
+<value><![CDATA[thumbnail]]></value>
+</option>
+</children>
+</option>
+</children>
+</option>
+</children>
+</option>
+<option name="exifDisplay">
+<children>
+<option name="exifBefore">
+<value><![CDATA[&lt;h2 class=\&quot;meta\&quot;&gt;Exif Information:&lt;/h4&gt;&lt;ul class=\&quot;photoQExifInfo\&quot;&gt;]]></value>
+</option>
+<option name="exifAfter">
+<value><![CDATA[&lt;/ul&gt;]]></value>
+</option>
+<option name="exifElementBetween">
+<value><![CDATA[]]></value>
+</option>
+<option name="exifElementFormatting">
+<value><![CDATA[&lt;li class=\&quot;photoQExifInfoItem\&quot;&gt;&lt;span class=\&quot;photoQExifTag\&quot;&gt;[key]:&lt;/span&gt; &lt;span class=\&quot;photoQExifValue\&quot;&gt;[value]&lt;/span&gt;&lt;/li&gt;]]></value>
+</option>
+</children>
+</option>
+</photoQOptions>
+</photoQSettings>
+</photoQSave>

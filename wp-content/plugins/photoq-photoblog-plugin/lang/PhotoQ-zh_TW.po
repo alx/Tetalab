@@ -1,0 +1,1066 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PhotoQ\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-07-22 20:55+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Anthony Chan <ckanthony@gmail.com>\n"
+"Language-Team: Anthony Chan <ckanthony@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: whoismanu-photoq-ajax.php:27
+#: whoismanu-photoq-ajax.php:56
+msgid "You do not have sufficient privileges to perform this task"
+msgstr "你並沒有足夠的權限來執行此程序"
+
+#: whoismanu-photoq-ajax.php:76
+msgid "Save Changes"
+msgstr "儲存更改"
+
+#: whoismanu-photoq-ajax.php:78
+msgid "Cancel"
+msgstr "取消"
+
+#: classes/PhotoQ.php:180
+msgid "PhotoQ Options"
+msgstr "PhotoQ 選項"
+
+#: classes/PhotoQ.php:182
+msgid "Manage PhotoQ"
+msgstr "管理 PhotoQ"
+
+#: classes/PhotoQ.php:221
+#, php-format
+msgid "Number of photos in the queue: %s"
+msgstr "在隊列中有 %s 張相片"
+
+#: classes/PhotoQ.php:223
+msgid "Next Photos to be published"
+msgstr "下一張發表的相片"
+
+#: classes/PhotoQ.php:243
+msgid "Edit Queue"
+msgstr "編輯隊列"
+
+#: classes/PhotoQ.php:247
+msgid "Add Photos to Queue"
+msgstr "把相片加到隊列中."
+
+#: classes/PhotoQ.php:392
+msgid "Options saved."
+msgstr "選項已被儲存."
+
+#: classes/PhotoQ.php:467
+msgid "Updating following image sizes:"
+msgstr "下列的相片格式尺寸已更新:"
+
+#: classes/PhotoQ.php:469
+msgid "Updating all published Photos..."
+msgstr "把所有已發表的相片更新..."
+
+#: classes/PhotoQ.php:490
+msgid "Cleaned old folder structure."
+msgstr "把舊有的資料夾結構清除."
+
+#: classes/PhotoQ.php:523
+msgid "Please choose a valid name for your image size."
+msgstr "請選擇一個可行的名稱來描述你的相片尺寸格式."
+
+#: classes/PhotoQ.php:738
+msgid "No fields so far. You can add some if you like."
+msgstr "目前沒有欄位. 你可以自行增加."
+
+#: classes/PhotoQ.php:836
+#, php-format
+msgid "Successfully uploaded. '%1$s' added to queue at position %2$d.|filename postion"
+msgstr "上載已成功. '%1$s' 已經增加到隊列中的位置: %2$d .|filename postion"
+
+#: classes/PhotoQ.php:992
+msgid "Are you sure you want to cancel the upload?"
+msgstr "你是否確定要把上載檔案的程序取消?"
+
+#: classes/PhotoQ.php:993
+msgid "All files uploaded."
+msgstr "所有檔案已被上載了."
+
+#: classes/PhotoQ.php:994
+#: classes/PhotoQ.php:1052
+msgid "Select Photos..."
+msgstr "選擇圖片..."
+
+#: classes/PhotoQ.php:995
+msgid "Uploading"
+msgstr "上載中..."
+
+#: classes/PhotoQ.php:996
+msgid "The file"
+msgstr "檔案"
+
+#: classes/PhotoQ.php:997
+msgid "has a size of zero."
+msgstr "檔案大小是零."
+
+#: classes/PhotoQ.php:998
+msgid "has an invalid filetype."
+msgstr "是一個非正確的檔案類別."
+
+#: classes/PhotoQ.php:999
+msgid "exceeds the upload file size limit of"
+msgstr "php.ini 設定檔中, 設定了上載檔案的極限大小"
+
+#: classes/PhotoQ.php:1000
+msgid "KB in your php.ini config file."
+msgstr "KB, 並不足夠上載這些檔案."
+
+#: classes/PhotoQ.php:1001
+msgid "You have attempted to queue too many files."
+msgstr "放置了太多的檔案在隊列中."
+
+#: classes/PhotoQ.php:1002
+msgid "Upload Queue is empty"
+msgstr "上載隊列沒有東西"
+
+#: classes/PhotoQ.php:1003
+msgid "Add more..."
+msgstr "更多..."
+
+#: classes/PhotoQ.php:1004
+msgid "photos queued for upload"
+msgstr "圖片正等待上載"
+
+#: classes/PhotoQ.php:1005
+msgid "cancelled"
+msgstr "被取消了."
+
+#: classes/PhotoQ.php:1093
+msgid "Aborting batch processing due to following error:"
+msgstr "成批處理已終止, 原因是:"
+
+#: classes/PhotoQ.php:1094
+msgid "Updating done."
+msgstr "更新已完成."
+
+#: classes/PhotoQ.php:1095
+msgid "Please wait, updating"
+msgstr "請等待, 正在更新中."
+
+#: classes/PhotoQ.php:1096
+msgid "complete."
+msgstr "完成."
+
+#: classes/PhotoQ.php:1127
+msgid "Show PhotoQ"
+msgstr "顯示 PhotoQ"
+
+#: classes/PhotoQ.php:1139
+msgid "PhotoQ Documentation"
+msgstr "PhotoQ 說明文件"
+
+#: classes/PhotoQ.php:1140
+msgid "PhotoQ Support Forum"
+msgstr "PhotoQ 支援討論區"
+
+#: classes/PhotoQ.php:1372
+msgid "New Watermark successfully uploaded. Updating image sizes including watermark..."
+msgstr "新的浮水印樣式已經順利地上載了, 現在開始更新圖片, 包括浮水印的尺寸.."
+
+#: classes/PhotoQ.php:1383
+msgid "None"
+msgstr "沒有"
+
+#: classes/PhotoQ.php:1616
+#, php-format
+msgid "Import the following photos from: %s"
+msgstr "載入以下的相片, 自: %s"
+
+#: classes/PhotoQ.php:1649
+msgid "PhotoQ is free software. Still, countless of hours went into its development and made PhotoQ what it is today. Have you ever thought of giving something back?"
+msgstr "PhotoQ 是免費的.  然而, 你可以為那些, 在這程序裡花費了無數的時間, 努力-現在還在努力地完善程序的開發者, 盡一點的心意."
+
+#: classes/PhotoQ.php:1650
+msgid "A donation is an easy way of showing the developer your appreciation."
+msgstr "多多益善, 少少無拘 - 一點點的捐助, 能夠表達對本程序下過努力的開發者, 展示無限的支持."
+
+#: classes/PhotoQ.php:1651
+msgid "Yes, I support PhotoQ and would like to make a donation"
+msgstr "是的, 我要捐助你們, 來支持PhotoQ"
+
+#: classes/PhotoQ.php:1651
+msgid "No, thanks"
+msgstr "不要, 謝謝"
+
+#: classes/PhotoQ.php:1651
+msgid "I already donated"
+msgstr "我已經捐助了"
+
+#: classes/PhotoQBatch.php:128
+msgid "An error occured in batch processing."
+msgstr "在成批程序運行時發生錯誤."
+
+#: classes/PhotoQBatch.php:187
+msgid "An error occured."
+msgstr "錯誤發生了."
+
+#: classes/PhotoQError.php:116
+msgid "Post \"%title%\": The photo \"%imgname%\" could not be found at \"%path%\"."
+msgstr "發表 \"%title%\": 相片 \"%imgname%\" 並不存在於 \"%path%\"."
+
+#: classes/PhotoQError.php:117
+msgid "Queued post \"%title%\": The photo \"%imgname%\" could not be found at \"%path%\"."
+msgstr "在隊列中的發表 \"%title%\": 相片 \"%imgname%\" 並不存在於 \"%path%\"."
+
+#: classes/PhotoQError.php:118
+msgid "The post with ID \"%id%\" does not seem to exist."
+msgstr "發表: ID  \"%id%\" 並不存在."
+
+#: classes/PhotoQError.php:119
+msgid "The file upload failed with the following error: %errMsg%."
+msgstr "上載相片時發生錯誤:  %errMsg%."
+
+#: classes/PhotoQError.php:120
+msgid "Error when registering batch process: No photos updated."
+msgstr "當在注冊成批程序時發生錯誤: 沒有相片被更新."
+
+#: classes/PhotoQHelpers.php:340
+msgid "Categories"
+msgstr "目錄"
+
+#: classes/PhotoQImageSize.php:136
+#, php-format
+msgid "Error when creating directory: %s."
+msgstr "建立 %s 目錄時發生錯誤."
+
+#: classes/PhotoQImageSize.php:203
+msgid "Thumb created successfully"
+msgstr "預覽圖成功產生"
+
+#: classes/PhotoQImageSize.php:207
+#: classes/PhotoQImageSize.php:211
+#: classes/PhotoQImageSize.php:426
+msgid "Failed:"
+msgstr "失敗:"
+
+#: classes/PhotoQImageSize.php:390
+#, php-format
+msgid "Error when creating directory: %s| dirname"
+msgstr "在建立 %s 目錄時發生錯誤| dirname"
+
+#: classes/PhotoQImageSize.php:395
+#, php-format
+msgid "Unable to move %s, posting aborted.| imgname"
+msgstr "圖片 %s 無法移動, 發表已終止.| imgname"
+
+#: classes/PhotoQImageSize.php:398
+#, php-format
+msgid "Unable to copy %s, posting aborted.| imgname"
+msgstr "圖片 %s 無法複制, 發表已終止.| imgname"
+
+#: classes/PhotoQImageSize.php:402
+#, php-format
+msgid "Image %s already exists, posting aborted.| imgname"
+msgstr "圖片 %s 已存在, 發表已終止.| imgname"
+
+#: classes/PhotoQImageSize.php:405
+msgid "Original photo moved successfully"
+msgstr "原圖片已被順利移動."
+
+#: classes/PhotoQImageSize.php:426
+msgid "Don't call createThumb() on original image."
+msgstr "對於原圖, 不要使用(呼叫) createThumb()"
+
+#: classes/PhotoQOptionController.php:44
+msgid "Switch Sides"
+msgstr "反轉"
+
+#: classes/PhotoQOptionController.php:75
+msgid "selected"
+msgstr "選取的"
+
+#: classes/PhotoQOptionController.php:76
+msgid "deselected"
+msgstr "非選取的"
+
+#: classes/PhotoQOptionController.php:88
+msgid "Before List"
+msgstr "在列之前"
+
+#: classes/PhotoQOptionController.php:89
+#: classes/PhotoQOptionController.php:99
+#: classes/PhotoQOptionController.php:223
+#, php-format
+msgid "Default is %s"
+msgstr "預設是 %s"
+
+#: classes/PhotoQOptionController.php:98
+msgid "After List"
+msgstr "在列之後"
+
+#: classes/PhotoQOptionController.php:108
+msgid "Between Elements"
+msgstr "在元素之間"
+
+#: classes/PhotoQOptionController.php:118
+msgid "Element Formatting"
+msgstr "元素格式"
+
+#: classes/PhotoQOptionController.php:120
+#, php-format
+msgid "You can specify the HTML that should be printed for each element here. Two shortags %1$s and %2$s are available. %1$s is replaced with the name of the EXIF tag, %2$s with its value. Here is an example, showing the default value: %3$s"
+msgstr "你可以自行指定 HTML 碼, 以指示PhotoQ 該怎樣去表示各元素.  兩個特殊碼: %1$s , %2$s 可被使用, 其中%1$s 是EXIF tag 的代碼, %2$s 是它的相應數值.  這裡是一個預設的例子, 可供參考: %3$s"
+
+#: classes/PhotoQOptionController.php:134
+msgid "Position"
+msgstr "位置"
+
+#: classes/PhotoQOptionController.php:138
+msgid "Bottom Right"
+msgstr "上方靠右"
+
+#: classes/PhotoQOptionController.php:139
+msgid "Bottom Left"
+msgstr "下方靠左"
+
+#: classes/PhotoQOptionController.php:140
+msgid "Top Right"
+msgstr "上方靠右"
+
+#: classes/PhotoQOptionController.php:141
+msgid "Top Left"
+msgstr "上方靠左"
+
+#: classes/PhotoQOptionController.php:142
+msgid "Center"
+msgstr "置中"
+
+#: classes/PhotoQOptionController.php:143
+msgid "Right"
+msgstr "右方"
+
+#: classes/PhotoQOptionController.php:144
+msgid "Left"
+msgstr "左方"
+
+#: classes/PhotoQOptionController.php:145
+msgid "Top"
+msgstr "上方"
+
+#: classes/PhotoQOptionController.php:146
+msgid "Bottom"
+msgstr "下方"
+
+#: classes/PhotoQOptionController.php:147
+msgid "Tile"
+msgstr "並列顯示"
+
+#: classes/PhotoQOptionController.php:157
+msgid "Opacity"
+msgstr "不透明度(100% 為完全不透明)"
+
+#: classes/PhotoQOptionController.php:167
+msgid "left/right"
+msgstr "左/右"
+
+#: classes/PhotoQOptionController.php:168
+msgid "Margins"
+msgstr "邊緣"
+
+#: classes/PhotoQOptionController.php:179
+msgid "top/bottom"
+msgstr "頂部/底部"
+
+#: classes/PhotoQOptionController.php:181
+msgid "Values smaller than one are interpreted as percentages instead of pixels."
+msgstr "小於1 的數值會當成百分數 (percentages), 而不是像素 (pixels)."
+
+#: classes/PhotoQOptionController.php:194
+msgid "Add to already posted as well."
+msgstr "亦增加到已經發佈的發表中."
+
+#: classes/PhotoQOptionController.php:202
+msgid "Delete from already posted as well."
+msgstr "亦為已經發佈的發表刪除."
+
+#: classes/PhotoQOptionController.php:209
+msgid "Rename already posted as well."
+msgstr "亦為已發佈的發表重新命名."
+
+#: classes/PhotoQOptionController.php:226
+msgid "Image Directory not found"
+msgstr "拔不到相片目錄"
+
+#: classes/PhotoQOptionController.php:228
+msgid "Image Directory not writable"
+msgstr "圖片目錄無法寫入"
+
+#: classes/PhotoQOptionController.php:236
+#, php-format
+msgid "Absolute path to the ImageMagick convert executable. (e.g. %1$s ). Leave empty if %2$s is in the path.| example programname"
+msgstr "ImageMagick 執行檔的絕對路徑. (例如 %1$s).  如果%2$s 是在路徑之中, 把它留空白. | 程序例子"
+
+#: classes/PhotoQOptionController.php:248
+msgid "Cronjob runs every"
+msgstr "每"
+
+#: classes/PhotoQOptionController.php:250
+msgid "hours"
+msgstr "小時, CronJob 運行一次"
+
+#: classes/PhotoQOptionController.php:259
+msgid "Use settings of second post button for automatic posting."
+msgstr "使用第二發表按鈕來自動發表."
+
+#: classes/PhotoQOptionController.php:267
+msgid "When cronjob runs, automatically add FTP uploads to queue."
+msgstr "當CronJob 運行時, 自動把FTP 上載到隊列中."
+
+#: classes/PhotoQOptionController.php:279
+msgid "Thumbs shown in list of published photos are maximum | ends with: px wide"
+msgstr "在已發表的相片中, 預覽圖是最大的. | ends with: px wide"
+
+#: classes/PhotoQOptionController.php:280
+msgid "px wide| starts with: thumbs ... are"
+msgstr "px 寬| 自:預覽圖... 是"
+
+#: classes/PhotoQOptionController.php:291
+#: classes/PhotoQOptionController.php:313
+#: classes/PhotoQOptionController.php:335
+#: classes/PhotoQOptionController.php:1048
+msgid "px high"
+msgstr "px 高"
+
+#: classes/PhotoQOptionController.php:301
+msgid "Thumbs shown in PhotoQ edit dialogs are maximum"
+msgstr "在WordPress 中編輯發布時, 預覽圖的最大尺寸."
+
+#: classes/PhotoQOptionController.php:302
+#: classes/PhotoQOptionController.php:324
+#: classes/PhotoQOptionController.php:1037
+msgid "px wide"
+msgstr "px 寬"
+
+#: classes/PhotoQOptionController.php:323
+msgid "Thumbs shown in WordPress post editing dialog are maximum"
+msgstr "在WordPress 中編輯頁中, 預覽圖的最大尺寸."
+
+#: classes/PhotoQOptionController.php:346
+msgid "Custom Filter"
+msgstr "自定過濾"
+
+#: classes/PhotoQOptionController.php:350
+#, php-format
+msgid "An auto title is a title that is generated automatically from the filename. By default PhotoQ creates auto titles by removing the suffix from the filename, replacing hyphens and underscores with spaces and by capitalizing the first letter of every word. You can specify an additional custom filter to remove more from the filename above. Perl regular expressions are allowed, parts of filenames that match the regex are removed (regex special chars %s need to be escaped with a backslash). Note that the custom filter is applied first, before any of the default replacements."
+msgstr "自動命名是一個由電腦自動運作的工序, 參考檔名並協助你產生一個標題.  PhotoQ 預設會把副檔名刪掉, 並把hyphens '-' 和 underscores '_' 轉成空白' ', 並把每一個英文字中的第一個字元轉成大草.  此外, 你還可以自行增加一些規則.  你可以按照Perl 的表達方法, 檔名中任何字元是regex 的話將會被刪掉, (regex 特殊字元 %s 需要加上一個backslash '\\' 來表示保留.) 自行定義的規則會首先運行, 其次是預設的規則."
+
+#: classes/PhotoQOptionController.php:352
+msgid "Examples: <code>IMG</code> to remove the string \"IMG\" from anywhere within the filename, <code>^IMG</code> to remove \"IMG\" from beginning of filename."
+msgstr "例如: <code>IMG</code> 可把檔名中任何位置的 \"IMG\" 刪掉; <code>^IMG</code> 只可刪掉檔名中起首的 \"IMG\" ."
+
+#: classes/PhotoQOptionController.php:359
+msgid "Do not capitalize words with"
+msgstr "當字元少於或等於"
+
+#: classes/PhotoQOptionController.php:361
+msgid "characters or less,"
+msgstr "個時, 不要把它轉成大草"
+
+#: classes/PhotoQOptionController.php:369
+msgid "except for the following words"
+msgstr "除了以下的字"
+
+#: classes/PhotoQOptionController.php:373
+msgid "(Separate words with commas)"
+msgstr "(把這些字以',' 分隔)"
+
+#: classes/PhotoQOptionController.php:381
+msgid "for, and, nor, but, yet, both, either, neither, the, for, with, from, because, after, when, although, while|english words that are not capitalized"
+msgstr "for, and, nor, but, yet, both, either, neither, the, for, with, from, because, after, when, although, while|english words that are not capitalized (大草化)"
+
+#: classes/PhotoQOptionController.php:382
+msgid "Do not capitalize any of the following words (Separate words with commas)"
+msgstr "不要用把以下的字轉換成大草 (只適用於英文, 把這些字以',' 分隔)"
+
+#: classes/PhotoQOptionController.php:393
+msgid "Allow importing of photos from the following directory on the server"
+msgstr "容許由這個目錄裡載入相片到伺服器."
+
+#: classes/PhotoQOptionController.php:401
+#, php-format
+msgid "Full path (e.g., %s)"
+msgstr "完整的路徑 (例如: %s)"
+
+#: classes/PhotoQOptionController.php:410
+msgid "Second post button posts "
+msgstr "第二發表按鈕: 一次發表"
+
+#: classes/PhotoQOptionController.php:412
+msgid " photos at once."
+msgstr "張相片."
+
+#: classes/PhotoQOptionController.php:422
+msgid "Fold away category lists per default."
+msgstr "預設把分類摺疊."
+
+#: classes/PhotoQOptionController.php:430
+msgid "Delete image files from server when deleting post."
+msgstr "當刪除發佈時, 一拼把伺服器上的圖檔刪除."
+
+#: classes/PhotoQOptionController.php:438
+msgid "Enable Batch Uploads."
+msgstr "啟動成批上載."
+
+#: classes/PhotoQOptionController.php:446
+msgid "This is the default status of posts posted via PhotoQ."
+msgstr "這是PhotoQ 預設於發佈的狀態."
+
+#: classes/PhotoQOptionController.php:455
+msgid "PhotoQ will fall back to this author if no author can be determined by any other means. This is for example the case if photos are automatically added to the queue through cronjobs."
+msgstr "如果沒有特殊的指定, PhotoQ 會當成這個作者發佈.  例如使用Cronjobs 增加相片到隊列."
+
+#: classes/PhotoQOptionController.php:463
+msgid "This is the default category for posts posted via PhotoQ."
+msgstr "這是PhotoQ 預設用作發佈的分類."
+
+#: classes/PhotoQOptionController.php:472
+msgid "Editor"
+msgstr "編輯"
+
+#: classes/PhotoQOptionController.php:481
+msgid "Author"
+msgstr "作者"
+
+#: classes/PhotoQOptionController.php:502
+msgid "Hide folder containing original photos. If checked, PhotoQ will attribute a random name to the folder."
+msgstr "把包含相片原檔的資料夾隱藏.  一旦選擇了此選項, PhotoQ 會自動為那資料夾隨便產生一個名稱."
+
+#: classes/PhotoQOptionController.php:518
+msgid "Include photo description in post content."
+msgstr "在發表內容裡包含相片描述."
+
+#: classes/PhotoQOptionController.php:519
+msgid "Photo Description"
+msgstr "相片描述"
+
+#: classes/PhotoQOptionController.php:527
+msgid "Include Exif data in post content."
+msgstr "在發表內容裡包括 Exif 資料."
+
+#: classes/PhotoQOptionController.php:528
+msgid "Exif Meta Data"
+msgstr "Exif Mata 資料"
+
+#: classes/PhotoQOptionController.php:554
+msgid "Cache Directory not found"
+msgstr "找不到快取資料夾"
+
+#: classes/PhotoQOptionController.php:558
+msgid "Cache Directory not writeable"
+msgstr "快取目錄不能寫入"
+
+#: classes/PhotoQOptionController.php:594
+#, php-format
+msgid "Could not create image size. The required directory in %s could not be created. Please check your settings and/or PHP Safe Mode."
+msgstr "不能產生相片尺寸格式.  所需求的目錄在 %s 不能被產生.  請檢查你的設定, 並確定你是否開啟了 PHP Safe Mode (必須關掉)."
+
+#: classes/PhotoQOptionController.php:596
+msgid "Name already taken, please choose another name."
+msgstr "這個名稱已經被使用過, 請重新選擇一個新名字."
+
+#: classes/PhotoQOptionController.php:597
+msgid "New image size successfully created."
+msgstr "新的相片尺寸格式已經順利產生."
+
+#: classes/PhotoQOptionController.php:610
+#, php-format
+msgid "Could not remove image size. The required directories in %s could not be removed. Please check your settings."
+msgstr "不能刪除相片尺寸格式.  所需要的目錄 %s 不能被刪除.  請檢查設定."
+
+#: classes/PhotoQOptionController.php:611
+msgid "Image size successfully removed."
+msgstr "此相片尺寸格式已經順利刪除."
+
+#: classes/PhotoQOptionController.php:998
+msgid "Image Quality"
+msgstr "相片質素"
+
+#: classes/PhotoQOptionController.php:1008
+msgid "Add watermark to all images of this size."
+msgstr "為所有這種尺寸的相片加上浮水印."
+
+#: classes/PhotoQOptionController.php:1009
+msgid "Watermark"
+msgstr "浮水印"
+
+#: classes/PhotoQOptionController.php:1027
+msgid "Maximum Dimensions"
+msgstr "最大維數"
+
+#: classes/PhotoQOptionController.php:1057
+msgid "Crop to max. dimension"
+msgstr "剪裁到最大維數"
+
+#: classes/PhotoQOptionController.php:1067
+msgid "Smallest side"
+msgstr "最小尺寸"
+
+#: classes/PhotoQOptionController.php:1086
+msgid "Landscape Width"
+msgstr "橫向寬度"
+
+#: classes/PhotoQOptionController.php:1106
+msgid "Original Size"
+msgstr "原此尺寸"
+
+#: classes/PhotoQOptionController.php:1108
+msgid "Keep original image size, don't resize"
+msgstr "保持原有尺寸, 不要改變"
+
+#: classes/PhotoQOptionController.php:1178
+msgid "Single Photo"
+msgstr "單一相片"
+
+#: classes/PhotoQOptionController.php:1195
+msgid "Image Link"
+msgstr "影像連結"
+
+#: classes/PhotoQOptionController.php:1204
+msgid " linking to "
+msgstr "連結到"
+
+#: classes/PhotoQOptionController.php:1220
+msgid "link having following attributes"
+msgstr "連結中帶有以下的屬性"
+
+#: classes/PhotoQOptionController.php:1223
+msgid "Allows interaction with JS libraries such as Lightbox and Shutter Reloaded without modifying templates."
+msgstr "容許JS libraries 插件如Lightbox 和Shutter Reloaded, 而忽略修改任何Templates 上的修改."
+
+#: classes/PhotoQOptionController.php:1306
+msgid "Note: ImageMagick does not seem to be installed at the location you specified. ImageMagick is optional but might be needed to process bigger photos, plus PhotoQ might run faster if you configure ImageMagick correctly. If you don't care about ImageMagick and are happy with using the GD library you can safely ignore this message."
+msgstr "提示: 從你所提供的位置中, 並未找到 ImageMagick 的檔案.  一般而言, ImageMagick 並不是必需的, 但如果需要處理大尺寸的相片則是必需的. 而且對於PhotoQ 而言這將會是一個優勢, 例如這會使到PhotoQ 運行得快些.  如果你不安裝ImageMagick 的話, 也沒有問題, 因為PhotoQ 已內建了GD library, 你可以放心地忘記這些提示並愉快地使用."
+
+#: classes/PhotoQOptionController.php:1328
+msgid "Display Name"
+msgstr "顯示名稱"
+
+#: classes/PhotoQOptionController.php:1339
+msgid "Create post tags from EXIF data"
+msgstr "由EXIF 資訊中發表"
+
+#: classes/PhotoQOptionController.php:1369
+msgid "Allowed to use primary post button"
+msgstr "容許使用第一發表按鈕"
+
+#: classes/PhotoQOptionController.php:1377
+msgid "Allowed to use secondary post button"
+msgstr "容許使用第二發表按鈕"
+
+#: classes/PhotoQOptionController.php:1385
+msgid "Allowed to reorder queue"
+msgstr "容許更改隊列"
+
+#: classes/PhotoQPhoto.php:152
+#, php-format
+msgid "Could not delete photo %s from server. Please delete manually."
+msgstr "電腦不能自伺服器中刪除圖片 %s .  請自行刪除."
+
+#: classes/PhotoQPhoto.php:154
+msgid "Entry successfully removed from queue. Corresponding files deleted from server."
+msgstr "項目已成功地自隊列中刪除.  相應的檔案亦已經由伺服器中刪除."
+
+#: classes/PhotoQPhoto.php:490
+msgid "Title"
+msgstr "標題"
+
+#: classes/PhotoQPhoto.php:491
+msgid "Description"
+msgstr "描述"
+
+#: classes/PhotoQPhoto.php:495
+msgid "Tags (separate multiple tags with commas: cats, pet food, dogs)"
+msgstr "標籤 (把共通的東西分別寫上標籤中: 貓, 寵物食品, 狗)"
+
+#: classes/PhotoQPhoto.php:498
+msgid "Slug"
+msgstr "Slug"
+
+#: classes/PhotoQPhoto.php:499
+msgid "Post Author"
+msgstr "發表作者"
+
+#: classes/PhotoQQueue.php:79
+#, php-format
+msgid "You do not have privileges to delete: %s"
+msgstr "你沒有足夠的權限來刪除: %s"
+
+#: classes/PhotoQQueue.php:82
+#, php-format
+msgid "Could not find photo to delete: %s"
+msgstr "找不到此相片, 無法刪除: %s"
+
+#: classes/PhotoQQueue.php:120
+#, php-format
+msgid "Could not find photo with ID: %s"
+msgstr "找不到相片: ID %s"
+
+#: classes/PhotoQQueue.php:144
+#: classes/PhotoQQueue.php:184
+msgid "Queue is empty, nothing to post."
+msgstr "隊列中沒有相片, 無法發表."
+
+#: classes/PhotoQQueue.php:150
+msgid "Your post has been saved."
+msgstr "你的發表已經被儲存."
+
+#: classes/PhotoQQueue.php:150
+msgid "View post"
+msgstr "檢視發表"
+
+#: classes/PhotoQQueue.php:150
+msgid "Edit post"
+msgstr "修改發表"
+
+#: classes/PhotoQQueue.php:154
+#: classes/PhotoQQueue.php:198
+msgid "Publishing Photo did not succeed."
+msgstr "圖片已順利發佈."
+
+#: classes/PhotoQQueue.php:201
+msgid "Your posts have been saved."
+msgstr "你的發表已經被儲存."
+
+#: panels/add-meta.php:10
+msgid "Add new Meta Field"
+msgstr "增加新 Meta 欄目"
+
+#: panels/add-meta.php:15
+msgid "Field Name:"
+msgstr "欄目名稱"
+
+#: panels/add-meta.php:25
+msgid "Add field"
+msgstr "增加欄目"
+
+#: panels/changePostedPhotoForm.php:2
+msgid "PhotoQ Photo"
+msgstr "PhotoQ 相片"
+
+#: panels/changePostedPhotoForm.php:21
+msgid "To change the current photo of this post, select a new one here and update the post."
+msgstr "要改變本發表中的圖片, 選擇一個新的並更新本發表."
+
+#: panels/edit-batch.php:6
+msgid "Manage PhotoQ - Enter Info"
+msgstr "管理 PhotoQ - 輸入資訊"
+
+#: panels/edit-batch.php:28
+msgid "Save Batch Info"
+msgstr "儲存Batch 資料"
+
+#: panels/manage.php:25
+msgid "Queue empty, why not upload some photos?"
+msgstr "隊列中沒有相片, 何不上載一些?"
+
+#: panels/manage.php:35
+msgid "Clear Queue..."
+msgstr "清除隊列..."
+
+#: panels/manage.php:37
+msgid "Are you sure you want to clear the entire queue?"
+msgstr "是否確定要把整條隊列都清除掉?"
+
+#: panels/manage.php:46
+#, php-format
+msgid "Post Next %d Photos..."
+msgstr "發佈 %d 張相片..."
+
+#: panels/manage.php:48
+msgid "Post Whole Queue..."
+msgstr "把整條隊列的相片都發佈..."
+
+#: panels/manage.php:54
+msgid "Are you really sure you want to publish the next entries in the queue?"
+msgstr "是否確定要發佈這些相片?"
+
+#: panels/manage.php:61
+msgid "Post Top of Queue..."
+msgstr "發佈隊列中首張相片..."
+
+#: panels/manage.php:62
+msgid "Are you sure you want to publish the first entry of the queue?"
+msgstr "是否確定要發佈隊列中的第一張相片?"
+
+#: panels/manage.php:72
+msgid "Thumbnail"
+msgstr "預覽圖"
+
+#: panels/manage.php:102
+msgid "Click to see full-size photo"
+msgstr "按下以看到原本尺寸的圖片"
+
+#: panels/manage.php:111
+msgid "Edit"
+msgstr "編輯"
+
+#: panels/manage.php:116
+msgid "Delete entry? Corresponding image will also be deleted from server?"
+msgstr "真的要刪除嗎? 這樣會把相應的相片檔案由伺服器裡一拼刪除."
+
+#: panels/manage.php:116
+msgid "Delete"
+msgstr "刪除"
+
+#: panels/options.php:16
+msgid "Image sizes"
+msgstr "相片尺寸"
+
+#: panels/options.php:25
+msgid "Name of new image size"
+msgstr "相片尺寸格式的名字"
+
+#: panels/options.php:32
+msgid "Add Image Size"
+msgstr "增加一個相片尺寸格式"
+
+#: panels/options.php:39
+msgid "Hide 'original' folder"
+msgstr "把'original' 資料夾隱藏"
+
+#: panels/options.php:46
+msgid "Current name"
+msgstr "現時的名稱"
+
+#: panels/options.php:54
+msgid "Views"
+msgstr "顯示"
+
+#: panels/options.php:75
+msgid "Exif"
+msgstr "Exif"
+
+#: panels/options.php:82
+msgid "Exif Formatting Options:"
+msgstr "Exif 格式選項:"
+
+#: panels/options.php:89
+msgid "Choose Exif Tags"
+msgstr "選擇 EXIF 標簽"
+
+#: panels/options.php:90
+msgid "You can select/deselect EXIF tags via drag-and-drop between the two lists.<br/>Within the list of selected tags you can also change the order via drag-and-drop."
+msgstr "按著不放並拖拉這些EXIF 標籤, 即可選取它們.<br/>你亦可為它們重新排位."
+
+#: panels/options.php:95
+msgid "No tags yet. PhotoQ will learn exif tags from uploaded photos. Upload a photo first, then come back and choose your exif tags here."
+msgstr "尚沒有任何的標籤, 在你上載相片時, PhotoQ 將會由你相片中的exif 標籤中自行學習."
+
+#: panels/options.php:107
+msgid "Watermarking"
+msgstr "浮水印"
+
+#: panels/options.php:111
+msgid "Watermark Image"
+msgstr "浮水印樣式(圖片)"
+
+#: panels/options.php:117
+msgid "Change Watermark"
+msgstr "轉換浮水印"
+
+#: panels/options.php:130
+msgid "Meta Fields"
+msgstr "Meta 欄目"
+
+#: panels/options.php:136
+msgid "Upon Add:"
+msgstr "在增加時:"
+
+#: panels/options.php:137
+msgid "Upon Delete:"
+msgstr "在刪除時:"
+
+#: panels/options.php:138
+msgid "Upon Rename:"
+msgstr "在重新命名時:"
+
+#: panels/options.php:148
+msgid "Defined Fields:"
+msgstr "定義欄目:"
+
+#: panels/options.php:164
+msgid "Name of new field"
+msgstr "新欄目的名稱"
+
+#: panels/options.php:171
+msgid "Add Meta Field"
+msgstr "增加Meta"
+
+#: panels/options.php:179
+msgid "Further Options"
+msgstr "進一步的選項"
+
+#: panels/options.php:186
+msgid "Image Directory:"
+msgstr "相片存取位置:"
+
+#: panels/options.php:187
+msgid "ImageMagick Path:"
+msgstr "ImageMagick 位置:"
+
+#: panels/options.php:188
+msgid "Automatic Posting:"
+msgstr "自動發佈:"
+
+#: panels/options.php:189
+msgid "PhotoQ Post Status:"
+msgstr "PhotoQ 的發佈狀態:"
+
+#: panels/options.php:190
+msgid "PhotoQ Default Category:"
+msgstr "PhotoQ 預設分類:"
+
+#: panels/options.php:191
+msgid "PhotoQ Default Author:"
+msgstr "PhotoQ 預設作者:"
+
+#: panels/options.php:192
+msgid "Roles/Capabilities:"
+msgstr "使用者/容量:"
+
+#: panels/options.php:193
+msgid "Fold Categories:"
+msgstr "摺疊分類:"
+
+#: panels/options.php:194
+msgid "Admin Thumbs:"
+msgstr "管理者標記:"
+
+#: panels/options.php:195
+msgid "Auto Titles:"
+msgstr "自動處理標題:"
+
+#: panels/options.php:196
+msgid "FTP Upload:"
+msgstr "FTP 上載:"
+
+#: panels/options.php:197
+msgid "Second Post Button:"
+msgstr "第二發表按鈕:"
+
+#: panels/options.php:198
+msgid "Deleting Posts:"
+msgstr "刪除發表:"
+
+#: panels/options.php:199
+msgid "Batch Uploads:"
+msgstr "Batch 成批上載:"
+
+#: panels/options.php:213
+msgid "Maintenance"
+msgstr "維護"
+
+#: panels/options.php:219
+msgid "PhotoQ < 1.5.2:"
+msgstr "PhotoQ < 1.5.2:"
+
+#: panels/options.php:225
+msgid "Move ImgDir to wp-content"
+msgstr "把ImgDir 移動到 wp-content"
+
+#: panels/options.php:230
+msgid "Upgrade:"
+msgstr "升級"
+
+#: panels/options.php:233
+#: panels/upgrade.php:6
+msgid "Upgrade from PhotoQ < 1.5"
+msgstr "由 PhotoQ 版本 1.5 以下升級"
+
+#: panels/options.php:236
+msgid "Rebuild Published:"
+msgstr "重建:"
+
+#: panels/options.php:239
+msgid "Rebuild All Published Photos"
+msgstr "重建所有已發佈的相片"
+
+#: panels/options.php:241
+msgid "Are you sure? This will rebuild all published photos recreating all the thumbs. It might thus take a while."
+msgstr "你是否確定? 這會重新整理所有已發佈的相片, 重建所有預覽圖片, 並且需要一點時間處理."
+
+#: panels/upgrade-move-imgdir.php:6
+msgid "Move Image Directory to wp-content"
+msgstr "移動相片的目錄到 wp-content 裡"
+
+#: panels/upgrade-move-imgdir.php:33
+msgid "Move"
+msgstr "移動"
+
+#: panels/upgrade.php:8
+msgid "Please read the instructions before doing the upgrade"
+msgstr "請在更新之前閱讀指引"
+
+#: panels/upgrade.php:9
+msgid "And remember: Not saving your wordpress database before might turn out to be one of the most stupid things you did lately."
+msgstr "並記住: 在之前沒有把 wordpress 的資料庫儲存-- 將會是你最近做過的最白癡的事情."
+
+#: panels/upgrade.php:10
+msgid "The following photos will be imported:"
+msgstr "下列的相片將會被導入:"
+
+#: panels/upgrade.php:18
+msgid "Number of photos to import:"
+msgstr "導入的相片數量:"
+
+#: panels/upgrade.php:28
+msgid "Upgrade"
+msgstr "更新"
+
+#: panels/upgrade.php:40
+msgid "Remove old folder structure"
+msgstr "刪除舊有的資料夾結構"
+
+#: panels/upgrade.php:42
+msgid "Please only do this once you are sure your update was successful."
+msgstr "請只進行一次, 並確定更新已完成"
+
+#: panels/upgrade.php:43
+msgid "The following folders will be deleted:"
+msgstr "下列的資料夾將會被刪除:"
+
+#: panels/upgrade.php:56
+msgid "Delete Folders"
+msgstr "刪除資料夾(多個)"
+
+#: panels/upload.php:6
+msgid "Manage PhotoQ - Upload"
+msgstr "管理 PhotoQ - 上載"
+
+#: panels/upload.php:11
+msgid "Enter common info:"
+msgstr "輸入共同的資料:"
+
+#: panels/upload.php:31
+msgid "Import/Enter Info &raquo;"
+msgstr "導入/輸入資料 &raquo;"
+
+#: panels/upload.php:31
+msgid "Enter Info &raquo;"
+msgstr "輸入資料 &raquo;"
+
+#: panels/upload.php:62
+msgid "Import from FTP directory..."
+msgstr "由FTP 目錄裡導入..."
+
+#: panels/uploadWatermark.php:8
+msgid "Upload New Watermark"
+msgstr "上載新的浮水印"
+
+#: panels/uploadWatermark.php:14
+msgid "Locate Watermark:"
+msgstr "浮水印的位置:"
+
+#: panels/uploadWatermark.php:30
+msgid "Upload"
+msgstr "上載"
+

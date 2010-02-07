@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generator="PhotoQ/1.8" created="2009-08-16 16:00"-->
+
+<photoQSave version="1.0">
+<photoQSaveMeta>
+	<generator>http://www.whoismanu.com/photoq-wordpress-photoblog-plugin/?v=1.8</generator>
+	<theme>
+		<name>Linquist</name>
+		<version>1.0</version>
+		<category>photoblog</category>
+		<url>http://redworks.sk/wp-themes/linquist/</url>
+		<author>
+			<name>Redworks</name>
+			<contact>http://redworks.sk/about-me/</contact>
+		</author>
+	</theme>
+	<creator>
+		<name>whoismanu</name>
+		<contact>http://www.whoismanu.com/photoq-wordpress-photoblog-plugin/</contact>
+	</creator>
+</photoQSaveMeta>
+<photoQSettings>
+	<photoQOptions>
+<option name="imageSizes">
+<arrayValue>
+<entry>
+<key>thumbnail</key>
+<val>0</val>
+</entry>
+<entry>
+<key>main</key>
+<val>0</val>
+</entry>
+</arrayValue>
+<children>
+<option name="thumbnail">
+<children>
+<option name="thumbnail-imgConstraint">
+<value><![CDATA[rect]]></value>
+<children>
+<option name="thumbnail-imgWidth">
+<value><![CDATA[500]]></value>
+</option>
+<option name="thumbnail-imgHeight">
+<value><![CDATA[9999]]></value>
+</option>
+<option name="thumbnail-zoomCrop">
+<value><![CDATA[0]]></value>
+</option>
+</children>
+</option>
+<option name="thumbnail-imgQuality">
+<value><![CDATA[95]]></value>
+</option>
+<option name="thumbnail-watermark">
+<value><![CDATA[0]]></value>
+</option>
+</children>
+</option>
+<option name="main">
+<children>
+<option name="main-imgConstraint">
+<value><![CDATA[rect]]></value>
+<children>
+<option name="main-imgWidth">
+<value><![CDATA[900]]></value>
+</option>
+<option name="main-imgHeight">
+<value><![CDATA[900]]></value>
+</option>
+<option name="main-zoomCrop">
+<value><![CDATA[0]]></value>
+</option>
+</children>
+</option>
+<option name="main-imgQuality">
+<value><![CDATA[95]]></value>
+</option>
+<option name="main-watermark">
+<value><![CDATA[0]]></value>
+</option>
+</children>
+</option>
+</children>
+</option>
+<option name="views">
+<arrayValue>
+<entry>
+<key>content</key>
+<val>0</val>
+</entry>
+<entry>
+<key>excerpt</key>
+<val>0</val>
+</entry>
+</arrayValue>
+<children>
+<option name="content">
+<children>
+<option name="contentView-type">
+<value><![CDATA[freeform]]></value>
+<children>
+<option name="contentView-freeform">
+<value><![CDATA[&lt;a href=\&quot;[imgUrl|main]\&quot; rel=\&quot;lightbox\&quot;&gt;&lt;img src=\&quot;[imgUrl|thumbnail]\&quot; width=\&quot;[imgWidth|thumbnail]\&quot; height=\&quot;[imgHeight|thumbnail]\&quot; alt=\&quot;[title]\&quot; /&gt;&lt;/a&gt;&lt;!--more--&gt;&lt;p class=\&quot;description\&quot;&gt;[descr]&lt;/p&gt;
+
+
+[exif]
+]]></value>
+</option>
+</children>
+</option>
+<option name="inlineDescr">
+<value><![CDATA[0]]></value>
+</option>
+<option name="inlineExif">
+<value><![CDATA[0]]></value>
+</option>
+</children>
+</option>
+<option name="excerpt">
+<children>
+<option name="excerptView-type">
+<value><![CDATA[none]]></value>
+</option>
+</children>
+</option>
+</children>
+</option>
+<option name="exifDisplay">
+<children>
+<option name="exifBefore">
+<value><![CDATA[&lt;h4&gt;Exif Information:&lt;/h4&gt; &lt;ul class=\&quot;photoQExifInfo\&quot; style=\&quot;padding: 0px\&quot;&gt;]]></value>
+</option>
+<option name="exifAfter">
+<value><![CDATA[&lt;/ul&gt;]]></value>
+</option>
+<option name="exifElementBetween">
+<value><![CDATA[]]></value>
+</option>
+<option name="exifElementFormatting">
+<value><![CDATA[&lt;li class=\&quot;photoQExifInfoItem\&quot;&gt;&lt;span class=\&quot;photoQExifTag\&quot;&gt;[key]:&lt;/span&gt; &lt;span class=\&quot;photoQExifValue\&quot;&gt;[value]&lt;/span&gt;&lt;/li&gt;]]></value>
+</option>
+</children>
+</option>
+</photoQOptions>
+</photoQSettings>
+</photoQSave>

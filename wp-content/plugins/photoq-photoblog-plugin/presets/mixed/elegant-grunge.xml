@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generator="PhotoQ/1.8" created="2009-08-16 15:54"-->
+
+<photoQSave version="1.0">
+<photoQSaveMeta>
+	<generator>http://www.whoismanu.com/photoq-wordpress-photoblog-plugin/?v=1.8</generator>
+	<theme>
+		<name>Elegant Grunge</name>
+		<version>1.0.3</version>
+		<category>photoblog</category>
+		<url>http://michael.tyson.id.au/wordpress/themes/elegant-grunge/</url>
+		<author>
+			<name>Michael Tyson</name>
+			<contact>http://michael.tyson.id.au/contact/</contact>
+		</author>
+	</theme>
+	<creator>
+		<name>whoismanu</name>
+		<contact>http://www.whoismanu.com/photoq-wordpress-photoblog-plugin/</contact>
+	</creator>
+</photoQSaveMeta>
+<photoQSettings>
+	<photoQOptions>
+<option name="imageSizes">
+<arrayValue>
+<entry>
+<key>thumbnail</key>
+<val>0</val>
+</entry>
+<entry>
+<key>main</key>
+<val>0</val>
+</entry>
+</arrayValue>
+<children>
+<option name="thumbnail">
+<children>
+<option name="thumbnail-imgConstraint">
+<value><![CDATA[rect]]></value>
+<children>
+<option name="thumbnail-imgWidth">
+<value><![CDATA[415]]></value>
+</option>
+<option name="thumbnail-imgHeight">
+<value><![CDATA[900]]></value>
+</option>
+<option name="thumbnail-zoomCrop">
+<value><![CDATA[0]]></value>
+</option>
+</children>
+</option>
+<option name="thumbnail-imgQuality">
+<value><![CDATA[95]]></value>
+</option>
+<option name="thumbnail-watermark">
+<value><![CDATA[0]]></value>
+</option>
+</children>
+</option>
+<option name="main">
+<children>
+<option name="main-imgConstraint">
+<value><![CDATA[rect]]></value>
+<children>
+<option name="main-imgWidth">
+<value><![CDATA[900]]></value>
+</option>
+<option name="main-imgHeight">
+<value><![CDATA[900]]></value>
+</option>
+<option name="main-zoomCrop">
+<value><![CDATA[0]]></value>
+</option>
+</children>
+</option>
+<option name="main-imgQuality">
+<value><![CDATA[95]]></value>
+</option>
+<option name="main-watermark">
+<value><![CDATA[0]]></value>
+</option>
+</children>
+</option>
+</children>
+</option>
+<option name="views">
+<arrayValue>
+<entry>
+<key>content</key>
+<val>0</val>
+</entry>
+<entry>
+<key>excerpt</key>
+<val>0</val>
+</entry>
+</arrayValue>
+<children>
+<option name="content">
+<children>
+<option name="contentView-type">
+<value><![CDATA[freeform]]></value>
+<children>
+<option name="contentView-freeform">
+<value><![CDATA[&lt;a href=\&quot;[imgUrl|main]\&quot;&gt;&lt;img src=\&quot;[imgUrl|thumbnail]\&quot; width=\&quot;[imgWidth|thumbnail]\&quot; height=\&quot;[imgHeight|thumbnail]\&quot; alt=\&quot;[title]\&quot; /&gt;&lt;/a&gt;
+[descr]
+&lt;div class=\&quot;metadata\&quot;&gt;[exif]&lt;/div&gt; ]]></value>
+</option>
+</children>
+</option>
+<option name="inlineDescr">
+<value><![CDATA[0]]></value>
+</option>
+<option name="inlineExif">
+<value><![CDATA[0]]></value>
+</option>
+</children>
+</option>
+<option name="excerpt">
+<children>
+<option name="excerptView-type">
+<value><![CDATA[none]]></value>
+</option>
+</children>
+</option>
+</children>
+</option>
+<option name="exifDisplay">
+<children>
+<option name="exifBefore">
+<value><![CDATA[EXIF: ]]></value>
+</option>
+<option name="exifAfter">
+<value><![CDATA[]]></value>
+</option>
+<option name="exifElementBetween">
+<value><![CDATA[|]]></value>
+</option>
+<option name="exifElementFormatting">
+<value><![CDATA[ [value] ]]></value>
+</option>
+</children>
+</option>
+<option name="qPostDefaultTags">
+<value><![CDATA[Photoblog]]></value>
+</option>
+</photoQOptions>
+</photoQSettings>
+</photoQSave>
