@@ -46,9 +46,12 @@ else add_filter('arras_postheader', 'arras_postmeta');
 			<div class="widgetcontent">
 				<ul>
 					<li>Date: 28..30 Mai 2010</li>
-					<li>Lieux: <a href="http://www.mixart-myrys.org/">Mixart Myrys</a></li>
+					<li>Lieux: Toulouse, France - <a href="http://www.mixart-myrys.org/">Mixart Myrys</a></li>
 					<li>Contact: <a href="mailto:thsf@lists.tetalab.org">thsf@lists.tetalab.org</a></li>
 				</ul>
+				
+				<iframe width="270" height="190" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://www.openstreetmap.org/export/embed.html?bbox=1.4025,43.5893,1.4656,43.6289&layer=mapnik&marker=43.61868,1.42045" style="border: 1px solid black"></iframe><br /><small><a href="http://www.openstreetmap.org/?lat=43.6091&lon=1.43405&zoom=13&layers=B000FTFTT&mlat=43.61868&mlon=1.42045">View Larger Map</a></small>
+				
 			</div>
 		</li>
 		
