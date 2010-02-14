@@ -61,6 +61,7 @@ else add_filter('arras_postheader', 'arras_postmeta');
 					<li><a href="http://tmplab.org">/tmp/lab</a></li>
 					<li><a href="http://wiki.hacktivistas.net/">hacktivistas.net</a></li>
 					<li><a href="http://cadenalibre.net/">CadenaLibre</a></li>
+					<li><a href="http://red-sostenible.net/index.php/From_now_on,_Net_and_Freedom">Red Sostenible</a></li>
 					<li><a href="http://www.hackerspace.net/appel-a-projets">Hacker Space Festival: Appel à Projets</a></li>
 				</ul>
 			</div>
