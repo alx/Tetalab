@@ -38,4 +38,32 @@ else add_filter('arras_postheader', 'arras_postmeta');
 <?php arras_below_post() ?>
 </div><!-- #content -->
 
+<div id="primary" class="aside main-aside sidebar">
+	<ul class="xoxo">
+		<li class="widgetcontainer clearfix">
+			<h5 class="widgettitle"><?php _e('Details', 'arras') ?></h5>
+			<div class="widgetcontent">
+				<ul>
+					<li>Date: 28..30 Mai 2010</li>
+					<li>Lieux: <a href="http://www.mixart-myrys.org/">Mixart Myrys</a></li>
+				</ul>
+			</div>
+		</li>
+		
+		<li class="widgetcontainer clearfix">
+			<h5 class="widgettitle"><?php _e("Plus d'informations", 'arras') ?></h5>
+			<div class="widgetcontent">
+				<ul>
+					<li><a href="http://hackerspace.net">Hacker Space Festival</a></li>
+					<li><a href="http://tetalab.org">Tetalab</a></li>
+					<li><a href="http://tmplab.org">/tmp/lab</a></li>
+					<li><a href="http://wiki.hacktivistas.net/">hacktivistas.net</a></li>
+					<li><a href="http://cadenalibre.net/">CadenaLibre</a></li>
+					<li><a href="http://www.hackerspace.net/appel-a-projets">Hacker Space Festival: Appel à Projets</a></li>
+				</ul>
+			</div>
+		</li>
+	</ul>		
+</div><!-- #primary -->
+
 <?php get_footer(); ?>
