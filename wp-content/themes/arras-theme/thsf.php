@@ -37,6 +37,7 @@ else add_filter('arras_postheader', 'arras_postmeta');
 
 <?php arras_below_post() ?>
 </div><!-- #content -->
+</div><!-- #container -->
 
 <div id="primary" class="aside main-aside sidebar">
 	<ul class="xoxo">
@@ -46,6 +47,7 @@ else add_filter('arras_postheader', 'arras_postmeta');
 				<ul>
 					<li>Date: 28..30 Mai 2010</li>
 					<li>Lieux: <a href="http://www.mixart-myrys.org/">Mixart Myrys</a></li>
+					<li>Contact: <a href="mailto:thsf@lists.tetalab.org">thsf@lists.tetalab.org</a></li>
 				</ul>
 			</div>
 		</li>
