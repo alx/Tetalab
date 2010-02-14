@@ -61,16 +61,15 @@ else add_filter('arras_postheader', 'arras_postmeta');
 			<div class="widgetcontent">
 				<h6>Transport</h6>
 				<ul>
-					<li>Voiture: <a href="mailto:thsf@lists.tetalab.org">Mailing-list</a> - <a href="http://covoiturage.fr">Covoiturage.fr</a></li>
+					<li>Voiture: <a href="mailto:thsf@lists.tetalab.org?Subject=[Transport]">Mailing list</a> - <a href="http://covoiturage.fr">Covoiturage.fr</a></li>
 					<li>Trains: <a href="http://www.voyages-sncf.com/">SNCF</a></li>
 					<li>Avions: <a href="http://www.easyjet.fr/">Easyjet</a></li>
 				</ul>
 				
 				<h6>Dodo</h6>
 				<ul>
+					<li><a href="mailto:thsf@lists.tetalab.org?Subject=[Dodo]">Mailing-list</a></li>
 					<li><a href="http://couchsurfing.org">Couchsurfing</a></li>
-					<li>Lieux: Toulouse, France - <a href="http://www.mixart-myrys.org/">Mixart Myrys</a></li>
-					<li>Contact: <a href="mailto:thsf@lists.tetalab.org">thsf@lists.tetalab.org</a></li>
 				</ul>
 			</div>
 		</li>
