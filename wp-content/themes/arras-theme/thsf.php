@@ -80,6 +80,7 @@ else add_filter('arras_postheader', 'arras_postmeta');
 				<ul>
 					<li><a href="http://hackerspace.net">Hacker Space Festival</a></li>
 					<li><a href="http://tetalab.org">Tetalab</a></li>
+					<li><a href="http://www.mixart-myrys.org/">Mix'Art Myrys</a></li>
 					<li><a href="http://tmplab.org">/tmp/lab</a></li>
 					<li><a href="http://wiki.hacktivistas.net/">hacktivistas.net</a></li>
 					<li><a href="http://cadenalibre.net/">CadenaLibre</a></li>
