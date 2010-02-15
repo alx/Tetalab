@@ -81,9 +81,12 @@ else add_filter('arras_postheader', 'arras_postmeta');
 					<li><a href="http://hackerspace.net">Hacker Space Festival</a></li>
 					<li><a href="http://tetalab.org">Tetalab</a></li>
 					<li><a href="http://www.mixart-myrys.org/">Mix'Art Myrys</a></li>
+					<li><a href="http://www.festival-signo.fr/">Festival Signo</a></li>
+					<li><a href="http://www.nu2s.org/corpusmedia/eng/prg_m.php">Corpus Media</a></li>
 					<li><a href="http://tmplab.org">/tmp/lab</a></li>
 					<li><a href="http://wiki.hacktivistas.net/">hacktivistas.net</a></li>
 					<li><a href="http://cadenalibre.net/">CadenaLibre</a></li>
+					<li><a href="http://laquadrature.net/">La Quadrature du Net</a></li>
 					<li><a href="http://red-sostenible.net/index.php/From_now_on,_Net_and_Freedom">Red Sostenible</a></li>
 					<li><a href="http://www.hackerspace.net/appel-a-projets">Hacker Space Festival: Appel à Projets</a></li>
 				</ul>
