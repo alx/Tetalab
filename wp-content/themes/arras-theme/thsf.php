@@ -69,304 +69,264 @@ else add_filter('arras_postheader', 'arras_postmeta');
     <tbody>
 <tr>
 <td class="time">11:30</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+<td class="room conf" rowspan="4"></td>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">11:45</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">12:00</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">12:15</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">12:30</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+<td class="room empty"></td>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">12:45</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+<td class="room empty"></td>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">13:00</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+<td class="room empty"></td>
+<td class="room conf" rowspan="4"></td>
+</tr>
 <tr>
 <td class="time">13:15</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">13:30</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">13:45</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">14:00</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+<td class="room conf" rowspan="4"></td>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">14:15</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">14:30</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">14:45</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">15:00</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+<td class="room conf" rowspan="4"></td>
+<td class="room conf" rowspan="4"></td>
+</tr>
 <tr>
 <td class="time">15:15</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">15:30</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">15:45</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">16:00</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>6
+<td class="room empty"></td>
+<td class="room empty"></td>
+<td class="room empty"></td>
+</tr>6
 <tr>
 <td class="time">16:15</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room6 empty">
-</td></tr>
+<td class="room empty"></td>
+<td class="room conf" rowspan="4"></td>
+<td class="room conf" rowspan="4"></td>
+</tr>
 <tr>
 <td class="time">16:30</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">16:45</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">17:00</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">17:15</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+<td class="room empty"></td>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">17:30</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+<td class="room conf" rowspan="4"></td>
+<td class="room conf" rowspan="4"></td>
+</tr>
 <tr>
 <td class="time">17:45</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">18:00</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">18:15</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room conf" rowspan="2"></td>
+</tr>
 <tr>
 <td class="time">18:30</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">18:45</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+<td class="room empty"></td>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">19:00</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room conf" rowspan="4"></td>
+<td class="room conf" rowspan="4"></td>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">19:15</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">19:30</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">19:45</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">20:00</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+<td class="room empty"></td>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">20:15</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+<td class="room empty"></td>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">20:30</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+<td class="room empty"></td>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">20:45</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+<td class="room empty"></td>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">21:00</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+<td class="room conf" rowspan="4"></td>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">21:15</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">21:30</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">21:45</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">22:00</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+<td class="room conf" rowspan="4"></td>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">22:15</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">22:30</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">22:45</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">23:00</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+<td class="room empty"></td>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">23:15</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+<td class="room empty"></td>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">23:30</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+<td class="room empty"></td>
+<td class="room empty"></td>
+</tr>
 <tr>
 <td class="time">23:45</td>
-<td class="room empty">
-</td><td class="room empty">
-</td><td class="room empty">
-</td></tr>
+<td class="room empty"></td>
+<td class="room empty"></td>
+<td class="room empty"></td>
+</tr>
 </tbody>
 </table>
 
