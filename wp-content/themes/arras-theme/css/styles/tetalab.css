@@ -25,7 +25,7 @@ input[type=submit]:hover, #wp-email-submit:hover    { background: #314E6A; color
 
 table					{ border-collapse: collapse; border-spacing: 0; border: 1px solid #CCC; }
 th, td					{ padding: 5px; border: 1px solid #CCC; border-width: 1px; }
-th, thead th			{ font-weight: bold; color: #333; background: url(../../images/topnav.jpg) repeat-x top #CCC; }
+th, thead th			{ font-weight: bold; color: #EEE; background: url(../../images/topnav.jpg) repeat-x top #CCC; text-align:center;}
 td, tbody td			{ background: #F0F0F0; }
 
 /* common classes */
