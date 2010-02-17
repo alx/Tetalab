@@ -36,6 +36,341 @@ else add_filter('arras_postheader', 'arras_postmeta');
 <?php endif; ?>
 
 <?php arras_below_post() ?>
+
+<table>
+    <thead>
+      <tr>
+        <th class="time">
+        </th><th>
+          <strong>Vendredi</strong>
+        </th>
+        <th>
+          <strong>Samedi</strong>
+        </th>
+        <th>
+          <strong>Dimanche</strong>
+        </th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <th class="time">
+        </th><th>
+          <strong>Vendredi</strong>
+        </th>
+        <th>
+          <strong>Samedi</strong>
+        </th>
+        <th>
+          <strong>Dimanche</strong>
+        </th>
+      </tr>
+    </tfoot>
+    <tbody>
+<tr>
+<td class="time">11:30</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">11:45</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:00</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:15</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:30</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:45</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:00</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:15</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:30</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:45</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:00</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:15</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:30</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:45</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:00</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:15</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:30</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:45</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:00</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:15</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:30</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:45</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:00</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:15</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:30</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:45</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:00</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:15</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:30</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:45</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:00</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:15</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:30</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:45</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:00</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:15</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:30</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:45</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:00</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:15</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:30</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:45</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:00</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:15</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:30</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:45</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:00</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:15</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:30</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+<tr>
+<td class="time">12:45</td>
+<td class="room empty">
+</td><td class="room empty">
+</td><td class="room empty">
+</td></tr>
+</tbody>
+</table>
+
+
 </div><!-- #content -->
 </div><!-- #container -->
 
