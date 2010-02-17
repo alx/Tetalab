@@ -56,6 +56,12 @@ $stickies = get_option('sticky_posts');
 	<div class="home-title">Videos</div>
 	<?php get_video_posts(); ?>
 </div><!-- #index-featured -->
+
+<div id="index-tetaglobule">
+	<div class="video-link"><a href="http://vimeo.com/groups/tetalab/videos">Plus de Videos &#x2192;</a></div>
+	<div class="home-title">Videos</div>
+	<?php get_video_posts('tetaglobule'); ?>
+</div><!-- #index-tetaglobule -->
 <?php endif; endif; ?>
 
 
@@ -81,11 +87,7 @@ arras_get_posts('news') ?>
 		<div class="floatleft"><?php next_posts_link( __('Older Entries', 'arras') ) ?></div>
 		<div class="floatright"><?php previous_posts_link( __('Newer Entries', 'arras') ) ?></div>
 	</div>
-<?php } 
-
-	if ( current_user_can('manage_options') ) {get_mailing_list();}
-	
-?>
+<?php } ?>
 
 </div><!-- #index-news -->
 
