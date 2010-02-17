@@ -41,6 +41,13 @@ $featured_thumb_h = arras_get_option('featured_thumb_h');
 #index-featured .entry-thumbnails	{ width: <?php echo $featured_thumb_w ?>px; height: <?php echo $featured_thumb_h ?>px; }
 #index-featured .posts-default .entry-meta, #index-featured .posts-quick .entry-meta	{ width: <?php echo $featured_thumb_w ?>px; }
 #index-featured .posts-quick .entry-meta	{ margin: <?php echo $featured_thumb_h - 25 ?>px 0 0 -<?php echo $featured_thumb_w + 15 ?>px; }
+
+#index-tetaglobule .posts-default .post	{ width: <?php echo $featured_thumb_w ?>px; }
+#index-tetaglobule .posts-default img, #index-featured .entry-thumbnails-link	{ width: <?php echo $featured_thumb_w ?>px; height: <?php echo $featured_thumb_h ?>px; }
+#index-tetaglobule .entry-thumbnails	{ width: <?php echo $featured_thumb_w ?>px; height: <?php echo $featured_thumb_h ?>px; }
+#index-tetaglobule .posts-default .entry-meta, #index-featured .posts-quick .entry-meta	{ width: <?php echo $featured_thumb_w ?>px; }
+#index-tetaglobule .posts-quick .entry-meta	{ margin: <?php echo $featured_thumb_h - 25 ?>px 0 0 -<?php echo $featured_thumb_w + 15 ?>px; }
+
 <?php
 $news_thumb_w = arras_get_option('news_thumb_w');
 $news_thumb_h = arras_get_option('news_thumb_h');

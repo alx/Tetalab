@@ -25,11 +25,17 @@ function convertVimeoTime($vimeo_time) {
                               ));
 }
 
-function get_video_posts($format = 'post') {
+function get_video_posts($source = 'group', $format = 'post') {
 	
 	$output = '';
 	$num_of_videos = 4;
-	$vimeo_call = 'http://vimeo.com/api/v2/group/tetalab/videos.json';
+	
+	switch($source){
+		case 'tetaglobule':
+			$vimeo_call = 'http://vimeo.com/api/v2/group/tetaglobule/videos.json';
+		default:
+			$vimeo_call = 'http://vimeo.com/api/v2/group/tetalab/videos.json';
+	}
 	
 	$response = wp_remote_get($vimeo_call, array('timeout' => 60));
 	
