@@ -60,7 +60,7 @@ $stickies = get_option('sticky_posts');
 <div id="index-tetaglobule">
 	<div class="video-link"><a href="http://vimeo.com/channels/tetaglobule">Plus de Videos &#x2192;</a></div>
 	<div class="home-title">Coups de Coeurs</div>
-	<?php get_video_posts('tetaglobule'); ?>
+	<?php get_video_posts('channel', 'post'); ?>
 </div><!-- #index-tetaglobule -->
 <?php endif; endif; ?>
 
