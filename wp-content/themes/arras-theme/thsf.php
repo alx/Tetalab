@@ -56,20 +56,16 @@ else add_filter('arras_postheader', 'arras_postmeta');
     </tfoot>
     <tbody>
 <tr>
-<td class="time">11:30</td>
-<td class="room empty"></td>
-<td class="room empty"></td>
-<td class="room empty"></td>
-</tr>
-<tr>
 <td class="time">11:45</td>
 <td class="room empty"></td>
-<td class="room conf" rowspan="4"></td>
-<td class="room conf" rowspan="4"></td>
+<td class="room empty"></td>
+<td class="room empty"></td>
 </tr>
 <tr>
 <td class="time">12:00</td>
 <td class="room empty"></td>
+<td class="room conf" rowspan="4"></td>
+<td class="room conf" rowspan="4"></td>
 </tr>
 <tr>
 <td class="time">12:15</td>
@@ -81,8 +77,6 @@ else add_filter('arras_postheader', 'arras_postmeta');
 </tr>
 <tr>
 <td class="time">12:45</td>
-<td class="room empty"></td>
-<td class="room empty"></td>
 <td class="room empty"></td>
 </tr>
 <tr>
@@ -195,23 +189,24 @@ else add_filter('arras_postheader', 'arras_postmeta');
 </tr>
 <tr>
 <td class="time">18:15</td>
-<td class="room conf" rowspan="2"></td>
-</tr>
-<tr>
-<td class="time">18:30</td>
-</tr>
-<tr>
-<td class="time">18:45</td>
 <td class="room empty"></td>
 </tr>
 <tr>
+<td class="time">18:30</td>
+<td class="room conf" rowspan="2"></td>
+</tr>
+<tr>
+<td class="time">18:45</td>
+</tr>
+<tr>
 <td class="time">19:00</td>
-<td class="room conf" rowspan="4"></td>
+<td class="room empty"></td>
 <td class="room empty"></td>
 <td class="room empty"></td>
 </tr>
 <tr>
 <td class="time">19:15</td>
+<td class="room conf" rowspan="4"></td>
 <td class="room conf" rowspan="4"></td>
 <td class="room empty"></td>
 </tr>
@@ -225,7 +220,6 @@ else add_filter('arras_postheader', 'arras_postmeta');
 </tr>
 <tr>
 <td class="time">20:00</td>
-<td class="room empty"></td>
 <td class="room empty"></td>
 </tr>
 <tr>
