@@ -32,7 +32,7 @@ function get_video_posts($source = 'group', $format = 'post') {
 	
 	switch($source){
 		case 'tetaglobule':
-			$vimeo_call = 'http://vimeo.com/api/v2/group/tetaglobule/videos.json';
+			$vimeo_call = 'http://vimeo.com/api/v2/channel/tetaglobule/videos.json';
 		default:
 			$vimeo_call = 'http://vimeo.com/api/v2/group/tetalab/videos.json';
 	}

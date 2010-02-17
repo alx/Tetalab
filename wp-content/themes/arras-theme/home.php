@@ -58,8 +58,8 @@ $stickies = get_option('sticky_posts');
 </div><!-- #index-featured -->
 
 <div id="index-tetaglobule">
-	<div class="video-link"><a href="http://vimeo.com/groups/tetalab/videos">Plus de Videos &#x2192;</a></div>
-	<div class="home-title">Videos</div>
+	<div class="video-link"><a href="http://vimeo.com/channels/tetaglobule">Plus de Videos &#x2192;</a></div>
+	<div class="home-title">Coups de Coeurs</div>
 	<?php get_video_posts('tetaglobule'); ?>
 </div><!-- #index-tetaglobule -->
 <?php endif; endif; ?>
