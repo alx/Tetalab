@@ -195,7 +195,7 @@ else add_filter('arras_postheader', 'arras_postmeta');
 <td class="time">18:30</td>
 <td class="room conf" rowspan="2">
 <p class="title">Bienvenue &agrave; THSF</p>
-<ul class="speakers"><li><a href="http://tetalab.org">Tetalab</a></li></ul>
+<p class="speaker"><a href="http://tetalab.org">Tetalab</a></p>
 </td>
 </tr>
 <tr>

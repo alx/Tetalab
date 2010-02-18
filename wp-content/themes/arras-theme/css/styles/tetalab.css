@@ -361,4 +361,12 @@ html[xmlns] #wp125adwrap_2c	{ display: block; }
 
 .conf{
 	background:#C3D9FF;
+	text-align:center;
 }
+
+p.title{
+	font-weight:bold;
+}
+
+p.speaker a{
+	text-decoration:none;
