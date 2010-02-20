@@ -1,44 +1,114 @@
 <?php get_header(); ?>
 
-	<div id="content">
+<?php
+if ( function_exists('dsq_comment_count') ) {
+	remove_action('loop_end', 'dsq_comment_count');
+	add_action('arras_above_index_news_post', 'dsq_comment_count');
+}
 
-		<?php do_action( 'bp_before_home' ) ?>
+$stickies = get_option('sticky_posts');
+?>
 
-		<div id="third-section" class="widget-section">
-			<?php if ( !function_exists('dynamic_sidebar')
-			        || !dynamic_sidebar('third-section') ) : ?>
+<div id="content" class="section">
+<?php arras_above_content() ?>
 
-			<div class="widget-error">
-				<?php _e( 'Please log in and add widgets to this section.', 'buddypress' ) ?> <a href="<?php echo get_option('siteurl') ?>/wp-admin/widgets.php?s=&amp;show=&amp;sidebar=first-section"><?php _e( 'Add Widgets', 'buddypress' ) ?></a>
-			</div>
+<?php if ( ( $featured1_cat = arras_get_option('slideshow_cat') ) !== '' && $featured1_cat != '-1' ) : ?>
+    <!-- Featured Slideshow -->
+    <div class="featured clearfix">
+    <?php
+	if ($featured1_cat == '-5') {
+		if (count($stickies) > 0) 
+			$query = array('post__in' => $stickies, 'showposts' => arras_get_option('slideshow_count') );
+	} elseif ($featured1_cat == '0') {
+		$query = 'showposts=' . arras_get_option('slideshow_count');
+	} else {
+		$query = 'showposts=' . arras_get_option('slideshow_count') . '&cat=' . $featured1_cat;
+	}
+	
+	$q = new WP_Query( apply_filters('arras_slideshow_query', $query) );
+	?> 
+    	<div id="controls" style="display: none;">
+			<a href="" class="prev"><?php _e('Prev', 'arras') ?></a>
+			<a href="" class="next"><?php _e('Next', 'arras') ?></a>
+        </div>
+    	<div id="featured-slideshow">
+        	<?php $count = 0; ?>
+    		<?php if ($q->have_posts()) : while ($q->have_posts()) : $q->the_post(); ?>
+    		<div <?php if ($count != 0) echo 'style="display: none"'; ?>>
 
-			<?php endif; ?>
-		</div>
+            	<a class="featured-article" href="<?php echo wpmu_link(); ?>" rel="bookmark" style="background: url(<?php echo arras_get_thumbnail('featured-slideshow-thumb'); ?>) no-repeat #1E1B1A;">
+                <span class="featured-entry">
+                    <span class="entry-title"><?php the_title(); ?></span>
+                    <span class="entry-summary"><?php echo arras_strip_content(get_the_excerpt(), 20); ?></span>
+					<span class="progress"></span>
+                </span>
+            	</a>
+        	</div>
+    		<?php $count++; endwhile; endif; ?>
+    	</div>
+    </div>
+<?php endif; ?>
 
-		<div id="second-section" class="widget-section">
-			<?php if ( !function_exists('dynamic_sidebar')
-			        || !dynamic_sidebar('second-section') ) : ?>
+<!-- Featured Articles -->
+<?php if (!$paged) : if ( ($featured2_cat = arras_get_option('featured_cat') ) !== '' && $featured2_cat != '-1' ) : ?>
+<div id="index-featured">
+	<div class="video-link"><a href="http://vimeo.com/groups/tetalab/videos">Plus de Videos &#x2192;</a></div>
+	<div class="home-title">Videos</div>
+	<?php get_video_posts(); ?>
+</div><!-- #index-featured -->
+<?php endif; endif; ?>
 
-			<div class="widget-error">
-				<?php _e( 'Please log in and add widgets to this section.', 'buddypress' ) ?> <a href="<?php echo get_option('siteurl') ?>/wp-admin/widgets.php?s=&amp;show=&amp;sidebar=second-section"><?php _e( 'Add Widgets', 'buddypress' ) ?></a>
-			</div>
 
-			<?php endif; ?>
-		</div>
+<?php arras_above_index_news_post() ?>
 
-		<div id="first-section" class="widget-section">
-			<?php if ( !function_exists('dynamic_sidebar')
-			        || !dynamic_sidebar('first-section') ) : ?>
+<!-- News Articles -->
+<div id="index-news">
+<div class="home-title"><?php _e('Latest Headlines', 'arras') ?></div>
+<?php
+$news_query = array(
+	'cat' => arras_get_option('news_cat'),
+	'paged' => $paged,
+	'showposts' => ( (arras_get_option('index_count') == 0 ? get_option('posts_per_page') : arras_get_option('index_count')) )
+);
 
-			<div class="widget-error">
-				<?php _e( 'Please log in and add widgets to this section.', 'buddypress' ) ?> <a href="<?php echo get_option('siteurl') ?>/wp-admin/widgets.php?s=&amp;show=&amp;sidebar=third-section"><?php _e( 'Add Widgets', 'buddypress' ) ?></a>
-			</div>
+// if you are a WP plugin freak you can use 'arras_news_query' filter to override the query
+wp_reset_query(); query_posts(apply_filters('arras_news_query', $news_query));
 
-			<?php endif; ?>
-		</div>
+arras_get_posts('news') ?>
 
-		<?php do_action( 'bp_after_home' ) ?>
-
+<?php if(function_exists('wp_pagenavi')) wp_pagenavi(); else { ?>
+	<div class="navigation clearfix">
+		<div class="floatleft"><?php next_posts_link( __('Older Entries', 'arras') ) ?></div>
+		<div class="floatright"><?php previous_posts_link( __('Newer Entries', 'arras') ) ?></div>
 	</div>
+<?php } ?>
 
+</div><!-- #index-news -->
+
+<?php arras_below_index_news_post() ?>
+
+<?php $sidebars = wp_get_sidebars_widgets(); ?>
+
+<div id="bottom-content-1">
+	<?php if ( $sidebars['sidebar-4'] ) : ?>
+	<ul class="clearfix xoxo">
+    	<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('Bottom Content #1') ) : ?>
+        <?php endif; ?>
+	</ul>
+	<?php endif; ?>
+</div>
+
+<div id="bottom-content-2">
+	<?php if ( $sidebars['sidebar-5'] ) : ?>
+	<ul class="clearfix xoxo">
+    	<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('Bottom Content #2') ) : ?>
+        <?php endif; ?>
+	</ul>
+	<?php endif; ?>
+</div>
+
+<?php arras_below_content() ?>
+</div><!-- #content -->
+    
+<?php get_sidebar(); ?>
 <?php get_footer(); ?>

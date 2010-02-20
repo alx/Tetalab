@@ -1,27 +1,17 @@
 <?php get_header(); ?>
 
-	<div id="content">
+<div id="content" class="section">
+<?php arras_above_content() ?>
 
-		<?php do_action( 'bp_before_404' ) ?>
+<h2><?php _e('Error 404 - Not Found', 'arras') ?></h2>
+<?php _e('<p><strong>We\'re very sorry, but that page doesn\'t exist or has been moved.</strong><br />
+Please make sure you have the right URL.</p>
+<p>If you still can\'t find what you\'re looking for, try using the search form below.<br />', 'arras') ?>
+<?php include (TEMPLATEPATH . '/searchform.php'); ?>
 
-		<div class="page 404">
+<?php arras_below_content() ?>
+</div><!-- #content -->
 
-			<h2 class="pagetitle"><?php _e( 'Page Not Found', 'buddypress' ) ?></h2>
-
-			<div id="message" class="info">
-
-				<p><?php _e( 'The page you were looking for was not found.', 'buddypress' ) ?>
-
-			</div>
-
-			<?php do_action( 'bp_404' ) ?>
-
-		</div>
-
-		<?php do_action( 'bp_after_404' ) ?>
-
-	</div>
-
-	<?php get_sidebar() ?>
+<?php get_sidebar(); ?>
 
 <?php get_footer(); ?>

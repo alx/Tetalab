@@ -1,10 +1,4 @@
-<?php do_action( 'bp_before_blog_search_form' ) ?>
-
-<form method="get" id="searchform" action="<?php bloginfo('url'); ?>/">
-	<input type="text" value="<?php the_search_query(); ?>" name="s" id="s" />
-	<input type="submit" id="searchsubmit" value="<?php _e( 'Search', 'buddypress' ) ?>" />
-
-	<?php do_action( 'bp_blog_search_form' ) ?>
+<form method="get" class="searchform clearfix" action="<?php bloginfo('url'); ?>/">
+ <input type="text" value="<?php the_search_query(); ?>" name="s" class="s" onfocus="this.value=''" />
+ <input type="submit" class="searchsubmit" value="<?php _e('Search', 'arras') ?>" title="<?php printf( __('Search %s', 'arras'), wp_specialchars( get_bloginfo('name'), 1 ) ) ?>" />
 </form>
-
-<?php do_action( 'bp_after_blog_search_form' ) ?>

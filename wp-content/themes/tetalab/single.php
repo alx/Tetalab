@@ -1,54 +1,51 @@
 <?php get_header(); ?>
 
-	<div id="content">
+<div id="content" class="section">
+<?php arras_above_content() ?>
 
-		<?php do_action( 'bp_before_blog_single_post' ) ?>
+<?php 
+if ( arras_get_option('single_meta_pos') == 'bottom' ) add_filter('arras_postfooter', 'arras_postmeta');
+else add_filter('arras_postheader', 'arras_postmeta');
+?>
 
-		<div class="page" id="blog-single">
 
-			<h2 class="pagetitle"><?php _e( 'Blog', 'buddypress' ) ?></h2>
+<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+	<?php arras_above_post() ?>
+	<div id="post-<?php the_ID() ?>" <?php arras_single_post_class() ?>>
 
-			<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-
-				<div class="item-options">
-
-					<div class="alignleft"><?php next_posts_link( __( '&laquo; Previous Entries', 'buddypress' ) ) ?></div>
-					<div class="alignright"><?php previous_posts_link( __( 'Next Entries &raquo;', 'buddypress' ) ) ?></div>
-
-				</div>
-
-				<div class="post" id="post-<?php the_ID(); ?>">
-
-					<?php do_action( 'bp_before_blog_post' ) ?>
-
-					<h3><a href="<?php echo get_permalink() ?>" rel="bookmark" title="<?php _e( 'Permanent link to', 'buddypress' ) ?> <?php the_title(); ?>"><?php the_title(); ?></a></h3>
-
-					<div class="entry">
-
-						<?php the_content( __( '<p class="serif">Read the rest of this entry &raquo;</p>', 'buddypress' ) ); ?>
-
-						<?php wp_link_pages(array('before' => __( '<p><strong>Pages:</strong> ', 'buddypress' ), 'after' => '</p>', 'next_or_number' => 'number')); ?>
-
-					</div>
-
-					<?php do_action( 'bp_after_blog_post' ) ?>
-
-				</div>
-
-			<?php comments_template(); ?>
-
-			<?php endwhile; else: ?>
-
-				<p><?php _e( 'Sorry, no posts matched your criteria.', 'buddypress' ) ?></p>
-
-			<?php endif; ?>
-
+        <?php arras_postheader() ?>
+        
+        <div class="entry-content">
+		<?php the_content( __('<p>Read the rest of this entry &raquo;</p>', 'arras') ); ?>  
+        <?php wp_link_pages(array('before' => __('<p><strong>Pages:</strong> ', 'arras'), 
+			'after' => '</p>', 'next_or_number' => 'number')); ?>
 		</div>
+        
+        <!-- <?php trackback_rdf() ?> -->
+		<?php arras_postfooter() ?>
 
-		<?php do_action( 'bp_after_blog_single_post' ) ?>
+        <?php if ( arras_get_option('display_author') ) : ?>
+        <div class="about-author clearfix">
+        	<h4><?php _e('About the Author', 'arras') ?></h4>
+            <?php echo get_avatar(get_the_author_id(), 48); ?>
+            <?php the_author_description(); ?>
+        </div>
+        <?php endif; ?>
+    </div>
+    
+	<?php arras_below_post() ?>
+	<a name="comments"></a>
+    <?php comments_template('', true); ?>
+	<?php arras_below_comments() ?>
+    
+<?php endwhile; else: ?>
 
-	</div>
+<?php arras_post_notfound() ?>
 
-	<?php get_sidebar(); ?>
+<?php endif; ?>
 
+<?php arras_below_content() ?>
+</div><!-- #content -->
+
+<?php get_sidebar(); ?>
 <?php get_footer(); ?>

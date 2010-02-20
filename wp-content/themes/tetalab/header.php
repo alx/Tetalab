@@ -1,119 +1,126 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes(); ?>>
+<head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
+<title><?php arras_document_title() ?></title>
+<meta name="description" content="<?php bloginfo('description') ?>" />
+<?php if ( is_search() || is_author() ) : ?>
+<meta name="robots" content="noindex, nofollow" />
+<?php endif ?>
 
-<html xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes(); ?>>
+<?php arras_alternate_style() ?>
 
-	<head profile="http://gmpg.org/xfn/11">
+<?php if ( ($feed = arras_get_option('feed_url') ) == '' ) : ?>
+<link rel="alternate" type="application/rss+xml" href="<?php bloginfo('rss2_url') ?>" title="<?php printf( __( '%s latest posts', 'arras' ), wp_specialchars( get_bloginfo('name'), 1 ) ) ?>" />
+<?php else : ?>
+<link rel="alternate" type="application/rss+xml" href="<?php echo $feed ?>" title="<?php printf( __( '%s latest posts', 'arras' ), wp_specialchars( get_bloginfo('name'), 1 ) ) ?>" />
+<?php endif; ?>
 
-		<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
+<?php if ( ($comments_feed = arras_get_option('comments_feed_url') ) == '' ) : ?>
+<link rel="alternate" type="application/rss+xml" href="<?php bloginfo('comments_rss2_url') ?>" title="<?php printf( __( '%s latest comments', 'arras' ), wp_specialchars( get_bloginfo('name'), 1 ) ) ?>" />
+<?php else : ?>
+<link rel="alternate" type="application/rss+xml" href="<?php echo $comments_feed ?>" title="<?php printf( __( '%s latest comments', 'arras' ), wp_specialchars( get_bloginfo('name'), 1 ) ) ?>" />
+<?php endif; ?>
 
-		<title><?php bp_page_title() ?></title>
+<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 
-		<?php do_action( 'bp_head' ) ?>
+<link rel="shortcut icon" href="<?php echo get_template_directory_uri() ?>/images/favicon.ico" />
 
-		<meta name="generator" content="WordPress <?php bloginfo('version'); ?>" /> <!-- leave this for stats -->
+<?php
+wp_enqueue_script('cufon', get_template_directory_uri() . '/js/cufon-yui.min.js', null, null, false);
+wp_enqueue_script('cufon-font', get_template_directory_uri() . '/js/BPreplay.font.js', null, null, false);
 
-		<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>" type="text/css" media="screen" />
+wp_enqueue_script('jquery', get_template_directory_uri() . '/js/jquery-1.3.2.min.js', null, '1.3.2', false);
+wp_enqueue_script('jquery-ui', get_template_directory_uri() . '/js/jquery-ui-1.7.2.min.js', 'jquery', '1.7.2', false); 
 
-		<?php if ( function_exists( 'bp_sitewide_activity_feed_link' ) ) : ?>
-			<link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?> <?php _e('Site Wide Activity RSS Feed', 'buddypress' ) ?>" href="<?php bp_sitewide_activity_feed_link() ?>" />
-		<?php endif; ?>
+if ( is_home() || is_front_page() ) {
+	wp_enqueue_script('jquery-cycle', get_template_directory_uri() . '/js/jquery.cycle.min.js', 'jquery', null, true);
+}
 
-		<link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?> <?php _e( 'Blog Posts RSS Feed', 'buddypress' ) ?>" href="<?php bloginfo('rss2_url'); ?>" />
-		<link rel="alternate" type="application/atom+xml" title="<?php bloginfo('name'); ?> <?php _e( 'Blog Posts Atom Feed', 'buddypress' ) ?>" href="<?php bloginfo('atom_url'); ?>" />
+if ( !function_exists('pixopoint_menu') ) {
+	wp_enqueue_script('hoverintent', get_template_directory_uri() . '/js/superfish/hoverIntent.js', 'jquery', null, false);
+	wp_enqueue_script('superfish', get_template_directory_uri() . '/js/superfish/superfish.js', 'jquery', null, false);
+}
 
-		<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
+if ( is_singular() ) {
+	wp_enqueue_script('comment-reply');
+	wp_enqueue_script('jquery-validate', get_template_directory_uri() . '/js/jquery.validate.min.js', 'jquery', null, false);
+}
 
-		<?php wp_head(); ?>
+wp_enqueue_script('arras_base', get_template_directory_uri() . '/js/base.js', null, null, false);
 
-	</head>
+wp_head();
+arras_head();
+?>
+<script type="text/javascript">
+<?php @include 'js/header.js.php'; ?>
+</script>
 
-	<body <?php body_class() ?>>
+<!--[if IE 6]>
+<link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/css/ie6.css" type="text/css" media="screen, projector" />
+<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/jquery.supersleight.min.js"></script>
+<script type="text/javascript">
+	$('#controls').supersleight( {shim: '<?php bloginfo('template_url') ?>/images/x.gif'} );
+	$('.featured-article').supersleight( {shim: '<?php bloginfo('template_url') ?>/images/x.gif'} );
+</script>
+<![endif]-->
+</head>
 
-		<?php do_action( 'bp_before_search_login_bar' ) ?>
+<body <?php arras_body_class() ?>>
+<?php arras_body() ?>
+<div id="wrapper">
 
-		<div id="search-login-bar">
-
-			<form action="<?php echo bp_search_form_action() ?>" method="post" id="search-form">
-				<input type="text" id="search-terms" name="search-terms" value="" />
-				<?php echo bp_search_form_type_select() ?>
-
-				<input type="submit" name="search-submit" id="search-submit" value="<?php _e( 'Search', 'buddypress' ) ?>" />
-				<?php wp_nonce_field( 'bp_search_form' ) ?>
-			</form>
-
-			<?php if ( !is_user_logged_in() ) : ?>
-
-				<form name="login-form" id="login-form" action="<?php echo site_url( 'wp-login.php' ) ?>" method="post">
-					<input type="text" name="log" id="user_login" value="<?php _e( 'Username', 'buddypress' ) ?>" onfocus="if (this.value == '<?php _e( 'Username', 'buddypress' ) ?>') {this.value = '';}" onblur="if (this.value == '') {this.value = '<?php _e( 'Username', 'buddypress' ) ?>';}" />
-					<input type="password" name="pwd" id="user_pass" class="input" value="" />
-
-					<input type="checkbox" name="rememberme" id="rememberme" value="forever" title="<?php _e( 'Remember Me', 'buddypress' ) ?>" />
-
-					<input type="submit" name="wp-submit" id="wp-submit" value="<?php _e( 'Log In', 'buddypress' ) ?>"/>
-
-					<?php if ( 'none' != bp_get_signup_allowed() && 'blog' != bp_get_signup_allowed() ) : ?>
-						<input type="button" name="signup-submit" id="signup-submit" value="<?php _e( 'Sign Up', 'buddypress' ) ?>" onclick="location.href='<?php echo bp_signup_page() ?>'" />
-					<?php endif; ?>
-
-					<input type="hidden" name="redirect_to" value="<?php echo bp_root_domain() ?>" />
-					<input type="hidden" name="testcookie" value="1" />
-
-					<?php do_action( 'bp_login_bar_logged_out' ) ?>
-				</form>
-
-			<?php else : ?>
-
-				<div id="logout-link">
-					<?php bp_loggedin_user_avatar( 'width=20&height=20' ) ?> &nbsp; <?php bp_loggedinuser_link() ?> / <?php bp_log_out_link() ?>
-
-					<?php do_action( 'bp_login_bar_logged_in' ) ?>
-				</div>
-
-			<?php endif; ?>
-
-			<?php do_action( 'bp_search_login_bar' ) ?>
-
-		</div>
-
-		<?php do_action( 'bp_after_search_login_bar' ) ?>
-		<?php do_action( 'bp_before_header' ) ?>
-
-		<div id="header">
-
-			<h1 id="logo"><a href="<?php echo get_option('home') ?>" title="<?php _e( 'Home', 'buddypress' ) ?>"><?php bp_site_name() ?></a></h1>
-
-			<ul id="nav">
-				<li<?php if ( bp_is_page( 'home' ) ) : ?> class="selected"<?php endif; ?>><a href="<?php echo get_option('home') ?>" title="<?php _e( 'Home', 'buddypress' ) ?>"><?php _e( 'Home', 'buddypress' ) ?></a></li>
-				<li<?php if ( bp_is_page( BP_HOME_BLOG_SLUG ) ) : ?> class="selected"<?php endif; ?>><a href="<?php echo get_option('home') ?>/<?php echo BP_HOME_BLOG_SLUG ?>" title="<?php _e( 'Blog', 'buddypress' ) ?>"><?php _e( 'Blog', 'buddypress' ) ?></a></li>
-				<li<?php if ( bp_is_page( BP_MEMBERS_SLUG ) ) : ?> class="selected"<?php endif; ?>><a href="<?php echo get_option('home') ?>/<?php echo BP_MEMBERS_SLUG ?>" title="<?php _e( 'Members', 'buddypress' ) ?>"><?php _e( 'Members', 'buddypress' ) ?></a></li>
-
-				<?php if ( function_exists( 'groups_install' ) ) : ?>
-					<li<?php if ( bp_is_page( BP_GROUPS_SLUG ) ) : ?> class="selected"<?php endif; ?>><a href="<?php echo get_option('home') ?>/<?php echo BP_GROUPS_SLUG ?>" title="<?php _e( 'Groups', 'buddypress' ) ?>"><?php _e( 'Groups', 'buddypress' ) ?></a></li>
-				<?php endif; ?>
-
-				<?php if ( function_exists( 'groups_install' ) && ( function_exists( 'bp_forums_setup' ) && !(int) get_site_option( 'bp-disable-forum-directory' ) ) ) : ?>
-					<li<?php if ( bp_is_page( BP_FORUMS_SLUG ) ) : ?> class="selected"<?php endif; ?>><a href="<?php echo get_option('home') ?>/<?php echo BP_FORUMS_SLUG ?>" title="<?php _e( 'Forums', 'buddypress' ) ?>"><?php _e( 'Forums', 'buddypress' ) ?></a></li>
-				<?php endif; ?>
-
-				<?php if ( function_exists( 'bp_blogs_install' ) ) : ?>
-					<li<?php if ( bp_is_page( BP_BLOGS_SLUG ) ) : ?> class="selected"<?php endif; ?>><a href="<?php echo get_option('home') ?>/<?php echo BP_BLOGS_SLUG ?>" title="<?php _e( 'Blogs', 'buddypress' ) ?>"><?php _e( 'Blogs', 'buddypress' ) ?></a></li>
-				<?php endif; ?>
-
-				<?php do_action( 'bp_nav_items' ); ?>
+    <div id="header">
+		
+    	<div id="branding" class="clearfix">
+        <div class="logo clearfix">
+        	<?php if ( is_home() || is_front_page() ) : ?>
+            <h1 class="blog-name"><a href="<?php bloginfo('url'); ?>"><?php bloginfo('name'); ?></a></h1>
+            <h2 class="blog-description"><?php bloginfo('description'); ?></h2>
+            <?php else: ?>
+            <span class="blog-name"><a href="<?php bloginfo('url'); ?>"><?php bloginfo('name'); ?></a></span>
+            <span class="blog-description"><?php bloginfo('description'); ?></span>
+            <?php endif ?>
+        </div>
+        <div id="searchbar">
+            <?php include (TEMPLATEPATH . '/searchform.php'); ?>
+        </div>
+        </div><!-- #branding -->
+    </div><!-- #header -->
+	
+	<?php arras_above_nav() ?>
+    <div id="nav">
+    	<div id="nav-content" class="clearfix">
+		<?php if ( function_exists('pixopoint_menu') ): ?>
+		<?php pixopoint_menu(); ?>
+		<?php else : ?>
+			<ul class="sf-menu menu clearfix">
+				<li><a href="<?php bloginfo('url') ?>"><?php echo arras_get_option('topnav_home') ?></a></li>
+				<?php 
+				if (arras_get_option('topnav_display') == 'pages') {
+					wp_list_pages('sort_column=menu_order&title_li=');
+				} else if (arras_get_option('topnav_display') == 'linkcat') {
+					wp_list_bookmarks('category='.arras_get_option('topnav_linkcat').'&hierarchical=0&show_private=1&hide_invisible=0&title_li=&categorize=0&orderby=id'); 
+				} else {
+					wp_list_categories('number=11&hierarchical=1&orderby=id&hide_empty=1&title_li=');	
+				}
+				?>
 			</ul>
-
-			<?php do_action( 'bp_header' ) ?>
-
-		</div>
-
-		<?php do_action( 'bp_after_header' ) ?>
-		<?php do_action( 'bp_before_container' ) ?>
-
-		<div id="container">
-
-			<?php if ( !bp_is_blog_page() && !bp_is_directory() && !bp_is_register_page() && !bp_is_activation_page() ) : ?>
-
-				<?php locate_template( array( 'userbar.php' ), true ) /* Load the user navigation */ ?>
-				<?php locate_template( array( 'optionsbar.php' ), true ) /* Load the currently displayed object navigation */ ?>
-
-			<?php endif; ?>
+		<?php endif ?>
+			<ul class="quick-nav clearfix">
+				<?php if ($feed == '') : ?>
+					<li><a id="rss" title="<?php printf( __( '%s RSS Feed', 'arras' ), wp_specialchars( get_bloginfo('name'), 1 ) ) ?>" href="<?php bloginfo('rss2_url'); ?>"><?php _e('RSS Feed', 'arras') ?></a></li>
+				<?php else : ?>
+					<li><a id="rss" title="<?php printf( __( '%s RSS Feed', 'arras' ), wp_specialchars( get_bloginfo('name'), 1 ) ) ?>" href="<?php echo $feed; ?>"><?php _e('RSS Feed', 'arras') ?></a></li>
+				<?php endif; ?>
+				
+				<?php $twitter_username = arras_get_option('twitter_username'); ?>
+				<?php if ($twitter_username != '') : ?>
+					<li><a id="twitter" title="<?php printf( __( '%s Twitter', 'arras' ), wp_specialchars( get_bloginfo('name'), 1 ) ) ?>" href="http://www.twitter.com/<?php echo $twitter_username ?>/"><?php _e('Twitter', 'arras') ?></a></li>
+				<?php endif ?>
+			</ul>
+		</div><!-- #nav-content -->
+    </div><!-- #nav -->
+	<?php arras_below_nav() ?>
+    
+	<div id="main" class="clearfix">
+    <div id="container" class="clearfix">

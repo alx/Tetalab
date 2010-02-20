@@ -1,59 +1,50 @@
 <?php get_header(); ?>
 
-	<div id="content">
+<div id="content" class="section">
+<?php arras_above_content() ?>
 
-		<?php do_action( 'bp_before_blog_search' ) ?>
+<?php if (have_posts()) : ?>
+<div class="search-results">
+    <h2><?php _e('Search Results', 'arras') ?></h2>
+    <div class="search-results-content clearfix">
+	<p><?php printf( __('Search Results for <strong>&#8216;' . '%s' . '&#8217;</strong></p>', 'arras'), wp_specialchars($s, 1) ) ?>
+    <?php include (TEMPLATEPATH . '/searchform.php'); ?>
+    </div>
+</div>
 
-		<div class="page" id="blog-search">
+<?php arras_get_posts('archive') ?>
 
-			<h2 class="pagetitle"><?php _e( 'Blog', 'buddypress' ) ?></h2>
+<?php if(function_exists('wp_pagenavi')) wp_pagenavi(); else { ?>
+    <div class="navigation">
+		<div class="floatRight"><?php next_posts_link( __('&laquo; Older Entries', 'arras') ) ?></div>
+		<div class="floatLeft"><?php previous_posts_link( __('Newer Entries &raquo;', 'arras') ) ?></div>
+    </div>
+<?php } ?>
 
-			<?php if (have_posts()) : ?>
+<?php else: ?>
 
-				<h3 class="pagetitle"><?php _e( 'Search Results', 'buddypress' ) ?></h3>
+<div class="search-results">
+    <h2>Search Results</h2>
+    <div class="search-results-content clearfix">
+    <p><?php _e('<strong>Sorry, we couldn\'t find any results based on your search query.</strong>', 'arras') ?></p>
+    <?php include (TEMPLATEPATH . '/searchform.php'); ?>
+    </div>
+</div> 
 
-				<div class="navigation">
-					<div class="alignleft"><?php next_posts_link( __( '&laquo; Previous Entries', 'buddypress' ) ) ?></div>
-					<div class="alignright"><?php previous_posts_link( __( 'Next Entries &raquo;', 'buddypress' ) ) ?></div>
-				</div>
+<h2 class="feed-title"><?php _e('Blog Archive', 'arras') ?></h2>
+<?php query_posts(''); ?>
+<?php arras_get_posts('archive') ?>
+    
+<?php if(function_exists('wp_pagenavi')) wp_pagenavi(); else { ?>
+    <div class="navigation clearfix">
+		<div class="floatLeft"><?php next_posts_link( __('&laquo; Older Entries', 'arras') ) ?></div>
+		<div class="floatRight"><?php previous_posts_link( __('Newer Entries &raquo;', 'arras') ) ?></div>
+    </div>
+<?php } ?>  
+<?php endif; ?>
 
-				<?php while (have_posts()) : the_post(); ?>
-
-					<?php do_action( 'bp_before_blog_post' ) ?>
-
-					<div class="post">
-
-						<h3 id="post-<?php the_ID(); ?>"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php _e( 'Permanent Link to', 'buddypress' ) ?> <?php the_title(); ?>"><?php the_title(); ?></a></h3>
-						<small><?php the_time('l, F jS, Y') ?></small>
-
-						<p class="postmetadata"><?php _e( 'Posted in', 'buddypress' ) ?> <?php the_category(', ') ?> | <?php edit_post_link( __( 'Edit', 'buddypress' ), '', ' | '); ?>  <?php comments_popup_link( __( 'No Comments &#187;', 'buddypress' ), __( '1 Comment &#187;', 'buddypress' ), __( '% Comments &#187;', 'buddypress' ) ); ?></p>
-
-						<?php do_action( 'bp_blog_post' ) ?>
-
-					</div>
-
-					<?php do_action( 'bp_after_blog_post' ) ?>
-
-				<?php endwhile; ?>
-
-				<div class="navigation">
-					<div class="alignleft"><?php next_posts_link( __( '&laquo; Previous Entries', 'buddypress' ) ) ?></div>
-					<div class="alignright"><?php previous_posts_link( __( 'Next Entries &raquo;', 'buddypress' ) ) ?></div>
-				</div>
-
-			<?php else : ?>
-
-				<h2 class="center"><?php _e( 'No posts found. Try a different search?', 'buddypress' ) ?></h2>
-				<?php locate_template( array( '/searchform.php'), true ) ?>
-
-			<?php endif; ?>
-
-		</div>
-
-		<?php do_action( 'bp_after_blog_search' ) ?>
-
-	</div>
+<?php arras_below_content() ?>
+</div><!-- #content -->
 
 <?php get_sidebar(); ?>
-
 <?php get_footer(); ?>

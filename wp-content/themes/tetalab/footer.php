@@ -1,21 +1,27 @@
-		</div> <!-- #container -->
+	<?php arras_before_footer() ?>
+	</div><!-- #main -->
+    
+    <div id="footer" class="clearfix">
+    	<ul id="footer-sidebar" class="clearfix xoxo">
+			<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('Footer') ) : ?>
+            <?php endif; ?>
+        </ul>
+		<ul class="footer-message">
+			<li class="widgetcontainer">
+                	<h4 class="widgettitle"><?php echo stripslashes(arras_get_option('footer_title')); ?></h4>
+                	<div class="widgetcontent">
+                	<?php echo stripslashes(arras_get_option('footer_message')); ?>
+					
+                	<p>Theme: <a href="http://www.arrastheme.com/"><strong>Arras</strong></a></p>
+                	</div>
+            </li>
+		</ul>
+    </div>
+    
+    <?php wp_footer() ?>
+	<?php arras_footer() ?>
 
-		<?php do_action( 'bp_after_container' ) ?>
-
-		<div class="clear"></div>
-
-		<?php do_action( 'bp_before_footer' ) ?>
-
-		<div id="footer">
-		    <p><?php printf( __( '%s is proudly powered by <a href="http://mu.wordpress.org">WordPress MU</a> and <a href="http://buddypress.org">BuddyPress</a>', 'buddypress' ), bloginfo('name') ); ?></p>
-
-			<?php do_action( 'bp_footer' ) ?>
-		</div>
-
-		<?php do_action( 'bp_after_footer' ) ?>
-
-		<?php wp_footer(); ?>
-
-	</body>
-
+</div><!-- #wrapper -->
+</body>
 </html>
+   

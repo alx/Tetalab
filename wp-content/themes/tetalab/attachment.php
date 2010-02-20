@@ -1,47 +1,49 @@
 <?php get_header(); ?>
 
-	<div id="content">
+<div id="content" class="section">
+<?php arras_above_content() ?>
 
-		<?php do_action( 'bp_before_attachment' ) ?>
+<?php 
+if ( arras_get_option('single_meta_pos') == 'bottom' ) add_filter('arras_postfooter', 'arras_postmeta');
+else add_filter('arras_postheader', 'arras_postmeta');
+?>
 
-		<div class="page" id="attachments-page">
+<?php if (have_posts()) : the_post(); ?>
+	<?php arras_above_post() ?>
+	<div id="post-<?php the_ID() ?>" <?php arras_single_post_class() ?>>
 
-			<h2 class="pagetitle"><?php _e( 'Blog', 'buddypress' ) ?></h2>
+        <?php arras_postheader() ?>
 
-				<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+		<div class="entry-content single-post-attachment"><?php the_attachment_link($post->post_ID, false) ?></div>
+		<?php the_content( __('<p>Read the rest of this entry &raquo;</p>', 'arras') ); ?>	
+        </div>
+        <?php wp_link_pages(array('before' => __('<p><strong>Pages:</strong> ', 'arras'), 
+			'after' => '</p>', 'next_or_number' => 'number')); ?>
+        
+		<?php arras_postfooter() ?>
 
-					<?php do_action( 'bp_before_blog_post' ) ?>
+       <?php if ( arras_get_option('display_author') ) : ?>
+        <div class="about-author clearfix">
+        	<h4><?php _e('About the Author', 'arras') ?></h4>
+            <?php echo get_avatar(get_the_author_email(), 48); ?>
+            <?php the_author_description(); ?>
+        </div>
+        <?php endif; ?>
+    </div>
+    
+	<?php arras_below_post() ?>
+	<a name="comments"></a>
+    <?php comments_template('', true); ?>
+	<?php arras_below_comments() ?>
+    
+<?php else: ?>
 
-					<?php $attachment_link = get_the_attachment_link($post->ID, true, array(450, 800)); // This also populates the iconsize for the next line ?>
-					<?php $_post = &get_post($post->ID); $classname = ($_post->iconsize[0] <= 128 ? 'small' : '') . 'attachment'; // This lets us style narrow icons specially ?>
+<?php arras_post_notfound() ?>
 
-					<div class="post" id="post-<?php the_ID(); ?>">
+<?php endif; ?>
 
-						<h2><a href="<?php echo get_permalink($post->post_parent); ?>" rev="attachment"><?php echo get_the_title($post->post_parent); ?></a> &raquo; <a href="<?php echo get_permalink() ?>" rel="bookmark" title="Permanent Link: <?php the_title(); ?>"><?php the_title(); ?></a></h2>
+<?php arras_below_content() ?>
+</div><!-- #content -->
 
-						<div class="entry">
-							<p class="<?php echo $classname; ?>"><?php echo $attachment_link; ?><br /><?php echo basename($post->guid); ?></p>
-
-							<?php the_content( __('<p class="serif">Read the rest of this entry &raquo;</p>', 'buddypress' ) ); ?>
-
-							<?php wp_link_pages( array( 'before' => __( '<p><strong>Pages:</strong> ', 'buddypress' ), 'after' => '</p>', 'next_or_number' => 'number')); ?>
-						</div>
-
-					</div>
-
-					<?php do_action( 'bp_after_blog_post' ) ?>
-
-				<?php comments_template(); ?>
-
-				<?php endwhile; else: ?>
-
-					<p><?php _e( 'Sorry, no attachments matched your criteria.', 'buddypress' ) ?></p>
-
-				<?php endif; ?>
-		</div>
-
-		<?php do_action( 'bp_after_attachment' ) ?>
-
-	</div>
-
+<?php get_sidebar('sidebar-single'); ?>
 <?php get_footer(); ?>
