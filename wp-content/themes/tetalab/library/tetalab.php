@@ -125,7 +125,7 @@ function wpmu_link(){
 
 //Add a feed image
 function include_video_in_rss() {
-	get_video_posts('rss');
+	get_video_posts('group', 'rss');
 }
 add_action('rss2_head', 'include_video_in_rss');
 
