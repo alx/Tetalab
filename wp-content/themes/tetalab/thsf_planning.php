@@ -4,266 +4,299 @@
 
 <div id="content" class="section">
 <?php arras_above_content() ?>
-<table>
-    <thead>
-      <tr>
-        <th width="10%" class="time"></th>
-        <th width="30%"><strong>Vendredi</strong></th>
-        <th width="30%"><strong>Samedi</strong></th>
-        <th width="30%"><strong>Dimanche</strong></th>
-      </tr>
-    </thead>
-    <tfoot>
-      <tr>
-        <th width="10%" class="time"></th>
-        <th width="30%"><strong>Vendredi</strong></th>
-        <th width="30%"><strong>Samedi</strong></th>
-        <th width="30%"><strong>Dimanche</strong></th>
-      </tr>
-    </tfoot>
-    <tbody>
-<tr>
-<td class="time">11:45</td>
-<td class="room empty"></td>
-<td class="room empty"></td>
-<td class="room empty"></td>
-</tr>
-<tr>
-<td class="time">12:00</td>
-<td class="room empty"></td>
-<td class="room conf" rowspan="4"></td>
-<td class="room conf" rowspan="4"></td>
-</tr>
-<tr>
-<td class="time">12:15</td>
-<td class="room empty"></td>
-</tr>
-<tr>
-<td class="time">12:30</td>
-<td class="room empty"></td>
-</tr>
-<tr>
-<td class="time">12:45</td>
-<td class="room empty"></td>
-</tr>
-<tr>
-<td class="time">13:00</td>
-<td class="room empty"></td>
-<td class="room empty"></td>
-<td class="room empty"></td>
-</tr>
-<tr>
-<td class="time">13:15</td>
-<td class="room empty"></td>
-<td class="room empty"></td>
-<td class="room empty"></td>
-</tr>
-<tr>
-<td class="time">13:30</td>
-<td class="room empty"></td>
-<td class="room empty"></td>
-<td class="room empty"></td>
-</tr>
-<tr>
-<td class="time">13:45</td>
-<td class="room empty"></td>
-<td class="room empty"></td>
-<td class="room empty"></td>
-</tr>
-<tr>
-<td class="time">14:00</td>
-<td class="room empty"></td>
-<td class="room conf" rowspan="4"></td>
-<td class="room conf" rowspan="4"></td>
-</tr>
-<tr>
-<td class="time">14:15</td>
-<td class="room empty"></td>
-</tr>
-<tr>
-<td class="time">14:30</td>
-<td class="room empty"></td>
-</tr>
-<tr>
-<td class="time">14:45</td>
-<td class="room empty"></td>
-</tr>
-<tr>
-<td class="time">15:00</td>
-<td class="room empty"></td>
-<td class="room empty"></td>
-<td class="room empty"></td>
-</tr>
-<tr>
-<td class="time">15:15</td>
-<td class="room empty"></td>
-<td class="room empty"></td>
-<td class="room empty"></td>
-</tr>
-<tr>
-<td class="time">15:30</td>
-<td class="room empty"></td>
-<td class="room conf" rowspan="4"></td>
-<td class="room conf" rowspan="4"></td>
-</tr>
-<tr>
-<td class="time">15:45</td>
-<td class="room empty"></td>
-</tr>
-<tr>
-<td class="time">16:00</td>
-<td class="room empty"></td>
-</tr>
-<tr>
-<td class="time">16:15</td>
-<td class="room empty"></td>
-</tr>
-<tr>
-<td class="time">16:30</td>
-<td class="room empty"></td>
-<td class="room empty"></td>
-<td class="room empty"></td>
-</tr>
-<tr>
-<td class="time">16:45</td>
-<td class="room empty"></td>
-<td class="room conf" rowspan="4"></td>
-<td class="room conf" rowspan="4"></td>
-</tr>
-<tr>
-<td class="time">17:00</td>
-<td class="room empty"></td>
-</tr>
-<tr>
-<td class="time">17:15</td>
-<td class="room empty"></td>
-</tr>
-<tr>
-<td class="time">17:30</td>
-<td class="room empty"></td>
-</tr>
-<tr>
-<td class="time">17:45</td>
-<td class="room empty"></td>
-<td class="room empty"></td>
-<td class="room empty"></td>
-</tr>
-<tr>
-<td class="time">18:00</td>
-<td class="room empty"></td>
-<td class="room conf" rowspan="4"></td>
-<td class="room conf" rowspan="4"></td>
-</tr>
-<tr>
-<td class="time">18:15</td>
-<td class="room empty"></td>
-</tr>
-<tr>
-<td class="time">18:30</td>
-<td class="room conf" rowspan="2">
-<p class="title">Bienvenue &agrave; THSF</p>
-<p class="speaker"><a href="http://tetalab.org">Tetalab</a></p>
-</td>
-</tr>
-<tr>
-<td class="time">18:45</td>
-</tr>
-<tr>
-<td class="time">19:00</td>
-<td class="room empty"></td>
-<td class="room empty"></td>
-<td class="room empty"></td>
-</tr>
-<tr>
-<td class="time">19:15</td>
-<td class="room conf" rowspan="4"></td>
-<td class="room conf" rowspan="4"></td>
-<td class="room empty"></td>
-</tr>
-<tr>
-<td class="time">19:30</td>
-<td class="room empty"></td>
-</tr>
-<tr>
-<td class="time">19:45</td>
-<td class="room empty"></td>
-</tr>
-<tr>
-<td class="time">20:00</td>
-<td class="room empty"></td>
-</tr>
-<tr>
-<td class="time">20:15</td>
-<td class="room empty"></td>
-<td class="room empty"></td>
-<td class="room empty"></td>
-</tr>
-<tr>
-<td class="time">20:30</td>
-<td class="room empty"></td>
-<td class="room empty"></td>
-<td class="room empty"></td>
-</tr>
-<tr>
-<td class="time">20:45</td>
-<td class="room empty"></td>
-<td class="room empty"></td>
-<td class="room empty"></td>
-</tr>
-<tr>
-<td class="time">21:00</td>
-<td class="room conf" rowspan="12"></td>
-<td class="room conf" rowspan="12"></td>
-<td class="room empty"></td>
-</tr>
-<tr>
-<td class="time">21:15</td>
-<td class="room empty"></td>
-</tr>
-<tr>
-<td class="time">21:30</td>
-<td class="room empty"></td>
-</tr>
-<tr>
-<td class="time">21:45</td>
-<td class="room empty"></td>
-</tr>
-<tr>
-<td class="time">22:00</td>
-<td class="room empty"></td>
-</tr>
-<tr>
-<td class="time">22:15</td>
-<td class="room empty"></td>
-</tr>
-<tr>
-<td class="time">22:30</td>
-<td class="room empty"></td>
-</tr>
-<tr>
-<td class="time">22:45</td>
-<td class="room empty"></td>
-</tr>
-<tr>
-<td class="time">23:00</td>
-<td class="room empty"></td>
-</tr>
-<tr>
-<td class="time">23:15</td>
-<td class="room empty"></td>
-</tr>
-<tr>
-<td class="time">23:30</td>
-<td class="room empty"></td>
-</tr>
-<tr>
-<td class="time">23:45</td>
-<td class="room empty"></td>
-</tr>
-</tbody>
-</table>
+
+<?php 
+if ( arras_get_option('single_meta_pos') == 'bottom' ) add_filter('arras_postfooter', 'arras_postmeta');
+else add_filter('arras_postheader', 'arras_postmeta');
+?>
 
 
+<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+	<?php arras_above_post() ?>
+	<div id="post-<?php the_ID() ?>" <?php arras_single_post_class() ?>>
+        <?php arras_postheader() ?>
+        
+        <div class="entry-content">
+		<?php the_content( __('<p>Read the rest of this entry &raquo;</p>', 'arras') ); ?>  
+        <?php wp_link_pages(array('before' => __('<p><strong>Pages:</strong> ', 'arras'), 
+			'after' => '</p>', 'next_or_number' => 'number')); ?>
+			
+			<table>
+			    <thead>
+			      <tr>
+			        <th width="10%" class="time"></th>
+			        <th width="30%"><strong>Vendredi</strong></th>
+			        <th width="30%"><strong>Samedi</strong></th>
+			        <th width="30%"><strong>Dimanche</strong></th>
+			      </tr>
+			    </thead>
+			    <tfoot>
+			      <tr>
+			        <th width="10%" class="time"></th>
+			        <th width="30%"><strong>Vendredi</strong></th>
+			        <th width="30%"><strong>Samedi</strong></th>
+			        <th width="30%"><strong>Dimanche</strong></th>
+			      </tr>
+			    </tfoot>
+			    <tbody>
+			<tr>
+			<td class="time">11:45</td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">12:00</td>
+			<td class="room empty"></td>
+			<td class="room conf" rowspan="4"></td>
+			<td class="room conf" rowspan="4"></td>
+			</tr>
+			<tr>
+			<td class="time">12:15</td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">12:30</td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">12:45</td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">13:00</td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">13:15</td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">13:30</td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">13:45</td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">14:00</td>
+			<td class="room empty"></td>
+			<td class="room conf" rowspan="4"></td>
+			<td class="room conf" rowspan="4"></td>
+			</tr>
+			<tr>
+			<td class="time">14:15</td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">14:30</td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">14:45</td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">15:00</td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">15:15</td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">15:30</td>
+			<td class="room empty"></td>
+			<td class="room conf" rowspan="4"></td>
+			<td class="room conf" rowspan="4"></td>
+			</tr>
+			<tr>
+			<td class="time">15:45</td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">16:00</td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">16:15</td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">16:30</td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">16:45</td>
+			<td class="room empty"></td>
+			<td class="room conf" rowspan="4"></td>
+			<td class="room conf" rowspan="4"></td>
+			</tr>
+			<tr>
+			<td class="time">17:00</td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">17:15</td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">17:30</td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">17:45</td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">18:00</td>
+			<td class="room empty"></td>
+			<td class="room conf" rowspan="4"></td>
+			<td class="room conf" rowspan="4"></td>
+			</tr>
+			<tr>
+			<td class="time">18:15</td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">18:30</td>
+			<td class="room conf" rowspan="2">
+			<p class="title">Bienvenue &agrave; THSF</p>
+			<p class="speaker"><a href="http://tetalab.org">Tetalab</a></p>
+			</td>
+			</tr>
+			<tr>
+			<td class="time">18:45</td>
+			</tr>
+			<tr>
+			<td class="time">19:00</td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">19:15</td>
+			<td class="room conf" rowspan="4"></td>
+			<td class="room conf" rowspan="4"></td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">19:30</td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">19:45</td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">20:00</td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">20:15</td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">20:30</td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">20:45</td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">21:00</td>
+			<td class="room conf" rowspan="12"></td>
+			<td class="room conf" rowspan="12"></td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">21:15</td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">21:30</td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">21:45</td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">22:00</td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">22:15</td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">22:30</td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">22:45</td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">23:00</td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">23:15</td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">23:30</td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">23:45</td>
+			<td class="room empty"></td>
+			</tr>
+			</tbody>
+			</table>
+			
+			
+		</div>
+        
+        <!-- <?php trackback_rdf() ?> -->
+		<?php arras_postfooter() ?>
+		
+    </div>
+    
+	<?php arras_below_post() ?>
+    
+<?php endwhile; else: ?>
+
+<?php arras_post_notfound() ?>
+
+<?php endif; ?>
+
+<?php arras_below_post() ?>
 </div><!-- #content -->
 </div><!-- #container -->
 

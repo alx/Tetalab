@@ -123,10 +123,107 @@ function wpmu_link(){
 	return $link;
 }
 
+function url_grab_title($rss_url) {
+	$contents = file_get_contents($rss_url, TRUE, NULL, 0, 3072);
+	$contents = preg_replace("/(\n|\r)/", '', $contents);
+	preg_match('/<title>(.*?)<\/title>/i', $contents, $matches);
+	return $matches[1];
+}
+
 //Add a feed image
 function include_video_in_rss() {
-	get_video_posts('group', 'rss');
+	
+	$TMP_ROOT = "tmp/";
+	$DOMAIN_NAME = "http://tetalab.org/";
+	$SITE_TITLE = "tetalab";
+	$SITE_DESRIPTION = "tetalab feeds";
+	$SITE_AUTHOR = "tetalab";
+	$RSS_DIR = "../";
+
+	 $array = array(
+	 "http://blog.thydzik.com/feed/",
+	 "http://sonyaandtravis.com/feed/"
+	 );
+	 $num = 10;
+	 $showfullfeed = FALSE;
+
+	 define('MAGPIE_DIR', $RSS_DIR.'feed/');
+	 define('MAGPIE_CACHE_DIR','/'.$TMP_ROOT.'rsscache');
+
+	 /* include required files */
+	 @require_once(MAGPIE_DIR.'rss_fetch.inc');
+	 @include(MAGPIE_DIR.'feedcreator.class.php');
+
+	 /* Set RSS properties */
+	 $rss = new UniversalFeedCreator();
+	 $rss->useCached();
+	 $rss->title = $SITE_TITLE;
+	 $rss->description = $SITE_DESRIPTION;
+	 $rss->link = $DOMAIN_NAME;
+	 $rss->syndicationURL = $DOMAIN_NAME."feed/index.php";
+
+	 $i_temp = 0; //temp i variable
+	 $j_temp = 0; //temp j variable
+	 $total_temp = 0; //temp total number of posts in all rss feeds
+
+	 $array_count = count($array); //number of rss feeds
+
+	 /* code to determine which post to display */
+	 for ($i = 0; $i < $array_count; $i++) {
+	 $rss1 = fetch_rss($array[$i]);
+	 if ($rss1) {
+	 $array_temp[$i]['page_title'] = url_grab_title($array[$i]);
+	 $items = array_slice($rss1->items, 0);
+	 $array_temp[$i]['rss_data'] = $items;
+	 $total_temp += count($items);
+	 $array_temp[$i]['rss_pointer'] = 0;
+	 preg_match('@^(?:http://)?([^/]+)@i', $array[$i], $matches);
+	 $array_temp[$i]['site_url'] = $matches[0];
+	 }
+	 }
+	 while ($total_temp <> 0 && $num > 0){// loop while there are remaining posts to process
+	 $date_timestamp_temp = 0; //initialise to 0
+	 for ($i = 0; $i < $array_count; $i++) {
+	 $date_timestamp_temp = max($date_timestamp_temp, $array_temp[$i]['rss_data'][$array_temp[$i]['rss_pointer']]['date_timestamp']); //determine latest post from rss feeds
+	 if ($date_timestamp_temp == $array_temp[$i]['rss_data'][$array_temp[$i]['rss_pointer']]['date_timestamp']) { //latest post is found so save where it came from
+	 $i_temp = $i;
+	 $j_temp = $array_temp[$i]['rss_pointer'];
+	 }
+	 }
+	 $total_temp --; //decrement total remaining posts to process
+	 $num --; //decrement number of posts to display
+	 $array_temp[$i_temp]['rss_pointer'] ++; //increment post index of used post rss
+
+	 /* code to display post */
+	 $item = $array_temp[$i_temp]['rss_data'][$j_temp];
+	 $href = $item['link'];
+	 $title = $item['title'];
+	 if (!$showfullfeed) {
+	 $desc = $item['description'];
+	 }else{
+	 $desc =  $item['content']['encoded'];
+	 }
+	 $desc .=  '
+	Copyright &copy; <a href="'.$array_temp[$i_temp]['site_url'].'">'.$array_temp[$i_temp]['page_title'].'</a>.  All Rights Reserved.
+	';
+	 $pdate = $item['pubdate'];
+	 $item = new FeedItem();
+	 $item->title = $title;
+	 $item->link = $href;
+	 $item->description = $desc;
+	 $item->date = $pdate;
+	 $item->source = $DOMAIN_NAME;
+	 $item->author = $SITE_AUTHOR;
+	 $rss->addItem($item);
+	 }
+
+
+
+	 // get your news items from other feed and display back
+	 $rss->saveFeed("RSS2.0", '/'.$TMP_ROOT."rsscache/feed.xml");
+	?>
 }
+
 add_action('rss2_head', 'include_video_in_rss');
 
 ?>
