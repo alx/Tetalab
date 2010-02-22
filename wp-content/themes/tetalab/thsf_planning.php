@@ -230,7 +230,10 @@ else add_filter('arras_postheader', 'arras_postmeta');
 			<tr>
 			<td class="time">21:00</td>
 			<td class="room conf" rowspan="12"></td>
-			<td class="room conf" rowspan="12"></td>
+			<td class="room conf" rowspan="12">
+				<p class="title">Bal Sign&eacute;</p>
+				<p class="speaker"><a href="http://www.festival-signo.fr/">Festival Sign&rsquo;&ocirc;</a></p>
+			</td>
 			<td class="room empty"></td>
 			</tr>
 			<tr>
