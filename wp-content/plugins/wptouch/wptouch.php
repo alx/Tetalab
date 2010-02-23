@@ -479,7 +479,8 @@ class WPtouchPlugin {
 
 	function get_stylesheet( $stylesheet ) {
 		if ($this->applemobile && $this->desired_view == 'mobile') {
-			return 'default';
+			// return 'default';
+			return 'tetalab';
 		} else {
 			return $stylesheet;
 		}
@@ -488,7 +489,8 @@ class WPtouchPlugin {
 	function get_template( $template ) {
 		$this->bnc_filter_iphone();
 		if ($this->applemobile && $this->desired_view === 'mobile') {
-			return 'default';
+			// return 'default';
+			return 'tetalab';
 		} else {	   
 			return $template;
 		}
