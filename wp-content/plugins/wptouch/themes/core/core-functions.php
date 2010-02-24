@@ -17,7 +17,7 @@ function wptouch_core_header_enqueue() {
   
 function wptouch_core_header_home() {
 	if (bnc_is_home_enabled()) {
-		echo sprintf(__( "%sHome%s", "wptouch" ), '<li><a href="' . get_bloginfo('home') . '"><img src="' . bnc_get_title_image() . '" alt=""/>','</a></li>');
+		echo sprintf(__( "%sHome%s", "wptouch" ), '<li><a href="' . get_bloginfo('home') . '"><img src="http://tetalab.org/wp-content/wp-content/blogs.dir/1/files/wptouch/custom-icons/tetalab.jpg" alt=""/>','</a></li>');
 	}
 }
   
