@@ -186,6 +186,13 @@ function time_since($older_date, $newer_date = false)
 	
 	return $output;
 	}
+	
+function wpmu_link(){
+	global $post;
+	$link = get_post_meta($post->ID, "wpmu-link", true);
+	if(strlen($link) == 0){$link = get_permalink();}
+	return $link;
+}
 
 remove_filter('get_the_excerpt', 'wp_trim_excerpt');
 add_filter('get_the_excerpt', 'wptouch_trim_excerpt');
