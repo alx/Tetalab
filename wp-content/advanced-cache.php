@@ -87,14 +87,16 @@ class batcache {
 			'time' => time(),
 			'timer' => $this->timer_stop(false, 3),
 			'status_header' => $this->status_header,
-			'version' => $this->url_version
+			'version' => $this->url_version,
+			'headers' => array()
 		);
 
-		if ( function_exists( 'apache_response_headers' ) ) {
-			$cache['headers'] = apache_response_headers();
-			if ( !empty( $this->uncached_headers ) ) foreach ( $cache['headers'] as $header => $value ) {
-				if ( in_array( strtolower( $header ), $this->uncached_headers ) )
-					unset( $cache['headers'][$header] );
+		if ( function_exists( 'headers_list' ) ) {
+			foreach( headers_list() as $header ) { 
+				list($header, $value) = explode(":", $header, 2);
+
+				if( !in_array( strtolower($header), $this->uncached_headers) )
+					$cache['headers'][$header] = $value;
 			}
 		}
 
@@ -295,4 +297,3 @@ $wp_filter['status_header'][10]['batcache'] = array( 'function' => array(&$batca
 ob_start(array(&$batcache, 'ob'));
 
 // It is safer to omit the final PHP closing tag.
-
