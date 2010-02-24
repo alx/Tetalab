@@ -105,7 +105,7 @@ include( dirname(__FILE__) . '/../core/core-header.php' );
 <div id="headerbar">
 	<div id="headerbar-title">
 		<!-- This fetches the admin selection logo icon for the header, which is also the bookmark icon -->
-		<img id="logo-icon" src="<?php echo bnc_get_title_image(); ?>" alt="<?php $str = bnc_get_header_title(); echo stripslashes($str); ?>" />
+		<img id="logo-icon" src="http://tetalab.org/wp-content/wp-content/blogs.dir/1/files/wptouch/custom-icons/tetalab.jpg" alt="<?php $str = bnc_get_header_title(); echo stripslashes($str); ?>" />
 		<a href="<?php bloginfo('home'); ?>"><?php wptouch_core_body_sitetitle(); ?></a>
 	</div>
 	<div id="headerbar-menu">
