@@ -370,3 +370,21 @@ p.title{
 
 p.speaker a{
 	text-decoration:none;
+	
+/*** Main menu CSS code ***/
+.sf-menu				{ font-weight: bold; max-width: 770px; }
+.sf-menu, .sf-menu ul	{ float: left; list-style: none; line-height: 32px; padding: 0 0 2px; margin: 0; height: 32px; }
+.sf-menu a				{ display: block; text-decoration: none; padding: 0 10px; color: #777; font-size: 12px;  }
+.sf-menu a:hover		{ color: #FFF; }
+.sf-menu li.sfhover, .sf-menu li:hover { background: #373331; }
+.sf-menu li.sfhover a, .sf-menu li:hover a { }
+.sf-menu li				{ float: left; padding: 0; }
+.sf-menu ul				{ position: absolute; left: -999em; height: auto; width: 150px; margin: 0; line-height: 1; border: none; }
+.sf-menu li li			{ width: 148px; }
+.sf-menu li li a		{ background: #FFF; padding: 7px 10px; width: 128px; font-size: 12px; text-transform: none; }
+.sf-menu li ul ul		{ margin: -25px 0 0 148px; }
+.sf-menu li li:hover	{ }
+.sf-menu li:hover ul ul, .sf-menu li:hover ul ul ul, .sf-menu li:hover ul ul ul ul, .sf-menu li.sfhover ul ul, .sf-menu li.sfhover ul ul ul, .sf-menu li.sfhover ul ul ul ul { left: -999em; }
+.sf-menu li:hover ul, .sf-menu li li:hover ul, .sf-menu li li li:hover ul, .sf-menu li li li li:hover ul, .sf-menu li.sfhover ul, .sf-menu li li.sfhover ul, .sf-menu li li li.sfhover ul, .sf-menu li li li li.sfhover ul { left: auto; z-index: 2; }
+.sf-menu li ul li:hover a, .sf-menu li ul li li:hover a, .sf-menu li ul li li li:hover a, .sf-menu li ul li li li:hover a { background: #383332; color: #FFF; }
+.sf-menu li:hover li a, .sf-menu li li:hover li a, .sf-menu li li li:hover li a, .sf-menu li li li li:hover li a { background: #FFF; color: #666; font-size: 11px; }
