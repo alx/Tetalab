@@ -88,38 +88,48 @@ arras_head();
     </div><!-- #header -->
 	
 	<?php arras_above_nav() ?>
-    <div id="nav">
-    	<div id="nav-content" class="clearfix">
-		<?php if ( function_exists('pixopoint_menu') ): ?>
-		<?php pixopoint_menu(); ?>
-		<?php else : ?>
-			<ul class="sf-menu menu clearfix">
-				<li><a href="<?php bloginfo('url') ?>"><?php echo arras_get_option('topnav_home') ?></a></li>
-				<?php 
-				if (arras_get_option('topnav_display') == 'pages') {
-					wp_list_pages('sort_column=menu_order&title_li=');
-				} else if (arras_get_option('topnav_display') == 'linkcat') {
-					wp_list_bookmarks('category='.arras_get_option('topnav_linkcat').'&hierarchical=0&show_private=1&hide_invisible=0&title_li=&categorize=0&orderby=id'); 
-				} else {
-					wp_list_categories('number=11&hierarchical=1&orderby=id&hide_empty=1&title_li=');	
-				}
-				?>
-			</ul>
-		<?php endif ?>
-			<ul class="quick-nav clearfix">
-				<?php if ($feed == '') : ?>
-					<li><a id="rss" title="<?php printf( __( '%s RSS Feed', 'arras' ), wp_specialchars( get_bloginfo('name'), 1 ) ) ?>" href="<?php bloginfo('rss2_url'); ?>"><?php _e('RSS Feed', 'arras') ?></a></li>
-				<?php else : ?>
-					<li><a id="rss" title="<?php printf( __( '%s RSS Feed', 'arras' ), wp_specialchars( get_bloginfo('name'), 1 ) ) ?>" href="<?php echo $feed; ?>"><?php _e('RSS Feed', 'arras') ?></a></li>
-				<?php endif; ?>
-				
-				<?php $twitter_username = arras_get_option('twitter_username'); ?>
-				<?php if ($twitter_username != '') : ?>
-					<li><a id="twitter" title="<?php printf( __( '%s Twitter', 'arras' ), wp_specialchars( get_bloginfo('name'), 1 ) ) ?>" href="http://www.twitter.com/<?php echo $twitter_username ?>/"><?php _e('Twitter', 'arras') ?></a></li>
-				<?php endif ?>
-			</ul>
-		</div><!-- #nav-content -->
-    </div><!-- #nav -->
+	<div id="nav"> 
+		<div id="nav-content" class="clearfix"> 
+			<div id="pixopoint_menu_wrapper1"> 
+				<div id="pixopoint_menu1"> 
+					<ul class="sf-menu" id="suckerfishnav">
+						<li class="current_page_item"><a href="http://tetalab.org/">Home</a></li>
+						<li><a href="http://wiki.tetalab.org">Wiki</a></li>
+						<li><a href="http://lists.tetalab.org/listinfo/tetalab">Mailing List</a></li>
+						<li><a href="">Chat</a>
+							<ul>
+								<li><a href="xmpp:barbabot@tetalab.org">Barbabot</a></li>
+								<li><a href="irc://irc.freenode.net/tetalab">IRC</a></li>
+							</ul>
+						</li>
+						<li><a href="">Blogs</a> 
+							<ul>
+								<li><a href="http://tetalab.org/lionel/">Lionel's Tetalab & Co WIP</a></li> 
+								<li><a href="http://tetalab.org/bmgm/">Bad medecine Good medecine</a></li> 
+								<li><a href="http://tetalab.org/metatangibles/">On my meta-tangibles interactivities</a></li> 
+								<li><a href="http://tetalab.org/pg/">Opensource GSM adventures</a></li> 
+								<li><a href="http://tetalab.org/fildefeu/">The fil de feu</a></li> 
+							</ul> 
+						</li>
+						<li style="margin-left:30px;"> 
+							<a href="http://tetalab.org/thsf/">THSF 28..30 Mai 2010</a> 
+							<ul> 
+								<li><a href="http://tetalab.org/thsf/planning/">Planning</a></li> 
+							</ul> 
+						</li>
+						<li style="margin-left:30px;"> 
+							<a href="mailto:tetalab@lists.tetalab.org">Contact</a> 
+						</li>
+					</ul> 
+				</div> 
+			</div> 
+			
+			<ul class="quick-nav clearfix"> 
+				<li><a id="rss" title="Tetalab.org RSS Feed" href="http://tetalab.org/feed/">RSS Feed</a></li> 
+				<li><a id="twitter" title="Tetalab.org Twitter" href="http://www.twitter.com/tetalab/">Twitter</a></li> 
+			</ul> 
+		</div><!-- #nav-content --> 
+	</div><!-- #nav -->
 	<?php arras_below_nav() ?>
     
 	<div id="main" class="clearfix">
