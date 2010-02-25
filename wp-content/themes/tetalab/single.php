@@ -11,9 +11,21 @@ else add_filter('arras_postheader', 'arras_postmeta');
 
 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 	<?php arras_above_post() ?>
+	
+	<div class="featured clearfix">
+		<div id="featured-slideshow">
+			<div>
+				<a class="featured-article" href="<?php echo wpmu_link(); ?>" rel="bookmark" style="background: url(<?php echo arras_get_thumbnail('featured-slideshow-thumb'); ?>) no-repeat #1E1B1A;">
+					<span class="featured-entry">
+						<span class="entry-title"><?php the_title(); ?></span>
+						<span class="progress"></span>
+					</span>
+				</a>
+			</div>
+		</div>
+	</div>
+	
 	<div id="post-<?php the_ID() ?>" <?php arras_single_post_class() ?>>
-
-        <?php arras_postheader() ?>
         
         <div class="entry-content">
 		<?php the_content( __('<p>Read the rest of this entry &raquo;</p>', 'arras') ); ?>  
@@ -23,14 +35,6 @@ else add_filter('arras_postheader', 'arras_postmeta');
         
         <!-- <?php trackback_rdf() ?> -->
 		<?php arras_postfooter() ?>
-
-        <?php if ( arras_get_option('display_author') ) : ?>
-        <div class="about-author clearfix">
-        	<h4><?php _e('About the Author', 'arras') ?></h4>
-            <?php echo get_avatar(get_the_author_id(), 48); ?>
-            <?php the_author_description(); ?>
-        </div>
-        <?php endif; ?>
     </div>
     
 	<?php arras_below_post() ?>
