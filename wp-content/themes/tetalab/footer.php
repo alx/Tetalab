@@ -10,6 +10,11 @@
 							<img src="/wp-content/themes/tetalab/images/hackerspaces.png" width="150px" height="85px" alt="hackerspaces.org"/>
 						</a>
 					</div>
+					<div class="textwidget">
+						<a href="http://lasuitelogique.org">
+							<img src="/wp-content/themes/tetalab/images/la_suite_logique.png" width="150px" height="85px" alt="hackerspaces.org"/>
+						</a>
+					</div>
 				</div>
 			</li>
 		</ul>
