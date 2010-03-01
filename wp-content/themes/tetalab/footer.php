@@ -12,12 +12,25 @@
 					</div>
 				</div>
 			</li>
+			
 			<li class="widgetcontainer clearfix">
 				<h5 class="widgettitle">La Suite Logique</h5>
 				<div class="widgetcontent">
 					<div class="textwidget">
 						<a href="http://lasuitelogique.org">
 							<img src="/wp-content/themes/tetalab/images/la_suite_logique.png" width="150px" height="85px" alt="hackerspaces.org"/>
+						</a>
+					</div>
+				</div>
+			</li>
+			
+			
+			<li class="widgetcontainer clearfix">
+				<h5 class="widgettitle">/tmp/lab</h5>
+				<div class="widgetcontent">
+					<div class="textwidget">
+						<a href="http://tmplab.org">
+							<img src="/wp-content/themes/tetalab/images/tmplab.png" width="150px" height="85px" alt="hackerspaces.org"/>
 						</a>
 					</div>
 				</div>
