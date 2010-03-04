@@ -44,27 +44,37 @@ function get_video_posts($source = 'group', $format = 'post') {
 		
 		for($i = 0; $i < sizeof($ret) && $i < $num_of_videos; $i++){
 			
-			switch ($format) {
-				case 'rss':
-					$output .= '<item><title>'.htmlspecialchars($ret[$i]['title']).'</title>';
-					$output .= '<link>'.$ret[$i]['url'].'</link>';
-					$output .= '<comments>'.$ret[$i]['url'].'#comment</comments>';
-					$output .= '<pubDate>'.convertVimeoTime($ret[$i]['upload_date']).'</pubDate>';
-					$output .= '<dc:creator>'.$ret[$i]['author_name'].'</dc:creator>';
-					$output .= '<guid isPermaLink="false">'.$ret[$i]['url'].'</guid>';
-					$output .= '<description><![CDATA['.$ret[$i]['description'].']]></description></item>';
-					break;
+			$item = $ret[$i];
+			
+			if (array_key_exists('title', $item) &&
+				array_key_exists('url', $item) &&
+				array_key_exists('upload_date', $item) &&
+				array_key_exists('author_name', $item) &&
+				array_key_exists('description', $item) &&
+				array_key_exists('thumbnail_medium', $item)) {
 				
-				default:
-					$output .= '<li class="post hentry clearfix">';
-					$output .= '<div class="entry-thumbnails"><a class="entry-thumbnails-link" href="'.$ret[$i]['url'].'">';
-					$output .= '<img src="'.$ret[$i]['thumbnail_medium'].'" ';
-					$output .= 'alt="'.htmlspecialchars($ret[$i]['title']).'" ';
-					$output .= 'title="'.htmlspecialchars($ret[$i]['title']).'" width="200px" height="150px">';
-					$output .= '</a></div><h3 class="entry-title">';
-					$output .= '<a href="'.$ret[$i]['url'].'" rel="bookmark">';
-					$output .= htmlspecialchars($ret[$i]['title']).'</a></h3></li>';
-					break;
+				switch ($format) {
+					case 'rss':
+						$output .= '<item><title>'.htmlspecialchars($item['title']).'</title>';
+						$output .= '<link>'.$item['url'].'</link>';
+						$output .= '<comments>'.$item['url'].'#comment</comments>';
+						$output .= '<pubDate>'.convertVimeoTime($item['upload_date']).'</pubDate>';
+						$output .= '<dc:creator>'.$item['author_name'].'</dc:creator>';
+						$output .= '<guid isPermaLink="false">'.$item['url'].'</guid>';
+						$output .= '<description><![CDATA['.$item['description'].']]></description></item>';
+						break;
+
+					default:
+						$output .= '<li class="post hentry clearfix">';
+						$output .= '<div class="entry-thumbnails"><a class="entry-thumbnails-link" href="'.$item['url'].'">';
+						$output .= '<img src="'.$item['thumbnail_medium'].'" ';
+						$output .= 'alt="'.htmlspecialchars($item['title']).'" ';
+						$output .= 'title="'.htmlspecialchars($item['title']).'" width="200px" height="150px">';
+						$output .= '</a></div><h3 class="entry-title">';
+						$output .= '<a href="'.$item['url'].'" rel="bookmark">';
+						$output .= htmlspecialchars($item['title']).'</a></h3></li>';
+						break;
+				}
 			}
 		}
 		
