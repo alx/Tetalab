@@ -49,7 +49,7 @@ function get_video_posts($source = 'group', $format = 'post') {
 			if (array_key_exists('title', $item) &&
 				array_key_exists('url', $item) &&
 				array_key_exists('upload_date', $item) &&
-				array_key_exists('author_name', $item) &&
+				array_key_exists('user_name', $item) &&
 				array_key_exists('description', $item) &&
 				array_key_exists('thumbnail_medium', $item)) {
 				
@@ -59,7 +59,7 @@ function get_video_posts($source = 'group', $format = 'post') {
 						$output .= '<link>'.$item['url'].'</link>';
 						$output .= '<comments>'.$item['url'].'#comment</comments>';
 						$output .= '<pubDate>'.convertVimeoTime($item['upload_date']).'</pubDate>';
-						$output .= '<dc:creator>'.$item['author_name'].'</dc:creator>';
+						$output .= '<dc:creator>'.$item['user_name'].'</dc:creator>';
 						$output .= '<guid isPermaLink="false">'.$item['url'].'</guid>';
 						$output .= '<description><![CDATA['.$item['description'].']]></description></item>';
 						break;
