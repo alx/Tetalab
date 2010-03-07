@@ -290,43 +290,51 @@ else add_filter('arras_postheader', 'arras_postmeta');
 			<tr>
 			<td class="time">21:00</td>
 			<td class="room conf" rowspan="12"></td>
-			<td class="room conf" rowspan="12">
-				<p class="title">Bal Sign&eacute;</p>
-				<p class="speaker"><a href="http://www.festival-signo.fr/">Festival Sign&rsquo;&ocirc;</a></p>
-			</td>
+			<td class="room empty"></td>
 			<td class="room empty"></td>
 			</tr>
 			<tr>
 			<td class="time">21:15</td>
 			<td class="room empty"></td>
+			<td class="room empty"></td>
 			</tr>
 			<tr>
 			<td class="time">21:30</td>
+			<td class="room empty"></td>
 			<td class="room empty"></td>
 			</tr>
 			<tr>
 			<td class="time">21:45</td>
 			<td class="room empty"></td>
+			<td class="room empty"></td>
 			</tr>
 			<tr>
 			<td class="time">22:00</td>
+			<td class="room empty"></td>
 			<td class="room empty"></td>
 			</tr>
 			<tr>
 			<td class="time">22:15</td>
 			<td class="room empty"></td>
+			<td class="room empty"></td>
 			</tr>
 			<tr>
 			<td class="time">22:30</td>
+			<td class="room empty"></td>
 			<td class="room empty"></td>
 			</tr>
 			<tr>
 			<td class="time">22:45</td>
 			<td class="room empty"></td>
+			<td class="room empty"></td>
 			</tr>
 			<tr>
 			<td class="time">23:00</td>
 			<td class="room empty"></td>
+			<td class="room conf" rowspan="4">
+				<p class="title">Bal Sign&eacute;</p>
+				<p class="speaker"><a href="http://www.festival-signo.fr/">Festival Sign&rsquo;&ocirc;</a></p>
+			</td>
 			</tr>
 			<tr>
 			<td class="time">23:15</td>
