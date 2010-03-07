@@ -48,8 +48,14 @@ else add_filter('arras_postheader', 'arras_postmeta');
 			<tr>
 			<td class="time">12:00</td>
 			<td class="room empty"></td>
-			<td class="room conf" rowspan="4"></td>
-			<td class="room conf" rowspan="4"></td>
+			<td class="room conf" rowspan="4">
+				<p class="title">TBA</p>
+				<p class="speaker"><a href="">Philippe Langlois</a></p>
+			</td>
+			<td class="room conf" rowspan="4">
+				<p class="title">TBA</p>
+				<p class="speaker"><a href="">Thomas Petazzoni</a></p>
+			</td>
 			</tr>
 			<tr>
 			<td class="time">12:15</td>
@@ -90,8 +96,14 @@ else add_filter('arras_postheader', 'arras_postmeta');
 			<tr>
 			<td class="time">14:00</td>
 			<td class="room empty"></td>
-			<td class="room conf" rowspan="4"></td>
-			<td class="room conf" rowspan="4"></td>
+			<td class="room conf" rowspan="4">
+				<p class="title">TBA</p>
+				<p class="speaker"><a href="">J&eacute;r&eacute;mie Zimmermann</a></p>
+			</td>
+			<td class="room conf" rowspan="4">
+				<p class="title">TBA</p>
+				<p class="speaker"><a href="">Benj</a></p>
+			</td>
 			</tr>
 			<tr>
 			<td class="time">14:15</td>
@@ -114,14 +126,18 @@ else add_filter('arras_postheader', 'arras_postmeta');
 			<tr>
 			<td class="time">15:15</td>
 			<td class="room empty"></td>
-			<td class="room empty"></td>
-			<td class="room empty"></td>
+			<td class="room conf" rowspan="4">
+				<p class="title">TBA</p>
+				<p class="speaker"><a href="">Joseph</a></p>
+			</td>
+			<td class="room conf" rowspan="4">
+				<p class="title">TBA</p>
+				<p class="speaker"><a href="">Aladin</a></p>
+			</td>
 			</tr>
 			<tr>
 			<td class="time">15:30</td>
 			<td class="room empty"></td>
-			<td class="room conf" rowspan="4"></td>
-			<td class="room conf" rowspan="4"></td>
 			</tr>
 			<tr>
 			<td class="time">15:45</td>
@@ -134,18 +150,24 @@ else add_filter('arras_postheader', 'arras_postmeta');
 			<tr>
 			<td class="time">16:15</td>
 			<td class="room empty"></td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
 			</tr>
 			<tr>
 			<td class="time">16:30</td>
 			<td class="room empty"></td>
-			<td class="room empty"></td>
-			<td class="room empty"></td>
+			<td class="room conf" rowspan="4">
+				<p class="title">TBA</p>
+				<p class="speaker"><a href="">Jos&eacute;</a></p>
+			</td>
+			<td class="room conf" rowspan="4">				
+				<p class="title">TBA</p>
+				<p class="speaker"><a href="">S&eacute;bastien Sauge</a></p>
+			</td>
 			</tr>
 			<tr>
 			<td class="time">16:45</td>
 			<td class="room empty"></td>
-			<td class="room conf" rowspan="4"></td>
-			<td class="room conf" rowspan="4"></td>
 			</tr>
 			<tr>
 			<td class="time">17:00</td>
@@ -158,18 +180,24 @@ else add_filter('arras_postheader', 'arras_postmeta');
 			<tr>
 			<td class="time">17:30</td>
 			<td class="room empty"></td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
 			</tr>
 			<tr>
 			<td class="time">17:45</td>
 			<td class="room empty"></td>
-			<td class="room empty"></td>
-			<td class="room empty"></td>
+			<td class="room conf" rowspan="4">
+				<p class="title">TBA</p>
+				<p class="speaker"><a href="">Italie</a></p>
+			</td>
+			<td class="room conf" rowspan="4">				
+				<p class="title">TBA</p>
+				<p class="speaker"><a href="">PyMT</a></p>
+			</td>
 			</tr>
 			<tr>
 			<td class="time">18:00</td>
 			<td class="room empty"></td>
-			<td class="room conf" rowspan="4"></td>
-			<td class="room conf" rowspan="4"></td>
 			</tr>
 			<tr>
 			<td class="time">18:15</td>
@@ -184,29 +212,38 @@ else add_filter('arras_postheader', 'arras_postmeta');
 			</tr>
 			<tr>
 			<td class="time">18:45</td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
 			</tr>
 			<tr>
 			<td class="time">19:00</td>
 			<td class="room empty"></td>
-			<td class="room empty"></td>
+			<td class="room conf" rowspan="4">
+				<p class="title">TBA</p>
+				<p class="speaker"><a href="">Epsilon - Daniel</a></p>
+			</td>
 			<td class="room empty"></td>
 			</tr>
 			<tr>
 			<td class="time">19:15</td>
-			<td class="room conf" rowspan="4"></td>
-			<td class="room conf" rowspan="4"></td>
+			<td class="room empty"></td>
 			<td class="room empty"></td>
 			</tr>
 			<tr>
 			<td class="time">19:30</td>
 			<td class="room empty"></td>
+			<td class="room empty"></td>
 			</tr>
 			<tr>
 			<td class="time">19:45</td>
 			<td class="room empty"></td>
+			<td class="room empty"></td>
 			</tr>
 			<tr>
 			<td class="time">20:00</td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
 			<td class="room empty"></td>
 			</tr>
 			<tr>

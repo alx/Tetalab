@@ -75,6 +75,8 @@ function get_video_posts($source = 'group', $format = 'post') {
 						$output .= htmlspecialchars($item['title']).'</a></h3></li>';
 						break;
 				}
+			} else {
+				$output .= '<p>Une erreur a eu lieu, pouvez-vous <a href="mailto:tetalab@lists.tetalab.org">contacter le tetalab</a> pour la signaler?</p>';
 			}
 		}
 		
