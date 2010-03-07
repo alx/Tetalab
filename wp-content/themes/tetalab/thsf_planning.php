@@ -240,24 +240,21 @@ else add_filter('arras_postheader', 'arras_postmeta');
 			<td class="room empty"></td>
 			</tr>
 			<tr>
-			<td class="time">18:30</td>
-			<td class="room conf" rowspan="4">
-			<p class="title">Bienvenue &agrave; THSF</p>
-			<p class="speaker"><a href="http://tetalab.org">Tetalab</a></p>
-			</td>
-			</tr>
-			<tr>
 			<td class="time">18:45</td>
-			<td class="room empty"></td>
 			<td class="room empty"></td>
 			</tr>
 			<tr>
 			<td class="time">19:00</td>
+			<td class="room conf" rowspan="2">
+			<p class="title">Corpus Media - THSF</p>
+			<p class="speaker"><a href="http://tetalab.org">Tetalab</a></p>
+			</td>
 			<td class="room empty"></td>
 			<td class="room empty"></td>
 			</tr>
 			<tr>
 			<td class="time">19:15</td>
+			<td class="room empty"></td>
 			<td class="room empty"></td>
 			<td class="room empty"></td>
 			</tr>
