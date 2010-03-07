@@ -60,19 +60,13 @@ else add_filter('arras_postheader', 'arras_postmeta');
 			<tr>
 			<td class="time">11:00</td>
 			<td class="room empty"></td>
-			<td class="room empty"></td>
-			<td class="room empty"></td>
 			</tr>
 			<tr>
 			<td class="time">11:15</td>
 			<td class="room empty"></td>
-			<td class="room empty"></td>
-			<td class="room empty"></td>
 			</tr>
 			<tr>
 			<td class="time">11:30</td>
-			<td class="room empty"></td>
-			<td class="room empty"></td>
 			<td class="room empty"></td>
 			</tr>
 			<tr>
