@@ -330,11 +330,11 @@ else add_filter('arras_postheader', 'arras_postmeta');
 			</tr>
 			<tr>
 			<td class="time">23:00</td>
-			<td class="room empty"></td>
 			<td class="room conf" rowspan="4">
 				<p class="title">Bal Sign&eacute;</p>
 				<p class="speaker"><a href="http://www.festival-signo.fr/">Festival Sign&rsquo;&ocirc;</a></p>
 			</td>
+			<td class="room empty"></td>
 			</tr>
 			<tr>
 			<td class="time">23:15</td>
