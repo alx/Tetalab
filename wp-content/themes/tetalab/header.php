@@ -112,10 +112,7 @@ arras_head();
 							</ul> 
 						</li>
 						<li style="margin-left:30px;"> 
-							<a href="http://tetalab.org/thsf/">THSF 28..30 Mai 2010</a> 
-							<ul> 
-								<li><a href="http://tetalab.org/thsf/planning/">Planning</a></li> 
-							</ul> 
+							<a href="http://tetalab.org/thsf/">THSF 28..30 Mai 2010</a>
 						</li>
 						<li style="margin-left:30px;"> 
 							<a href="mailto:tetalab@lists.tetalab.org">Contact</a> 
