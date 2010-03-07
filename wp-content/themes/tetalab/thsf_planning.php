@@ -40,28 +40,22 @@ else add_filter('arras_postheader', 'arras_postmeta');
 			    </tfoot>
 			    <tbody>
 			<tr>
-			<td class="time">10:15</td>
-			<td class="room empty"></td>
-			<td class="room empty"></td>
-			<td class="room empty"></td>
-			</tr>
-			<tr>
 			<td class="time">10:30</td>
-			<td class="room empty">
-			</td><td class="room conf" rowspan="4">
-				<p class="title">TBA</p>
-				<p class="speaker"><a href="">Epsilon - Daniel</a></p>
-			</td>
-			<td class="room conf" rowspan="4">
-				<p class="title">TBA</p>
-				<p class="speaker"><a href="">Tetalab</a></p>
-			</td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
 			</tr>
 			<tr>
 			<td class="time">10:45</td>
 			<td class="room empty"></td>
-			<td class="room empty"></td>
-			<td class="room empty"></td>
+			</td><td class="room conf" rowspan="4">
+				<p class="title">GDB</p>
+				<p class="speaker"><a href="">Epsilon - Daniel</a></p>
+			</td>
+			<td class="room conf" rowspan="4">
+				<p class="title">GDB</p>
+				<p class="speaker"><a href="">Tetalab</a></p>
+			</td>
 			</tr>
 			<tr>
 			<td class="time">11:00</td>
