@@ -40,6 +40,48 @@ else add_filter('arras_postheader', 'arras_postmeta');
 			    </tfoot>
 			    <tbody>
 			<tr>
+			<td class="time">10:15</td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">10:30</td>
+			<td class="room empty">
+			</td><td class="room conf" rowspan="4">
+				<p class="title">TBA</p>
+				<p class="speaker"><a href="">Epsilon - Daniel</a></p>
+			</td>
+			<td class="room conf" rowspan="4">
+				<p class="title">TBA</p>
+				<p class="speaker"><a href="">Tetalab</a></p>
+			</td>
+			</tr>
+			<tr>
+			<td class="time">10:45</td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">11:00</td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">11:15</td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
+			<td class="time">11:30</td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
+			<td class="room empty"></td>
+			</tr>
+			<tr>
 			<td class="time">11:45</td>
 			<td class="room empty"></td>
 			<td class="room empty"></td>
@@ -205,7 +247,7 @@ else add_filter('arras_postheader', 'arras_postmeta');
 			</tr>
 			<tr>
 			<td class="time">18:30</td>
-			<td class="room conf" rowspan="2">
+			<td class="room conf" rowspan="4">
 			<p class="title">Bienvenue &agrave; THSF</p>
 			<p class="speaker"><a href="http://tetalab.org">Tetalab</a></p>
 			</td>
@@ -214,15 +256,10 @@ else add_filter('arras_postheader', 'arras_postmeta');
 			<td class="time">18:45</td>
 			<td class="room empty"></td>
 			<td class="room empty"></td>
-			<td class="room empty"></td>
 			</tr>
 			<tr>
 			<td class="time">19:00</td>
 			<td class="room empty"></td>
-			<td class="room conf" rowspan="4">
-				<p class="title">TBA</p>
-				<p class="speaker"><a href="">Epsilon - Daniel</a></p>
-			</td>
 			<td class="room empty"></td>
 			</tr>
 			<tr>
@@ -234,9 +271,11 @@ else add_filter('arras_postheader', 'arras_postmeta');
 			<td class="time">19:30</td>
 			<td class="room empty"></td>
 			<td class="room empty"></td>
+			<td class="room empty"></td>
 			</tr>
 			<tr>
 			<td class="time">19:45</td>
+			<td class="room empty"></td>
 			<td class="room empty"></td>
 			<td class="room empty"></td>
 			</tr>
