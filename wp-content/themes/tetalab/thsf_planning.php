@@ -256,7 +256,6 @@ else add_filter('arras_postheader', 'arras_postmeta');
 			<td class="time">19:15</td>
 			<td class="room empty"></td>
 			<td class="room empty"></td>
-			<td class="room empty"></td>
 			</tr>
 			<tr>
 			<td class="time">19:30</td>
