@@ -49,11 +49,11 @@ else add_filter('arras_postheader', 'arras_postmeta');
 			<td class="time">10:45</td>
 			<td class="room empty"></td>
 			</td><td class="room conf" rowspan="4">
-				<p class="title">GDB</p>
-				<p class="speaker"><a href="">Epsilon - Daniel</a></p>
+				<p class="title">Hacktivistas.net: Herramientas 2.0 para la desobediencia civil telemática</p>
+				<p class="speaker"><a href="">Daniel Vazquez</a></p>
 			</td>
 			<td class="room conf" rowspan="4">
-				<p class="title">GDB</p>
+				<p class="title">YBA</p>
 				<p class="speaker"><a href="">Tetalab</a></p>
 			</td>
 			</tr>
@@ -187,7 +187,7 @@ else add_filter('arras_postheader', 'arras_postmeta');
 			<td class="time">16:30</td>
 			<td class="room empty"></td>
 			<td class="room conf" rowspan="4">
-				<p class="title">TBA</p>
+				<p class="title">Autogesti&oacute;n y producci&oacute;n cultural:Licencias y recursos</p>
 				<p class="speaker"><a href="">Jos&eacute;</a></p>
 			</td>
 			<td class="room conf" rowspan="4">				
