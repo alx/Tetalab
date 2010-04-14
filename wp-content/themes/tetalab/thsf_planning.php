@@ -185,8 +185,8 @@ else add_filter('arras_postheader', 'arras_postmeta');
 			<tr>
 			<td class="time">17:45</td>
 			<td class="room conf" rowspan="4">
-				<p class="title">TBA</p>
-				<p class="speaker"><a href="">Italie</a></p>
+				<p class="title">Social Federated Communication Systems</p>
+				<p class="speaker"><a href="">Lord Epsylon</a></p>
 			</td>
 			<td class="room conf" rowspan="4">				
 				<p class="title">TBA</p>
