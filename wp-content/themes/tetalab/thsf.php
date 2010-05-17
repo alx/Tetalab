@@ -17,7 +17,9 @@ else add_filter('arras_postheader', 'arras_postmeta');
         <?php arras_postheader() ?>
         
         <div class="entry-content">
-		<?php the_content( __('<p>Read the rest of this entry &raquo;</p>', 'arras') ); ?>
+		<?php the_content( __('<p>Read the rest of this entry &raquo;</p>', 'arras') ); ?>  
+        <?php wp_link_pages(array('before' => __('<p><strong>Pages:</strong> ', 'arras'), 
+			'after' => '</p>', 'next_or_number' => 'number')); ?>
 		</div>
         
         <!-- <?php trackback_rdf() ?> -->
