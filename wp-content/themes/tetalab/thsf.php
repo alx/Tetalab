@@ -41,10 +41,12 @@ else add_filter('arras_postheader', 'arras_postmeta');
 
 <div id="primary" class="aside main-aside sidebar">
 	<ul class="xoxo">
+	    
 		<li class="widgetcontainer clearfix">
 			<h5 class="widgettitle"><?php _e('Details', 'arras') ?></h5>
 			<div class="widgetcontent">
 				<ul>
+					<li><strong><a href='http://tetalab.org/thsf/planning'>Planning</a></strong></li>
 					<li>Date: 28.29.30 Mai 2010</li>
 					<li>Lieux: Toulouse, France - <a href="http://www.mixart-myrys.org/">Mixart Myrys</a></li>
 					<li>Prix: <b>FREE</b></li>
