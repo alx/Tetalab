@@ -45,8 +45,8 @@ else add_filter('arras_postheader', 'arras_postmeta');
 	    <li class="widgetcontainer clearfix">
 			<h5 class="widgettitle"><?php _e('Programme', 'arras') ?></h5>
 			<div class="widgetcontent">
-			    <center><h2 style="padding:5px;margin:0px"><a href="http://tetalab.org/thsf/planning/samedi" style="text-decoration:none">Samedi 29 Mai</a></h2></center><br>
-			    <center><h2 style="padding:5px;margin:0px"><a href="http://tetalab.org/thsf/planning/dimanche" style="text-decoration:none">Dimanche 30 Mai</a></h2></center><br>
+			    <center><h2 style="padding:5px;margin:0px"><a href="http://tetalab.org/thsf/thsf-planning-samedi-29-mai" style="text-decoration:none">Samedi 29 Mai</a></h2></center><br>
+			    <center><h2 style="padding:5px;margin:0px"><a href="http://tetalab.org/thsf/thsf-planning-dimanche-30-mai" style="text-decoration:none">Dimanche 30 Mai</a></h2></center><br>
 			</div>
 		</li>
 	    
