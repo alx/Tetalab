@@ -249,7 +249,58 @@ else add_filter('arras_postheader', 'arras_postmeta');
         			</embed> 
         	</object> 
         </noscript> 
-        </p> 
+        </p>
+        
+        <p align="justify"><font color="#800000" size="4" face="Arial"><b><i>CorpusMedia 
+        et THS Festival 2010</i></b></font> <br></p>
+        <p><font size="3" face="Arial"><b>Plate forme &quot;Scènes numériques&quot;</b> </font><a href="http://www.k-danse.net/corpusmedia" target="_blank"><font color="#0000FF" size="3" face="Arial"><u>http://www.k-danse.net/<WBR>corpusmedia</u></font></a><font size="3" face="Arial"> </font></p>
+        <p><font size="3" face="Arial"><b>Edition 2010 : 26-29 mai, </b></font><a href="http://www.mixart-myrys.org" target="_blank"><font color="#0000FF" size="3" face="Arial"><b><u>Mix&#39;Art Myrys</u></b></font></a><font size="3" face="Arial"><b> (Toulouse), <br>
+        </b></font></p>
+        <p><font size="3" face="Arial">Pour sa quatrième édition, du 26 au 
+        29 mai 2010, CorpusMedia s’associe au THSF, Toulouse HackersSpace 
+        Festival (tetalab) et à Mix’Art Myrys (collectif d’artistes autogéré) 
+        pour créer ensemble un évènement inédit à Toulouse : spectacles, 
+        performances, films, créations en chantier, conférences, lectures 
+        démonstrations, installations, outils interactifs, ateliers, concerts, 
+        etc.</font></p>
+        <p><font size="3" face="Arial">Dans le cadre de cette rencontre euro 
+        régionale des artistes en provenance de chacune des trois régions/pays 
+        (Midi-Pyrénées, Languedoc-Roussillon, Iles Baléares) sont invités 
+        à présenter leur projet. Priorité est donnée à la diversité des 
+        projets et à l’élargissement des publics, via des propositions innovantes 
+        dans les rencontres artistes-publics.</font> <br></p>
+        <p align="justify"><font size="3" face="Arial">Partenaires : Conseil 
+        Régional Midi-Pyrénées, Ville de Toulouse, </font><a href="http://www.k-danse.net" target="_blank"><font color="#0000FF" size="3" face="Arial"><u>Cie K. Danse</u></font></a><font size="3" face="Arial"> (pôle Art-Science-Danse), THSF (</font><a href="http://tetalab.org/" target="_blank"><font color="#0000FF" size="3" face="Arial"><u>tetalab</u></font></a><font size="3" face="Arial">), Théâtre Marcel Pagnol (Villeneuve-Tolosane), 
+        Espace </font><a href="http://www.mixart-myrys.org/" target="_blank"><font color="#0000FF" size="3" face="Arial"><u>Mix’Art-Myrys</u></font></a><font size="3" face="Arial"> (collectif d’artistes toulousains), avec le 
+        soutien technologique de x-réseau, Théâtre Paris-Villette pour la 
+        diffusion « live&quot; sur internet.</font> <br></p>
+        <p align="justify"><font size="3" face="Arial">Le projet CorpusMedia, 
+        « Scènes numériques » Formes hybrides en danse et arts 
+        numériques est une initiative portée par K. Danse en Midi-Pyrénées, 
+        la </font><a href="http://www.k-danse.net/wp-admin/www.cie-yannlheureux.com" target="_blank"><font color="#0000FF" size="3" face="Arial"><u>Compagnie 
+        Yann Lheureux</u></font></a><font size="3" face="Arial"> en Languedoc-Roussillon, 
+        le </font><a href="http://www.esbaluard.org/" target="_blank"><font color="#0000FF" size="3" face="Arial"><u>Musée 
+        d’Art Contemporain esBaluard</u></font></a><font size="3" face="Arial"> 
+        de Palma de Mallorque aux Iles Baléares et </font><a href="http://www.nu2s.org/" target="_blank"><font color="#0000FF" size="3" face="Arial"><u>NU2’s</u></font></a><font size="3" face="Arial"> en Catalogne.</font> <br></p>
+        <p><font size="3" face="Arial"><b>CorpusMedia</b></font></p>
+        <p align="justify"><font size="3" face="Arial">CorpusMedia, projet euro 
+        régional Midi-Pyrénées / Catalogne / Languedoc-Roussillon/Iles Baléares, 
+        créé en 2007, est une plate forme de circulation artistique et de 
+        médiation autour des formes hybrides en danse et arts numériques. 
+        Il a pour objectif de créer des liens entre équipes artistiques, réseaux 
+        professionnels et lieux culturels et d’offrir aux publics l’accès 
+        à une scène numérique inter régionale, au travers de spectacles, 
+        installations, laboratoires de création, ateliers et un espace d’information 
+        commun – s’intéressant autant aux pratiques artistiques qu&#39;aux 
+        processus créatifs.</font> <br></p>
+        <p><font size="3" face="Arial"><b>Contacts</b> :  <br>
+        </font></p>
+        <p><font size="3" face="Arial">Guillaume Bautista </font><a href="mailto:bautistaguillaume@hotmail.fr" target="_blank"><font color="#0000FF" size="3" face="Arial"><u>bautistaguillaume@hotmail.fr</u></font></a><font size="3" face="Arial"> 06 72 89 38 07 (installations, performances)</font></p>
+        <p><font size="3" face="Arial">Jean-Marc Matos </font><a href="mailto:kdmatos@wanadoo.fr" target="_blank"><font color="#0000FF" size="3" face="Arial"><u>kdmatos@wanadoo.fr</u></font></a><font size="3" face="Arial"> 06 11 77 54 56 (spectacles)</font></p>
+        <p><font size="3" face="Arial">Marc Bruyère </font><a href="mailto:kdmatos@wanadoo.fr" target="_blank"><font color="#0000FF" size="3" face="Arial"><u>bruyere.marc@gmail.com</u></font></a><font size="3" face="Arial"> (THSF, tetalab)</font></p>
+        <p><font size="3" face="Arial">liens tetalab : </font><a href="http://media.tetalab.org/" target="_blank"><font color="#0000FF" size="3" face="Arial"><u>photos</u></font></a><font size="3" face="Arial">, </font><a href="http://vimeo.com/groups/tetalab" target="_blank"><font color="#0000FF" size="3" face="Arial"><u>vidéos</u></font></a><font size="3" face="Arial">, </font><a href="http://vimeo.com/channels/tetaglobule" target="_blank"><font color="#0000FF" size="3" face="Arial"><u>inspirations</u></font></a><font size="3" face="Arial"> <br>
+         <br>
+        Pour de l’info sur les manifestations passées de CorpusMedia, voir </font><a href="http://www.corpusmedia.eu" target="_blank"><font color="#0000FF" size="3" face="Arial"><u>www.corpusmedia.eu</u></font></a></p>
 
         
         <!-- <?php trackback_rdf() ?> -->
