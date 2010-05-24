@@ -174,8 +174,7 @@ else add_filter('arras_postheader', 'arras_postmeta');
 	<div id="post-<?php the_ID() ?>" <?php arras_single_post_class() ?>>
         <?php arras_postheader() ?>
         
-        <p style="text-align:center;"> 
-        <br/><br/><br/> 
+        <p>
         <script language="JavaScript" type="text/javascript"> 
         <!--
         // Version check for the Flash Player that has the ability to start Player Product Install (6.0r65)
@@ -245,7 +244,8 @@ else add_filter('arras_postheader', 'arras_postmeta');
         				quality="high"
         				allowScriptAccess="sameDomain"
         				type="application/x-shockwave-flash"
-        				pluginspage="http://www.adobe.com/go/getflashplayer"> 
+        				pluginspage="http://www.adobe.com/go/getflashplayer"
+        				style="position:relative;left:-5px"> 
         			</embed> 
         	</object> 
         </noscript> 
