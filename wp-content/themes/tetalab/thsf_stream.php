@@ -174,7 +174,6 @@ else add_filter('arras_postheader', 'arras_postmeta');
 	<div id="post-<?php the_ID() ?>" <?php arras_single_post_class() ?>>
         <?php arras_postheader() ?>
         
-        <p>
         <script language="JavaScript" type="text/javascript"> 
         <!--
         // Version check for the Flash Player that has the ability to start Player Product Install (6.0r65)
@@ -228,12 +227,12 @@ else add_filter('arras_postheader', 'arras_postmeta');
             document.write(alternateContent);  // insert non-flash content
           }
         // -->
-        </script> 
+        </script>
         <noscript> 
           	<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
         			id="simpleEcran" width="640" height="480"
         			codebase="http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab"> 
-        			<param name="movie" value="simpleEcran.swf" /> 
+        			<param name="movie" value="http://www.tetalab.org/simpleEcran.swf" /> 
         			<param name="quality" value="high" /> 
         			<param name="bgcolor" value="#869ca7" /> 
         			<param name="allowScriptAccess" value="sameDomain" /> 
@@ -244,11 +243,9 @@ else add_filter('arras_postheader', 'arras_postmeta');
         				quality="high"
         				allowScriptAccess="sameDomain"
         				type="application/x-shockwave-flash"
-        				pluginspage="http://www.adobe.com/go/getflashplayer"> 
-        			</embed> 
+        				pluginspage="http://www.adobe.com/go/getflashplayer" />
         	</object> 
-        </noscript> 
-        </p>
+        </noscript>
         
         <p align="justify"><font color="#800000" size="4" face="Arial"><b><i>CorpusMedia 
         et THS Festival 2010</i></b></font> <br></p>
