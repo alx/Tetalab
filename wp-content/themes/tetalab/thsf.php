@@ -51,9 +51,9 @@ else add_filter('arras_postheader', 'arras_postmeta');
                 <a href="http://thsf.tetalab.org"><img src="http://tetalab.org/files/2010/05/Screen-shot-2010-05-17-at-14.19.23.png" width="270px" height="194px" alt="THSF"/></a><br>
 
                 <center><h2 style="padding:5px;margin:0px"><a href="http://tetalab.org/thsf/planning" style="text-decoration:none">Programme</a></h2></center><br>
-                			    <center><h3 style="padding:5px;margin:0px"><a href="http://tetalab.org/thsf/thsf-planning-samedi-29-mai" style="text-decoration:none">Samedi 29 Mai</a></h3></center><br>
-                			    <center><h3 style="padding:5px;margin:0px"><a href="http://tetalab.org/thsf/thsf-planning-dimanche-30-mai" style="text-decoration:none">Dimanche 30 Mai</a></h3></center><br>
-                			    <center><h3 style="padding:5px;margin:0px"><a href="http://tetalab.org/thsf/thsf-planning-ateliers" style="text-decoration:none">Ateliers</a></h3></center><br>
+                			    <center><h3 style="padding:5px;margin:0px"><a href="http://tetalab.org/thsf-planning-samedi-29-mai/" style="text-decoration:none">Samedi 29 Mai</a></h3></center><br>
+                			    <center><h3 style="padding:5px;margin:0px"><a href="http://tetalab.org/thsf-planning-dimanche-30-mai" style="text-decoration:none">Dimanche 30 Mai</a></h3></center><br>
+                			    <center><h3 style="padding:5px;margin:0px"><a href="http://tetalab.org/thsf-planning-ateliers" style="text-decoration:none">Ateliers</a></h3></center><br>
 			</div>
 		</li>
 	    
