@@ -208,7 +208,7 @@ else add_filter('arras_postheader', 'arras_postmeta');
         	// if we've detected an acceptable version
         	// embed the Flash Content SWF when all tests are passed
         	AC_FL_RunContent(
-        			"src", "http://www.tetalab.org/simpleEcran",
+        			"src", "/simpleEcran",
         			"width", "640",
         			"height", "480",
         			"align", "middle",
