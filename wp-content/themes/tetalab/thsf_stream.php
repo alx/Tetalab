@@ -237,7 +237,7 @@ else add_filter('arras_postheader', 'arras_postmeta');
         			<param name="quality" value="high" /> 
         			<param name="bgcolor" value="#869ca7" /> 
         			<param name="allowScriptAccess" value="sameDomain" /> 
-        			<embed src="simpleEcran.swf" quality="high" bgcolor="#869ca7"
+        			<embed src="http://www.tetalab.org/simpleEcran.swf" quality="high" bgcolor="#869ca7"
         				width="640" height="480" name="simpleEcran" align="middle"
         				play="true"
         				loop="false"
