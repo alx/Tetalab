@@ -244,8 +244,7 @@ else add_filter('arras_postheader', 'arras_postmeta');
         				quality="high"
         				allowScriptAccess="sameDomain"
         				type="application/x-shockwave-flash"
-        				pluginspage="http://www.adobe.com/go/getflashplayer"
-        				style="margin-left:-5px;"> 
+        				pluginspage="http://www.adobe.com/go/getflashplayer"> 
         			</embed> 
         	</object> 
         </noscript> 
