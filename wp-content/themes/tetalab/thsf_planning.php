@@ -52,9 +52,6 @@ else add_filter('arras_postheader', 'arras_postmeta');
                 			    <center><h3 style="padding:5px;margin:0px"><a href="http://tetalab.org/thsf-planning-samedi-29-mai" style="text-decoration:none">Samedi 29 Mai</a></h3></center><br>
                 			    <center><h3 style="padding:5px;margin:0px"><a href="http://tetalab.org/thsf-planning-dimanche-30-mai" style="text-decoration:none">Dimanche 30 Mai</a></h3></center><br>
                 			    <center><h3 style="padding:5px;margin:0px"><a href="http://tetalab.org/thsf-planning-ateliers" style="text-decoration:none">Ateliers</a></h3></center><br>
-                			    
-                <hr/>
-                <center><h2 style="padding:5px;margin:0px"><a href="http://tetalab.org/corpus-media-thsf-streaming/" style="text-decoration:none">Streaming</a></h2></center>
 			</div>
 		</li>
 		
