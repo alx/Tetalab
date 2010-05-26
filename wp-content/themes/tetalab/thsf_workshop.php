@@ -61,7 +61,7 @@ else add_filter('arras_postheader', 'arras_postmeta');
 				<ul>
 					<li>Date: 28.29.30 Mai 2010</li>
 					<li>Lieux: Toulouse, France - <a href="http://www.mixart-myrys.org/">Mixart Myrys</a></li>
-					<li>Prix: <b>FREE</b></li>
+					<li>Prix: <b>Entr&eacute;e Gratuite</b></li>
 					<li>Contact: <a href="mailto:thsf@lists.tetalab.org">thsf@lists.tetalab.org</a></li>
 				</ul>
 				

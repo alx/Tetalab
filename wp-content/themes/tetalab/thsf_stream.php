@@ -251,24 +251,24 @@ else add_filter('arras_postheader', 'arras_postmeta');
         <p><font size="3" face="Arial"><b>Plate forme &quot;Scènes numériques&quot;</b> </font><a href="http://www.k-danse.net/corpusmedia" target="_blank"><font color="#0000FF" size="3" face="Arial"><u>http://www.k-danse.net/<WBR>corpusmedia</u></font></a><font size="3" face="Arial"> </font></p>
         <p><font size="3" face="Arial"><b>Edition 2010 : 26-29 mai, </b></font><a href="http://www.mixart-myrys.org" target="_blank"><font color="#0000FF" size="3" face="Arial"><b><u>Mix&#39;Art Myrys</u></b></font></a><font size="3" face="Arial"><b> (Toulouse), <br>
         </b></font></p>
-        <p><font size="3" face="Arial">Pour sa quatrième édition, du 26 au 
-        29 mai 2010, CorpusMedia s’associe au THSF, Toulouse HackersSpace 
-        Festival (tetalab) et à Mix’Art Myrys (collectif d’artistes autogéré) 
-        pour créer ensemble un évènement inédit à Toulouse : spectacles, 
-        performances, films, créations en chantier, conférences, lectures 
-        démonstrations, installations, outils interactifs, ateliers, concerts, 
+        <p><font size="3" face="Arial">Pour sa quatri&egrave;me &eacute;dition, du 26 au 
+        29 mai 2010, CorpusMedia s&rsquo;associe au THSF, Toulouse HackersSpace 
+        Festival (tetalab) et &agrave; Mix'Art Myrys (collectif d&rsquo;artistes autog&eacute;r&eacute;) 
+        pour cr&eacute;er ensemble un &eacute;v&egrave;nement in&eacute;dit &agrave; Toulouse : spectacles, 
+        performances, films, cr&eacute;ations en chantier, conf&eacute;rences, lectures 
+        d&eacute;monstrations, installations, outils interactifs, ateliers, concerts, 
         etc.</font></p>
         <p><font size="3" face="Arial">Dans le cadre de cette rencontre euro 
-        régionale des artistes en provenance de chacune des trois régions/pays 
-        (Midi-Pyrénées, Languedoc-Roussillon, Iles Baléares) sont invités 
-        à présenter leur projet. Priorité est donnée à la diversité des 
-        projets et à l’élargissement des publics, via des propositions innovantes 
+        r&eacute;gionale des artistes en provenance de chacune des trois r&eacute;gions/pays 
+        (Midi-Pyr&eacute;n&eacute;es, Languedoc-Roussillon, Iles Bal&eacute;ares) sont invit&eacute;s 
+        &agrave; pr&eacute;senter leur projet. Priorit&eacute; est donn&eacute;e &agrave; la diversit&eacute; des 
+        projets et &agrave; l&rsquo;&eacute;largissement des publics, via des propositions innovantes 
         dans les rencontres artistes-publics.</font> <br></p>
         <p align="justify"><font size="3" face="Arial">Partenaires : Conseil 
         Régional Midi-Pyrénées, Ville de Toulouse, </font><a href="http://www.k-danse.net" target="_blank"><font color="#0000FF" size="3" face="Arial"><u>Cie K. Danse</u></font></a><font size="3" face="Arial"> (pôle Art-Science-Danse), THSF (</font><a href="http://tetalab.org/" target="_blank"><font color="#0000FF" size="3" face="Arial"><u>tetalab</u></font></a><font size="3" face="Arial">), Théâtre Marcel Pagnol (Villeneuve-Tolosane), 
         Espace </font><a href="http://www.mixart-myrys.org/" target="_blank"><font color="#0000FF" size="3" face="Arial"><u>Mix’Art-Myrys</u></font></a><font size="3" face="Arial"> (collectif d’artistes toulousains), avec le 
         soutien technologique de x-réseau, Théâtre Paris-Villette pour la 
-        diffusion « live&quot; sur internet.</font> <br></p>
+        diffusion &quot;live&quot; sur internet.</font> <br></p>
         <p align="justify"><font size="3" face="Arial">Le projet CorpusMedia, 
         « Scènes numériques » Formes hybrides en danse et arts 
         numériques est une initiative portée par K. Danse en Midi-Pyrénées, 
@@ -338,7 +338,7 @@ else add_filter('arras_postheader', 'arras_postmeta');
 				<ul>
 					<li>Date: 28.29.30 Mai 2010</li>
 					<li>Lieux: Toulouse, France - <a href="http://www.mixart-myrys.org/">Mixart Myrys</a></li>
-					<li>Prix: <b>FREE</b></li>
+					<li>Prix: <b>Entr&eacute;e Gratuite</b></li>
 					<li>Contact: <a href="mailto:thsf@lists.tetalab.org">thsf@lists.tetalab.org</a></li>
 				</ul>
 				
