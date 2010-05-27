@@ -44,6 +44,7 @@ else add_filter('arras_postheader', 'arras_postmeta');
 	    <li class="widgetcontainer clearfix">
 			<h5 class="widgettitle"><?php _e('Programme', 'arras') ?></h5>
 			<div class="widgetcontent">
+                
 		        <center><h2 style="padding:5px;margin:0px"><a href="http://www.k-danse.net/corpusmedia" style="text-decoration:none;">Corpus Media</a></h2></center><br>
 
                 <hr/>

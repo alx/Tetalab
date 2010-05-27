@@ -193,8 +193,8 @@ else add_filter('arras_postheader', 'arras_postmeta');
         	AC_FL_RunContent(
         		"src", "playerProductInstall",
         		"FlashVars", "MMredirectURL="+MMredirectURL+'&MMplayerType='+MMPlayerType+'&MMdoctitle='+MMdoctitle+"",
-        		"width", "640",
-        		"height", "480",
+        		"width", "628",
+        		"height", "471",
         		"align", "middle",
         		"id", "simpleEcran",
         		"quality", "high",
@@ -209,8 +209,8 @@ else add_filter('arras_postheader', 'arras_postmeta');
         	// embed the Flash Content SWF when all tests are passed
         	AC_FL_RunContent(
         			"src", "/simpleEcran",
-        			"width", "640",
-        			"height", "480",
+        			"width", "628",
+        			"height", "471",
         			"align", "middle",
         			"id", "simpleEcran",
         			"quality", "high",
@@ -230,14 +230,14 @@ else add_filter('arras_postheader', 'arras_postmeta');
         </script>
         <noscript> 
           	<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
-        			id="simpleEcran" width="640" height="480"
+        			id="simpleEcran" width="628" height="471"
         			codebase="http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab"> 
         			<param name="movie" value="http://www.tetalab.org/simpleEcran.swf" /> 
         			<param name="quality" value="high" /> 
         			<param name="bgcolor" value="#869ca7" /> 
         			<param name="allowScriptAccess" value="sameDomain" /> 
         			<embed src="http://www.tetalab.org/simpleEcran.swf" quality="high" bgcolor="#869ca7"
-        				width="640" height="480" name="simpleEcran" align="middle"
+        				width="628" height="471" name="simpleEcran" align="middle"
         				play="true"
         				loop="false"
         				quality="high"
