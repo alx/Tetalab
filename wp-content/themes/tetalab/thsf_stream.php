@@ -177,9 +177,9 @@ else add_filter('arras_postheader', 'arras_postmeta');
         <h1>Videos disponibles</h1>
         <table border="0" cellspacing="5" cellpadding="5">
             <tr>
-                <td><a href="http://tetalab.org/corpus-media-videos">Corpus Media</a></td>
-                <td><a href="http://tetalab.org/thsf-planning-samedi-29-mai">Samedi 29 Mai</a></td>
-                <td><a href="http://tetalab.org/thsf-planning-dimanche-30-mai">Dimanche 30 Mai</a></td>
+                <td style="text-align:center"><a href="http://tetalab.org/corpus-media-videos" style="text-decoration:none;font-size:18px;">Corpus Media</a></td>
+                <td style="text-align:center"><a href="http://tetalab.org/thsf-planning-samedi-29-mai" style="text-decoration:none;font-size:18px;">Samedi 29 Mai</a></td>
+                <td style="text-align:center"><a href="http://tetalab.org/thsf-planning-dimanche-30-mai" style="text-decoration:none;font-size:18px;">Dimanche 30 Mai</a></td>
             </tr>
         </table>
         
