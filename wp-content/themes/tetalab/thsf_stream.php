@@ -174,79 +174,14 @@ else add_filter('arras_postheader', 'arras_postmeta');
 	<div id="post-<?php the_ID() ?>" <?php arras_single_post_class() ?>>
         <?php arras_postheader() ?>
         
-        <script language="JavaScript" type="text/javascript"> 
-        <!--
-        // Version check for the Flash Player that has the ability to start Player Product Install (6.0r65)
-        var hasProductInstall = DetectFlashVer(6, 0, 65);
-
-        // Version check based upon the values defined in globals
-        var hasRequestedVersion = DetectFlashVer(requiredMajorVersion, requiredMinorVersion, requiredRevision);
-
-        if ( hasProductInstall && !hasRequestedVersion ) {
-        	// DO NOT MODIFY THE FOLLOWING FOUR LINES
-        	// Location visited after installation is complete if installation is required
-        	var MMPlayerType = (isIE == true) ? "ActiveX" : "PlugIn";
-        	var MMredirectURL = window.location;
-            document.title = document.title.slice(0, 47) + " - Flash Player Installation";
-            var MMdoctitle = document.title;
-
-        	AC_FL_RunContent(
-        		"src", "playerProductInstall",
-        		"FlashVars", "MMredirectURL="+MMredirectURL+'&MMplayerType='+MMPlayerType+'&MMdoctitle='+MMdoctitle+"",
-        		"width", "628",
-        		"height", "471",
-        		"align", "middle",
-        		"id", "simpleEcran",
-        		"quality", "high",
-        		"bgcolor", "#869ca7",
-        		"name", "simpleEcran",
-        		"allowScriptAccess","sameDomain",
-        		"type", "application/x-shockwave-flash",
-        		"pluginspage", "http://www.adobe.com/go/getflashplayer"
-        	);
-        } else if (hasRequestedVersion) {
-        	// if we've detected an acceptable version
-        	// embed the Flash Content SWF when all tests are passed
-        	AC_FL_RunContent(
-        			"src", "/simpleEcran",
-        			"width", "628",
-        			"height", "471",
-        			"align", "middle",
-        			"id", "simpleEcran",
-        			"quality", "high",
-        			"bgcolor", "#869ca7",
-        			"name", "simpleEcran",
-        			"allowScriptAccess","sameDomain",
-        			"type", "application/x-shockwave-flash",
-        			"pluginspage", "http://www.adobe.com/go/getflashplayer"
-        	);
-          } else {  // flash is too old or we can't detect the plugin
-            var alternateContent = 'Alternate HTML content should be placed here. '
-          	+ 'This content requires the Adobe Flash Player. '
-           	+ '<a href=http://www.adobe.com/go/getflash/>Get Flash</a>';
-            document.write(alternateContent);  // insert non-flash content
-          }
-        // -->
-        </script>
-        <noscript> 
-          	<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
-        			id="simpleEcran" width="628" height="471"
-        			codebase="http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab"> 
-        			<param name="movie" value="http://www.tetalab.org/simpleEcran.swf" /> 
-        			<param name="quality" value="high" /> 
-        			<param name="bgcolor" value="#869ca7" /> 
-        			<param name="allowScriptAccess" value="sameDomain" /> 
-        			<embed src="http://www.tetalab.org/simpleEcran.swf" quality="high" bgcolor="#869ca7"
-        				width="628" height="471" name="simpleEcran" align="middle"
-        				play="true"
-        				loop="false"
-        				quality="high"
-        				allowScriptAccess="sameDomain"
-        				type="application/x-shockwave-flash"
-        				pluginspage="http://www.adobe.com/go/getflashplayer" />
-        	</object> 
-        </noscript>
-        <br>
+        <p>
+            <strong>Videos disponibles</strong>:
+            <ul>
+                <li><a href="http://tetalab.org/corpus-media-videos">Corpus Media</a></li>
+                <li><a href="http://tetalab.org/thsf-planning-samedi-29-mai">Samedi 29 Mai</a></li>
+                <li><a href="http://tetalab.org/thsf-planning-dimanche-30-mai">Dimanche 30 Mai</a></li>
+            </ul>
+        </p>
         <br>
         <p><font size="3" face="Arial"><b>Plate forme &quot;Scènes numériques&quot;</b> </font><a href="http://www.k-danse.net/corpusmedia" target="_blank"><font color="#0000FF" size="3" face="Arial"><u>http://www.k-danse.net/<WBR>corpusmedia</u></font></a><font size="3" face="Arial"> </font></p>
         <p><font size="3" face="Arial"><b>Edition 2010 : 26-29 mai, </b></font><a href="http://www.mixart-myrys.org" target="_blank"><font color="#0000FF" size="3" face="Arial"><b><u>Mix&#39;Art Myrys</u></b></font></a><font size="3" face="Arial"><b> (Toulouse), <br>
