@@ -174,15 +174,17 @@ else add_filter('arras_postheader', 'arras_postmeta');
 	<div id="post-<?php the_ID() ?>" <?php arras_single_post_class() ?>>
         <?php arras_postheader() ?>
         
-        <p>
-            <strong>Videos disponibles</strong>:
-            <ul>
-                <li><a href="http://tetalab.org/corpus-media-videos">Corpus Media</a></li>
-                <li><a href="http://tetalab.org/thsf-planning-samedi-29-mai">Samedi 29 Mai</a></li>
-                <li><a href="http://tetalab.org/thsf-planning-dimanche-30-mai">Dimanche 30 Mai</a></li>
-            </ul>
-        </p>
-        <br>
+        <h1>Videos disponibles</h1>
+        <table border="0" cellspacing="5" cellpadding="5">
+            <tr>
+                <td><a href="http://tetalab.org/corpus-media-videos">Corpus Media</a></td>
+                <td><a href="http://tetalab.org/thsf-planning-samedi-29-mai">Samedi 29 Mai</a></td>
+                <td><a href="http://tetalab.org/thsf-planning-dimanche-30-mai">Dimanche 30 Mai</a></td>
+            </tr>
+        </table>
+        
+        <hr>
+        
         <p><font size="3" face="Arial"><b>Plate forme &quot;Scènes numériques&quot;</b> </font><a href="http://www.k-danse.net/corpusmedia" target="_blank"><font color="#0000FF" size="3" face="Arial"><u>http://www.k-danse.net/<WBR>corpusmedia</u></font></a><font size="3" face="Arial"> </font></p>
         <p><font size="3" face="Arial"><b>Edition 2010 : 26-29 mai, </b></font><a href="http://www.mixart-myrys.org" target="_blank"><font color="#0000FF" size="3" face="Arial"><b><u>Mix&#39;Art Myrys</u></b></font></a><font size="3" face="Arial"><b> (Toulouse), <br>
         </b></font></p>
