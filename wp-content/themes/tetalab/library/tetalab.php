@@ -28,7 +28,7 @@ function convertVimeoTime($vimeo_time) {
 function get_video_posts($source = 'group', $format = 'post') {
 	
 	$output = '';
-	$num_of_videos = 4;
+	$num_of_videos = 12;
 	
 	switch($source){
 		case 'channel':
