@@ -101,11 +101,13 @@ arras_head();
 						</li>
 						<li><a href="">Blogs</a> 
 							<ul>
-								<li><a href="http://tetalab.org/lionel/">Lionel's Tetalab & Co WIP</a></li> 
+								<li><a href="http://tetalab.org/lionel/">Lionel's Tetalab &amp; Co WIP</a></li> 
 								<li><a href="http://tetalab.org/bmgm/">Bad medecine Good medecine</a></li> 
 								<li><a href="http://tetalab.org/metatangibles/">On my meta-tangibles interactivities</a></li> 
 								<li><a href="http://tetalab.org/pg/">Opensource GSM adventures</a></li> 
-								<li><a href="http://tetalab.org/fildefeu/">The fil de feu</a></li> 
+								<li><a href="http://tetalab.org/fildefeu/">The fil de feu</a></li>  
+								<li><a href="http://tetalab.org/sack/">Sack's lab: Computing for artistic needs
+                                </a></li>
 							</ul> 
 						</li>
 						<li style="margin-left:30px;"> 
